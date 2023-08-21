@@ -9,7 +9,7 @@ interface MyPluginConfig {
  *
  * ```ts
  * import {defineConfig} from 'sanity'
- * import {myPlugin} from 'sanity-plugin-enhanced-groups'
+ * import {myPlugin} from 'sanity-plugin-iconify'
  *
  * export default defineConfig({
  *   // ...
@@ -19,8 +19,8 @@ interface MyPluginConfig {
  */
 export const myPlugin = definePlugin<MyPluginConfig | void>((config = {}) => {
   // eslint-disable-next-line no-console
-  console.log('hello from sanity-plugin-enhanced-groups')
+  console.log('hello from sanity-plugin-iconify')
   return {
-    name: 'sanity-plugin-enhanced-groups',
+    name: 'sanity-plugin-iconify',
   }
 })

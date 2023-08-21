@@ -1,18 +1,18 @@
 {
-  "name": "sanity-plugin-enhanced-groups",
+  "name": "sanity-plugin-iconify",
   "version": "1.0.0",
   "description": "An alternative way to manage groups inside your Sanity Document",
   "keywords": [
     "sanity",
     "sanity-plugin"
   ],
-  "homepage": "https://github.com/williamiommi/sanity-plugin-enhanced-groups#readme",
+  "homepage": "https://github.com/williamiommi/sanity-plugin-iconify#readme",
   "bugs": {
-    "url": "https://github.com/williamiommi/sanity-plugin-enhanced-groups/issues"
+    "url": "https://github.com/williamiommi/sanity-plugin-iconify/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/williamiommi/sanity-plugin-enhanced-groups.git"
+    "url": "git+ssh://git@github.com/williamiommi/sanity-plugin-iconify.git"
   },
   "license": "MIT",
   "author": "William Iommi <william.iommi@gmail.com>",
@@ -73,7 +73,7 @@
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "rimraf": "^5.0.1",
-    "sanity": "^3.14.5",
+    "sanity": "^3.15.1",
     "styled-components": "^5.2",
     "typescript": "^5.1.6"
   },
