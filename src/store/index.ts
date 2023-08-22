@@ -8,12 +8,12 @@ interface AppState {
   queryResults?: IconifyQueryResponse
   isFiltersOpen?: boolean
   filterStyle: string
-  filterPalette: boolean
+  filterPalette: string
   openDialogOpen: () => void
   closeDialogOpen: () => void
   toggleFilters: () => void
   setFilterStyle: (style: string) => void
-  toggleFilterPalette: () => void
+  setFilterPalette: (palette: string) => void
   setSearchTerm: (searchTerm: string) => void
   setQueryResults: (queryResults: IconifyQueryResponse) => void
 }
@@ -21,12 +21,19 @@ interface AppState {
 export const useAppStore = create<AppState>((set) => ({
   limit: 999,
   filterStyle: '',
-  filterPalette: false,
+  filterPalette: '',
   toggleFilters: () => set((s) => ({isFiltersOpen: !s.isFiltersOpen})),
-  toggleFilterPalette: () => set((s) => ({filterPalette: !s.filterPalette})),
   openDialogOpen: () => set(() => ({isDialogOpen: true})),
   closeDialogOpen: () =>
-    set(() => ({isDialogOpen: false, searchTerm: undefined, queryResults: undefined})),
+    set(() => ({
+      isDialogOpen: false,
+      searchTerm: undefined,
+      queryResults: undefined,
+      isFiltersOpen: false,
+      filterPalette: '',
+      filterStyle: '',
+    })),
+  setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
   setSearchTerm: (searchTerm: string) => set(() => ({searchTerm})),
   setQueryResults: (queryResults: IconifyQueryResponse) => set(() => ({queryResults})),

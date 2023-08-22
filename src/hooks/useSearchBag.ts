@@ -10,6 +10,8 @@ interface useSearchBagResponse {
 const useSearchBag = (): useSearchBagResponse => {
   const searchTerm = useAppStore((s) => s.searchTerm)
   const limit = useAppStore((s) => s.limit)
+  const filterStyle = useAppStore((s) => s.filterStyle)
+  const filterPalette = useAppStore((s) => s.filterPalette)
   const setSearchTerm = useAppStore((s) => s.setSearchTerm)
   const setQueryResults = useAppStore((s) => s.setQueryResults)
 
@@ -20,12 +22,14 @@ const useSearchBag = (): useSearchBagResponse => {
   const searchIcons = useCallback(async () => {
     if (!searchTerm) return
     const searchParams = new URLSearchParams()
-    searchParams.append('query', searchTerm)
+    const keywordStyle = filterStyle ? ` style=${filterStyle}` : ''
+    const keywordPalette = filterPalette ? ` palette=${filterPalette}` : ''
+    searchParams.append('query', `${searchTerm}${keywordStyle}${keywordPalette}`)
     searchParams.append('limit', limit.toString())
     const res = await fetch(`https://api.iconify.design/search?${searchParams.toString()}`)
     const data = (await res.json()) as IconifyQueryResponse
     setQueryResults(data)
-  }, [searchTerm, limit, setQueryResults])
+  }, [searchTerm, limit, filterStyle, filterPalette, setQueryResults])
 
   return {onChangeSearchTerm, searchIcons}
 }

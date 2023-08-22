@@ -1,16 +1,49 @@
-import {Flex, Inline, Switch, Text} from '@sanity/ui'
+import {Flex, Inline, Radio, Text} from '@sanity/ui'
+import {FormEvent, useCallback} from 'react'
 import {useAppStore} from '../store'
 
 interface FilterPaletteProps {}
 
 const FilterPalette = (props: FilterPaletteProps) => {
-  const toggleFilterPalette = useAppStore((s) => s.toggleFilterPalette)
+  const filterPalette = useAppStore((s) => s.filterPalette)
+  const setFilterPalette = useAppStore((s) => s.setFilterPalette)
+
+  const onSetFilterPalette = useCallback(
+    (event: FormEvent<HTMLInputElement>) => {
+      setFilterPalette(event.currentTarget.value || '')
+    },
+    [setFilterPalette],
+  )
 
   return (
     <Flex align='center' gap={4}>
-      <Text weight='bold'>Palette:</Text>
+      <Text weight='bold' style={{width: '100px'}}>
+        Palette:
+      </Text>
       <Inline>
-        <Switch name='palette' value='true' onClick={toggleFilterPalette} />
+        <Radio
+          name='palette'
+          value=''
+          checked={filterPalette === ''}
+          onClick={onSetFilterPalette}
+        />
+        <Text style={{marginLeft: '5px'}}>n/a</Text>
+        <Radio
+          name='palette'
+          value='1'
+          style={{marginLeft: '15px'}}
+          checked={filterPalette === '1'}
+          onClick={onSetFilterPalette}
+        />
+        <Text style={{marginLeft: '5px'}}>Yes</Text>
+        <Radio
+          name='palette'
+          value='0'
+          style={{marginLeft: '15px'}}
+          checked={filterPalette === '0'}
+          onClick={onSetFilterPalette}
+        />
+        <Text style={{marginLeft: '5px'}}>No</Text>
       </Inline>
     </Flex>
   )
