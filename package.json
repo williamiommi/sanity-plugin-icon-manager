@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@sanity/incompatible-plugin": "^1.0.4",
+    "@sanity/ui": "^1.7.9",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
