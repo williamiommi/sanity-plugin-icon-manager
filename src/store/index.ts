@@ -9,6 +9,7 @@ interface AppState {
   isFiltersOpen?: boolean
   filterStyle: string
   filterPalette: string
+  iconsPerPage: number
   openDialogOpen: () => void
   closeDialogOpen: () => void
   toggleFilters: (force?: boolean) => void
@@ -18,12 +19,14 @@ interface AppState {
   setSearchTerm: (searchTerm: string) => void
   setQueryResults: (queryResults: IconifyQueryResponse) => void
   countFiltersApplied: () => number
+  setIconsPerPage: (iconsPerPage: number) => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
   limit: 999,
   filterStyle: '',
   filterPalette: '',
+  iconsPerPage: 40,
   toggleFilters: (force?: boolean) =>
     set((s) => ({isFiltersOpen: force === undefined ? !s.isFiltersOpen : force})),
   openDialogOpen: () => set(() => ({isDialogOpen: true})),
@@ -49,4 +52,5 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (get().limit !== 999) count++
     return count
   },
+  setIconsPerPage: (iconsPerPage: number) => set(() => ({iconsPerPage})),
 }))
