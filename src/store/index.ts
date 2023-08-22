@@ -17,7 +17,7 @@ interface AppState {
   setFilterPalette: (palette: string) => void
   setSearchTerm: (searchTerm: string) => void
   setQueryResults: (queryResults: IconifyQueryResponse) => void
-  hasFiltersApplied: () => boolean
+  countFiltersApplied: () => number
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -41,5 +41,11 @@ export const useAppStore = create<AppState>((set, get) => ({
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
   setSearchTerm: (searchTerm: string) => set(() => ({searchTerm})),
   setQueryResults: (queryResults: IconifyQueryResponse) => set(() => ({queryResults})),
-  hasFiltersApplied: () => !!get().filterStyle || !!get().filterPalette || get().limit !== 999,
+  countFiltersApplied: () => {
+    let count = 0
+    if (get().filterStyle) count++
+    if (get().filterPalette) count++
+    if (get().limit !== 999) count++
+    return count
+  },
 }))

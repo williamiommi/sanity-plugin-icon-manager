@@ -21,7 +21,14 @@ const FilterLimit = (props: FilterLimitProps) => {
         Limit:
       </Text>
       <Inline>
-        <TextInput type='number' min={32} max={999} value={limit} onChange={onChangeLimit} />
+        <TextInput
+          type='number'
+          padding={2}
+          min={32}
+          max={999}
+          value={limit}
+          onChange={onChangeLimit}
+        />
         <Text size={0} style={{marginLeft: '5px'}}>
           (min 32 / max 999)
         </Text>
