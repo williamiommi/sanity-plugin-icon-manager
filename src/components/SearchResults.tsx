@@ -25,11 +25,19 @@ const SearchResults = (props: SearchResultsProps) => {
 
   return (
     <Card border radius={2} margin={4} padding={4}>
-      <Grid columns={[3, 5, 7, 10]} gap={5}>
+      <Grid columns={[3, 5, 5, 7, 10]} gap={5} autoCols='fr'>
         {queryResults?.icons.map((icon) => (
-          <Button key={icon} mode='bleed'>
-            <Icon icon={icon} width={30} />
-          </Button>
+          <Button
+            key={icon}
+            mode='bleed'
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
+            icon={<Icon icon={icon} width='30' />}
+          />
         ))}
       </Grid>
     </Card>

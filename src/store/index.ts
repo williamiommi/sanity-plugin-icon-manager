@@ -11,7 +11,7 @@ interface AppState {
   filterPalette: string
   openDialogOpen: () => void
   closeDialogOpen: () => void
-  toggleFilters: () => void
+  toggleFilters: (force?: boolean) => void
   setLimit: (limit: number) => void
   setFilterStyle: (style: string) => void
   setFilterPalette: (palette: string) => void
@@ -24,7 +24,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   limit: 999,
   filterStyle: '',
   filterPalette: '',
-  toggleFilters: () => set((s) => ({isFiltersOpen: !s.isFiltersOpen})),
+  toggleFilters: (force?: boolean) =>
+    set((s) => ({isFiltersOpen: force === undefined ? !s.isFiltersOpen : force})),
   openDialogOpen: () => set(() => ({isDialogOpen: true})),
   closeDialogOpen: () =>
     set(() => ({

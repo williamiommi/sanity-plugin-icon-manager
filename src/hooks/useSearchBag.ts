@@ -14,6 +14,7 @@ const useSearchBag = (): useSearchBagResponse => {
   const filterPalette = useAppStore((s) => s.filterPalette)
   const setSearchTerm = useAppStore((s) => s.setSearchTerm)
   const setQueryResults = useAppStore((s) => s.setQueryResults)
+  const toggleFilters = useAppStore((s) => s.toggleFilters)
 
   const onChangeSearchTerm = (event: FormEvent<HTMLInputElement>) => {
     setSearchTerm(event.currentTarget.value)
@@ -29,7 +30,8 @@ const useSearchBag = (): useSearchBagResponse => {
     const res = await fetch(`https://api.iconify.design/search?${searchParams.toString()}`)
     const data = (await res.json()) as IconifyQueryResponse
     setQueryResults(data)
-  }, [searchTerm, limit, filterStyle, filterPalette, setQueryResults])
+    toggleFilters(false)
+  }, [searchTerm, limit, filterStyle, filterPalette, setQueryResults, toggleFilters])
 
   return {onChangeSearchTerm, searchIcons}
 }
