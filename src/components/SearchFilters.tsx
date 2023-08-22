@@ -1,4 +1,4 @@
-import {Card, Flex, Text} from '@sanity/ui'
+import {Card, Flex} from '@sanity/ui'
 import {useAppStore} from '../store'
 import FilterLimit from './FilterLimit'
 import FilterPalette from './FilterPalette'
@@ -14,9 +14,6 @@ const SearchFilters = (props: SearchFiltersProps) => {
 
   return (
     <Card marginX={4} marginBottom={4} radius={2} padding={3} border>
-      <Text as='div' size={3} weight='bold' style={{marginBottom: '30px'}}>
-        Filters
-      </Text>
       <Flex direction='column' gap={3} marginY={3}>
         <FilterStyle />
         <FilterSeparator />

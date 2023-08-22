@@ -21,14 +21,14 @@ const FilterStyle = (props: FilterStyleProps) => {
         Style:
       </Text>
       <Inline>
-        <Radio name='style' value='' checked={filterStyle === ''} onClick={onSetFilterStyle} />
+        <Radio name='style' value='' checked={filterStyle === ''} onChange={onSetFilterStyle} />
         <Text style={{marginLeft: '5px'}}>n/a</Text>
         <Radio
           name='style'
           value='stroke'
           style={{marginLeft: '15px'}}
           checked={filterStyle === 'stroke'}
-          onClick={onSetFilterStyle}
+          onChange={onSetFilterStyle}
         />
         <Text style={{marginLeft: '5px'}}>Stroke</Text>
         <Radio
@@ -36,7 +36,7 @@ const FilterStyle = (props: FilterStyleProps) => {
           value='fill'
           style={{marginLeft: '15px'}}
           checked={filterStyle === 'fill'}
-          onClick={onSetFilterStyle}
+          onChange={onSetFilterStyle}
         />
         <Text style={{marginLeft: '5px'}}>Fill</Text>
       </Inline>

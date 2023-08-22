@@ -25,7 +25,7 @@ const FilterPalette = (props: FilterPaletteProps) => {
           name='palette'
           value=''
           checked={filterPalette === ''}
-          onClick={onSetFilterPalette}
+          onChange={onSetFilterPalette}
         />
         <Text style={{marginLeft: '5px'}}>n/a</Text>
         <Radio
@@ -33,7 +33,7 @@ const FilterPalette = (props: FilterPaletteProps) => {
           value='1'
           style={{marginLeft: '15px'}}
           checked={filterPalette === '1'}
-          onClick={onSetFilterPalette}
+          onChange={onSetFilterPalette}
         />
         <Text style={{marginLeft: '5px'}}>Yes</Text>
         <Radio
@@ -41,7 +41,7 @@ const FilterPalette = (props: FilterPaletteProps) => {
           value='0'
           style={{marginLeft: '15px'}}
           checked={filterPalette === '0'}
-          onClick={onSetFilterPalette}
+          onChange={onSetFilterPalette}
         />
         <Text style={{marginLeft: '5px'}}>No</Text>
       </Inline>

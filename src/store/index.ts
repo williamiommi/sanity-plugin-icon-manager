@@ -34,6 +34,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       isFiltersOpen: false,
       filterPalette: '',
       filterStyle: '',
+      limit: 999,
     })),
   setLimit: (limit: number) => set(() => ({limit})),
   setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
