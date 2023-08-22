@@ -47,6 +47,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@iconify-icon/react": "^1.0.8",
     "@sanity/incompatible-plugin": "^1.0.4",
     "@sanity/ui": "^1.7.9",
     "zustand": "^4.4.1"

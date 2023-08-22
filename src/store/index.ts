@@ -41,5 +41,5 @@ export const useAppStore = create<AppState>((set, get) => ({
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
   setSearchTerm: (searchTerm: string) => set(() => ({searchTerm})),
   setQueryResults: (queryResults: IconifyQueryResponse) => set(() => ({queryResults})),
-  hasFiltersApplied: () => !!get().filterStyle || !!get().filterPalette,
+  hasFiltersApplied: () => !!get().filterStyle || !!get().filterPalette || get().limit !== 999,
 }))
