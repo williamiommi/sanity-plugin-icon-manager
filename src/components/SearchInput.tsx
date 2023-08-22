@@ -8,19 +8,17 @@ interface SearchInputProps {}
 const SearchInput = (props: SearchInputProps) => {
   const searchTerm = useAppStore((s) => s.searchTerm)
   const isFiltersOpen = useAppStore((s) => s.isFiltersOpen)
-  const filterStyle = useAppStore((s) => s.filterStyle)
-  const filterPalette = useAppStore((s) => s.filterPalette)
+  const hasFiltersApplied = useAppStore((s) => s.hasFiltersApplied)
   const toggleFilters = useAppStore((s) => s.toggleFilters)
   const {onChangeSearchTerm, searchIcons} = useSearchBag()
-  const hasFiltersSelected = filterStyle || filterPalette
   return (
     <Flex padding={4} gap={2} justify='space-between' align='center'>
       <Box style={{width: '100%'}}>
         <TextInput placeholder='Search icons...' padding={4} onChange={onChangeSearchTerm} />
       </Box>
       <Button
-        icon={hasFiltersSelected ? FilterIcon : ControlsIcon}
-        mode={isFiltersOpen || hasFiltersSelected ? 'default' : 'bleed'}
+        icon={hasFiltersApplied() ? FilterIcon : ControlsIcon}
+        mode={isFiltersOpen || hasFiltersApplied() ? 'default' : 'bleed'}
         tone='primary'
         style={{cursor: 'pointer'}}
         onClick={toggleFilters}

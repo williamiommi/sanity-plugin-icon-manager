@@ -12,13 +12,15 @@ interface AppState {
   openDialogOpen: () => void
   closeDialogOpen: () => void
   toggleFilters: () => void
+  setLimit: (limit: number) => void
   setFilterStyle: (style: string) => void
   setFilterPalette: (palette: string) => void
   setSearchTerm: (searchTerm: string) => void
   setQueryResults: (queryResults: IconifyQueryResponse) => void
+  hasFiltersApplied: () => boolean
 }
 
-export const useAppStore = create<AppState>((set) => ({
+export const useAppStore = create<AppState>((set, get) => ({
   limit: 999,
   filterStyle: '',
   filterPalette: '',
@@ -33,8 +35,10 @@ export const useAppStore = create<AppState>((set) => ({
       filterPalette: '',
       filterStyle: '',
     })),
+  setLimit: (limit: number) => set(() => ({limit})),
   setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
   setSearchTerm: (searchTerm: string) => set(() => ({searchTerm})),
   setQueryResults: (queryResults: IconifyQueryResponse) => set(() => ({queryResults})),
+  hasFiltersApplied: () => !!get().filterStyle || !!get().filterPalette,
 }))
