@@ -9,7 +9,7 @@ interface SearchDialogProps {}
 const SearchDialog = (props: SearchDialogProps) => {
   const closeDialogOpen = useAppStore((s) => s.closeDialogOpen)
   return (
-    <Dialog id='search-dialog' header='Iconify - Search' onClose={closeDialogOpen} width='auto'>
+    <Dialog id='search-dialog' header='🙂 Iconify' onClose={closeDialogOpen} width='auto'>
       <SearchInput />
       <SearchFilters />
       <SearchResults />

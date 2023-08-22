@@ -1,5 +1,6 @@
 import {Icon} from '@iconify-icon/react'
-import {Button, Card, Grid} from '@sanity/ui'
+import {WarningOutlineIcon} from '@sanity/icons'
+import {Badge, Button, Card, Grid} from '@sanity/ui'
 import {useAppStore} from '../store'
 
 interface SearchResultsProps {}
@@ -8,6 +9,19 @@ const SearchResults = (props: SearchResultsProps) => {
   const queryResults = useAppStore((s) => s.queryResults)
 
   if (!queryResults) return null
+
+  if (queryResults.total === 0)
+    return (
+      <Badge
+        mode='outline'
+        tone='critical'
+        margin={4}
+        style={{fontWeight: 'bold', fontSize: '20px', boxShadow: 'none'}}
+      >
+        <WarningOutlineIcon />
+        &nbsp;&nbsp;No icons found!
+      </Badge>
+    )
 
   return (
     <Card border radius={2} margin={4} padding={4}>
