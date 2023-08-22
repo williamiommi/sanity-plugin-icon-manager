@@ -1,3 +1,5 @@
+import {BookIcon} from '@sanity/icons'
+import {Button} from '@sanity/ui'
 import {FieldProps} from 'sanity'
 import {useAppStore} from '../store'
 import SearchDialog from './SearchDialog'
@@ -10,9 +12,15 @@ const IconifyField = (props: IconifyFieldProps) => {
   return (
     <div>
       {props.renderDefault({...props, children: undefined})}
-      <button type='button' onClick={openDialogOpen}>
-        Open
-      </button>
+      <Button
+        text='Select icon'
+        tone='primary'
+        paddingY={3}
+        paddingX={4}
+        icon={BookIcon}
+        style={{cursor: 'pointer'}}
+        onClick={openDialogOpen}
+      />
       {isDialogOpen && <SearchDialog />}
     </div>
   )

@@ -1,4 +1,4 @@
-import {FilterIcon, SearchIcon} from '@sanity/icons'
+import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
 import useSearchBag from '../hooks/useSearchBag'
 import {useAppStore} from '../store'
@@ -11,12 +11,12 @@ const SearchInput = (props: SearchInputProps) => {
   const toggleFilters = useAppStore((s) => s.toggleFilters)
   const {onChangeSearchTerm, searchIcons} = useSearchBag()
   return (
-    <Flex padding={4} gap={2} justify='space-between'>
+    <Flex padding={4} gap={2} justify='space-between' align='center'>
       <Box style={{width: '100%'}}>
-        <TextInput placeholder='Search icons...' padding={3} onChange={onChangeSearchTerm} />
+        <TextInput placeholder='Search icons...' padding={4} onChange={onChangeSearchTerm} />
       </Box>
       <Button
-        icon={FilterIcon}
+        icon={ControlsIcon}
         mode={isFiltersOpen ? 'default' : 'bleed'}
         tone='primary'
         style={{cursor: 'pointer'}}
