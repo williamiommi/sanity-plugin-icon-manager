@@ -8,6 +8,7 @@ interface SearchResultsProps {}
 
 const SearchResults = (props: SearchResultsProps) => {
   const queryResults = useAppStore((s) => s.queryResults)
+  const iconsPerPage = useAppStore((s) => s.iconsPerPage)
   const currentPage = useAppStore((s) => s.currentPage)
 
   if (!queryResults) return null
@@ -42,27 +43,29 @@ const SearchResults = (props: SearchResultsProps) => {
       </Flex>
       <Card border radius={2} marginX={4} padding={4} style={{marginBottom: '20px'}}>
         <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3} autoCols='fr'>
-          {queryResults?.chunks[currentPage].map((icon) => (
-            <Flex
-              justify='center'
-              as='li'
-              key={icon}
-              style={{width: 50, height: 50, justifySelf: 'center'}}
-            >
-              <Button
+          {queryResults?.icons
+            .slice(currentPage * iconsPerPage, (currentPage + 1) * iconsPerPage)
+            .map((icon) => (
+              <Flex
+                justify='center'
+                as='li'
                 key={icon}
-                mode='bleed'
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                }}
-                title={icon}
-                icon={<Icon icon={icon} width='30' />}
-              />
-            </Flex>
-          ))}
+                style={{width: 50, height: 50, justifySelf: 'center'}}
+              >
+                <Button
+                  key={icon}
+                  mode='bleed'
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                  }}
+                  title={icon}
+                  icon={<Icon icon={icon} width='30' />}
+                />
+              </Flex>
+            ))}
         </Grid>
       </Card>
     </>

@@ -9,7 +9,7 @@ const SearchPagination = (props: SearchPaginationProps) => {
   const setPrevPage = useAppStore((s) => s.setPrevPage)
   const setNextPage = useAppStore((s) => s.setNextPage)
 
-  if (!queryResults || queryResults?.chunks.length < 2) return null
+  if (!queryResults || queryResults.totalPages < 2) return null
 
   return (
     <Flex gap={2} align='center'>
@@ -28,12 +28,12 @@ const SearchPagination = (props: SearchPaginationProps) => {
         ←
       </button>
       <Text size={1}>
-        {currentPage + 1} / {queryResults.chunks.length}
+        {currentPage + 1} / {queryResults.totalPages}
       </Text>
       <button
         type='button'
         onClick={setNextPage}
-        disabled={currentPage === queryResults.chunks.length - 1}
+        disabled={currentPage === queryResults.totalPages - 1}
         style={{
           border: 'none',
           background: 'none',

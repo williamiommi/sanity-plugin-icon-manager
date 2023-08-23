@@ -7,6 +7,8 @@ interface useSearchBagResponse {
   searchIcons: () => Promise<void>
 }
 
+const cacheResults = new Map<string, IconifyQueryResponse>()
+
 const useSearchBag = (): useSearchBagResponse => {
   const searchTerm = useAppStore((s) => s.searchTerm)
   const limit = useAppStore((s) => s.limit)
@@ -28,18 +30,20 @@ const useSearchBag = (): useSearchBagResponse => {
     const keywordPalette = filterPalette ? ` palette=${filterPalette}` : ''
     searchParams.append('query', `${searchTerm}${keywordStyle}${keywordPalette}`)
     searchParams.append('limit', limit.toString())
-    const res = await fetch(`https://api.iconify.design/search?${searchParams.toString()}`)
-    const data = (await res.json()) as IconifyQueryResponse
 
-    const totalPages = data.total ? Math.ceil(data.total / iconsPerPage) : 1
-
-    const chunks = []
-    for (let index = 0; index < totalPages; index++) {
-      chunks.push(data.icons.slice(index * iconsPerPage, (index + 1) * iconsPerPage))
+    // check cache
+    let results
+    const searchParamsString = searchParams.toString()
+    if (cacheResults.has(searchParamsString)) {
+      results = cacheResults.get(searchParamsString)!
+    } else {
+      cacheResults.delete(searchParamsString)
+      const res = await fetch(`https://api.iconify.design/search?${searchParams.toString()}`)
+      results = (await res.json()) as IconifyQueryResponse
+      results.totalPages = results.total ? Math.ceil(results.total / iconsPerPage) : 1
+      cacheResults.set(searchParams.toString(), results)
     }
-    data.chunks = chunks
-
-    setQueryResults(data)
+    setQueryResults(results)
     toggleFilters(false)
   }, [searchTerm, limit, filterStyle, filterPalette, setQueryResults, toggleFilters, iconsPerPage])
 

@@ -8,5 +8,5 @@ export default interface IconifyQueryResponse {
   start: number
   collections: Record<string, IconifyInfo>
   request: IconifyQueryRequest
-  chunks: string[][]
+  totalPages: number
 }
