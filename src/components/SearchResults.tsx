@@ -8,6 +8,7 @@ interface SearchResultsProps {}
 
 const SearchResults = (props: SearchResultsProps) => {
   const queryResults = useAppStore((s) => s.queryResults)
+  const currentPage = useAppStore((s) => s.currentPage)
 
   if (!queryResults) return null
 
@@ -27,9 +28,15 @@ const SearchResults = (props: SearchResultsProps) => {
   return (
     <>
       <SearchPagination />
-      <Card border radius={2} marginX={4} padding={4} style={{marginBottom: '20px'}}>
+      <Card
+        border
+        radius={2}
+        marginX={4}
+        padding={4}
+        style={{marginBottom: '20px', minHeight: '300px'}}
+      >
         <Grid columns={[3, 5, 5, 7, 10]} gap={5} autoCols='fr'>
-          {queryResults?.icons.map((icon) => (
+          {queryResults?.chunks[currentPage].map((icon) => (
             <Button
               key={icon}
               mode='bleed'

@@ -1,12 +1,15 @@
 import {Box} from '@sanity/ui'
-import useSearchBag from '../hooks/useSearchBag'
+import {useAppStore} from '../store'
 
 interface SearchPaginationProps {}
 
 const SearchPagination = (props: SearchPaginationProps) => {
-  const {pages, currentPage, setPrevPage, setNextPage} = useSearchBag()
+  const queryResults = useAppStore((s) => s.queryResults)
+  const currentPage = useAppStore((s) => s.currentPage)
+  const setPrevPage = useAppStore((s) => s.setPrevPage)
+  const setNextPage = useAppStore((s) => s.setNextPage)
 
-  if (pages < 2) return null
+  if (!queryResults || queryResults?.chunks.length < 2) return null
 
   return (
     <Box
@@ -20,7 +23,7 @@ const SearchPagination = (props: SearchPaginationProps) => {
       <button
         type='button'
         onClick={setPrevPage}
-        disabled={currentPage === 1}
+        disabled={currentPage === 0}
         style={{
           border: 'none',
           background: 'none',
@@ -32,12 +35,12 @@ const SearchPagination = (props: SearchPaginationProps) => {
         ←
       </button>
       <span style={{marginInline: '10px'}}>
-        {currentPage} / {pages}
+        {currentPage + 1} / {queryResults.chunks.length}
       </span>
       <button
         type='button'
         onClick={setNextPage}
-        disabled={currentPage === pages}
+        disabled={currentPage === queryResults.chunks.length - 1}
         style={{
           border: 'none',
           background: 'none',

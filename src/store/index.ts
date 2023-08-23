@@ -10,6 +10,7 @@ interface AppState {
   filterStyle: string
   filterPalette: string
   iconsPerPage: number
+  currentPage: number
   openDialogOpen: () => void
   closeDialogOpen: () => void
   toggleFilters: (force?: boolean) => void
@@ -20,6 +21,8 @@ interface AppState {
   setQueryResults: (queryResults: IconifyQueryResponse) => void
   countFiltersApplied: () => number
   setIconsPerPage: (iconsPerPage: number) => void
+  setPrevPage: () => void
+  setNextPage: () => void
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -27,6 +30,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   filterStyle: '',
   filterPalette: '',
   iconsPerPage: 40,
+  currentPage: 0,
   toggleFilters: (force?: boolean) =>
     set((s) => ({isFiltersOpen: force === undefined ? !s.isFiltersOpen : force})),
   openDialogOpen: () => set(() => ({isDialogOpen: true})),
@@ -39,12 +43,14 @@ export const useAppStore = create<AppState>((set, get) => ({
       filterPalette: '',
       filterStyle: '',
       limit: 999,
+      currentPage: 0,
     })),
   setLimit: (limit: number) => set(() => ({limit})),
   setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
   setSearchTerm: (searchTerm: string) => set(() => ({searchTerm})),
-  setQueryResults: (queryResults: IconifyQueryResponse) => set(() => ({queryResults})),
+  setQueryResults: (queryResults: IconifyQueryResponse) =>
+    set(() => ({queryResults, currentPage: 0})),
   countFiltersApplied: () => {
     let count = 0
     if (get().filterStyle) count++
@@ -53,4 +59,6 @@ export const useAppStore = create<AppState>((set, get) => ({
     return count
   },
   setIconsPerPage: (iconsPerPage: number) => set(() => ({iconsPerPage})),
+  setPrevPage: () => set(() => ({currentPage: get().currentPage - 1})),
+  setNextPage: () => set(() => ({currentPage: get().currentPage + 1})),
 }))
