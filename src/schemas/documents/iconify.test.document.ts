@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import IconifyObjectMetadata from '../objects/iconify.object.metadata'
+import IconifyMetadata from '../objects/Iconify/metadata'
 
 const IconifyDocument = defineType({
   type: 'document',
@@ -12,7 +12,7 @@ const IconifyDocument = defineType({
       title: 'Test',
     }),
     defineField({
-      type: IconifyObjectMetadata.name,
+      type: IconifyMetadata.name,
       name: 'icon',
       title: 'Icon',
       description: 'This is a description',

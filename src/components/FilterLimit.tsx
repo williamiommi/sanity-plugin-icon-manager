@@ -29,8 +29,8 @@ const FilterLimit = (props: FilterLimitProps) => {
           value={limit}
           onChange={onChangeLimit}
         />
-        <Text size={0} style={{marginLeft: '5px'}}>
-          (min 32 / max 999)
+        <Text size={0} style={{marginLeft: '5px', fontStyle: 'italic'}}>
+          (min 32 / max 999 - default 999)
         </Text>
       </Inline>
     </Flex>

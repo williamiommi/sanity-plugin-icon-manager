@@ -1,4 +1,4 @@
-import {Box} from '@sanity/ui'
+import {Flex, Text} from '@sanity/ui'
 import {useAppStore} from '../store'
 
 interface SearchPaginationProps {}
@@ -12,14 +12,7 @@ const SearchPagination = (props: SearchPaginationProps) => {
   if (!queryResults || queryResults?.chunks.length < 2) return null
 
   return (
-    <Box
-      marginX={4}
-      style={{
-        textAlign: 'right',
-        marginTop: '10px',
-        marginBottom: '5px',
-      }}
-    >
+    <Flex gap={2} align='center'>
       <button
         type='button'
         onClick={setPrevPage}
@@ -34,9 +27,9 @@ const SearchPagination = (props: SearchPaginationProps) => {
       >
         ←
       </button>
-      <span style={{marginInline: '10px'}}>
+      <Text size={1}>
         {currentPage + 1} / {queryResults.chunks.length}
-      </span>
+      </Text>
       <button
         type='button'
         onClick={setNextPage}
@@ -51,7 +44,7 @@ const SearchPagination = (props: SearchPaginationProps) => {
       >
         →
       </button>
-    </Box>
+    </Flex>
   )
 }
 

@@ -1,6 +1,6 @@
 import {Icon} from '@iconify-icon/react'
 import {WarningOutlineIcon} from '@sanity/icons'
-import {Badge, Button, Card, Grid} from '@sanity/ui'
+import {Badge, Button, Card, Flex, Grid, Text} from '@sanity/ui'
 import {useAppStore} from '../store'
 import SearchPagination from './SearchPagination'
 
@@ -27,7 +27,19 @@ const SearchResults = (props: SearchResultsProps) => {
 
   return (
     <>
-      <SearchPagination />
+      <Flex
+        justify='space-between'
+        marginX={4}
+        marginY={1}
+        gap={2}
+        align='center'
+        style={{minHeight: '22px'}}
+      >
+        <Text size={1} style={{fontStyle: 'italic'}}>
+          {queryResults.total} icons found
+        </Text>
+        <SearchPagination />
+      </Flex>
       <Card
         border
         radius={2}
@@ -46,6 +58,7 @@ const SearchResults = (props: SearchResultsProps) => {
                 justifyContent: 'center',
                 cursor: 'pointer',
               }}
+              title={icon}
               icon={<Icon icon={icon} width='30' />}
             />
           ))}
