@@ -33,7 +33,7 @@ const SearchResults = (props: SearchResultsProps) => {
         radius={2}
         marginX={4}
         padding={4}
-        style={{marginBottom: '20px', minHeight: '300px'}}
+        style={{marginBottom: '20px', minHeight: '290px'}}
       >
         <Grid columns={[3, 5, 5, 7, 10]} gap={5} autoCols='fr'>
           {queryResults?.chunks[currentPage].map((icon) => (
