@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
 import IconifyField from '../../../components/IconifyField'
-import IconifyCollectionMetadata from '../IconifyCollection/metadata'
+import extraFields from './extra.fields'
 import IconifyMetadata from './metadata'
 
 const Iconify = defineType({
-  type: IconifyMetadata.type,
+  type: 'object',
   name: IconifyMetadata.name,
   title: IconifyMetadata.title,
   fields: [
@@ -20,18 +20,14 @@ const Iconify = defineType({
     }),
     defineField({
       type: 'string',
-      name: 'color',
-      title: 'Color',
+      name: 'inlineSvg',
+      title: 'Inline Svg',
     }),
     defineField({
-      type: 'string',
-      name: 'svg',
-      title: 'Svg',
-    }),
-    defineField({
-      type: IconifyCollectionMetadata.name,
+      type: 'object',
       name: 'metadata',
-      title: 'Collection Metadata',
+      title: 'Metadata',
+      fields: extraFields,
     }),
   ],
   components: {

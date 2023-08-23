@@ -1,11 +1,4 @@
-interface IconifyMetadataProps {
-  type: 'object'
-  name: string
-  title: string
-}
-
-const IconifyMetadata: IconifyMetadataProps = {
-  type: 'object',
+const IconifyMetadata = {
   name: 'iconify',
   title: 'Iconify',
 }
