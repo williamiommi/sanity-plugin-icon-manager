@@ -27,7 +27,7 @@ const SearchResults = (props: SearchResultsProps) => {
   return (
     <>
       <SearchPagination />
-      <Card border radius={2} marginX={4} padding={4}>
+      <Card border radius={2} marginX={4} padding={4} style={{marginBottom: '20px'}}>
         <Grid columns={[3, 5, 5, 7, 10]} gap={5} autoCols='fr'>
           {queryResults?.icons.map((icon) => (
             <Button

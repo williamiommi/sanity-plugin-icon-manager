@@ -6,7 +6,7 @@ interface SearchPaginationProps {}
 const SearchPagination = (props: SearchPaginationProps) => {
   const {pages, currentPage, setPrevPage, setNextPage} = useSearchBag()
 
-  if (pages === 0) return null
+  if (pages < 2) return null
 
   return (
     <Box
