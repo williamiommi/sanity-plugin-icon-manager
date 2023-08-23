@@ -40,27 +40,28 @@ const SearchResults = (props: SearchResultsProps) => {
         </Text>
         <SearchPagination />
       </Flex>
-      <Card
-        border
-        radius={2}
-        marginX={4}
-        padding={4}
-        style={{marginBottom: '20px', minHeight: '230px'}}
-      >
-        <Grid columns={[3, 5, 5, 7, 10]} gap={3} autoCols='fr'>
+      <Card border radius={2} marginX={4} padding={4} style={{marginBottom: '20px'}}>
+        <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3} autoCols='fr'>
           {queryResults?.chunks[currentPage].map((icon) => (
-            <Button
+            <Flex
+              justify='center'
+              as='li'
               key={icon}
-              mode='bleed'
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-              }}
-              title={icon}
-              icon={<Icon icon={icon} width='30' />}
-            />
+              style={{width: 50, height: 50, justifySelf: 'center'}}
+            >
+              <Button
+                key={icon}
+                mode='bleed'
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                }}
+                title={icon}
+                icon={<Icon icon={icon} width='30' />}
+              />
+            </Flex>
           ))}
         </Grid>
       </Card>
