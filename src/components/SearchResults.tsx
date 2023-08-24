@@ -1,6 +1,5 @@
 import {WarningOutlineIcon} from '@sanity/icons'
 import {Badge, Card, Flex, Grid, Text} from '@sanity/ui'
-import useSearchBag from '../hooks/useSearchBag'
 import {useAppStore} from '../store'
 import SearchPagination from './SearchPagination'
 import SearchResultsIcon from './SearchResults.Icon'
@@ -11,7 +10,7 @@ const SearchResults = (props: SearchResultsProps) => {
   const queryResults = useAppStore((s) => s.queryResults)
   const iconsPerPage = useAppStore((s) => s.iconsPerPage)
   const currentPage = useAppStore((s) => s.currentPage)
-  const {selectIcon} = useSearchBag()
+  const selectIcon = useAppStore((s) => s.selectIcon)
 
   if (!queryResults) return null
 

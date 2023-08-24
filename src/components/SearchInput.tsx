@@ -1,7 +1,6 @@
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
 import {useCallback} from 'react'
-import useSearchBag from '../hooks/useSearchBag'
 import {useAppStore} from '../store'
 import FilterBadge from './FilterBadge'
 
@@ -12,7 +11,8 @@ const SearchInput = (props: SearchInputProps) => {
   const isFiltersOpen = useAppStore((s) => s.isFiltersOpen)
   const countFiltersApplied = useAppStore((s) => s.countFiltersApplied())
   const toggleFilters = useAppStore((s) => s.toggleFilters)
-  const {onChangeSearchTerm, searchIcons} = useSearchBag()
+  const searchIcons = useAppStore((s) => s.searchIcons)
+  const setSearchTerm = useAppStore((s) => s.setSearchTerm)
 
   const onToggleFilters = useCallback(() => {
     toggleFilters()
@@ -38,7 +38,7 @@ const SearchInput = (props: SearchInputProps) => {
         />
       </Box>
       <Box style={{flex: 1}}>
-        <TextInput placeholder='Search icons...' onChange={onChangeSearchTerm} />
+        <TextInput placeholder='Search icons...' onChange={setSearchTerm} />
       </Box>
       <Button
         type='submit'
