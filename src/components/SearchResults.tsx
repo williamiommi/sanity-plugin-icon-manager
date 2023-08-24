@@ -39,7 +39,7 @@ const SearchResults = (props: SearchResultsProps) => {
         style={{minHeight: '22px'}}
       >
         <Text size={1} style={{fontStyle: 'italic'}}>
-          {queryResults.total} icons found
+          {queryResults.total} {queryResults.total === 1 ? 'icon' : 'icons'} found
         </Text>
         <SearchPagination />
       </Flex>
