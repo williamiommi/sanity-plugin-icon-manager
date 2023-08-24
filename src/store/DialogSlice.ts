@@ -1,7 +1,5 @@
 import {StateCreator} from 'zustand'
-import {DEFAULT_FILTER_LIMIT, FiltersSlice} from './FiltersSlice'
-import {PaginationSlice} from './PaginationSlice'
-import {ResultsSlice} from './ResultsSlice'
+import {DEFAULT_FILTER_LIMIT} from './FiltersSlice'
 
 export interface DialogSlice {
   isDialogOpen?: boolean
@@ -9,12 +7,7 @@ export interface DialogSlice {
   closeDialogOpen: () => void
 }
 
-export const createDialogSlice: StateCreator<
-  DialogSlice & FiltersSlice & PaginationSlice & ResultsSlice,
-  [],
-  [],
-  DialogSlice
-> = (set) => ({
+export const createDialogSlice: StateCreator<DialogSlice, [], [], DialogSlice> = (set) => ({
   openDialogOpen: () => set(() => ({isDialogOpen: true})),
   closeDialogOpen: () =>
     set(() => ({

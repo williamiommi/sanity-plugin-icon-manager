@@ -1,5 +1,7 @@
 import {StateCreator} from 'zustand'
 
+const DEFAULT_ICONS_PER_PAGE = 40
+
 export interface PaginationSlice {
   iconsPerPage: number
   currentPage: number
@@ -12,7 +14,7 @@ export const createPaginationSlice: StateCreator<PaginationSlice, [], [], Pagina
   set,
   get,
 ) => ({
-  iconsPerPage: 40,
+  iconsPerPage: DEFAULT_ICONS_PER_PAGE,
   currentPage: 0,
   setIconsPerPage: (iconsPerPage: number) => set(() => ({iconsPerPage})),
   setPrevPage: () => set(() => ({currentPage: get().currentPage - 1})),

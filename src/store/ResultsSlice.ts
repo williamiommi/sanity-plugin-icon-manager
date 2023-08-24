@@ -1,6 +1,5 @@
 import {StateCreator} from 'zustand'
 import IconifyQueryResponse from '../types/IconifyQueryResponse'
-import {PaginationSlice} from './PaginationSlice'
 
 export interface ResultsSlice {
   searchTerm?: string
@@ -9,12 +8,7 @@ export interface ResultsSlice {
   setQueryResults: (queryResults: IconifyQueryResponse) => void
 }
 
-export const createResultsSlice: StateCreator<
-  ResultsSlice & PaginationSlice,
-  [],
-  [],
-  ResultsSlice
-> = (set) => ({
+export const createResultsSlice: StateCreator<ResultsSlice, [], [], ResultsSlice> = (set) => ({
   setSearchTerm: (searchTerm: string) => set(() => ({searchTerm})),
   setQueryResults: (queryResults: IconifyQueryResponse) =>
     set(() => ({queryResults, currentPage: 0})),
