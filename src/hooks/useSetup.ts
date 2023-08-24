@@ -1,3 +1,4 @@
+import {disableCache} from '@iconify-icon/react'
 import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {FieldProps} from 'sanity'
@@ -12,6 +13,7 @@ const useSetup = (fieldProps: FieldProps): void => {
   useEffect(() => {
     setSanityPatch(fieldProps.inputProps.onChange)
     setSanityToast(sanityToast)
+    disableCache('all')
   }, [])
 }
 

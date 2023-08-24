@@ -1,9 +1,9 @@
-import {Icon} from '@iconify-icon/react'
 import {WarningOutlineIcon} from '@sanity/icons'
-import {Badge, Button, Card, Flex, Grid, Text} from '@sanity/ui'
+import {Badge, Card, Flex, Grid, Text} from '@sanity/ui'
 import useSearchBag from '../hooks/useSearchBag'
 import {useAppStore} from '../store'
 import SearchPagination from './SearchPagination'
+import SearchResultsIcon from './SearchResults.Icon'
 
 interface SearchResultsProps {}
 
@@ -47,29 +47,7 @@ const SearchResults = (props: SearchResultsProps) => {
         <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3} autoCols='fr'>
           {queryResults?.icons
             .slice(currentPage * iconsPerPage, (currentPage + 1) * iconsPerPage)
-            .map((icon) => (
-              <Flex
-                justify='center'
-                as='li'
-                key={icon}
-                style={{width: 50, height: 50, justifySelf: 'center'}}
-              >
-                <Button
-                  key={icon}
-                  mode='bleed'
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                  }}
-                  title={icon}
-                  icon={<Icon icon={icon} width='30' />}
-                  data-value={icon}
-                  onClick={selectIcon}
-                />
-              </Flex>
-            ))}
+            .map((icon) => <SearchResultsIcon key={icon} icon={icon} onClick={selectIcon} />)}
         </Grid>
       </Card>
     </>
