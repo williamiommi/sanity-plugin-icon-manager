@@ -15,8 +15,13 @@ const Iconify = defineType({
     }),
     defineField({
       type: 'string',
-      name: 'name',
-      title: 'Name',
+      name: 'icon',
+      title: 'Icon',
+    }),
+    defineField({
+      type: 'string',
+      name: 'fullName',
+      title: 'Fullname',
     }),
     defineField({
       type: 'string',

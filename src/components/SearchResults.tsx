@@ -1,6 +1,7 @@
 import {Icon} from '@iconify-icon/react'
 import {WarningOutlineIcon} from '@sanity/icons'
 import {Badge, Button, Card, Flex, Grid, Text} from '@sanity/ui'
+import useSearchBag from '../hooks/useSearchBag'
 import {useAppStore} from '../store'
 import SearchPagination from './SearchPagination'
 
@@ -10,6 +11,7 @@ const SearchResults = (props: SearchResultsProps) => {
   const queryResults = useAppStore((s) => s.queryResults)
   const iconsPerPage = useAppStore((s) => s.iconsPerPage)
   const currentPage = useAppStore((s) => s.currentPage)
+  const {selectIcon} = useSearchBag()
 
   if (!queryResults) return null
 
@@ -63,6 +65,8 @@ const SearchResults = (props: SearchResultsProps) => {
                   }}
                   title={icon}
                   icon={<Icon icon={icon} width='30' />}
+                  data-value={icon}
+                  onClick={selectIcon}
                 />
               </Flex>
             ))}
