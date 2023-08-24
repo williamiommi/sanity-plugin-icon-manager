@@ -1,9 +1,15 @@
 type IconifyType = {
-  collection: string
   icon: string
-  fullName: string
   inlineSvg?: string
-  metadata: {
+  metadata?: {
+    collectionName?: string
+    iconName?: string
+    palette?: boolean
+    viewbox?: number
+    customSize?: number
+    flipH?: boolean
+    flipV?: boolean
+    rotate?: number
     color?: string
     license?: {
       name?: string

@@ -1,6 +1,6 @@
 import {useToast} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
-import {set, unset} from 'sanity'
+import {isArray, set, unset} from 'sanity'
 import {useAppStore} from '../store'
 import IconifyQueryResponse from '../types/IconifyQueryResponse'
 import IconifyType from '../types/IconifyType'
@@ -64,10 +64,12 @@ const useSearchBag = (): useSearchBagResponse => {
         if (iconInfo?.length === 2) {
           const collection = queryResults?.collections[iconInfo[0]]
           const objToSave: IconifyType = {
-            collection: iconInfo[0],
-            icon: iconInfo[1],
-            fullName: value!,
+            icon: value!,
             metadata: {
+              collectionName: iconInfo[0],
+              iconName: iconInfo[1],
+              palette: collection?.palette,
+              viewbox: isArray(collection?.height) ? collection?.height[0] : collection?.height,
               author: {
                 name: collection?.author.name,
                 url: collection?.author.url,

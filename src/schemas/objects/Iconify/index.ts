@@ -10,18 +10,8 @@ const Iconify = defineType({
   fields: [
     defineField({
       type: 'string',
-      name: 'collection',
-      title: 'Collection',
-    }),
-    defineField({
-      type: 'string',
       name: 'icon',
       title: 'Icon',
-    }),
-    defineField({
-      type: 'string',
-      name: 'fullName',
-      title: 'Fullname',
     }),
     defineField({
       type: 'string',
