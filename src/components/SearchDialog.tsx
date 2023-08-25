@@ -7,9 +7,9 @@ import SearchResults from './SearchResults'
 interface SearchDialogProps {}
 
 const SearchDialog = (props: SearchDialogProps) => {
-  const closeDialogOpen = useAppStore((s) => s.closeDialogOpen)
+  const closeSearchDialog = useAppStore((s) => s.closeSearchDialog)
   return (
-    <Dialog id='search-dialog' header='🙂 Iconify' onClose={closeDialogOpen} width={2}>
+    <Dialog id='search-dialog' header='🙂 Iconify' onClose={closeSearchDialog} width={2}>
       <SearchInput />
       <SearchFilters />
       <SearchResults />

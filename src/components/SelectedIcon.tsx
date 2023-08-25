@@ -1,7 +1,9 @@
 import {Icon} from '@iconify-icon/react'
 import {DownloadIcon} from '@sanity/icons'
-import {hexToRgb, useTheme} from '@sanity/ui'
+import {Flex, hexToRgb, useTheme} from '@sanity/ui'
 import {useAppStore} from '../store'
+import ConfigDialog from './ConfigDialog'
+import InfoDialog from './InfoDialog'
 import StyledSelectedIcon, {StyledMask} from './SelectedIcon.style'
 
 interface SelectedIconProps {}
@@ -13,12 +15,18 @@ const SelectedIcon = (props: SelectedIconProps) => {
   if (!sanityValue?.icon) return null
 
   return (
-    <StyledSelectedIcon borderColor={theme.color.card.hovered.border}>
-      <StyledMask bgColor={hexToRgb(theme.color.base.fg)} role='button'>
-        <DownloadIcon width={30} height={30} color={theme.color.base.bg} />
-      </StyledMask>
-      <Icon icon={sanityValue?.icon} width={40} height={40} style={{display: 'block'}} />
-    </StyledSelectedIcon>
+    <Flex gap={1}>
+      <StyledSelectedIcon borderColor={theme.color.card.hovered.border}>
+        <StyledMask bgColor={hexToRgb(theme.color.base.fg)} role='button'>
+          <DownloadIcon width={30} height={30} color={theme.color.base.bg} />
+        </StyledMask>
+        <Icon icon={sanityValue?.icon} width={40} height={40} style={{display: 'block'}} />
+      </StyledSelectedIcon>
+      <Flex gap={2} direction='column' justify='flex-end' align='flex-start'>
+        <InfoDialog />
+        <ConfigDialog />
+      </Flex>
+    </Flex>
   )
 }
 
