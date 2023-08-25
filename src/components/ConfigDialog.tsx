@@ -6,7 +6,7 @@ import {StyledBaseButton} from './shared/ShartedStyledComponents'
 const DialogHeader = () => (
   <Flex align='center' gap={3}>
     <CogIcon />
-    <span>Icon Configuration</span>
+    <span>Configuration</span>
   </Flex>
 )
 

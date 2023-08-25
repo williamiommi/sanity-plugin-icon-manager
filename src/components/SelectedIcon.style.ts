@@ -14,7 +14,7 @@ const StyledSelectedIcon = styled.div<StyledSelectedIconProps>`
 interface StyledMaskProps {
   bgColor: RGB
 }
-export const StyledMask = styled.div<StyledMaskProps>`
+export const StyledMask = styled.a<StyledMaskProps>`
   position: absolute;
   inset: 0;
   display: flex;

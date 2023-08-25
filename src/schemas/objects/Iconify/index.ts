@@ -15,6 +15,11 @@ const Iconify = defineType({
     }),
     defineField({
       type: 'string',
+      name: 'downloadUrl',
+      title: 'Download Url',
+    }),
+    defineField({
+      type: 'string',
       name: 'inlineSvg',
       title: 'Inline Svg',
     }),

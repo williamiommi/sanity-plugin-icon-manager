@@ -61,6 +61,7 @@ export const createResultsSlice: StateCreator<
         const collection = get().queryResults?.collections[iconInfo[0]]
         const objToSave: IconifyType = {
           icon: value!,
+          downloadUrl: `https://api.iconify.design/${value!}.svg?download=1`,
           metadata: {
             collectionId: iconInfo[0],
             collectionName: collection?.name,

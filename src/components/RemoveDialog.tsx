@@ -16,8 +16,20 @@ const RemoveDialog = (props: RemoveDialogProps) => {
 
   const DialogActions = () => (
     <Flex gap={2} justify='flex-end' margin={2}>
-      <StyledBaseButton text='Confirm' tone='positive' fontSize={1} onClick={clearIcon} />
-      <StyledBaseButton text='Cancel' tone='critical' fontSize={1} onClick={closeRemoveDialog} />
+      <StyledBaseButton
+        text='Confirm'
+        mode='bleed'
+        tone='positive'
+        fontSize={1}
+        onClick={clearIcon}
+      />
+      <StyledBaseButton
+        text='Cancel'
+        mode='bleed'
+        tone='critical'
+        fontSize={1}
+        onClick={closeRemoveDialog}
+      />
     </Flex>
   )
 

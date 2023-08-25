@@ -1,5 +1,6 @@
 type IconifyType = {
   icon: string
+  downloadUrl: string
   inlineSvg?: string
   metadata?: {
     collectionId?: string

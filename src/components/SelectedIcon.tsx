@@ -17,12 +17,16 @@ const SelectedIcon = (props: SelectedIconProps) => {
   return (
     <Flex gap={1}>
       <StyledSelectedIcon borderColor={theme.color.card.hovered.border}>
-        <StyledMask bgColor={hexToRgb(theme.color.base.fg)} role='button'>
+        <StyledMask
+          bgColor={hexToRgb(theme.color.base.fg)}
+          role='link'
+          href={sanityValue.downloadUrl}
+        >
           <DownloadIcon width={30} height={30} color={theme.color.base.bg} />
         </StyledMask>
         <Icon icon={sanityValue?.icon} width={40} height={40} style={{display: 'block'}} />
       </StyledSelectedIcon>
-      <Flex gap={2} direction='column' justify='flex-end' align='flex-start'>
+      <Flex direction='column' justify='flex-end' align='flex-start'>
         <InfoDialog />
         <ConfigDialog />
       </Flex>
