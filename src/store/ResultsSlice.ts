@@ -80,7 +80,7 @@ export const createResultsSlice: StateCreator<
         if (sanityPatch) {
           await sanityPatch(patchSet(objToSave))
           get().setSanityValue(objToSave)
-          get().closeDialogOpen()
+          get().closeSearchDialog()
         }
       }
     } catch (e: any) {
