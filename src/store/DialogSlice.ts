@@ -13,6 +13,10 @@ export interface DialogSlice {
   isConfigDialogOpen?: boolean
   openConfigDialog: () => void
   closeConfigDialog: () => void
+
+  isRemoveDialogOpen?: boolean
+  openRemoveDialog: () => void
+  closeRemoveDialog: () => void
 }
 
 export const createDialogSlice: StateCreator<DialogSlice, [], [], DialogSlice> = (set) => ({
@@ -34,4 +38,7 @@ export const createDialogSlice: StateCreator<DialogSlice, [], [], DialogSlice> =
 
   openConfigDialog: () => set(() => ({isConfigDialogOpen: true})),
   closeConfigDialog: () => set(() => ({isConfigDialogOpen: false})),
+
+  openRemoveDialog: () => set(() => ({isRemoveDialogOpen: true})),
+  closeRemoveDialog: () => set(() => ({isRemoveDialogOpen: false})),
 })

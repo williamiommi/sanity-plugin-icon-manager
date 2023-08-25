@@ -96,6 +96,7 @@ export const createResultsSlice: StateCreator<
       if (sanityPatch) {
         await sanityPatch(patchUnset())
         get().setSanityValue(undefined)
+        get().closeRemoveDialog()
       }
     } catch (e: any) {
       const sanityToast = get().sanityToast

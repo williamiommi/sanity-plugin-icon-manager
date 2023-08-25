@@ -14,7 +14,11 @@ const DialogHeader = () => (
 )
 
 const SearchDialog = (props: SearchDialogProps) => {
+  const isSearchDialogOpen = useAppStore((s) => s.isSearchDialogOpen)
   const closeSearchDialog = useAppStore((s) => s.closeSearchDialog)
+
+  if (!isSearchDialogOpen) return null
+
   return (
     <Dialog id='search-dialog' header={<DialogHeader />} onClose={closeSearchDialog} width={2}>
       <SearchInput />
