@@ -1,13 +1,7 @@
 import {CogIcon} from '@sanity/icons'
-import {Button, Dialog} from '@sanity/ui'
-import styled from 'styled-components'
+import {Dialog} from '@sanity/ui'
 import {useAppStore} from '../store'
-
-const StyledConfigButton = styled(Button)`
-  cursor: pointer;
-  display: inline-flex;
-  transition: all 0.3s ease-in-out;
-`
+import {StyledBaseButton} from './shared/ShartedStyledComponents'
 
 interface ConfigDialogProps {}
 
@@ -17,7 +11,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const closeConfigDialog = useAppStore((s) => s.closeConfigDialog)
   return (
     <>
-      <StyledConfigButton
+      <StyledBaseButton
         mode='bleed'
         tone='positive'
         icon={<CogIcon width={18} />}

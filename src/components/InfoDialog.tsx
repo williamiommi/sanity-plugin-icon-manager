@@ -1,13 +1,7 @@
 import {InfoOutlineIcon} from '@sanity/icons'
-import {Button, Dialog} from '@sanity/ui'
-import styled from 'styled-components'
+import {Dialog} from '@sanity/ui'
 import {useAppStore} from '../store'
-
-const StyledInfoButton = styled(Button)`
-  cursor: pointer;
-  display: inline-flex;
-  transition: all 0.3s ease-in-out;
-`
+import {StyledBaseButton} from './shared/ShartedStyledComponents'
 
 interface InfoDialogProps {}
 
@@ -17,7 +11,7 @@ const InfoDialog = (props: InfoDialogProps) => {
   const closeInfoDialog = useAppStore((s) => s.closeInfoDialog)
   return (
     <>
-      <StyledInfoButton
+      <StyledBaseButton
         mode='bleed'
         tone='primary'
         icon={<InfoOutlineIcon width={18} />}

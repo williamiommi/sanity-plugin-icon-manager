@@ -1,12 +1,7 @@
 import {TrashIcon} from '@sanity/icons'
-import {Box, Button, Dialog, Flex} from '@sanity/ui'
-import styled from 'styled-components'
+import {Box, Dialog, Flex} from '@sanity/ui'
 import {useAppStore} from '../store'
-
-const StyledRemoveButton = styled(Button)`
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-`
+import {StyledBaseButton} from './shared/ShartedStyledComponents'
 
 interface RemoveDialogProps {}
 
@@ -21,14 +16,14 @@ const RemoveDialog = (props: RemoveDialogProps) => {
 
   const DialogActions = () => (
     <Flex gap={2} justify='flex-end' margin={2}>
-      <StyledRemoveButton text='Confirm' tone='positive' fontSize={1} onClick={clearIcon} />
-      <StyledRemoveButton text='Cancel' tone='critical' fontSize={1} onClick={closeRemoveDialog} />
+      <StyledBaseButton text='Confirm' tone='positive' fontSize={1} onClick={clearIcon} />
+      <StyledBaseButton text='Cancel' tone='critical' fontSize={1} onClick={closeRemoveDialog} />
     </Flex>
   )
 
   return (
     <>
-      <StyledRemoveButton
+      <StyledBaseButton
         text='Clear icon'
         mode='bleed'
         tone='critical'

@@ -1,5 +1,6 @@
 import {Flex, Text} from '@sanity/ui'
 import {useAppStore} from '../store'
+import {StyledPaginationButton} from './shared/ShartedStyledComponents'
 
 interface SearchPaginationProps {}
 
@@ -13,37 +14,19 @@ const SearchPagination = (props: SearchPaginationProps) => {
 
   return (
     <Flex gap={2} align='center'>
-      <button
-        type='button'
-        onClick={setPrevPage}
-        disabled={currentPage === 0}
-        style={{
-          border: 'none',
-          background: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          fontSize: '20px',
-        }}
-      >
+      <StyledPaginationButton type='button' onClick={setPrevPage} disabled={currentPage === 0}>
         ←
-      </button>
+      </StyledPaginationButton>
       <Text size={1}>
         {currentPage + 1} / {queryResults.totalPages}
       </Text>
-      <button
+      <StyledPaginationButton
         type='button'
         onClick={setNextPage}
         disabled={currentPage === queryResults.totalPages - 1}
-        style={{
-          border: 'none',
-          background: 'none',
-          cursor: 'pointer',
-          padding: 0,
-          fontSize: '20px',
-        }}
       >
         →
-      </button>
+      </StyledPaginationButton>
     </Flex>
   )
 }
