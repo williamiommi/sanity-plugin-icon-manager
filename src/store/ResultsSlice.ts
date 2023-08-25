@@ -62,7 +62,8 @@ export const createResultsSlice: StateCreator<
         const objToSave: IconifyType = {
           icon: value!,
           metadata: {
-            collectionName: iconInfo[0],
+            collectionId: iconInfo[0],
+            collectionName: collection?.name,
             iconName: iconInfo[1],
             palette: collection?.palette,
             viewbox: Array.isArray(collection?.height) ? collection?.height[0] : collection?.height,

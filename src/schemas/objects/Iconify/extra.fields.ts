@@ -3,6 +3,11 @@ import {defineField} from 'sanity'
 const metadataFields = [
   defineField({
     type: 'string',
+    name: 'collectionId',
+    title: 'Collection Id',
+  }),
+  defineField({
+    type: 'string',
     name: 'collectionName',
     title: 'Collection Name',
   }),

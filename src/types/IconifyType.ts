@@ -2,6 +2,7 @@ type IconifyType = {
   icon: string
   inlineSvg?: string
   metadata?: {
+    collectionId?: string
     collectionName?: string
     iconName?: string
     palette?: boolean
