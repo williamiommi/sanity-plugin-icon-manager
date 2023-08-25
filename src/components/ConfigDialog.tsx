@@ -1,7 +1,14 @@
 import {CogIcon} from '@sanity/icons'
-import {Dialog} from '@sanity/ui'
+import {Dialog, Flex} from '@sanity/ui'
 import {useAppStore} from '../store'
 import {StyledBaseButton} from './shared/ShartedStyledComponents'
+
+const DialogHeader = () => (
+  <Flex align='center' gap={3}>
+    <CogIcon />
+    <span>Icon Configuration</span>
+  </Flex>
+)
 
 interface ConfigDialogProps {}
 
@@ -21,12 +28,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
         padding={2}
       />
       {isConfigDialogOpen && (
-        <Dialog
-          id='config-dialog'
-          header='Icon Configuration'
-          onClose={closeConfigDialog}
-          width={0}
-        >
+        <Dialog id='config-dialog' header={<DialogHeader />} onClose={closeConfigDialog} width={0}>
           Ciao
         </Dialog>
       )}
