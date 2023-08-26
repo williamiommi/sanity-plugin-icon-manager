@@ -1,9 +1,9 @@
 import {Icon} from '@iconify-icon/react'
-import {InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
-import {Box, Dialog, Flex, Grid} from '@sanity/ui'
+import {CopyIcon, DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
+import {Box, Button, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
-import {useAppStore} from '../store'
-import {StyledBaseButton} from './shared/ShartedStyledComponents'
+import {useAppStore} from '../../store'
+import {StyledBaseButton, StyledGridForm} from '../shared/ShartedStyledComponents'
 
 const StyledCell = styled.span<{bold?: boolean}>`
   font-size: 13px;
@@ -24,6 +24,7 @@ const InfoDialog = (props: InfoDialogProps) => {
   const isInfoDialogOpen = useAppStore((s) => s.isInfoDialogOpen)
   const openInfoDialog = useAppStore((s) => s.openInfoDialog)
   const closeInfoDialog = useAppStore((s) => s.closeInfoDialog)
+
   return (
     <>
       <StyledBaseButton
@@ -40,13 +41,9 @@ const InfoDialog = (props: InfoDialogProps) => {
           <Box marginX={4} marginTop={2}>
             <Icon icon={sanityValue?.icon!} width={20} height={20} />
           </Box>
-          <Grid margin={4} marginTop={2} columns={[1, 2]} gapY={3}>
+          <StyledGridForm margin={4} marginTop={2} columns={[1, 2]} gapY={[2, 3]}>
             <StyledCell bold>Icon Name:</StyledCell>
             <StyledCell>{sanityValue?.metadata?.iconName}</StyledCell>
-            <StyledCell bold>Original Size:</StyledCell>
-            <StyledCell>
-              {sanityValue?.metadata?.viewbox} x {sanityValue?.metadata?.viewbox}
-            </StyledCell>
             <StyledCell bold>Collection:</StyledCell>
             <StyledCell>{sanityValue?.metadata?.collectionName}</StyledCell>
             <StyledCell bold>Author:</StyledCell>
@@ -63,7 +60,53 @@ const InfoDialog = (props: InfoDialogProps) => {
                 <LaunchIcon width={10} />
               </a>
             </StyledCell>
-          </Grid>
+            <StyledCell bold>Original Svg:</StyledCell>
+            <Grid columns={1} gap={2} style={{width: '100%', marginLeft: 'auto'}}>
+              <Button
+                as='a'
+                text='Download'
+                mode='ghost'
+                tone='primary'
+                icon={DownloadIcon}
+                fontSize={0}
+                padding={2}
+                paddingX={1}
+                style={{
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  transition: 'all 0.3s ease-in-out',
+                }}
+                href={`https://api.iconify.design/${sanityValue?.icon}.svg?download=1`}
+              />
+              <StyledBaseButton
+                text='Copy Html'
+                mode='ghost'
+                tone='primary'
+                icon={CopyIcon}
+                fontSize={0}
+                padding={2}
+                paddingX={0}
+              />
+              <StyledBaseButton
+                text='Copy Base64'
+                mode='ghost'
+                tone='primary'
+                icon={CopyIcon}
+                fontSize={0}
+                padding={2}
+                paddingX={0}
+              />
+              <StyledBaseButton
+                text='Copy Data Url'
+                mode='ghost'
+                tone='primary'
+                icon={CopyIcon}
+                fontSize={0}
+                padding={2}
+                paddingX={0}
+              />
+            </Grid>
+          </StyledGridForm>
         </Dialog>
       )}
     </>

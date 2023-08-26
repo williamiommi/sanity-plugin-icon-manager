@@ -48,6 +48,8 @@
   },
   "dependencies": {
     "@iconify-icon/react": "^1.0.8",
+    "@iconify/iconify": "^3.1.1",
+    "@iconify/utils": "^2.1.9",
     "@sanity/incompatible-plugin": "^1.0.4",
     "@sanity/ui": "^1.7.9",
     "zustand": "^4.4.1"
