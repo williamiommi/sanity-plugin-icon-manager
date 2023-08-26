@@ -1,3 +1,13 @@
+export type IconifyColor = {
+  hex?: string
+  rgba?: {
+    r: number
+    g: number
+    b: number
+    a?: number
+  }
+}
+
 type IconifyType = {
   icon: string
   downloadUrl: string
@@ -20,15 +30,7 @@ type IconifyType = {
     flipH?: boolean
     flipV?: boolean
     rotate?: number
-    color?: {
-      hex?: string
-      rgba?: {
-        r: number
-        g: number
-        b: number
-        a?: number
-      }
-    }
+    color?: IconifyColor
   }
 }
 
