@@ -8,7 +8,7 @@ export type IconifyColor = {
   }
 }
 
-export type IconitySize = {
+export type IconifySize = {
   width: number
   height: number
 }
@@ -17,10 +17,10 @@ type IconifyType = {
   icon: string
   downloadUrl: string
   inlineSvg?: string
-  metadata?: {
-    collectionId?: string
-    collectionName?: string
-    iconName?: string
+  metadata: {
+    collectionId: string
+    collectionName: string
+    iconName: string
     palette?: boolean
     license?: {
       name?: string
@@ -30,7 +30,7 @@ type IconifyType = {
       name?: string
       url?: string
     }
-    size: IconitySize
+    size: IconifySize
     flipH?: boolean
     flipV?: boolean
     rotate?: number

@@ -64,7 +64,7 @@ export const createResultsSlice: StateCreator<
           downloadUrl: `https://api.iconify.design/${value!}.svg?download=1`,
           metadata: {
             collectionId: iconInfo[0],
-            collectionName: collection?.name,
+            collectionName: collection?.name || '',
             iconName: iconInfo[1],
             size: {width: 16, height: 16},
             palette: collection?.palette,
