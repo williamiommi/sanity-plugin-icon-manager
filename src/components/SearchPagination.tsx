@@ -1,6 +1,6 @@
 import {Flex, Text} from '@sanity/ui'
 import {useAppStore} from '../store'
-import {StyledPaginationButton} from './shared/ShartedStyledComponents'
+import {StyledPaginationButton} from './shared/SharedStyledComponents'
 
 interface SearchPaginationProps {}
 

@@ -1,4 +1,4 @@
-import {Button} from '@sanity/ui'
+import {Button, Grid} from '@sanity/ui'
 import styled from 'styled-components'
 
 export const StyledBaseButton = styled(Button)`
@@ -13,4 +13,8 @@ export const StyledPaginationButton = styled.button`
   cursor: pointer;
   padding: 0;
   font-size: 15px;
+`
+
+export const StyledGridForm = styled(Grid)`
+  grid-template-columns: 110px 1fr;
 `

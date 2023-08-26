@@ -1,7 +1,7 @@
 import {TrashIcon} from '@sanity/icons'
 import {Box, Dialog, Flex} from '@sanity/ui'
 import {useAppStore} from '../store'
-import {StyledBaseButton} from './shared/ShartedStyledComponents'
+import {StyledBaseButton} from './shared/SharedStyledComponents'
 
 interface RemoveDialogProps {}
 

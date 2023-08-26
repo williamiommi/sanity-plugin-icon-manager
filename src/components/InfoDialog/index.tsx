@@ -3,7 +3,7 @@ import {CopyIcon, DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons
 import {Box, Button, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
 import {useAppStore} from '../../store'
-import {StyledBaseButton, StyledGridForm} from '../shared/ShartedStyledComponents'
+import {StyledBaseButton, StyledGridForm} from '../shared/SharedStyledComponents'
 
 const StyledCell = styled.span<{bold?: boolean}>`
   font-size: 13px;
