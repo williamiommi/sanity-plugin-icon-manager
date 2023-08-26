@@ -8,6 +8,11 @@ export type IconifyColor = {
   }
 }
 
+export type IconitySize = {
+  width: number
+  height: number
+}
+
 type IconifyType = {
   icon: string
   downloadUrl: string
@@ -17,7 +22,6 @@ type IconifyType = {
     collectionName?: string
     iconName?: string
     palette?: boolean
-    viewbox?: number
     license?: {
       name?: string
       url?: string
@@ -26,7 +30,7 @@ type IconifyType = {
       name?: string
       url?: string
     }
-    customSize?: number
+    size: IconitySize
     flipH?: boolean
     flipV?: boolean
     rotate?: number

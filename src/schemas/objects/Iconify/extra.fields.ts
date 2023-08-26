@@ -22,11 +22,6 @@ const metadataFields = [
     title: 'Palette',
   }),
   defineField({
-    type: 'number',
-    name: 'viewbox',
-    title: 'Viewbox',
-  }),
-  defineField({
     type: 'object',
     name: 'license',
     title: 'License Info',
@@ -61,9 +56,23 @@ const metadataFields = [
     ],
   }),
   defineField({
-    type: 'number',
-    name: 'customSize',
+    type: 'object',
+    name: 'size',
     title: 'Custom Size',
+    fields: [
+      defineField({
+        type: 'number',
+        name: 'width',
+        title: 'Width',
+        validation: (Rule) => Rule.min(0),
+      }),
+      defineField({
+        type: 'number',
+        name: 'height',
+        title: 'Height',
+        validation: (Rule) => Rule.min(0),
+      }),
+    ],
   }),
   defineField({
     type: 'boolean',

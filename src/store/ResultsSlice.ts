@@ -66,8 +66,8 @@ export const createResultsSlice: StateCreator<
             collectionId: iconInfo[0],
             collectionName: collection?.name,
             iconName: iconInfo[1],
+            size: {width: 16, height: 16},
             palette: collection?.palette,
-            viewbox: Array.isArray(collection?.height) ? collection?.height[0] : collection?.height,
             author: {
               name: collection?.author.name,
               url: collection?.author.url,
