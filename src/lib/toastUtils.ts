@@ -1,8 +1,12 @@
 import {useAppStore} from '../store'
 
-const sanityToast = useAppStore.getState().sanityToast
+export const toastSuccess = (title: string, description?: string): void => {
+  const sanityToast = useAppStore.getState().sanityToast
+  if (sanityToast) sanityToast.push({status: 'success', title, description, duration: 1000})
+}
 
 export const toastError = (e: unknown): void => {
+  const sanityToast = useAppStore.getState().sanityToast
   let message
   if (typeof e === 'string') {
     message = e
