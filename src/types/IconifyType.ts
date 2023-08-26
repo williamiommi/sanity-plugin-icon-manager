@@ -8,11 +8,6 @@ type IconifyType = {
     iconName?: string
     palette?: boolean
     viewbox?: number
-    customSize?: number
-    flipH?: boolean
-    flipV?: boolean
-    rotate?: number
-    color?: string
     license?: {
       name?: string
       url?: string
@@ -20,6 +15,19 @@ type IconifyType = {
     author?: {
       name?: string
       url?: string
+    }
+    customSize?: number
+    flipH?: boolean
+    flipV?: boolean
+    rotate?: number
+    color?: {
+      hex?: string
+      rgba?: {
+        r: number
+        g: number
+        b: number
+        a?: number
+      }
     }
   }
 }

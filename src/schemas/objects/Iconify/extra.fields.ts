@@ -17,11 +17,6 @@ const metadataFields = [
     title: 'Icon Name',
   }),
   defineField({
-    type: 'string',
-    name: 'color',
-    title: 'Color',
-  }),
-  defineField({
     type: 'boolean',
     name: 'palette',
     title: 'Palette',
@@ -30,26 +25,6 @@ const metadataFields = [
     type: 'number',
     name: 'viewbox',
     title: 'Viewbox',
-  }),
-  defineField({
-    type: 'number',
-    name: 'customSize',
-    title: 'Custom Size',
-  }),
-  defineField({
-    type: 'boolean',
-    name: 'flipH',
-    title: 'Flip H',
-  }),
-  defineField({
-    type: 'boolean',
-    name: 'flipV',
-    title: 'Flip V',
-  }),
-  defineField({
-    type: 'number',
-    name: 'rotate',
-    title: 'Rotate',
   }),
   defineField({
     type: 'object',
@@ -82,6 +57,69 @@ const metadataFields = [
         type: 'string',
         name: 'url',
         title: 'Author Url',
+      }),
+    ],
+  }),
+  defineField({
+    type: 'number',
+    name: 'customSize',
+    title: 'Custom Size',
+  }),
+  defineField({
+    type: 'boolean',
+    name: 'flipH',
+    title: 'Flip H',
+  }),
+  defineField({
+    type: 'boolean',
+    name: 'flipV',
+    title: 'Flip V',
+  }),
+  defineField({
+    type: 'number',
+    name: 'rotate',
+    title: 'Rotate',
+  }),
+  defineField({
+    type: 'object',
+    name: 'color',
+    title: 'Color',
+    fields: [
+      defineField({
+        type: 'string',
+        name: 'hex',
+        title: 'Hex Color',
+      }),
+      defineField({
+        type: 'object',
+        name: 'rgba',
+        title: 'RGBA Color',
+        fields: [
+          defineField({
+            type: 'number',
+            name: 'r',
+            title: 'Red',
+            validation: (Rule) => Rule.min(0).max(255),
+          }),
+          defineField({
+            type: 'number',
+            name: 'g',
+            title: 'Green',
+            validation: (Rule) => Rule.min(0).max(255),
+          }),
+          defineField({
+            type: 'number',
+            name: 'b',
+            title: 'Blue',
+            validation: (Rule) => Rule.min(0).max(255),
+          }),
+          defineField({
+            type: 'number',
+            name: 'a',
+            title: 'Alpha',
+            validation: (Rule) => Rule.min(0).max(1),
+          }),
+        ],
       }),
     ],
   }),
