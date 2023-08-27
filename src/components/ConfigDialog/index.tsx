@@ -1,6 +1,5 @@
-import {Icon} from '@iconify-icon/react'
 import {CogIcon} from '@sanity/icons'
-import {Card, Dialog, Flex, Grid, TextInput, useTheme} from '@sanity/ui'
+import {Dialog, Flex, Grid, TextInput, useTheme} from '@sanity/ui'
 import useConfigurationState from '../../hooks/useConfigurationState'
 import {useAppStore} from '../../store'
 import BorderIcon from '../icons/BorderIcon'
@@ -10,7 +9,10 @@ import Rotate180 from '../icons/Rotate180'
 import Rotate270 from '../icons/Rotate270'
 import Rotate90 from '../icons/Rotate90'
 import WidthIcon from '../icons/WidthIcon'
-import {StyledBaseButton, StyledGridForm} from '../shared/SharedStyledComponents'
+import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import Flip from './Flip'
+import Rotate from './Rotate'
+import Size from './Size'
 import {StyledHeading} from './Styled'
 
 const DialogHeader = () => (
@@ -28,10 +30,8 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const openConfigDialog = useAppStore((s) => s.openConfigDialog)
   const closeConfigDialog = useAppStore((s) => s.closeConfigDialog)
   const {
-    icon,
     flipH,
     flipV,
-    flip,
     rotate,
     size,
     onClickFlipH,
@@ -54,8 +54,16 @@ const ConfigDialog = (props: ConfigDialogProps) => {
       />
       {isConfigDialogOpen && (
         <Dialog id='config-dialog' header={<DialogHeader />} onClose={closeConfigDialog} width={1}>
-          <StyledGridForm margin={4} marginX={8} columns={[1, 2]} gapY={[2, 3]}>
-            <StyledHeading>Flip:</StyledHeading>
+          <Flex direction='column' gap={3} margin={4}>
+            <Flip />
+            <Rotate />
+            <Size />
+          </Flex>
+          <br />
+          <br />
+          <br />
+          <Grid margin={4} marginX={[4, 5, 6, 8]} columns={[1, 1, 2]} gapY={[2, 3]}>
+            <StyledHeading style={{width: '100px'}}>Flip:</StyledHeading>
             <Flex gap={2}>
               <StyledBaseButton
                 icon={<WidthIcon width={15} height={15} />}
@@ -78,8 +86,8 @@ const ConfigDialog = (props: ConfigDialogProps) => {
                 style={{width: '100%'}}
               />
             </Flex>
-            <StyledHeading>Rotate:</StyledHeading>
-            <Grid columns={[4, 2]} gap={2}>
+            <StyledHeading style={{width: '100px'}}>Rotate:</StyledHeading>
+            <Grid columns={2} gap={2}>
               <StyledBaseButton
                 text='0°'
                 mode={`${rotate === 0 ? 'default' : 'ghost'}`}
@@ -128,7 +136,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
                 onClick={onChangeRotate}
               />
             </Grid>
-            <StyledHeading>Size:</StyledHeading>
+            <StyledHeading style={{width: '100px'}}>Size:</StyledHeading>
             <Flex direction={['row']} align='center' gap={1}>
               <WidthIcon
                 width={35}
@@ -169,21 +177,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
                 <BorderIcon width={11} height={11} style={{display: 'block'}} />
               </StyledBaseButton>
             </Flex>
-          </StyledGridForm>
-          {icon && (
-            <Flex align='center' justify='center' paddingY={5} paddingX={2}>
-              <Card border>
-                <Icon
-                  icon={icon}
-                  flip={flip}
-                  rotate={rotate}
-                  width={size.width <= 300 ? size.width : 300}
-                  height={size.height <= 300 ? size.height : 300}
-                  style={{display: 'block'}}
-                />
-              </Card>
-            </Flex>
-          )}
+          </Grid>
         </Dialog>
       )}
     </>
