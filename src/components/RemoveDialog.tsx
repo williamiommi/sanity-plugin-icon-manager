@@ -1,5 +1,5 @@
 import {TrashIcon} from '@sanity/icons'
-import {Box, Dialog, Flex} from '@sanity/ui'
+import {Box, Dialog, Flex, Text} from '@sanity/ui'
 import {useAppStore} from '../store'
 import {StyledBaseButton} from './shared/SharedStyledComponents'
 
@@ -45,7 +45,9 @@ const RemoveDialog = (props: RemoveDialogProps) => {
       />
       {isRemoveDialogOpen && (
         <Dialog id='remove-dialog' footer={<DialogActions />} width={0}>
-          <Box margin={4}>Do you really want to remove the icon?</Box>
+          <Box margin={4}>
+            <Text size={1}>Do you really want to remove the icon?</Text>
+          </Box>
         </Dialog>
       )}
     </>

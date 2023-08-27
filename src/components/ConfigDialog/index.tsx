@@ -14,6 +14,21 @@ const DialogHeader = () => (
   </Flex>
 )
 
+interface DialogFooterProps {
+  onClick: () => void
+}
+const DialogFooter = ({onClick}: DialogFooterProps) => (
+  <Flex margin={2} align='center' justify='flex-end'>
+    <StyledBaseButton
+      text='Save Configuration'
+      mode='bleed'
+      tone='positive'
+      fontSize={1}
+      onClick={onClick}
+    />
+  </Flex>
+)
+
 interface ConfigDialogProps {}
 
 const ConfigDialog = (props: ConfigDialogProps) => {
@@ -25,6 +40,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const rotate = useAppStore((s) => s.rotate)
   const size = useAppStore((s) => s.size)
   const previewBorder = useAppStore((s) => s.previewBorder)
+  const saveConfiguration = useAppStore((s) => s.saveConfiguration)
 
   return (
     <>
@@ -38,7 +54,13 @@ const ConfigDialog = (props: ConfigDialogProps) => {
         padding={2}
       />
       {isConfigDialogOpen && (
-        <Dialog id='config-dialog' header={<DialogHeader />} onClose={closeConfigDialog} width={1}>
+        <Dialog
+          id='config-dialog'
+          header={<DialogHeader />}
+          footer={<DialogFooter onClick={saveConfiguration} />}
+          onClose={closeConfigDialog}
+          width={1}
+        >
           <Flex direction='column' gap={3} margin={4}>
             <Flip />
             <Rotate />

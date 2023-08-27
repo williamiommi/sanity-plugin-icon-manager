@@ -25,6 +25,7 @@ export interface ConfigureSlice {
   setHeight: (event: FormEvent<HTMLInputElement> | number) => void
   toggleUniqueSize: () => void
   togglePreviewBorder: () => void
+  saveConfiguration: () => void
 }
 
 export const createConfigureSlice: StateCreator<ConfigureSlice, [], [], ConfigureSlice> = (
@@ -66,4 +67,7 @@ export const createConfigureSlice: StateCreator<ConfigureSlice, [], [], Configur
     }),
   toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
+  saveConfiguration: () => () => {
+    console.error('saveConfiguration')
+  },
 })
