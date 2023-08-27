@@ -1,4 +1,4 @@
-import {Flex} from '@sanity/ui'
+import {Flex, Grid} from '@sanity/ui'
 import useConfigurationState from '../../hooks/useConfigurationState'
 import HeightIcon from '../icons/HeightIcon'
 import WidthIcon from '../icons/WidthIcon'
@@ -15,7 +15,7 @@ const Flip = () => {
       style={{width: '100%'}}
     >
       <StyledHeading>Flip:</StyledHeading>
-      <Flex flex={1} gap={1} style={{width: '100%'}}>
+      <Grid columns={2} gap={1} style={{width: '100%'}}>
         <StyledBaseButton
           icon={<WidthIcon width={15} height={15} />}
           title='Horizontal'
@@ -36,7 +36,7 @@ const Flip = () => {
           onClick={onClickFlipV}
           style={{width: '100%'}}
         />
-      </Flex>
+      </Grid>
     </Flex>
   )
 }
