@@ -1,15 +1,23 @@
 import {Flex, Grid, useTheme} from '@sanity/ui'
-import useConfigurationState from '../../hooks/useConfigurationState'
+import {useAppStore} from '../../store'
 import BorderIcon from '../icons/BorderIcon'
 import HeightIcon from '../icons/HeightIcon'
 import LinkIcon from '../icons/LinkIcon'
+import UnlinkIcon from '../icons/UnlinkIcon'
 import WidthIcon from '../icons/WidthIcon'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import {StyledHeading, StyledSizeInput} from './Styled'
 
 const Size = () => {
   const {sanity: theme} = useTheme()
-  const {size, onChangeWidth, onChangeHeight} = useConfigurationState()
+  const size = useAppStore((s) => s.size)
+  const uniqueSize = useAppStore((s) => s.uniqueSize)
+  const previewBorder = useAppStore((s) => s.previewBorder)
+  const setWidth = useAppStore((s) => s.setWidth)
+  const setHeight = useAppStore((s) => s.setHeight)
+  const toggleUniqueSize = useAppStore((s) => s.toggleUniqueSize)
+  const togglePreviewBorder = useAppStore((s) => s.togglePreviewBorder)
+
   return (
     <Flex
       direction={['column', 'column', 'row']}
@@ -26,27 +34,35 @@ const Size = () => {
             color={theme.color.button.ghost.primary.enabled.fg}
             style={{minWidth: '18px'}}
           />
-          <StyledSizeInput type='number' min={0} value={size.width} onChange={onChangeWidth} />
+          <StyledSizeInput type='number' min={0} value={size.width} onChange={setWidth} />
           <HeightIcon
             width={18}
             height='100%'
             color={theme.color.button.ghost.primary.enabled.fg}
             style={{minWidth: '18px'}}
           />
-          <StyledSizeInput type='number' min={0} value={size.height} onChange={onChangeHeight} />
+          <StyledSizeInput type='number' min={0} value={size.height} onChange={setHeight} />
           <StyledBaseButton
-            icon={<LinkIcon width={11} height={11} style={{display: 'block'}} />}
-            mode='ghost'
+            icon={
+              uniqueSize ? (
+                <LinkIcon width={11} height={11} style={{display: 'block'}} />
+              ) : (
+                <UnlinkIcon width={11} height={11} style={{display: 'block'}} />
+              )
+            }
+            mode={uniqueSize ? 'default' : 'ghost'}
             tone='primary'
             style={{width: '24px', minWidth: '24px', height: '100%'}}
             padding={1}
+            onClick={toggleUniqueSize}
           />
           <StyledBaseButton
             icon={<BorderIcon width={11} height={11} style={{display: 'block'}} />}
-            mode='ghost'
+            mode={previewBorder ? 'default' : 'ghost'}
             tone='primary'
             style={{width: '24px', minWidth: '24px', height: '100%'}}
             padding={1}
+            onClick={togglePreviewBorder}
           />
         </Flex>
       </Grid>

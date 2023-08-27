@@ -1,12 +1,16 @@
 import {Flex, Grid} from '@sanity/ui'
-import useConfigurationState from '../../hooks/useConfigurationState'
+import {useAppStore} from '../../store'
 import HeightIcon from '../icons/HeightIcon'
 import WidthIcon from '../icons/WidthIcon'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Flip = () => {
-  const {flipH, flipV, onClickFlipH, onClickFlipV} = useConfigurationState()
+  const flipH = useAppStore((s) => s.flipH)
+  const flipV = useAppStore((s) => s.flipV)
+  const toggleFlipH = useAppStore((s) => s.toggleFlipH)
+  const toggleFlipV = useAppStore((s) => s.toggleFlipV)
+
   return (
     <Flex
       direction={['column', 'column', 'row']}
@@ -23,7 +27,7 @@ const Flip = () => {
           tone='primary'
           fontSize={1}
           padding={2}
-          onClick={onClickFlipH}
+          onClick={toggleFlipH}
           style={{width: '100%'}}
         />
         <StyledBaseButton
@@ -33,7 +37,7 @@ const Flip = () => {
           tone='primary'
           fontSize={1}
           padding={2}
-          onClick={onClickFlipV}
+          onClick={toggleFlipV}
           style={{width: '100%'}}
         />
       </Grid>

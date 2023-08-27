@@ -31,9 +31,9 @@ type IconifyType = {
       url?: string
     }
     size: IconifySize
-    flipH?: boolean
-    flipV?: boolean
-    rotate?: number
+    flipH: boolean
+    flipV: boolean
+    rotate: number
     color?: IconifyColor
   }
 }

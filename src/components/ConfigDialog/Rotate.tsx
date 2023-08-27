@@ -1,5 +1,5 @@
 import {Flex, Grid} from '@sanity/ui'
-import useConfigurationState from '../../hooks/useConfigurationState'
+import {useAppStore} from '../../store'
 import Rotate180 from '../icons/Rotate180'
 import Rotate270 from '../icons/Rotate270'
 import Rotate90 from '../icons/Rotate90'
@@ -7,7 +7,12 @@ import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Rotate = () => {
-  const {rotate, onChangeRotate} = useConfigurationState()
+  const rotate = useAppStore((s) => s.rotate)
+  const setRotate0 = useAppStore((s) => s.setRotate0)
+  const setRotate90 = useAppStore((s) => s.setRotate90)
+  const setRotate180 = useAppStore((s) => s.setRotate180)
+  const setRotate270 = useAppStore((s) => s.setRotate270)
+
   return (
     <Flex
       direction={['column', 'column', 'row']}
@@ -26,7 +31,7 @@ const Rotate = () => {
           paddingX={0}
           style={{width: '100%'}}
           data-value={0}
-          onClick={onChangeRotate}
+          onClick={setRotate0}
         />
         <StyledBaseButton
           icon={<Rotate90 width={15} height={15} />}
@@ -38,7 +43,7 @@ const Rotate = () => {
           paddingX={0}
           style={{width: '100%'}}
           data-value={1}
-          onClick={onChangeRotate}
+          onClick={setRotate90}
         />
         <StyledBaseButton
           icon={<Rotate180 width={15} height={15} />}
@@ -50,7 +55,7 @@ const Rotate = () => {
           paddingX={0}
           style={{width: '100%'}}
           data-value={2}
-          onClick={onChangeRotate}
+          onClick={setRotate180}
         />
         <StyledBaseButton
           icon={<Rotate270 width={15} height={15} />}
@@ -62,7 +67,7 @@ const Rotate = () => {
           paddingX={0}
           style={{width: '100%'}}
           data-value={3}
-          onClick={onChangeRotate}
+          onClick={setRotate270}
         />
       </Grid>
     </Flex>

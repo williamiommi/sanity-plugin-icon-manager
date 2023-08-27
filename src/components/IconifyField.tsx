@@ -1,6 +1,7 @@
 import {BookIcon} from '@sanity/icons'
 import {Button, Flex, useTheme} from '@sanity/ui'
 import {ObjectFieldProps} from 'sanity'
+import {ThemeProvider} from 'styled-components'
 import useSetup from '../hooks/useSetup'
 import {useAppStore} from '../store'
 import RemoveDialog from './RemoveDialog'
@@ -18,7 +19,7 @@ const IconifyField = (props: IconifyFieldProps) => {
     <div>
       {props.renderDefault({...props, children: undefined})}
       {!props.collapsed && (
-        <>
+        <ThemeProvider theme={theme}>
           <SelectedIcon />
           <Flex
             gap={3}
@@ -38,7 +39,7 @@ const IconifyField = (props: IconifyFieldProps) => {
             <RemoveDialog />
           </Flex>
           <SearchDialog />
-        </>
+        </ThemeProvider>
       )}
     </div>
   )

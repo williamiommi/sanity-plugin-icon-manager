@@ -15,4 +15,5 @@ export const StyledSizeInput = styled.input`
   border: 1px solid ${(p) => p.theme.color.card.enabled.border};
   border-radius: 2px;
   font-size: 0.75rem;
+  background-color: transparent;
 `

@@ -67,6 +67,9 @@ export const createResultsSlice: StateCreator<
             collectionName: collection?.name || '',
             iconName: iconInfo[1],
             size: {width: 16, height: 16},
+            flipH: false,
+            flipV: false,
+            rotate: 0,
             palette: collection?.palette,
             author: {
               name: collection?.author.name,
