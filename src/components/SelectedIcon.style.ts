@@ -18,4 +18,5 @@ export const StyledEditIcon = styled.div`
   height: 15px;
   color: ${(props) => props.theme.color.button.bleed.primary.enabled.fg};
   cursor: help;
+  opacity: 0.7;
 `
