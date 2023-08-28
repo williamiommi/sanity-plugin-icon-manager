@@ -3,7 +3,7 @@ import {RgbaColor} from 'react-colorful'
 import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
-import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
+import {HEX_BLACK, hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
 
@@ -64,7 +64,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     if (SV.metadata.rotate > 0) count++
     if (SV.metadata.size.width !== 16) count++
     if (SV.metadata.size.height !== 16) count++
-    if (SV.metadata.color && SV.metadata.color.hex !== '#000000') count++
+    if (SV.metadata.color && SV.metadata.color.hex !== HEX_BLACK) count++
     return count > 0
   },
   clearConfiguration: () =>

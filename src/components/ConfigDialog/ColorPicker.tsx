@@ -3,6 +3,7 @@ import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
 import useClickOutside from '../../hooks/useClickOutside'
+import {HEX_BLACK} from '../../lib/colorUtils'
 import {useAppStore} from '../../store'
 import {StyledColorPicker} from './Styled'
 
@@ -33,7 +34,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           HEX
         </Text>
         <TextInput
-          value={color?.hex || '#000000'}
+          value={color?.hex || HEX_BLACK}
           fontSize={1}
           style={{padding: '2px 1px', width: '85px', textAlign: 'center'}}
           onChange={handleHexInput}

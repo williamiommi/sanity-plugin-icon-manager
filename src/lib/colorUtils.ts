@@ -1,5 +1,7 @@
 import {RgbaColor} from 'react-colorful'
 
+export const HEX_BLACK = '#000000'
+
 const round = (number: number, digits = 0, base = Math.pow(10, digits)): number => {
   return Math.round(base * number) / base
 }
@@ -16,7 +18,8 @@ export const rgbaToHex = ({r, g, b, a}: RgbaColor): string => {
 }
 
 export const hexToRgba = (hex: string): RgbaColor => {
-  if (!hex) return {r: 0, g: 0, b: 0, a: 1}
+  const reg = /^#{0,1}[0-9A-F]{6}[0-9a-f]{0,2}$/i
+  if (!hex || !reg.test(hex)) return {r: 0, g: 0, b: 0, a: 1}
 
   if (hex[0] === '#') hex = hex.substring(1)
 
