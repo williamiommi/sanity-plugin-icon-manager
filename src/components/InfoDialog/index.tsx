@@ -1,13 +1,18 @@
 /* eslint-disable react/jsx-no-bind */
 import {Icon} from '@iconify-icon/react'
 import {DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
-import {Box, Button, Dialog, Flex, Grid} from '@sanity/ui'
+import {Box, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
 import {copySvgBase64, copySvgHtml} from '../../lib/copy2Clipboard'
 import {useAppStore} from '../../store'
-import DataUrl from '../icons/DataURLIcon'
+import {default as DataUrlIcon} from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
-import {StyledBaseButton, StyledGridForm} from '../shared/SharedStyledComponents'
+import {
+  StyledBaseButton,
+  StyledGridForm,
+  StyledIconButton,
+  StyledIconLink,
+} from '../shared/SharedStyledComponents'
 
 const StyledCell = styled.span<{bold?: boolean}>`
   font-size: 13px;
@@ -67,41 +72,26 @@ const InfoDialog = (props: InfoDialogProps) => {
             </StyledCell>
             <StyledCell bold>Original Svg:</StyledCell>
             <Grid columns={3} gap={2}>
-              <Button
-                as='a'
-                title='Download SVG'
-                mode='bleed'
-                tone='primary'
-                icon={DownloadIcon}
-                fontSize={0}
-                padding={1}
-                style={{
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  transition: 'all 0.3s ease-in-out',
-                }}
+              <StyledIconLink
                 href={`https://api.iconify.design/${sanityValue?.icon}.svg?download=1`}
-              />
-              <StyledBaseButton
+                title='Download SVG'
+              >
+                <DownloadIcon width='25px' height='25px' />
+              </StyledIconLink>
+
+              <StyledIconButton
                 title='Copy svg html to clipboard'
-                mode='bleed'
-                tone='primary'
-                icon={HtmlIcon}
-                fontSize={0}
-                padding={1}
-                paddingTop={2}
                 onClick={() => copySvgHtml(sanityValue?.icon!)}
-              />
-              <StyledBaseButton
+              >
+                <HtmlIcon width='25px' height='25px' />
+              </StyledIconButton>
+
+              <StyledIconButton
                 title='Copy svg Data URL to clipboard'
-                mode='bleed'
-                tone='primary'
-                icon={<DataUrl width='20' />}
-                fontSize={0}
-                padding={1}
-                paddingTop={2}
                 onClick={() => copySvgBase64(sanityValue?.icon!)}
-              />
+              >
+                <DataUrlIcon width='25px' height='25px' />
+              </StyledIconButton>
             </Grid>
           </StyledGridForm>
         </Dialog>

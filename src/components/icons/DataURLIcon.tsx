@@ -1,8 +1,8 @@
 import {SVGProps} from 'react'
 
-interface DataUrlProps extends SVGProps<SVGSVGElement> {}
+interface DataUrlIconProps extends SVGProps<SVGSVGElement> {}
 
-const DataUrl = (props: DataUrlProps) => (
+const DataUrlIcon = (props: DataUrlIconProps) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width={props.width || 43}
@@ -17,4 +17,4 @@ const DataUrl = (props: DataUrlProps) => (
   </svg>
 )
 
-export default DataUrl
+export default DataUrlIcon

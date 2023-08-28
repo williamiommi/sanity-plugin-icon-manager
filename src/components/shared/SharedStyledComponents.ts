@@ -18,3 +18,34 @@ export const StyledPaginationButton = styled.button`
 export const StyledGridForm = styled(Grid)`
   grid-template-columns: 110px 1fr;
 `
+
+interface StyledIconButtonProps {
+  width?: string
+  height?: string
+  padding?: string
+  margin?: string
+  mode?: 'ghost' | 'bleed' | 'default'
+  tone?: 'primary' | 'caution'
+}
+
+export const StyledIconButton = styled.button<StyledIconButtonProps>`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  width: ${(props) => props.width || 'auto'};
+  height: ${(props) => props.height || props.width || 'auto'};
+  padding: ${(props) => props.padding || '0'};
+  margin: ${(props) => props.margin || '0'};
+  background: none;
+  color: ${(props) => props.theme.color.button.bleed.primary.enabled.fg};
+  border: none;
+  &:hover {
+    background-color: ${(props) => props.theme.color.button.bleed.primary.enabled.bg2};
+  }
+`
+
+export const StyledIconLink = StyledIconButton.withComponent('a')

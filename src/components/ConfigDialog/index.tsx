@@ -1,8 +1,11 @@
-import {CogIcon} from '@sanity/icons'
+/* eslint-disable react/jsx-no-bind */
+import {CogIcon, DownloadIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
 import {useAppStore} from '../../store'
 import CustomizeIcon from '../icons/CustomizeIcon'
-import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import DataUrlIcon from '../icons/DataURLIcon'
+import HtmlIcon from '../icons/HtmlIcon'
+import {StyledBaseButton, StyledIconButton, StyledIconLink} from '../shared/SharedStyledComponents'
 import Color from './Color'
 import Flip from './Flip'
 import Preview from './Preview'
@@ -21,21 +24,34 @@ interface DialogFooterProps {
   onSave: () => void
 }
 const DialogFooter = ({onClear, onSave}: DialogFooterProps) => (
-  <Flex margin={2} align='center' justify='flex-end' gap={2}>
-    <StyledBaseButton
-      text='Clear Configuration'
-      mode='bleed'
-      tone='critical'
-      fontSize={1}
-      onClick={onClear}
-    />
-    <StyledBaseButton
-      text='Save Configuration'
-      mode='bleed'
-      tone='positive'
-      fontSize={1}
-      onClick={onSave}
-    />
+  <Flex margin={2} align='center' justify='space-between' gap={2}>
+    <Flex align='center' gap={3}>
+      <StyledIconLink title='Download SVG' padding='3px'>
+        <DownloadIcon width='28px' height='28px' />
+      </StyledIconLink>
+      <StyledIconButton title='Copy svg html to clipboard' padding='3px'>
+        <HtmlIcon width='28px' height='28px' />
+      </StyledIconButton>
+      <StyledIconButton title='Copy svg Data URL to clipboard' padding='3px'>
+        <DataUrlIcon width='28px' height='28px' />
+      </StyledIconButton>
+    </Flex>
+    <Flex align='center' gap={2}>
+      <StyledBaseButton
+        text='Clear Configuration'
+        mode='bleed'
+        tone='critical'
+        fontSize={1}
+        onClick={onClear}
+      />
+      <StyledBaseButton
+        text='Save Configuration'
+        mode='bleed'
+        tone='positive'
+        fontSize={1}
+        onClick={onSave}
+      />
+    </Flex>
   </Flex>
 )
 
