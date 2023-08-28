@@ -1,4 +1,3 @@
-import {EditIcon} from '@sanity/icons'
 import {Card} from '@sanity/ui'
 import styled from 'styled-components'
 interface StyledSelectedIconProps {
@@ -11,12 +10,12 @@ export const StyledSelectedIcon = styled(Card)<StyledSelectedIconProps>`
   color: ${(props) => props.bgColor || 'currentColor'};
 `
 
-export const StyledEditIcon = styled(EditIcon)`
+export const StyledEditIcon = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   color: ${(props) => props.theme.color.button.bleed.primary.enabled.fg};
   cursor: help;
 `

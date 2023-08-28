@@ -1,6 +1,7 @@
 import {CogIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
 import {useAppStore} from '../../store'
+import CustomizeIcon from '../icons/CustomizeIcon'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import Color from './Color'
 import Flip from './Flip'
@@ -16,16 +17,24 @@ const DialogHeader = () => (
 )
 
 interface DialogFooterProps {
-  onClick: () => void
+  onClear: () => void
+  onSave: () => void
 }
-const DialogFooter = ({onClick}: DialogFooterProps) => (
-  <Flex margin={2} align='center' justify='flex-end'>
+const DialogFooter = ({onClear, onSave}: DialogFooterProps) => (
+  <Flex margin={2} align='center' justify='flex-end' gap={2}>
+    <StyledBaseButton
+      text='Clear Configuration'
+      mode='bleed'
+      tone='critical'
+      fontSize={1}
+      onClick={onClear}
+    />
     <StyledBaseButton
       text='Save Configuration'
       mode='bleed'
       tone='positive'
       fontSize={1}
-      onClick={onClick}
+      onClick={onSave}
     />
   </Flex>
 )
@@ -36,6 +45,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const isConfigDialogOpen = useAppStore((s) => s.isConfigDialogOpen)
   const openConfigDialog = useAppStore((s) => s.openConfigDialog)
   const closeConfigDialog = useAppStore((s) => s.closeConfigDialog)
+  const clearConfiguration = useAppStore((s) => s.clearConfiguration)
   const saveConfiguration = useAppStore((s) => s.saveConfiguration)
 
   return (
@@ -43,17 +53,17 @@ const ConfigDialog = (props: ConfigDialogProps) => {
       <StyledBaseButton
         mode='bleed'
         tone='positive'
-        icon={<CogIcon width={18} />}
+        icon={<CustomizeIcon width={15} height={15} />}
         onClick={openConfigDialog}
         fontSize={1}
-        text='Config'
+        text='Customize'
         padding={2}
       />
       {isConfigDialogOpen && (
         <Dialog
           id='config-dialog'
           header={<DialogHeader />}
-          footer={<DialogFooter onClick={saveConfiguration} />}
+          footer={<DialogFooter onClear={clearConfiguration} onSave={saveConfiguration} />}
           onClose={closeConfigDialog}
           width={1}
         >

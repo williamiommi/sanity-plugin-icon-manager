@@ -6,6 +6,7 @@ import {getFlipValue} from '../store/ConfigureSlice'
 import ConfigDialog from './ConfigDialog'
 import InfoDialog from './InfoDialog'
 import {StyledEditIcon, StyledSelectedIcon} from './SelectedIcon.style'
+import CustomizeIcon from './icons/CustomizeIcon'
 
 interface SelectedIconProps {}
 
@@ -22,11 +23,13 @@ const SelectedIcon = (props: SelectedIconProps) => {
           <Tooltip
             content={
               <Card padding={2}>
-                <Text size={0}>Icon has been customized</Text>
+                <Text size={1}>Icon has been customized</Text>
               </Card>
             }
           >
-            <StyledEditIcon />
+            <StyledEditIcon>
+              <CustomizeIcon width='100%' height='100%' />
+            </StyledEditIcon>
           </Tooltip>
         )}
         <Icon
