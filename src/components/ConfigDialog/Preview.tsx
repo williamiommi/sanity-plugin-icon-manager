@@ -33,10 +33,16 @@ const Preview = () => {
         placement='top'
         portal
       >
-        <Text size={1} weight='bold' style={{display: 'inline-flex', alignItems: 'center'}}>
-          <InfoOutlineIcon
-            color={infoWarning ? theme.sanity.color.solid.critical.enabled.bg : 'currentColor'}
-          />
+        <Text
+          size={1}
+          weight='bold'
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            color: infoWarning ? theme.sanity.color.solid.critical.enabled.bg : 'currentColor',
+          }}
+        >
+          <InfoOutlineIcon />
           &nbsp;&nbsp;Preview:
         </Text>
       </Tooltip>
