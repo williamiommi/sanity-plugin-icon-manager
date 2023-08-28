@@ -61,7 +61,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
           onClose={closeConfigDialog}
           width={1}
         >
-          <Flex direction='column' gap={3} margin={4}>
+          <Flex direction='column' gap={3} marginY={4} marginX={[4, 4, 6, 7]}>
             <Flip />
             <Rotate />
             <Size />

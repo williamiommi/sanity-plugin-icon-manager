@@ -21,7 +21,7 @@ const Rotate = () => {
       style={{width: '100%'}}
     >
       <StyledHeading>Rotate:</StyledHeading>
-      <Grid columns={2} gap={1} style={{width: '100%'}}>
+      <Grid columns={[2, 2, 4]} gap={1} style={{width: '100%'}}>
         <StyledBaseButton
           text='0°'
           mode={`${rotate === 0 ? 'default' : 'ghost'}`}
