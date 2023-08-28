@@ -1,5 +1,6 @@
 import {StateCreator} from 'zustand'
 import {DEFAULT_FILTER_LIMIT} from './FiltersSlice'
+import {SanitySlice} from './SanitySlice'
 
 export interface DialogSlice {
   isSearchDialogOpen?: boolean
@@ -19,7 +20,10 @@ export interface DialogSlice {
   closeRemoveDialog: () => void
 }
 
-export const createDialogSlice: StateCreator<DialogSlice, [], [], DialogSlice> = (set) => ({
+export const createDialogSlice: StateCreator<DialogSlice & SanitySlice, [], [], DialogSlice> = (
+  set,
+  get,
+) => ({
   openSearchDialog: () => set(() => ({isSearchDialogOpen: true})),
   closeSearchDialog: () =>
     set(() => ({
@@ -37,7 +41,19 @@ export const createDialogSlice: StateCreator<DialogSlice, [], [], DialogSlice> =
   closeInfoDialog: () => set(() => ({isInfoDialogOpen: false})),
 
   openConfigDialog: () => set(() => ({isConfigDialogOpen: true})),
-  closeConfigDialog: () => set(() => ({isConfigDialogOpen: false})),
+  closeConfigDialog: () =>
+    set((s) => {
+      return {
+        isConfigDialogOpen: false,
+        flipH: get().sanityValue?.metadata.flipH,
+        flipV: get().sanityValue?.metadata.flipV,
+        rotate: get().sanityValue?.metadata.rotate,
+        size: get().sanityValue?.metadata.size,
+        previewBorder: false,
+        uniqueSize: false,
+        color: get().sanityValue?.metadata.color,
+      }
+    }),
 
   openRemoveDialog: () => set(() => ({isRemoveDialogOpen: true})),
   closeRemoveDialog: () => set(() => ({isRemoveDialogOpen: false})),
