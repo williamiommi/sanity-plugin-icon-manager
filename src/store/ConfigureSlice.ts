@@ -1,6 +1,10 @@
 import {FormEvent} from 'react'
+import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
-import {IconifyColor, IconifySize} from '../types/IconifyType'
+import {toastError, toastSuccess} from '../lib/toastUtils'
+import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
+import {DialogSlice} from './DialogSlice'
+import {SanitySlice} from './SanitySlice'
 
 type Flip = 'horizontal' | 'vertical' | 'horizontal,vertical' | undefined
 
@@ -28,10 +32,12 @@ export interface ConfigureSlice {
   saveConfiguration: () => void
 }
 
-export const createConfigureSlice: StateCreator<ConfigureSlice, [], [], ConfigureSlice> = (
-  set,
-  get,
-) => ({
+export const createConfigureSlice: StateCreator<
+  ConfigureSlice & SanitySlice & DialogSlice,
+  [],
+  [],
+  ConfigureSlice
+> = (set, get) => ({
   flipH: false,
   flipV: false,
   rotate: 0,
@@ -67,7 +73,29 @@ export const createConfigureSlice: StateCreator<ConfigureSlice, [], [], Configur
     }),
   toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
-  saveConfiguration: () => () => {
-    console.error('saveConfiguration')
+  saveConfiguration: async () => {
+    try {
+      const sanityPatch = get().sanityPatch
+      if (sanityPatch) {
+        const sanityValue = get().sanityValue
+        if (!sanityValue) throw Error('The stored value is broken')
+        const objToSave: IconifyType = {
+          ...sanityValue,
+          metadata: {
+            ...sanityValue.metadata,
+            flipH: get().flipH,
+            flipV: get().flipV,
+            rotate: get().rotate,
+            size: get().size,
+          },
+        }
+        await sanityPatch(patchSet(objToSave))
+        get().setSanityValue(objToSave)
+        get().closeConfigDialog()
+        toastSuccess('Configuration Saved')
+      }
+    } catch (e: unknown) {
+      toastError(e)
+    }
   },
 })

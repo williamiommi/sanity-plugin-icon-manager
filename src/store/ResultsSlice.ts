@@ -1,6 +1,7 @@
 import {FormEvent} from 'react'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
+import {toastError} from '../lib/toastUtils'
 import IconifyQueryResponse from '../types/IconifyQueryResponse'
 import IconifyType from '../types/IconifyType'
 import {DialogSlice} from './DialogSlice'
@@ -89,10 +90,7 @@ export const createResultsSlice: StateCreator<
         }
       }
     } catch (e: any) {
-      console.error(e)
-      const sanityToast = get().sanityToast
-      if (sanityToast)
-        sanityToast.push({status: 'error', title: 'Something went wrong', description: e.message})
+      toastError(e)
     }
   },
   clearIcon: async () => {
