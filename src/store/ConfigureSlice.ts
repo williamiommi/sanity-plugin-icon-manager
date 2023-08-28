@@ -2,7 +2,7 @@ import {FormEvent} from 'react'
 import {RgbaColor} from 'react-colorful'
 import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
-import {rgbaToHex} from '../lib/colorUtils'
+import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
 import {DialogSlice} from './DialogSlice'
@@ -32,7 +32,7 @@ export interface ConfigureSlice {
   toggleUniqueSize: () => void
   togglePreviewBorder: () => void
   saveConfiguration: () => void
-  setColor: (rgba: RgbaColor) => void
+  setColor: (color: RgbaColor | string) => void
 }
 
 export const createConfigureSlice: StateCreator<
@@ -76,7 +76,19 @@ export const createConfigureSlice: StateCreator<
     }),
   toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
-  setColor: (rgba: RgbaColor) => set(() => ({color: {hex: rgbaToHex(rgba), rgba}})),
+  setColor: (color: RgbaColor | string) =>
+    set(() => {
+      let hex: string
+      let rgba: RgbaColor
+      if (typeof color === 'string') {
+        hex = color
+        rgba = hexToRgba(color)
+      } else {
+        rgba = color
+        hex = rgbaToHex(color)
+      }
+      return {color: {hex, rgba}}
+    }),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch

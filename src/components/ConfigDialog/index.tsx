@@ -2,6 +2,7 @@ import {CogIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
 import {useAppStore} from '../../store'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import Color from './Color'
 import Flip from './Flip'
 import Preview from './Preview'
 import Rotate from './Rotate'
@@ -61,6 +62,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
               <Flip />
               <Rotate />
               <Size />
+              <Color />
             </Flex>
             <Preview />
           </Card>
