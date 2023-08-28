@@ -18,4 +18,5 @@ export const StyledEditIcon = styled(EditIcon)`
   width: 20px;
   height: 20px;
   color: ${(props) => props.theme.color.button.bleed.primary.enabled.fg};
+  cursor: help;
 `

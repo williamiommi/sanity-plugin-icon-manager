@@ -1,6 +1,6 @@
 import {Icon} from '@iconify-icon/react'
 
-import {Flex} from '@sanity/ui'
+import {Card, Flex, Text, Tooltip} from '@sanity/ui'
 import {useAppStore} from '../store'
 import {getFlipValue} from '../store/ConfigureSlice'
 import ConfigDialog from './ConfigDialog'
@@ -18,7 +18,17 @@ const SelectedIcon = (props: SelectedIconProps) => {
   return (
     <Flex gap={1}>
       <StyledSelectedIcon border bgColor={SV.metadata.color?.hex}>
-        {hasBeenCustomized && <StyledEditIcon />}
+        {hasBeenCustomized && (
+          <Tooltip
+            content={
+              <Card padding={2}>
+                <Text size={0}>Icon has been customized</Text>
+              </Card>
+            }
+          >
+            <StyledEditIcon />
+          </Tooltip>
+        )}
         <Icon
           icon={SV.icon}
           width={40}
