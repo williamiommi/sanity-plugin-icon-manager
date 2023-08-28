@@ -13,6 +13,7 @@ const Preview = () => {
   const flip = useAppStore((s) => s.getFlipValue())
   const rotate = useAppStore((s) => s.rotate)
   const size = useAppStore((s) => s.size)
+  const color = useAppStore((s) => s.color)
   const infoWarning = useMemo(
     () => size.width > PREVIEW_SIZE_LIMIT || size.height > PREVIEW_SIZE_LIMIT,
     [size.width, size.height],
@@ -51,7 +52,7 @@ const Preview = () => {
             rotate={rotate}
             width={size.width <= PREVIEW_SIZE_LIMIT ? size.width : PREVIEW_SIZE_LIMIT}
             height={size.height <= PREVIEW_SIZE_LIMIT ? size.height : PREVIEW_SIZE_LIMIT}
-            style={{display: 'block'}}
+            style={{display: 'block', ...(color?.hex && {color: color.hex})}}
           />
         </Card>
       </Flex>

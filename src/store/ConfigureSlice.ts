@@ -1,6 +1,8 @@
 import {FormEvent} from 'react'
+import {RgbaColor} from 'react-colorful'
 import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
+import {rgbaToHex} from '../lib/colorUtils'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
 import {DialogSlice} from './DialogSlice'
@@ -30,6 +32,7 @@ export interface ConfigureSlice {
   toggleUniqueSize: () => void
   togglePreviewBorder: () => void
   saveConfiguration: () => void
+  setColor: (rgba: RgbaColor) => void
 }
 
 export const createConfigureSlice: StateCreator<
@@ -73,6 +76,7 @@ export const createConfigureSlice: StateCreator<
     }),
   toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
+  setColor: (rgba: RgbaColor) => set(() => ({color: {hex: rgbaToHex(rgba), rgba}})),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch

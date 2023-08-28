@@ -1,10 +1,10 @@
 export type IconifyColor = {
-  hex?: string
-  rgba?: {
+  hex: string
+  rgba: {
     r: number
     g: number
     b: number
-    a?: number
+    a: number
   }
 }
 
