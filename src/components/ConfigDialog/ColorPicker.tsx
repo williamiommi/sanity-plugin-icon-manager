@@ -1,13 +1,16 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Text, TextInput} from '@sanity/ui'
-import {FormEvent} from 'react'
+import {FormEvent, ForwardedRef, forwardRef} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
 import {useAppStore} from '../../store'
 import {StyledColorPicker} from './Styled'
 
 interface ColorPickerProps {}
 
-const ColorPicker = (props: ColorPickerProps) => {
+const ColorPicker = forwardRef(function ColorPicker(
+  props: ColorPickerProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   const color = useAppStore((s) => s.color)
   const setColor = useAppStore((s) => s.setColor)
 
@@ -22,7 +25,7 @@ const ColorPicker = (props: ColorPickerProps) => {
   }
 
   return (
-    <StyledColorPicker margin={4}>
+    <StyledColorPicker ref={ref} margin={4}>
       <RgbaColorPicker {...(color?.rgba && {color: color.rgba})} onChange={setColor} />
       <Flex gap={1} align='center'>
         <Text weight='bold' size={1} style={{width: '50px'}}>
@@ -31,7 +34,7 @@ const ColorPicker = (props: ColorPickerProps) => {
         <TextInput
           value={color?.hex || '#000000'}
           fontSize={1}
-          style={{padding: '2px 1px', width: '100px'}}
+          style={{padding: '2px 1px', width: '85px', textAlign: 'center'}}
           onChange={handleHexInput}
         />
       </Flex>
@@ -83,6 +86,6 @@ const ColorPicker = (props: ColorPickerProps) => {
       </Flex>
     </StyledColorPicker>
   )
-}
+})
 
 export default ColorPicker
