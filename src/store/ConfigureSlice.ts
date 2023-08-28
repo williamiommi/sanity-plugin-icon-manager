@@ -103,6 +103,7 @@ export const createConfigureSlice: StateCreator<
             flipV: get().flipV,
             rotate: get().rotate,
             size: get().size,
+            color: get().color,
           },
         }
         await sanityPatch(patchSet(objToSave))

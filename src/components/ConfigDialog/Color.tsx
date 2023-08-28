@@ -27,7 +27,7 @@ const Color = () => {
           <div
             style={{
               width: '40px',
-              height: '25px',
+              height: '24px',
               backgroundColor: color?.hex || 'currentColor',
             }}
           >
@@ -39,12 +39,12 @@ const Color = () => {
               tone='primary'
               icon={
                 <ColorBucketIcon
-                  width={23}
-                  height={23}
+                  width={22}
+                  height={22}
                   style={{display: 'block', paddingBottom: '2px'}}
                 />
               }
-              style={{width: '28px', height: '28px'}}
+              style={{width: '25px', height: '25px'}}
               onClick={() => setIsColorOpen(!isColorOpen)}
             />
           </Popover>
