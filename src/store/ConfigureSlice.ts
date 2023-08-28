@@ -25,6 +25,7 @@ export interface ConfigureSlice {
   uniqueSize: boolean
   previewBorder: boolean
   color?: IconifyColor
+  hasBeenCustomized: () => boolean
   resetConfiguration: () => void
   getFlipValue: () => Flip
   setToggle: (flipH: boolean, flipV: boolean) => void
@@ -53,6 +54,18 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   size: {width: 0, height: 0},
   uniqueSize: false,
   previewBorder: false,
+  hasBeenCustomized: () => {
+    let count = 0
+    const SV = get().sanityValue
+    if (!SV) return false
+    if (SV.metadata.flipH) count++
+    if (SV.metadata.flipV) count++
+    if (SV.metadata.rotate > 0) count++
+    if (SV.metadata.size.width !== 16) count++
+    if (SV.metadata.size.height !== 16) count++
+    if (SV.metadata.color && SV.metadata.color.hex !== '#000000') count++
+    return count > 0
+  },
   resetConfiguration: () =>
     set(() => ({
       flipH: get().sanityValue?.metadata.flipH,
