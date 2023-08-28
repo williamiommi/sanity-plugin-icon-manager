@@ -50,6 +50,7 @@ const Size = () => {
                 <UnlinkIcon width={11} height={11} style={{display: 'block'}} />
               )
             }
+            title='Constrain proportions'
             mode={uniqueSize ? 'default' : 'ghost'}
             tone='primary'
             style={{width: '24px', minWidth: '24px', height: '100%'}}
@@ -58,6 +59,7 @@ const Size = () => {
           />
           <StyledBaseButton
             icon={<BorderIcon width={11} height={11} style={{display: 'block'}} />}
+            title='Show boundaries'
             mode={previewBorder ? 'default' : 'ghost'}
             tone='primary'
             style={{width: '24px', minWidth: '24px', height: '100%'}}
