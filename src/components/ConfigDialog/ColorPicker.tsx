@@ -74,9 +74,9 @@ const ColorPicker = forwardRef(function ColorPicker(
         />
         <TextInput
           type='number'
-          min={0.0}
-          max={1.0}
-          value={color?.rgba.a || '1'}
+          min={0}
+          max={1}
+          value={color?.rgba.a === undefined ? 1 : color.rgba.a}
           data-input='a'
           fontSize={1}
           step={0.01}

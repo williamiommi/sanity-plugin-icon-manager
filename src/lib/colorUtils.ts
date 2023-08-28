@@ -10,7 +10,7 @@ const format = (number: number) => {
 }
 
 export const rgbaToHex = ({r, g, b, a}: RgbaColor): string => {
-  if (!r || !g || !b || !a) return '#000000'
+  if (r === undefined || g === undefined || b === undefined || a === undefined) return '#000000'
   const alphaHex = a < 1 ? format(round(a * 255)) : ''
   return `#${format(r)}${format(g)}${format(b)}${alphaHex}`
 }
