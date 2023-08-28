@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
-import {Flex, Grid, Popover, useClickOutside} from '@sanity/ui'
-import {useRef, useState} from 'react'
+import {Flex, Grid, Popover} from '@sanity/ui'
+import {useState} from 'react'
 import {useAppStore} from '../../store'
 import ColorBucketIcon from '../icons/ColorBucketIcon'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
@@ -11,9 +11,6 @@ const Color = () => {
   const sanityValue = useAppStore((s) => s.sanityValue)
   const color = useAppStore((s) => s.color)
   const [isColorOpen, setIsColorOpen] = useState(false)
-  const buttonRef = useRef(null)
-  const pickerRef = useRef(null)
-  useClickOutside(() => setIsColorOpen(false), [buttonRef.current, pickerRef.current])
 
   if (!sanityValue || sanityValue.metadata.palette) return null
 
@@ -40,11 +37,10 @@ const Color = () => {
             placement='top'
             fallbackPlacements={['right', 'left']}
             portal
-            content={<ColorPicker ref={pickerRef} />}
+            content={<ColorPicker onClickOutsideHandler={() => setIsColorOpen(false)} />}
             open={isColorOpen}
           >
             <StyledBaseButton
-              ref={buttonRef}
               mode='ghost'
               tone='primary'
               icon={

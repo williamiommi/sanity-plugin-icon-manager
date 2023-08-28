@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Text, TextInput} from '@sanity/ui'
-import {FormEvent, ForwardedRef, forwardRef} from 'react'
+import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
+import useClickOutside from '../../hooks/useClickOutside'
 import {useAppStore} from '../../store'
 import {StyledColorPicker} from './Styled'
 
-interface ColorPickerProps {}
+interface ColorPickerProps {
+  onClickOutsideHandler: () => void
+}
 
-const ColorPicker = forwardRef(function ColorPicker(
-  props: ColorPickerProps,
-  ref: ForwardedRef<HTMLDivElement>,
-) {
+const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
+  const pickerRef = useClickOutside<HTMLDivElement>(onClickOutsideHandler)
   const color = useAppStore((s) => s.color)
   const setColor = useAppStore((s) => s.setColor)
 
@@ -25,7 +26,7 @@ const ColorPicker = forwardRef(function ColorPicker(
   }
 
   return (
-    <StyledColorPicker ref={ref} margin={4}>
+    <StyledColorPicker ref={pickerRef} padding={4}>
       <RgbaColorPicker {...(color?.rgba && {color: color.rgba})} onChange={setColor} />
       <Flex gap={1} align='center'>
         <Text weight='bold' size={1} style={{width: '50px'}}>
@@ -86,6 +87,6 @@ const ColorPicker = forwardRef(function ColorPicker(
       </Flex>
     </StyledColorPicker>
   )
-})
+}
 
 export default ColorPicker
