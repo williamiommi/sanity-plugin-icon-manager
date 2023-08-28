@@ -1,13 +1,10 @@
 import {FormEvent} from 'react'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
+import {AppStoreType} from '.'
 import {toastError} from '../lib/toastUtils'
 import IconifyQueryResponse from '../types/IconifyQueryResponse'
 import IconifyType from '../types/IconifyType'
-import {DialogSlice} from './DialogSlice'
-import {FiltersSlice} from './FiltersSlice'
-import {PaginationSlice} from './PaginationSlice'
-import {SanitySlice} from './SanitySlice'
 
 const cacheResults = new Map<string, IconifyQueryResponse>()
 
@@ -21,12 +18,7 @@ export interface ResultsSlice {
   clearIcon: () => void
 }
 
-export const createResultsSlice: StateCreator<
-  ResultsSlice & FiltersSlice & PaginationSlice & SanitySlice & DialogSlice,
-  [],
-  [],
-  ResultsSlice
-> = (set, get) => ({
+export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice> = (set, get) => ({
   setSearchTerm: (event: FormEvent<HTMLInputElement>) =>
     set(() => ({searchTerm: event.currentTarget.value})),
   setQueryResults: (queryResults: IconifyQueryResponse) =>
@@ -87,6 +79,7 @@ export const createResultsSlice: StateCreator<
           await sanityPatch(patchSet(objToSave))
           get().setSanityValue(objToSave)
           get().closeSearchDialog()
+          get().resetConfiguration()
         }
       }
     } catch (e: any) {

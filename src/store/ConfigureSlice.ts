@@ -2,11 +2,10 @@ import {FormEvent} from 'react'
 import {RgbaColor} from 'react-colorful'
 import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
+import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
-import {DialogSlice} from './DialogSlice'
-import {SanitySlice} from './SanitySlice'
 
 type Flip = 'horizontal' | 'vertical' | 'horizontal,vertical' | undefined
 
@@ -18,6 +17,7 @@ export interface ConfigureSlice {
   uniqueSize: boolean
   previewBorder: boolean
   color?: IconifyColor
+  resetConfiguration: () => void
   getFlipValue: () => Flip
   setToggle: (flipH: boolean, flipV: boolean) => void
   toggleFlipH: () => void
@@ -35,18 +35,26 @@ export interface ConfigureSlice {
   setColor: (color: RgbaColor | string) => void
 }
 
-export const createConfigureSlice: StateCreator<
-  ConfigureSlice & SanitySlice & DialogSlice,
-  [],
-  [],
-  ConfigureSlice
-> = (set, get) => ({
+export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureSlice> = (
+  set,
+  get,
+) => ({
   flipH: false,
   flipV: false,
   rotate: 0,
   size: {width: 0, height: 0},
   uniqueSize: false,
   previewBorder: false,
+  resetConfiguration: () =>
+    set(() => ({
+      flipH: get().sanityValue?.metadata.flipH,
+      flipV: get().sanityValue?.metadata.flipV,
+      rotate: get().sanityValue?.metadata.rotate,
+      size: get().sanityValue?.metadata.size,
+      color: get().sanityValue?.metadata.color,
+      previewBorder: false,
+      uniqueSize: false,
+    })),
   getFlipValue: () => {
     let output: Flip
     if (get().flipH) output = 'horizontal'

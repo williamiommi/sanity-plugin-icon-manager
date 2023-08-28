@@ -1,6 +1,7 @@
 import {ToastContextValue} from '@sanity/ui'
 import {FormPatch, PatchEvent} from 'sanity'
 import {StateCreator} from 'zustand'
+import {AppStoreType} from '.'
 import IconifyType from '../types/IconifyType'
 
 type SanityPatchType = (patch: FormPatch | FormPatch[] | PatchEvent) => void
@@ -14,8 +15,8 @@ export interface SanitySlice {
   setSanityPatch: (sanityPatch: SanityPatchType) => void
 }
 
-export const createSanitySlice: StateCreator<SanitySlice, [], [], SanitySlice> = (set) => ({
-  setSanityValue: (sanityValue?: IconifyType) => set((s) => ({sanityValue})),
-  setSanityToast: (sanityToast: ToastContextValue) => set((s) => ({sanityToast})),
-  setSanityPatch: (sanityPatch: SanityPatchType) => set((s) => ({sanityPatch})),
+export const createSanitySlice: StateCreator<AppStoreType, [], [], SanitySlice> = (set) => ({
+  setSanityValue: (sanityValue?: IconifyType) => set(() => ({sanityValue})),
+  setSanityToast: (sanityToast: ToastContextValue) => set(() => ({sanityToast})),
+  setSanityPatch: (sanityPatch: SanityPatchType) => set(() => ({sanityPatch})),
 })

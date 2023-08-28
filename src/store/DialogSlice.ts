@@ -1,6 +1,6 @@
 import {StateCreator} from 'zustand'
+import {AppStoreType} from '.'
 import {DEFAULT_FILTER_LIMIT} from './FiltersSlice'
-import {SanitySlice} from './SanitySlice'
 
 export interface DialogSlice {
   isSearchDialogOpen?: boolean
@@ -20,10 +20,7 @@ export interface DialogSlice {
   closeRemoveDialog: () => void
 }
 
-export const createDialogSlice: StateCreator<DialogSlice & SanitySlice, [], [], DialogSlice> = (
-  set,
-  get,
-) => ({
+export const createDialogSlice: StateCreator<AppStoreType, [], [], DialogSlice> = (set, get) => ({
   openSearchDialog: () => set(() => ({isSearchDialogOpen: true})),
   closeSearchDialog: () =>
     set(() => ({
@@ -42,16 +39,10 @@ export const createDialogSlice: StateCreator<DialogSlice & SanitySlice, [], [], 
 
   openConfigDialog: () => set(() => ({isConfigDialogOpen: true})),
   closeConfigDialog: () =>
-    set((s) => {
+    set(() => {
+      get().resetConfiguration()
       return {
         isConfigDialogOpen: false,
-        flipH: get().sanityValue?.metadata.flipH,
-        flipV: get().sanityValue?.metadata.flipV,
-        rotate: get().sanityValue?.metadata.rotate,
-        size: get().sanityValue?.metadata.size,
-        previewBorder: false,
-        uniqueSize: false,
-        color: get().sanityValue?.metadata.color,
       }
     }),
 

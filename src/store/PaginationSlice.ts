@@ -1,4 +1,5 @@
 import {StateCreator} from 'zustand'
+import {AppStoreType} from '.'
 
 const DEFAULT_ICONS_PER_PAGE = 40
 
@@ -10,7 +11,7 @@ export interface PaginationSlice {
   setNextPage: () => void
 }
 
-export const createPaginationSlice: StateCreator<PaginationSlice, [], [], PaginationSlice> = (
+export const createPaginationSlice: StateCreator<AppStoreType, [], [], PaginationSlice> = (
   set,
   get,
 ) => ({

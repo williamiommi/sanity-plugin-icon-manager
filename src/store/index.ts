@@ -6,9 +6,14 @@ import {PaginationSlice, createPaginationSlice} from './PaginationSlice'
 import {ResultsSlice, createResultsSlice} from './ResultsSlice'
 import {SanitySlice, createSanitySlice} from './SanitySlice'
 
-export const useAppStore = create<
-  DialogSlice & FiltersSlice & PaginationSlice & ResultsSlice & SanitySlice & ConfigureSlice
->()((...a) => ({
+export type AppStoreType = DialogSlice &
+  FiltersSlice &
+  PaginationSlice &
+  ResultsSlice &
+  SanitySlice &
+  ConfigureSlice
+
+export const useAppStore = create<AppStoreType>()((...a) => ({
   ...createDialogSlice(...a),
   ...createFiltersSlice(...a),
   ...createPaginationSlice(...a),
