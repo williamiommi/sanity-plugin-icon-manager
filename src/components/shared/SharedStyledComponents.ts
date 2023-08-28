@@ -42,9 +42,17 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   margin: ${(props) => props.margin || '0'};
   background: none;
   color: ${(props) => props.theme.color.button.bleed.primary.enabled.fg};
-  border: none;
+  border: 1px solid
+    ${(props) => (props.mode === 'ghost' ? props.theme.color.card.enabled.border : 'transparent')};
   &:hover {
-    background-color: ${(props) => props.theme.color.button.bleed.primary.enabled.bg2};
+    color: ${(props) =>
+      props.mode === 'ghost' ? props.theme.color.button.ghost.primary.hovered.fg : ''};
+    background-color: ${(props) =>
+      props.mode === 'ghost'
+        ? props.theme.color.button.ghost.primary.hovered.bg2
+        : props.theme.color.button.bleed.primary.enabled.bg2};
+    border-color: ${(props) =>
+      props.mode === 'ghost' ? props.theme.color.button.ghost.primary.hovered.bg2 : 'transparent'};
   }
 `
 
