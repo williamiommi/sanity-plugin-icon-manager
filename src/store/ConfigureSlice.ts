@@ -9,6 +9,14 @@ import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
 
 type Flip = 'horizontal' | 'vertical' | 'horizontal,vertical' | undefined
 
+export const getFlipValue = (flipH?: boolean, flipV?: boolean): Flip => {
+  let output: Flip
+  if (flipH) output = 'horizontal'
+  if (flipV) output = 'vertical'
+  if (flipH && flipV) output = 'horizontal,vertical'
+  return output
+}
+
 export interface ConfigureSlice {
   flipH: boolean
   flipV: boolean
@@ -55,13 +63,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
       previewBorder: false,
       uniqueSize: false,
     })),
-  getFlipValue: () => {
-    let output: Flip
-    if (get().flipH) output = 'horizontal'
-    if (get().flipV) output = 'vertical'
-    if (get().flipH && get().flipV) output = 'horizontal,vertical'
-    return output
-  },
+  getFlipValue: () => getFlipValue(get().flipH, get().flipV),
   setToggle: (flipH, flipV) => set(() => ({flipH, flipV})),
   toggleFlipH: () => set((s) => ({flipH: !s.flipH})),
   toggleFlipV: () => set((s) => ({flipV: !s.flipV})),

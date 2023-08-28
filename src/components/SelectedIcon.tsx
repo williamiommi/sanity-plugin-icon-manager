@@ -1,30 +1,29 @@
 import {Icon} from '@iconify-icon/react'
-import {DownloadIcon} from '@sanity/icons'
-import {Flex, hexToRgb, useTheme} from '@sanity/ui'
+import {Flex} from '@sanity/ui'
 import {useAppStore} from '../store'
+import {getFlipValue} from '../store/ConfigureSlice'
 import ConfigDialog from './ConfigDialog'
 import InfoDialog from './InfoDialog'
-import StyledSelectedIcon, {StyledMask} from './SelectedIcon.style'
+import {StyledSelectedIcon} from './SelectedIcon.style'
 
 interface SelectedIconProps {}
 
 const SelectedIcon = (props: SelectedIconProps) => {
-  const {sanity: theme} = useTheme()
-  const sanityValue = useAppStore((s) => s.sanityValue)
+  const SV = useAppStore((s) => s.sanityValue)
 
-  if (!sanityValue?.icon) return null
+  if (!SV?.icon) return null
 
   return (
     <Flex gap={1}>
-      <StyledSelectedIcon borderColor={theme.color.card.hovered.border}>
-        <StyledMask
-          bgColor={hexToRgb(theme.color.base.fg)}
-          role='link'
-          href={sanityValue.downloadUrl}
-        >
-          <DownloadIcon width={30} height={30} color={theme.color.base.bg} />
-        </StyledMask>
-        <Icon icon={sanityValue?.icon} width={40} height={40} style={{display: 'block'}} />
+      <StyledSelectedIcon border bgColor={SV.metadata.color?.hex}>
+        <Icon
+          icon={SV.icon}
+          width={40}
+          height={40}
+          style={{display: 'block'}}
+          rotate={SV.metadata.rotate}
+          flip={getFlipValue(SV.metadata.flipH, SV.metadata.flipV)}
+        />
       </StyledSelectedIcon>
       <Flex direction='column' justify='flex-end' align='flex-start'>
         <InfoDialog />

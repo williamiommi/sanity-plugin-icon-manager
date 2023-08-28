@@ -14,6 +14,7 @@ const useSetup = (fieldProps: FieldProps): void => {
   const setToggle = useAppStore((s) => s.setToggle)
   const setWidth = useAppStore((s) => s.setWidth)
   const setHeight = useAppStore((s) => s.setHeight)
+  const setColor = useAppStore((s) => s.setColor)
 
   useEffect(() => {
     const value = fieldProps.value as IconifyType
@@ -28,6 +29,7 @@ const useSetup = (fieldProps: FieldProps): void => {
     setRotate(value.metadata.rotate)
     setWidth(value.metadata.size.width)
     setHeight(value.metadata.size.height)
+    if (value.metadata.color) setColor(value.metadata.color?.hex)
 
     // disable iconify cache
     disableCache('all')
