@@ -12,6 +12,7 @@ import {StyledBaseButton, StyledGridForm} from '../shared/SharedStyledComponents
 const StyledCell = styled.span<{bold?: boolean}>`
   font-size: 13px;
   font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
+  align-self: center;
 `
 
 const DialogHeader = () => (
