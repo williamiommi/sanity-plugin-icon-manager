@@ -21,7 +21,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
 
   const handleRgbaInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.currentTarget.dataset.input as string
-    const value = event.currentTarget.value
+    const value = Number(event.currentTarget.value)
     setColor({...color?.rgba!, [input]: value})
   }
 
