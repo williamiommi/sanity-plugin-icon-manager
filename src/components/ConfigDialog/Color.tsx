@@ -38,6 +38,7 @@ const Color = () => {
           </div>
           <Popover
             placement='top'
+            fallbackPlacements={['right', 'left']}
             portal
             content={<ColorPicker ref={pickerRef} />}
             open={isColorOpen}
