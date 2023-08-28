@@ -5,7 +5,7 @@ import HeightIcon from '../icons/HeightIcon'
 import LinkIcon from '../icons/LinkIcon'
 import UnlinkIcon from '../icons/UnlinkIcon'
 import WidthIcon from '../icons/WidthIcon'
-import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import {StyledIconButton} from '../shared/SharedStyledComponents'
 import {StyledHeading, StyledSizeInput} from './Styled'
 
 const Size = () => {
@@ -42,30 +42,26 @@ const Size = () => {
             style={{minWidth: '18px'}}
           />
           <StyledSizeInput type='number' min={0} value={size.height} onChange={setHeight} />
-          <StyledBaseButton
-            icon={
-              uniqueSize ? (
-                <LinkIcon width={11} height={11} style={{display: 'block'}} />
-              ) : (
-                <UnlinkIcon width={11} height={11} style={{display: 'block'}} />
-              )
-            }
+          <StyledIconButton
             title='Constrain proportions'
             mode={uniqueSize ? 'default' : 'ghost'}
-            tone='primary'
-            style={{width: '24px', minWidth: '24px', height: '100%'}}
-            padding={1}
             onClick={toggleUniqueSize}
-          />
-          <StyledBaseButton
-            icon={<BorderIcon width={11} height={11} style={{display: 'block'}} />}
+            padding='4px'
+          >
+            {uniqueSize ? (
+              <LinkIcon width={14} height={14} />
+            ) : (
+              <UnlinkIcon width={14} height={14} />
+            )}
+          </StyledIconButton>
+          <StyledIconButton
             title='Show boundaries'
             mode={previewBorder ? 'default' : 'ghost'}
-            tone='primary'
-            style={{width: '24px', minWidth: '24px', height: '100%'}}
-            padding={1}
             onClick={togglePreviewBorder}
-          />
+            padding='4px'
+          >
+            <BorderIcon width={14} height={14} />
+          </StyledIconButton>
         </Flex>
       </Grid>
     </Flex>

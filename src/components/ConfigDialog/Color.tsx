@@ -3,7 +3,7 @@ import {Flex, Grid, Popover} from '@sanity/ui'
 import {useState} from 'react'
 import {useAppStore} from '../../store'
 import ColorBucketIcon from '../icons/ColorBucketIcon'
-import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import {StyledIconButton} from '../shared/SharedStyledComponents'
 import ColorPicker from './ColorPicker'
 import {StyledHeading} from './Styled'
 
@@ -40,19 +40,13 @@ const Color = () => {
             content={<ColorPicker onClickOutsideHandler={() => setIsColorOpen(false)} />}
             open={isColorOpen}
           >
-            <StyledBaseButton
-              mode='ghost'
-              tone='primary'
-              icon={
-                <ColorBucketIcon
-                  width={22}
-                  height={22}
-                  style={{display: 'block', paddingBottom: '2px'}}
-                />
-              }
-              style={{width: '25px', height: '25px'}}
+            <StyledIconButton
+              mode={isColorOpen ? 'default' : 'ghost'}
               onClick={() => setIsColorOpen(!isColorOpen)}
-            />
+              padding='2px'
+            >
+              <ColorBucketIcon width={18} height={18} />
+            </StyledIconButton>
           </Popover>
         </Flex>
       </Grid>

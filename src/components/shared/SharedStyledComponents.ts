@@ -25,7 +25,17 @@ interface StyledIconButtonProps {
   padding?: string
   margin?: string
   mode?: 'ghost' | 'bleed' | 'default'
-  tone?: 'primary' | 'caution'
+}
+
+const backgroundColorHoverSwitch = (mode?: 'ghost' | 'bleed' | 'default', theme?: any): string => {
+  switch (mode) {
+    case 'ghost':
+      return theme.color.button.ghost.primary.hovered.bg2
+    case 'default':
+      return theme.color.button.ghost.primary.hovered.bg
+    default:
+      return theme.color.button.bleed.primary.enabled.bg2
+  }
 }
 
 export const StyledIconButton = styled.button<StyledIconButtonProps>`
@@ -40,17 +50,19 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   height: ${(props) => props.height || props.width || 'auto'};
   padding: ${(props) => props.padding || '0'};
   margin: ${(props) => props.margin || '0'};
-  background: none;
-  color: ${(props) => props.theme.color.button.bleed.primary.enabled.fg};
+  background: ${(props) =>
+    props.mode === 'default' ? props.theme.color.button.ghost.primary.hovered.bg2 : 'transparent'};
+  color: ${(props) =>
+    props.mode === 'default'
+      ? props.theme.color.button.ghost.primary.hovered.fg
+      : props.theme.color.button.bleed.primary.enabled.fg};
   border: 1px solid
     ${(props) => (props.mode === 'ghost' ? props.theme.color.card.enabled.border : 'transparent')};
+  border-radius: 2px;
   &:hover {
     color: ${(props) =>
       props.mode === 'ghost' ? props.theme.color.button.ghost.primary.hovered.fg : ''};
-    background-color: ${(props) =>
-      props.mode === 'ghost'
-        ? props.theme.color.button.ghost.primary.hovered.bg2
-        : props.theme.color.button.bleed.primary.enabled.bg2};
+    background-color: ${(props) => backgroundColorHoverSwitch(props.mode, props.theme)};
     border-color: ${(props) =>
       props.mode === 'ghost' ? props.theme.color.button.ghost.primary.hovered.bg2 : 'transparent'};
   }
