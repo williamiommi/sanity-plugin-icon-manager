@@ -42,8 +42,9 @@ export interface ConfigureSlice {
   setHeight: (event: FormEvent<HTMLInputElement> | number) => void
   toggleUniqueSize: () => void
   togglePreviewBorder: () => void
-  saveConfiguration: () => void
   setColor: (color: RgbaColor | string) => void
+  clearColor: () => void
+  saveConfiguration: () => void
 }
 
 export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureSlice> = (
@@ -136,6 +137,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
       }
       return {color: {hex, rgba}}
     }),
+  clearColor: () => set((s) => ({color: undefined})),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch

@@ -3,13 +3,14 @@ import {Flex, Grid, Popover} from '@sanity/ui'
 import {useState} from 'react'
 import {useAppStore} from '../../store'
 import ColorBucketIcon from '../icons/ColorBucketIcon'
-import {StyledIconButton} from '../shared/SharedStyledComponents'
+import {StyledBaseButton, StyledIconButton} from '../shared/SharedStyledComponents'
 import ColorPicker from './ColorPicker'
 import {StyledHeading} from './Styled'
 
 const Color = () => {
   const sanityValue = useAppStore((s) => s.sanityValue)
   const color = useAppStore((s) => s.color)
+  const clearColor = useAppStore((s) => s.clearColor)
   const [isColorOpen, setIsColorOpen] = useState(false)
 
   if (!sanityValue || sanityValue.metadata.palette) return null
@@ -40,13 +41,24 @@ const Color = () => {
             content={<ColorPicker onClickOutsideHandler={() => setIsColorOpen(false)} />}
             open={isColorOpen}
           >
-            <StyledIconButton
-              mode={isColorOpen ? 'default' : 'ghost'}
-              onClick={() => setIsColorOpen(!isColorOpen)}
-              padding='2px'
-            >
-              <ColorBucketIcon width={18} height={18} />
-            </StyledIconButton>
+            <Flex align='center' gap={1}>
+              <StyledIconButton
+                mode={isColorOpen ? 'default' : 'ghost'}
+                onClick={() => setIsColorOpen(!isColorOpen)}
+                padding='2px'
+              >
+                <ColorBucketIcon width={18} height={18} />
+              </StyledIconButton>
+              <StyledBaseButton
+                text='Clear color'
+                mode='bleed'
+                tone='primary'
+                title='Set the color to "currentColor"'
+                fontSize={0}
+                padding={1}
+                onClick={clearColor}
+              />
+            </Flex>
           </Popover>
         </Flex>
       </Grid>
