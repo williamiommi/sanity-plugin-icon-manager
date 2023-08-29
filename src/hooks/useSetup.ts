@@ -18,19 +18,22 @@ const useSetup = (fieldProps: FieldProps): void => {
 
   useEffect(() => {
     const value = fieldProps.value as IconifyType
-
     // setup sanity slice
     setSanityValue(value)
+
+    if (value?.metadata) {
+      // setup configure slice
+      setToggle(value.metadata.flipH, value.metadata.flipV)
+      setRotate(value.metadata.rotate)
+      setWidth(value.metadata.size.width)
+      setHeight(value.metadata.size.height)
+      if (value.metadata.color) setColor(value.metadata.color?.hex)
+    }
+  }, [fieldProps.value])
+
+  useEffect(() => {
     setSanityPatch(fieldProps.inputProps.onChange)
     setSanityToast(sanityToast)
-
-    // setup configure slice
-    setToggle(value.metadata.flipH, value.metadata.flipV)
-    setRotate(value.metadata.rotate)
-    setWidth(value.metadata.size.width)
-    setHeight(value.metadata.size.height)
-    if (value.metadata.color) setColor(value.metadata.color?.hex)
-
     // disable iconify cache
     disableCache('all')
   }, [])
