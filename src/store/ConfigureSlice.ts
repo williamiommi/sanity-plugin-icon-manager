@@ -3,7 +3,7 @@ import {RgbaColor} from 'react-colorful'
 import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
-import {HEX_BLACK, hexToRgba, rgbaToHex} from '../lib/colorUtils'
+import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
 
@@ -25,6 +25,7 @@ export interface ConfigureSlice {
   uniqueSize: boolean
   previewBorder: boolean
   color?: IconifyColor
+  getDownloadableUrl: () => string
   hasBeenCustomized: () => boolean
   clearConfiguration: () => void
   resetConfiguration: () => void
@@ -55,6 +56,18 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   size: {width: 0, height: 0},
   uniqueSize: false,
   previewBorder: false,
+  getDownloadableUrl: () => {
+    const SV = get().sanityValue
+    if (!SV) return ''
+    const searchParams = new URLSearchParams()
+    searchParams.append('download', `1`)
+    if (get().size.width) searchParams.append('width', `${get().size.width}`)
+    if (get().size.height) searchParams.append('height', `${get().size.height}`)
+    if (get().rotate > 0) searchParams.append('rotate', `${get().rotate}`)
+    if (getFlipValue(get().flipH, get().flipV)) searchParams.append('flip', get().getFlipValue()!)
+    if (get().color) searchParams.append('color', get().color?.hex!)
+    return `https://api.iconify.design/${SV.icon}.svg?${searchParams.toString()}`
+  },
   hasBeenCustomized: () => {
     let count = 0
     const SV = get().sanityValue
@@ -64,7 +77,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     if (SV.metadata.rotate > 0) count++
     if (SV.metadata.size.width !== 16) count++
     if (SV.metadata.size.height !== 16) count++
-    if (SV.metadata.color && SV.metadata.color.hex !== HEX_BLACK) count++
+    if (SV.metadata.color && SV.metadata.color.hex) count++
     return count > 0
   },
   clearConfiguration: () =>

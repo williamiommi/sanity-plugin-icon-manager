@@ -3,7 +3,6 @@ import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
 import useClickOutside from '../../hooks/useClickOutside'
-import {HEX_BLACK} from '../../lib/colorUtils'
 import {useAppStore} from '../../store'
 import {StyledColorPicker} from './Styled'
 
@@ -34,7 +33,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           HEX
         </Text>
         <TextInput
-          value={color?.hex || HEX_BLACK}
+          value={color?.hex}
           fontSize={1}
           style={{padding: '2px 1px', width: '85px', textAlign: 'center'}}
           onChange={handleHexInput}
@@ -48,7 +47,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={255}
-          value={color?.rgba.r || '0'}
+          value={color?.rgba.r}
           data-input='r'
           fontSize={1}
           style={{padding: '2px 1px 2px 5px', width: '50px'}}
@@ -58,7 +57,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={255}
-          value={color?.rgba.g || '0'}
+          value={color?.rgba.g}
           data-input='g'
           fontSize={1}
           style={{padding: '2px 1px 2px 5px', width: '50px'}}
@@ -68,7 +67,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={255}
-          value={color?.rgba.b || '0'}
+          value={color?.rgba.b}
           data-input='b'
           fontSize={1}
           style={{padding: '2px 1px 2px 5px', width: '50px'}}
@@ -78,7 +77,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={1}
-          value={color?.rgba.a === undefined ? 1 : color.rgba.a}
+          value={color?.rgba.a}
           data-input='a'
           fontSize={1}
           step={0.01}

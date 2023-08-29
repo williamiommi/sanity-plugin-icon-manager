@@ -20,13 +20,14 @@ const DialogHeader = () => (
 )
 
 interface DialogFooterProps {
+  downloadableUrl: string
   onClear: () => void
   onSave: () => void
 }
-const DialogFooter = ({onClear, onSave}: DialogFooterProps) => (
+const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => (
   <Flex margin={2} align='center' justify='space-between' gap={2}>
     <Flex align='center' gap={3}>
-      <StyledIconLink title='Download SVG' padding='3px'>
+      <StyledIconLink title='Download SVG' padding='3px' href={downloadableUrl}>
         <DownloadIcon width='28px' height='28px' />
       </StyledIconLink>
       <StyledIconButton title='Copy svg html to clipboard' padding='3px'>
@@ -63,6 +64,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const closeConfigDialog = useAppStore((s) => s.closeConfigDialog)
   const clearConfiguration = useAppStore((s) => s.clearConfiguration)
   const saveConfiguration = useAppStore((s) => s.saveConfiguration)
+  const downloadableUrl = useAppStore((s) => s.getDownloadableUrl())
 
   return (
     <>
@@ -79,7 +81,13 @@ const ConfigDialog = (props: ConfigDialogProps) => {
         <Dialog
           id='config-dialog'
           header={<DialogHeader />}
-          footer={<DialogFooter onClear={clearConfiguration} onSave={saveConfiguration} />}
+          footer={
+            <DialogFooter
+              downloadableUrl={downloadableUrl}
+              onClear={clearConfiguration}
+              onSave={saveConfiguration}
+            />
+          }
           onClose={closeConfigDialog}
           width={1}
         >
