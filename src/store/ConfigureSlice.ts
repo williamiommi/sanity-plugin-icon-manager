@@ -4,6 +4,7 @@ import {set as patchSet} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
+import {copySvgDataUrl, copySvgHtml} from '../lib/copy2Clipboard'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
 
@@ -26,6 +27,8 @@ export interface ConfigureSlice {
   previewBorder: boolean
   color?: IconifyColor
   getDownloadableUrl: () => string
+  getHtmlIcon: (original?: boolean) => void
+  getDataUrlIcon: (original?: boolean) => void
   hasBeenCustomized: () => boolean
   clearConfiguration: () => void
   resetConfiguration: () => void
@@ -68,6 +71,44 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     if (getFlipValue(get().flipH, get().flipV)) searchParams.append('flip', get().getFlipValue()!)
     if (get().color) searchParams.append('color', get().color?.hex!)
     return `https://api.iconify.design/${SV.icon}.svg?${searchParams.toString()}`
+  },
+  getHtmlIcon: (original?: boolean) => {
+    const icon = get().sanityValue?.icon
+    if (icon) {
+      if (original === true) copySvgHtml(icon)
+      else {
+        copySvgHtml(
+          icon,
+          {
+            width: get().size.width,
+            height: get().size.height,
+            rotate: get().rotate,
+            hFlip: get().flipH,
+            vFlip: get().flipV,
+          },
+          get().color?.hex,
+        )
+      }
+    }
+  },
+  getDataUrlIcon: (original?: boolean) => {
+    const icon = get().sanityValue?.icon
+    if (icon) {
+      if (original === true) copySvgDataUrl(icon)
+      else {
+        copySvgDataUrl(
+          icon,
+          {
+            width: get().size.width,
+            height: get().size.height,
+            rotate: get().rotate,
+            hFlip: get().flipH,
+            vFlip: get().flipV,
+          },
+          get().color?.hex,
+        )
+      }
+    }
   },
   hasBeenCustomized: () => {
     let count = 0

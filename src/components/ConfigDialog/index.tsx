@@ -21,10 +21,18 @@ const DialogHeader = () => (
 
 interface DialogFooterProps {
   downloadableUrl: string
+  getHtmlIcon: () => void
+  getDataUrlIcon: () => void
   onClear: () => void
   onSave: () => void
 }
-const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => (
+const DialogFooter = ({
+  downloadableUrl,
+  getHtmlIcon,
+  getDataUrlIcon,
+  onClear,
+  onSave,
+}: DialogFooterProps) => (
   <Flex
     direction={['column', 'column', 'column', 'row']}
     margin={2}
@@ -36,10 +44,14 @@ const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => 
       <StyledIconLink title='Download SVG' padding='3px' href={downloadableUrl}>
         <DownloadIcon width='28px' height='28px' />
       </StyledIconLink>
-      <StyledIconButton title='Copy svg html to clipboard' padding='3px'>
+      <StyledIconButton title='Copy svg html to clipboard' padding='3px' onClick={getHtmlIcon}>
         <HtmlIcon width='28px' height='28px' />
       </StyledIconButton>
-      <StyledIconButton title='Copy svg Data URL to clipboard' padding='3px'>
+      <StyledIconButton
+        title='Copy svg Data URL to clipboard'
+        padding='3px'
+        onClick={getDataUrlIcon}
+      >
         <DataUrlIcon width='28px' height='28px' />
       </StyledIconButton>
     </Flex>
@@ -71,6 +83,8 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const clearConfiguration = useAppStore((s) => s.clearConfiguration)
   const saveConfiguration = useAppStore((s) => s.saveConfiguration)
   const downloadableUrl = useAppStore((s) => s.getDownloadableUrl())
+  const getHtmlIcon = useAppStore((s) => s.getHtmlIcon)
+  const getDataUrlIcon = useAppStore((s) => s.getDataUrlIcon)
 
   return (
     <>
@@ -90,6 +104,8 @@ const ConfigDialog = (props: ConfigDialogProps) => {
           footer={
             <DialogFooter
               downloadableUrl={downloadableUrl}
+              getHtmlIcon={getHtmlIcon}
+              getDataUrlIcon={getDataUrlIcon}
               onClear={clearConfiguration}
               onSave={saveConfiguration}
             />

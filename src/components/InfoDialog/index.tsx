@@ -3,7 +3,6 @@ import {Icon} from '@iconify-icon/react'
 import {DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
 import {Box, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
-import {copySvgBase64, copySvgHtml} from '../../lib/copy2Clipboard'
 import {useAppStore} from '../../store'
 import {default as DataUrlIcon} from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
@@ -34,6 +33,8 @@ const InfoDialog = (props: InfoDialogProps) => {
   const isInfoDialogOpen = useAppStore((s) => s.isInfoDialogOpen)
   const openInfoDialog = useAppStore((s) => s.openInfoDialog)
   const closeInfoDialog = useAppStore((s) => s.closeInfoDialog)
+  const getHtmlIcon = useAppStore((s) => s.getHtmlIcon)
+  const getDataUrlIcon = useAppStore((s) => s.getDataUrlIcon)
 
   return (
     <>
@@ -81,14 +82,14 @@ const InfoDialog = (props: InfoDialogProps) => {
 
               <StyledIconButton
                 title='Copy svg html to clipboard'
-                onClick={() => copySvgHtml(sanityValue?.icon!)}
+                onClick={() => getHtmlIcon(true)}
               >
                 <HtmlIcon width='25px' height='25px' />
               </StyledIconButton>
 
               <StyledIconButton
                 title='Copy svg Data URL to clipboard'
-                onClick={() => copySvgBase64(sanityValue?.icon!)}
+                onClick={() => getDataUrlIcon(true)}
               >
                 <DataUrlIcon width='25px' height='25px' />
               </StyledIconButton>
