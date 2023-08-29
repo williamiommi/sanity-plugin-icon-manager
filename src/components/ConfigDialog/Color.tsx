@@ -41,25 +41,23 @@ const Color = () => {
             content={<ColorPicker onClickOutsideHandler={() => setIsColorOpen(false)} />}
             open={isColorOpen}
           >
-            <Flex align='center' gap={1}>
-              <StyledIconButton
-                mode={isColorOpen ? 'default' : 'ghost'}
-                onClick={() => setIsColorOpen(!isColorOpen)}
-                padding='2px'
-              >
-                <ColorBucketIcon width={18} height={18} />
-              </StyledIconButton>
-              <StyledBaseButton
-                text='Clear color'
-                mode='bleed'
-                tone='primary'
-                title='Set the color to "currentColor"'
-                fontSize={0}
-                padding={1}
-                onClick={clearColor}
-              />
-            </Flex>
+            <StyledIconButton
+              mode={isColorOpen ? 'default' : 'ghost'}
+              onClick={() => setIsColorOpen(!isColorOpen)}
+              padding='2px'
+            >
+              <ColorBucketIcon width={18} height={18} />
+            </StyledIconButton>
           </Popover>
+          <StyledBaseButton
+            text='Clear color'
+            mode='bleed'
+            tone='primary'
+            title='Set the color to "currentColor"'
+            fontSize={0}
+            padding={1}
+            onClick={clearColor}
+          />
         </Flex>
       </Grid>
     </Flex>

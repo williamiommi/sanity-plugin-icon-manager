@@ -25,8 +25,14 @@ interface DialogFooterProps {
   onSave: () => void
 }
 const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => (
-  <Flex margin={2} align='center' justify='space-between' gap={2}>
-    <Flex align='center' gap={3}>
+  <Flex
+    direction={['column', 'column', 'column', 'row']}
+    margin={2}
+    align={'center'}
+    justify='space-between'
+    gap={2}
+  >
+    <Flex align='center' gap={2}>
       <StyledIconLink title='Download SVG' padding='3px' href={downloadableUrl}>
         <DownloadIcon width='28px' height='28px' />
       </StyledIconLink>
