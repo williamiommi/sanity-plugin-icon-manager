@@ -5,6 +5,7 @@ import {ThemeProvider} from 'styled-components'
 import useSetup from '../hooks/useSetup'
 import {useAppStore} from '../store'
 import ChangeIndicatorWrapper from './ChangeIndicatorWrapper'
+import CustomFieldPresence from './CustomFieldPresence'
 import RemoveDialog from './RemoveDialog'
 import SearchDialog from './SearchDialog'
 import SelectedIcon from './SelectedIcon'
@@ -22,7 +23,10 @@ const IconifyField = (props: IconifyFieldProps) => {
       {!props.collapsed && (
         <ThemeProvider theme={theme}>
           <Box style={{position: 'relative'}}>
-            <SelectedIcon />
+            <Flex justify='space-between' gap={1}>
+              <SelectedIcon />
+              <CustomFieldPresence objectFieldProps={props} />
+            </Flex>
             <Flex
               gap={3}
               paddingTop={props.value ? 1 : 0}
