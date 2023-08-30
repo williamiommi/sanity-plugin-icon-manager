@@ -21,7 +21,11 @@ export interface DialogSlice {
 }
 
 export const createDialogSlice: StateCreator<AppStoreType, [], [], DialogSlice> = (set, get) => ({
-  openSearchDialog: () => set(() => ({isSearchDialogOpen: true})),
+  openSearchDialog: () =>
+    set(() => {
+      get().setSanityPresence()
+      return {isSearchDialogOpen: true}
+    }),
   closeSearchDialog: () =>
     set(() => ({
       isSearchDialogOpen: false,
@@ -37,7 +41,11 @@ export const createDialogSlice: StateCreator<AppStoreType, [], [], DialogSlice> 
   openInfoDialog: () => set(() => ({isInfoDialogOpen: true})),
   closeInfoDialog: () => set(() => ({isInfoDialogOpen: false})),
 
-  openConfigDialog: () => set(() => ({isConfigDialogOpen: true})),
+  openConfigDialog: () =>
+    set(() => {
+      get().setSanityPresence()
+      return {isConfigDialogOpen: true}
+    }),
   closeConfigDialog: () =>
     set(() => {
       get().resetConfiguration()

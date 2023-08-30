@@ -1,14 +1,16 @@
 import {disableCache} from '@iconify-icon/react'
 import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
-import {FieldProps} from 'sanity'
+import {ObjectFieldProps} from 'sanity'
 import {useAppStore} from '../store'
 import IconifyType from '../types/IconifyType'
 
-const useSetup = (fieldProps: FieldProps): void => {
+const useSetup = (fieldProps: ObjectFieldProps): void => {
   const sanityToast = useToast()
+  const setSanityFieldPath = useAppStore((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStore((s) => s.setSanityValue)
   const setSanityPatch = useAppStore((s) => s.setSanityPatch)
+  const setSanityPathFocus = useAppStore((s) => s.setSanityPathFocus)
   const setSanityToast = useAppStore((s) => s.setSanityToast)
   const setRotate = useAppStore((s) => s.setRotate)
   const setToggle = useAppStore((s) => s.setToggle)
@@ -32,7 +34,9 @@ const useSetup = (fieldProps: FieldProps): void => {
   }, [fieldProps.value])
 
   useEffect(() => {
+    setSanityFieldPath(fieldProps.path)
     setSanityPatch(fieldProps.inputProps.onChange)
+    setSanityPathFocus(fieldProps.inputProps.onPathFocus)
     setSanityToast(sanityToast)
     // disable iconify cache
     disableCache('all')
