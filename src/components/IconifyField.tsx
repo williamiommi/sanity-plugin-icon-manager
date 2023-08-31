@@ -1,5 +1,5 @@
 import {BookIcon} from '@sanity/icons'
-import {Box, Button, Flex, useTheme} from '@sanity/ui'
+import {Box, Flex, useTheme} from '@sanity/ui'
 import {ObjectFieldProps} from 'sanity'
 import {ThemeProvider} from 'styled-components'
 import useSetup from '../hooks/useSetup'
@@ -9,6 +9,7 @@ import CustomFieldPresence from './CustomFieldPresence'
 import RemoveDialog from './RemoveDialog'
 import SearchDialog from './SearchDialog'
 import SelectedIcon from './SelectedIcon'
+import {StyledBaseButton} from './shared/SharedStyledComponents'
 
 type IconifyFieldProps = ObjectFieldProps & {}
 
@@ -16,7 +17,6 @@ const IconifyField = (props: IconifyFieldProps) => {
   useSetup(props)
   const {sanity: theme} = useTheme()
   const openSearchDialog = useAppStore((s) => s.openSearchDialog)
-
   return (
     <div>
       {props.renderDefault({...props, children: undefined})}
@@ -35,13 +35,12 @@ const IconifyField = (props: IconifyFieldProps) => {
                 borderTop: `${props.value ? 1 : 0}px solid ${theme.color.card.enabled.border}`,
               }}
             >
-              <Button
+              <StyledBaseButton
                 text={`${props.value ? 'Change' : 'Select'} icon`}
                 mode={props.value ? 'bleed' : 'default'}
                 tone='primary'
                 icon={<BookIcon width={18} />}
                 fontSize={1}
-                style={{cursor: 'pointer', transition: 'all .3s ease-in-out'}}
                 onClick={openSearchDialog}
               />
               <RemoveDialog />
