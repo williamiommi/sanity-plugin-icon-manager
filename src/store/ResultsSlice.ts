@@ -4,7 +4,7 @@ import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {toastError} from '../lib/toastUtils'
 import IconifyQueryResponse from '../types/IconifyQueryResponse'
-import IconifyType from '../types/IconifyType'
+import {IconifyType} from '../types/IconifyType'
 
 const cacheResults = new Map<string, IconifyQueryResponse>()
 

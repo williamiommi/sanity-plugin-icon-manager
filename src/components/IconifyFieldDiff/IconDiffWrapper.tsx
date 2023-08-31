@@ -1,6 +1,6 @@
 import {Badge, Box, Card, Flex, Text} from '@sanity/ui'
 import {ObjectDiff} from 'sanity'
-import IconifyType from '../../types/IconifyType'
+import {IconifyType} from '../../types/IconifyType'
 import IconPreview from '../IconPreview'
 
 interface IconDiffProps {

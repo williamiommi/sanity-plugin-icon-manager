@@ -5,18 +5,9 @@ import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {copySvgDataUrl, copySvgHtml} from '../lib/copy2Clipboard'
+import {Flip, getFlipValue} from '../lib/iconTransformation'
 import {toastError, toastSuccess} from '../lib/toastUtils'
-import IconifyType, {IconifyColor, IconifySize} from '../types/IconifyType'
-
-type Flip = 'horizontal' | 'vertical' | 'horizontal,vertical' | undefined
-
-export const getFlipValue = (flipH?: boolean, flipV?: boolean): Flip => {
-  let output: Flip
-  if (flipH) output = 'horizontal'
-  if (flipV) output = 'vertical'
-  if (flipH && flipV) output = 'horizontal,vertical'
-  return output
-}
+import {IconifyColor, IconifySize, IconifyType} from '../types/IconifyType'
 
 export interface ConfigureSlice {
   flipH: boolean
@@ -68,7 +59,8 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     if (get().size.width) searchParams.append('width', `${get().size.width}`)
     if (get().size.height) searchParams.append('height', `${get().size.height}`)
     if (get().rotate > 0) searchParams.append('rotate', `${get().rotate}`)
-    if (getFlipValue(get().flipH, get().flipV)) searchParams.append('flip', get().getFlipValue()!)
+    const flipValue = getFlipValue(get().flipH, get().flipV)
+    if (flipValue) searchParams.append('flip', flipValue)
     if (get().color) searchParams.append('color', get().color?.hex!)
     return `https://api.iconify.design/${SV.icon}.svg?${searchParams.toString()}`
   },

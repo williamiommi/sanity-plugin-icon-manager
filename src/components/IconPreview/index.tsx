@@ -1,7 +1,7 @@
 import {Icon} from '@iconify-icon/react'
 import {Flex, Text} from '@sanity/ui'
-import {getFlipValue} from '../../store/ConfigureSlice'
-import IconifyType from '../../types/IconifyType'
+import {getFlipValue} from '../../lib/iconTransformation'
+import {IconifyType} from '../../types/IconifyType'
 
 interface IconPreviewProps {
   value: IconifyType

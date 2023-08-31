@@ -13,7 +13,7 @@ export type IconifySize = {
   height: number
 }
 
-type IconifyType = {
+export type IconifyType = {
   icon: string
   downloadUrl: string
   inlineSvg?: string
@@ -37,5 +37,3 @@ type IconifyType = {
     color?: IconifyColor
   }
 }
-
-export default IconifyType

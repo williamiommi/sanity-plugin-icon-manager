@@ -1,7 +1,7 @@
 import {Box, Flex} from '@sanity/ui'
 import {useCallback, useState} from 'react'
 import {ChangeList, DiffComponent, DiffProps, ObjectDiff} from 'sanity'
-import IconifyType from '../../types/IconifyType'
+import {IconifyType} from '../../types/IconifyType'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import IconDiffWrapper from './IconDiffWrapper'
 

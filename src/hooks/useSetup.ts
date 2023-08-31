@@ -3,7 +3,7 @@ import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {ObjectFieldProps} from 'sanity'
 import {useAppStore} from '../store'
-import IconifyType from '../types/IconifyType'
+import {IconifyType} from '../types/IconifyType'
 
 const useSetup = (fieldProps: ObjectFieldProps): void => {
   const sanityToast = useToast()
