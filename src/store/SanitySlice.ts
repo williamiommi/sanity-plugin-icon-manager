@@ -11,6 +11,7 @@ export interface SanitySlice {
   sanityFieldPath?: Path
   sanityValue?: IconifyType
   sanityToast?: ToastContextValue
+  sanityUserCanEdit?: boolean
   sanityPatch?: SanityPatchType
   sanityPathFocus?: SanityPathFocusType
   setSanityFieldPath: (sanityFieldPath: Path) => void
@@ -19,6 +20,7 @@ export interface SanitySlice {
   setSanityPatch: (sanityPatch: SanityPatchType) => void
   setSanityPathFocus: (sanityPathFocus: SanityPathFocusType) => void
   setSanityPresence: () => void
+  setSanityUserCanEdit: (sanityUserCanEdit?: boolean) => void
 }
 
 export const createSanitySlice: StateCreator<AppStoreType, [], [], SanitySlice> = (set, get) => ({
@@ -32,4 +34,5 @@ export const createSanitySlice: StateCreator<AppStoreType, [], [], SanitySlice> 
     const sanityFieldPath = get().sanityFieldPath
     if (sanityPathFocus && sanityFieldPath) sanityPathFocus(sanityFieldPath)
   },
+  setSanityUserCanEdit: (sanityUserCanEdit?: boolean) => set(() => ({sanityUserCanEdit})),
 })

@@ -12,6 +12,7 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
   const setSanityPatch = useAppStore((s) => s.setSanityPatch)
   const setSanityPathFocus = useAppStore((s) => s.setSanityPathFocus)
   const setSanityToast = useAppStore((s) => s.setSanityToast)
+  const setSanityUserCanEdit = useAppStore((s) => s.setSanityUserCanEdit)
   const setRotate = useAppStore((s) => s.setRotate)
   const setToggle = useAppStore((s) => s.setToggle)
   const setWidth = useAppStore((s) => s.setWidth)
@@ -38,6 +39,7 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
     setSanityPatch(fieldProps.inputProps.onChange)
     setSanityPathFocus(fieldProps.inputProps.onPathFocus)
     setSanityToast(sanityToast)
+    setSanityUserCanEdit(!fieldProps.inputProps.readOnly)
     // disable iconify cache
     disableCache('all')
   }, [])
