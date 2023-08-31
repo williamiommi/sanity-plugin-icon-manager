@@ -85,6 +85,9 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const downloadableUrl = useAppStore((s) => s.getDownloadableUrl())
   const getHtmlIcon = useAppStore((s) => s.getHtmlIcon)
   const getDataUrlIcon = useAppStore((s) => s.getDataUrlIcon)
+  const sanityUserCanEdit = useAppStore((s) => s.sanityUserCanEdit)
+
+  if (!sanityUserCanEdit) return null
 
   return (
     <>

@@ -17,6 +17,7 @@ const IconifyField = (props: IconifyFieldProps) => {
   useSetup(props)
   const {sanity: theme} = useTheme()
   const openSearchDialog = useAppStore((s) => s.openSearchDialog)
+  const sanityUserCanEdit = useAppStore((s) => s.sanityUserCanEdit)
   return (
     <div>
       {props.renderDefault({...props, children: undefined})}
@@ -27,25 +28,29 @@ const IconifyField = (props: IconifyFieldProps) => {
               <SelectedIcon />
               <CustomFieldPresence objectFieldProps={props} />
             </Flex>
-            <Flex
-              gap={3}
-              paddingTop={props.value ? 1 : 0}
-              marginTop={props.value ? 2 : 0}
-              style={{
-                borderTop: `${props.value ? 1 : 0}px solid ${theme.color.card.enabled.border}`,
-              }}
-            >
-              <StyledBaseButton
-                text={`${props.value ? 'Change' : 'Select'} icon`}
-                mode={props.value ? 'bleed' : 'default'}
-                tone='primary'
-                icon={<BookIcon width={18} />}
-                fontSize={1}
-                onClick={openSearchDialog}
-              />
-              <RemoveDialog />
-            </Flex>
-            <SearchDialog />
+            {sanityUserCanEdit && (
+              <>
+                <Flex
+                  gap={3}
+                  paddingTop={props.value ? 1 : 0}
+                  marginTop={props.value ? 2 : 0}
+                  style={{
+                    borderTop: `${props.value ? 1 : 0}px solid ${theme.color.card.enabled.border}`,
+                  }}
+                >
+                  <StyledBaseButton
+                    text={`${props.value ? 'Change' : 'Select'} icon`}
+                    mode={props.value ? 'bleed' : 'default'}
+                    tone='primary'
+                    icon={<BookIcon width={18} />}
+                    fontSize={1}
+                    onClick={openSearchDialog}
+                  />
+                  <RemoveDialog />
+                </Flex>
+                <SearchDialog />
+              </>
+            )}
             <ChangeIndicatorWrapper
               path={props.path}
               isChanged={props.changed}
