@@ -6,7 +6,7 @@ interface StyledSelectedIconProps {
 
 export const StyledSelectedIcon = styled(Card)<StyledSelectedIconProps>`
   position: relative;
-  padding: 15px;
+  padding: 15px 20px;
   color: ${(props) => props.bgColor || 'currentColor'};
 `
 

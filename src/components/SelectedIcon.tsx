@@ -1,9 +1,7 @@
-import {Icon} from '@iconify-icon/react'
-
 import {Card, Flex, Text, Tooltip} from '@sanity/ui'
 import {useAppStore} from '../store'
-import {getFlipValue} from '../store/ConfigureSlice'
 import ConfigDialog from './ConfigDialog'
+import IconPreview from './IconPreview'
 import InfoDialog from './InfoDialog'
 import {StyledEditIcon, StyledSelectedIcon} from './SelectedIcon.style'
 import CustomizeIcon from './icons/CustomizeIcon'
@@ -32,14 +30,7 @@ const SelectedIcon = (props: SelectedIconProps) => {
             </StyledEditIcon>
           </Tooltip>
         )}
-        <Icon
-          icon={SV.icon}
-          width={40}
-          height={40}
-          style={{display: 'block'}}
-          rotate={SV.metadata.rotate}
-          flip={getFlipValue(SV.metadata.flipH, SV.metadata.flipV)}
-        />
+        <IconPreview value={SV} />
       </StyledSelectedIcon>
       <Flex direction='column' justify='flex-end' align='flex-start'>
         <InfoDialog />
