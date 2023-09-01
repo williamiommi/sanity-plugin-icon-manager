@@ -5,9 +5,12 @@ import {IconifyType} from '../../types/IconifyType'
 
 interface IconPreviewProps {
   value: IconifyType
+  width?: string | number
+  height?: string | number
+  hideText?: boolean
 }
 
-const IconPreview = ({value}: IconPreviewProps) => {
+const IconPreview = ({value, width = 50, height = 50, hideText = false}: IconPreviewProps) => {
   const {
     icon,
     metadata: {flipH, flipV, rotate, color, size},
@@ -16,18 +19,25 @@ const IconPreview = ({value}: IconPreviewProps) => {
   if (!value.icon) return null
 
   return (
-    <Flex direction='column' align='center' gap={2}>
+    <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
         icon={icon}
         {...((flipH || flipV) && {flip: getFlipValue(flipH, flipV)})}
         {...(rotate && {rotate})}
-        style={{display: 'block', ...(color && color.hex && {color: color.hex})}}
-        width={50}
-        height={50}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          ...(color && color.hex && {color: color.hex}),
+        }}
+        width={width}
+        height={height}
       />
-      <Text size={0} style={{opacity: 0.8}}>
-        {size.width} x {size.height}
-      </Text>
+      {!hideText && (
+        <Text size={0} style={{opacity: 0.8}}>
+          {size.width} x {size.height}
+        </Text>
+      )}
     </Flex>
   )
 }
