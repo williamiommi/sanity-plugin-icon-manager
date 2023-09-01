@@ -33,7 +33,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           HEX
         </Text>
         <TextInput
-          value={color?.hex}
+          value={color?.hex || ''}
           fontSize={1}
           style={{padding: '2px 1px', width: '85px', textAlign: 'center'}}
           onChange={handleHexInput}
@@ -47,7 +47,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={255}
-          value={color?.rgba.r}
+          value={color?.rgba.r || ''}
           data-input='r'
           fontSize={1}
           style={{padding: '2px 1px 2px 5px', width: '50px'}}
@@ -57,7 +57,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={255}
-          value={color?.rgba.g}
+          value={color?.rgba.g || ''}
           data-input='g'
           fontSize={1}
           style={{padding: '2px 1px 2px 5px', width: '50px'}}
@@ -67,7 +67,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={255}
-          value={color?.rgba.b}
+          value={color?.rgba.b || ''}
           data-input='b'
           fontSize={1}
           style={{padding: '2px 1px 2px 5px', width: '50px'}}
@@ -77,7 +77,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
           type='number'
           min={0}
           max={1}
-          value={color?.rgba.a}
+          value={color?.rgba.a || ''}
           data-input='a'
           fontSize={1}
           step={0.01}
