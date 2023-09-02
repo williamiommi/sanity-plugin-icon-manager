@@ -9,6 +9,17 @@ import {Flip, getFlipValue} from '../lib/iconTransformation'
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import {IconifyColor, IconifySize, IconifyType} from '../types/IconifyType'
 
+const initialState = {
+  flipH: false,
+  flipV: false,
+  rotate: 0,
+  inlineSvg: false,
+  size: {width: 16, height: 16},
+  uniqueSize: false,
+  color: undefined,
+  previewBorder: false,
+}
+
 export interface ConfigureSlice {
   flipH: boolean
   flipV: boolean
@@ -45,12 +56,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   set,
   get,
 ) => ({
-  flipH: false,
-  flipV: false,
-  rotate: 0,
-  size: {width: 0, height: 0},
-  uniqueSize: false,
-  previewBorder: false,
+  ...initialState,
   getDownloadableUrl: () => {
     const SV = get().sanityValue
     if (!SV) return ''
@@ -114,16 +120,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     if (SV.metadata.color && SV.metadata.color.hex) count++
     return count > 0
   },
-  clearConfiguration: () =>
-    set(() => ({
-      flipH: false,
-      flipV: false,
-      rotate: 0,
-      size: {width: 16, height: 16},
-      color: undefined,
-      previewBorder: false,
-      uniqueSize: false,
-    })),
+  clearConfiguration: () => set(initialState),
   resetConfiguration: () =>
     set(() => ({
       flipH: get().sanityValue?.metadata.flipH,
