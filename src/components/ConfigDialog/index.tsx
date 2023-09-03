@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import {CogIcon, DownloadIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
+import {copyDataUrlToClipboard, copyHtmlToClipboard} from '../../lib/clipboardUtils'
+import {generateSvgDownloadUrl} from '../../lib/svgUtils'
 import {useAppStore} from '../../store'
 import CustomizeIcon from '../icons/CustomizeIcon'
 import DataUrlIcon from '../icons/DataURLIcon'
@@ -21,18 +23,10 @@ const DialogHeader = () => (
 
 interface DialogFooterProps {
   downloadableUrl: string
-  getHtmlIcon: () => void
-  getDataUrlIcon: () => void
   onClear: () => void
   onSave: () => void
 }
-const DialogFooter = ({
-  downloadableUrl,
-  getHtmlIcon,
-  getDataUrlIcon,
-  onClear,
-  onSave,
-}: DialogFooterProps) => (
+const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => (
   <Flex
     direction={['column', 'column', 'column', 'row']}
     margin={2}
@@ -44,13 +38,17 @@ const DialogFooter = ({
       <StyledIconLink title='Download SVG' padding='3px' href={downloadableUrl}>
         <DownloadIcon width='28px' height='28px' />
       </StyledIconLink>
-      <StyledIconButton title='Copy svg html to clipboard' padding='3px' onClick={getHtmlIcon}>
+      <StyledIconButton
+        title='Copy svg html to clipboard'
+        padding='3px'
+        onClick={() => copyHtmlToClipboard()}
+      >
         <HtmlIcon width='28px' height='28px' />
       </StyledIconButton>
       <StyledIconButton
         title='Copy svg Data URL to clipboard'
         padding='3px'
-        onClick={getDataUrlIcon}
+        onClick={() => copyDataUrlToClipboard()}
       >
         <DataUrlIcon width='28px' height='28px' />
       </StyledIconButton>
@@ -82,9 +80,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const closeConfigDialog = useAppStore((s) => s.closeConfigDialog)
   const clearConfiguration = useAppStore((s) => s.clearConfiguration)
   const saveConfiguration = useAppStore((s) => s.saveConfiguration)
-  const downloadableUrl = useAppStore((s) => s.getDownloadableUrl())
-  const getHtmlIcon = useAppStore((s) => s.getHtmlIcon)
-  const getDataUrlIcon = useAppStore((s) => s.getDataUrlIcon)
+  const downloadableUrl = useAppStore(() => generateSvgDownloadUrl())
   const sanityUserCanEdit = useAppStore((s) => s.sanityUserCanEdit)
 
   if (!sanityUserCanEdit) return null
@@ -107,8 +103,6 @@ const ConfigDialog = (props: ConfigDialogProps) => {
           footer={
             <DialogFooter
               downloadableUrl={downloadableUrl}
-              getHtmlIcon={getHtmlIcon}
-              getDataUrlIcon={getDataUrlIcon}
               onClear={clearConfiguration}
               onSave={saveConfiguration}
             />

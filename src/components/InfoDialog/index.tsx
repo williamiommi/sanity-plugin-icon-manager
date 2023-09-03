@@ -3,6 +3,8 @@ import {Icon} from '@iconify-icon/react'
 import {DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
 import {Box, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
+import {copyDataUrlToClipboard, copyHtmlToClipboard} from '../../lib/clipboardUtils'
+import {generateSvgDownloadUrl} from '../../lib/svgUtils'
 import {useAppStore} from '../../store'
 import {default as DataUrlIcon} from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
@@ -33,8 +35,6 @@ const InfoDialog = (props: InfoDialogProps) => {
   const isInfoDialogOpen = useAppStore((s) => s.isInfoDialogOpen)
   const openInfoDialog = useAppStore((s) => s.openInfoDialog)
   const closeInfoDialog = useAppStore((s) => s.closeInfoDialog)
-  const getHtmlIcon = useAppStore((s) => s.getHtmlIcon)
-  const getDataUrlIcon = useAppStore((s) => s.getDataUrlIcon)
 
   return (
     <>
@@ -73,23 +73,20 @@ const InfoDialog = (props: InfoDialogProps) => {
             </StyledCell>
             <StyledCell bold>Original Svg:</StyledCell>
             <Grid columns={3} gap={2}>
-              <StyledIconLink
-                href={`https://api.iconify.design/${sanityValue?.icon}.svg?download=1`}
-                title='Download SVG'
-              >
+              <StyledIconLink href={generateSvgDownloadUrl(true)} title='Download SVG'>
                 <DownloadIcon width='25px' height='25px' />
               </StyledIconLink>
 
               <StyledIconButton
                 title='Copy svg html to clipboard'
-                onClick={() => getHtmlIcon(true)}
+                onClick={() => copyHtmlToClipboard(true)}
               >
                 <HtmlIcon width='25px' height='25px' />
               </StyledIconButton>
 
               <StyledIconButton
                 title='Copy svg Data URL to clipboard'
-                onClick={() => getDataUrlIcon(true)}
+                onClick={() => copyDataUrlToClipboard(true)}
               >
                 <DataUrlIcon width='25px' height='25px' />
               </StyledIconButton>
