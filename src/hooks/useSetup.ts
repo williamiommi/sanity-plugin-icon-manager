@@ -14,7 +14,8 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
   const setSanityToast = useAppStore((s) => s.setSanityToast)
   const setSanityUserCanEdit = useAppStore((s) => s.setSanityUserCanEdit)
   const setRotate = useAppStore((s) => s.setRotate)
-  const setToggle = useAppStore((s) => s.setToggle)
+  const setFlip = useAppStore((s) => s.setFlip)
+  const setInlineSvg = useAppStore((s) => s.setInlineSvg)
   const setWidth = useAppStore((s) => s.setWidth)
   const setHeight = useAppStore((s) => s.setHeight)
   const setColor = useAppStore((s) => s.setColor)
@@ -24,9 +25,11 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
     // setup sanity slice
     setSanityValue(value)
 
+    setInlineSvg(!!value.inlineSvg)
+
     if (value?.metadata) {
       // setup configure slice
-      setToggle(value.metadata.hFlip, value.metadata.vFlip)
+      setFlip(value.metadata.hFlip, value.metadata.vFlip)
       setRotate(value.metadata.rotate)
       setWidth(value.metadata.size.width)
       setHeight(value.metadata.size.height)

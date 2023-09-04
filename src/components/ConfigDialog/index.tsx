@@ -10,6 +10,7 @@ import HtmlIcon from '../icons/HtmlIcon'
 import {StyledBaseButton, StyledIconButton, StyledIconLink} from '../shared/SharedStyledComponents'
 import Color from './Color'
 import Flip from './Flip'
+import InlineSvg from './InlineSvg'
 import Preview from './Preview'
 import Rotate from './Rotate'
 import Size from './Size'
@@ -115,6 +116,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
               <Flip />
               <Rotate />
               <Size />
+              <InlineSvg />
               <Color />
             </Flex>
             <Preview />

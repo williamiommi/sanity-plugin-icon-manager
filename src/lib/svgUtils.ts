@@ -22,24 +22,48 @@ const getIconCustomisations = (value?: AppStoreType) => {
   }
 }
 
-export const generateSvgDownloadUrl = (original?: boolean): string => {
+const generateSearchParams = (
+  original: boolean,
+  appState: AppStoreType,
+  download: boolean,
+): string => {
+  const searchParams = new URLSearchParams()
+  if (!original) {
+    if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
+    if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
+    if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
+    const flipValue = getFlipValue(appState.hFlip, appState.vFlip)
+    if (flipValue) searchParams.append('flip', flipValue)
+    if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
+  }
+  if (download) {
+    searchParams.append('download', `1`)
+  }
+  return searchParams.size > 0 ? `?${searchParams.toString()}` : ''
+}
+
+export const generateSvgHttpUrl = (original: boolean = false): string => {
   try {
     const appState = useAppStore.getState()
     const icon = appState.sanityValue?.icon
     if (!icon) throw Error('Unable to find the icon.')
 
-    const searchParams = new URLSearchParams()
-    searchParams.append('download', `1`)
-    if (!original) {
-      if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
-      if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
-      if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
-      const flipValue = getFlipValue(appState.hFlip, appState.vFlip)
-      if (flipValue) searchParams.append('flip', flipValue)
-      if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
-    }
+    const searchParams = generateSearchParams(original, appState, false)
+    return `https://api.iconify.design/${icon}.svg${searchParams}`
+  } catch (e: any) {
+    toastError(e)
+    return '#'
+  }
+}
 
-    return `https://api.iconify.design/${icon}.svg?${searchParams.toString()}`
+export const generateSvgDownloadUrl = (original: boolean = false): string => {
+  try {
+    const appState = useAppStore.getState()
+    const icon = appState.sanityValue?.icon
+    if (!icon) throw Error('Unable to find the icon.')
+
+    const searchParams = generateSearchParams(original, appState, true)
+    return `https://api.iconify.design/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(e)
     return '#'

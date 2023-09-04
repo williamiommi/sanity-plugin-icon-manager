@@ -5,8 +5,9 @@ import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {Flip, getFlipValue} from '../lib/iconifyUtils'
+import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../lib/svgUtils'
 import {toastError, toastSuccess, toastWarning} from '../lib/toastUtils'
-import {IconifyColor, IconifySize, IconifyType} from '../types/IconifyType'
+import {IconifyColor, IconifySize} from '../types/IconifyType'
 
 const initialState = {
   hFlip: false,
@@ -24,6 +25,7 @@ export interface ConfigureSlice {
   vFlip: boolean
   rotate: number
   size: IconifySize
+  inlineSvg: boolean
   uniqueSize: boolean
   previewBorder: boolean
   color?: IconifyColor
@@ -31,7 +33,7 @@ export interface ConfigureSlice {
   clearConfiguration: () => void
   resetConfiguration: () => void
   getFlipValue: () => Flip
-  setToggle: (hFlip: boolean, vFlip: boolean) => void
+  setFlip: (hFlip: boolean, vFlip: boolean) => void
   toggleHFlip: () => void
   toggleVFlip: () => void
   setRotate: (rotate: number) => void
@@ -39,6 +41,7 @@ export interface ConfigureSlice {
   setRotate90: () => void
   setRotate180: () => void
   setRotate270: () => void
+  setInlineSvg: (inlineSvg?: boolean) => void
   setWidth: (event: FormEvent<HTMLInputElement> | number) => void
   setHeight: (event: FormEvent<HTMLInputElement> | number) => void
   toggleUniqueSize: () => void
@@ -57,6 +60,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     let count = 0
     const SV = get().sanityValue
     if (!SV || !SV.metadata) return false
+    if (SV.inlineSvg) count++
     if (SV.metadata.hFlip) count++
     if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
@@ -73,11 +77,12 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
       rotate: get().sanityValue?.metadata.rotate,
       size: get().sanityValue?.metadata.size,
       color: get().sanityValue?.metadata.color,
+      inlineSvg: !!get().sanityValue?.inlineSvg,
       previewBorder: false,
       uniqueSize: false,
     })),
   getFlipValue: () => getFlipValue(get().hFlip, get().vFlip),
-  setToggle: (hFlip, vFlip) => set(() => ({hFlip, vFlip})),
+  setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip})),
   toggleHFlip: () => set((s) => ({hFlip: !s.hFlip})),
   toggleVFlip: () => set((s) => ({vFlip: !s.vFlip})),
   setRotate: (rotate: number) => set(() => ({rotate})),
@@ -85,6 +90,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   setRotate90: () => set((s) => ({rotate: s.rotate === 1 ? 0 : 1})),
   setRotate180: () => set((s) => ({rotate: s.rotate === 2 ? 0 : 2})),
   setRotate270: () => set((s) => ({rotate: s.rotate === 3 ? 0 : 3})),
+  setInlineSvg: (inlineSvg?: boolean) => set(() => ({inlineSvg: !!inlineSvg})),
   setWidth: (event: FormEvent<HTMLInputElement> | number) =>
     set((s) => {
       const width = typeof event === 'number' ? event : Number(event.currentTarget.value)
@@ -119,17 +125,6 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
       if (sanityPatch) {
         const sanityValue = get().sanityValue
         if (!sanityValue) throw Error('The stored value is broken')
-        const objToSave: IconifyType = {
-          ...sanityValue,
-          metadata: {
-            ...sanityValue.metadata,
-            hFlip: get().hFlip,
-            vFlip: get().vFlip,
-            rotate: get().rotate,
-            size: get().size,
-            color: get().color,
-          },
-        }
 
         const patches = []
 
@@ -143,6 +138,11 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           patches.push(patchSet(get().size?.width, ['metadata.size.width']))
         if (get().size.height !== sanityValue.metadata.size.height)
           patches.push(patchSet(get().size?.height, ['metadata.size.height']))
+        if (get().inlineSvg) {
+          patches.push(patchSet(await generateSvgHtml(), ['inlineSvg']))
+        } else if (sanityValue.inlineSvg) {
+          patches.push(patchUnset(['inlineSvg']))
+        }
 
         const color = get().color
         const sanityColor = sanityValue.metadata.color
@@ -165,8 +165,11 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
         }
 
         if (patches.length > 0) {
+          // update urls too if something has changed
+          patches.push(patchSet(generateSvgHttpUrl(), ['url']))
+          patches.push(patchSet(generateSvgDownloadUrl(), ['downloadUrl']))
+
           await sanityPatch(patches)
-          get().setSanityValue(objToSave)
           get().closeConfigDialog()
           toastSuccess('Configuration Saved')
         } else {

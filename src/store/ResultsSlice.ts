@@ -55,6 +55,7 @@ export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice
         const objToSave: IconifyType = {
           icon: value!,
           downloadUrl: `https://api.iconify.design/${value!}.svg?download=1`,
+          url: `https://api.iconify.design/${value!}.svg`,
           metadata: {
             collectionId: iconInfo[0],
             collectionName: collection?.name || '',
