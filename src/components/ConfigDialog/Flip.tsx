@@ -6,10 +6,10 @@ import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Flip = () => {
-  const flipH = useAppStore((s) => s.flipH)
-  const flipV = useAppStore((s) => s.flipV)
-  const toggleFlipH = useAppStore((s) => s.toggleFlipH)
-  const toggleFlipV = useAppStore((s) => s.toggleFlipV)
+  const hFlip = useAppStore((s) => s.hFlip)
+  const vFlip = useAppStore((s) => s.vFlip)
+  const toggleHFlip = useAppStore((s) => s.toggleHFlip)
+  const toggleVFlip = useAppStore((s) => s.toggleVFlip)
 
   return (
     <Flex
@@ -23,21 +23,21 @@ const Flip = () => {
         <StyledBaseButton
           icon={<WidthIcon width={15} height={15} />}
           title='Horizontal'
-          mode={`${flipH ? 'default' : 'ghost'}`}
+          mode={`${hFlip ? 'default' : 'ghost'}`}
           tone='primary'
           fontSize={1}
           padding={2}
-          onClick={toggleFlipH}
+          onClick={toggleHFlip}
           style={{width: '100%'}}
         />
         <StyledBaseButton
           icon={<HeightIcon width={15} height={15} />}
           title='Vertical'
-          mode={`${flipV ? 'default' : 'ghost'}`}
+          mode={`${vFlip ? 'default' : 'ghost'}`}
           tone='primary'
           fontSize={1}
           padding={2}
-          onClick={toggleFlipV}
+          onClick={toggleVFlip}
           style={{width: '100%'}}
         />
       </Grid>

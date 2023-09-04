@@ -60,8 +60,8 @@ export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice
             collectionName: collection?.name || '',
             iconName: iconInfo[1],
             size: {width: 16, height: 16},
-            flipH: false,
-            flipV: false,
+            hFlip: false,
+            vFlip: false,
             rotate: 0,
             palette: collection?.palette,
             author: {

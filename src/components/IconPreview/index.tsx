@@ -13,7 +13,7 @@ interface IconPreviewProps {
 const IconPreview = ({value, width = 50, height = 50, hideText = false}: IconPreviewProps) => {
   const {
     icon,
-    metadata: {flipH, flipV, rotate, color, size},
+    metadata: {hFlip, vFlip, rotate, color, size},
   } = value
 
   if (!value.icon) return null
@@ -22,7 +22,7 @@ const IconPreview = ({value, width = 50, height = 50, hideText = false}: IconPre
     <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
         icon={icon}
-        {...((flipH || flipV) && {flip: getFlipValue(flipH, flipV)})}
+        {...((hFlip || vFlip) && {flip: getFlipValue(hFlip, vFlip)})}
         {...(rotate && {rotate})}
         style={{
           display: 'flex',

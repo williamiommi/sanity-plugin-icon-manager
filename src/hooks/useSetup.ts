@@ -26,7 +26,7 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
 
     if (value?.metadata) {
       // setup configure slice
-      setToggle(value.metadata.flipH, value.metadata.flipV)
+      setToggle(value.metadata.hFlip, value.metadata.vFlip)
       setRotate(value.metadata.rotate)
       setWidth(value.metadata.size.width)
       setHeight(value.metadata.size.height)

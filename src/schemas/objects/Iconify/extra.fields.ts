@@ -76,13 +76,13 @@ const metadataFields = [
   }),
   defineField({
     type: 'boolean',
-    name: 'flipH',
-    title: 'Flip H',
+    name: 'hFlip',
+    title: 'H Flip',
   }),
   defineField({
     type: 'boolean',
-    name: 'flipV',
-    title: 'Flip V',
+    name: 'vFlip',
+    title: 'V Flip',
   }),
   defineField({
     type: 'number',

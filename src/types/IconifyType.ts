@@ -31,8 +31,8 @@ export type IconifyType = {
       url?: string
     }
     size: IconifySize
-    flipH: boolean
-    flipV: boolean
+    hFlip: boolean
+    vFlip: boolean
     rotate: number
     color?: IconifyColor
   }

@@ -9,8 +9,8 @@ import {toastError, toastSuccess, toastWarning} from '../lib/toastUtils'
 import {IconifyColor, IconifySize, IconifyType} from '../types/IconifyType'
 
 const initialState = {
-  flipH: false,
-  flipV: false,
+  hFlip: false,
+  vFlip: false,
   rotate: 0,
   inlineSvg: false,
   size: {width: 16, height: 16},
@@ -20,8 +20,8 @@ const initialState = {
 }
 
 export interface ConfigureSlice {
-  flipH: boolean
-  flipV: boolean
+  hFlip: boolean
+  vFlip: boolean
   rotate: number
   size: IconifySize
   uniqueSize: boolean
@@ -31,9 +31,9 @@ export interface ConfigureSlice {
   clearConfiguration: () => void
   resetConfiguration: () => void
   getFlipValue: () => Flip
-  setToggle: (flipH: boolean, flipV: boolean) => void
-  toggleFlipH: () => void
-  toggleFlipV: () => void
+  setToggle: (hFlip: boolean, vFlip: boolean) => void
+  toggleHFlip: () => void
+  toggleVFlip: () => void
   setRotate: (rotate: number) => void
   setRotate0: () => void
   setRotate90: () => void
@@ -57,8 +57,8 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     let count = 0
     const SV = get().sanityValue
     if (!SV || !SV.metadata) return false
-    if (SV.metadata.flipH) count++
-    if (SV.metadata.flipV) count++
+    if (SV.metadata.hFlip) count++
+    if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
     if (SV.metadata.size.width !== 16) count++
     if (SV.metadata.size.height !== 16) count++
@@ -68,18 +68,18 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   clearConfiguration: () => set(initialState),
   resetConfiguration: () =>
     set(() => ({
-      flipH: get().sanityValue?.metadata.flipH,
-      flipV: get().sanityValue?.metadata.flipV,
+      hFlip: get().sanityValue?.metadata.hFlip,
+      vFlip: get().sanityValue?.metadata.vFlip,
       rotate: get().sanityValue?.metadata.rotate,
       size: get().sanityValue?.metadata.size,
       color: get().sanityValue?.metadata.color,
       previewBorder: false,
       uniqueSize: false,
     })),
-  getFlipValue: () => getFlipValue(get().flipH, get().flipV),
-  setToggle: (flipH, flipV) => set(() => ({flipH, flipV})),
-  toggleFlipH: () => set((s) => ({flipH: !s.flipH})),
-  toggleFlipV: () => set((s) => ({flipV: !s.flipV})),
+  getFlipValue: () => getFlipValue(get().hFlip, get().vFlip),
+  setToggle: (hFlip, vFlip) => set(() => ({hFlip, vFlip})),
+  toggleHFlip: () => set((s) => ({hFlip: !s.hFlip})),
+  toggleVFlip: () => set((s) => ({vFlip: !s.vFlip})),
   setRotate: (rotate: number) => set(() => ({rotate})),
   setRotate0: () => set(() => ({rotate: 0})),
   setRotate90: () => set((s) => ({rotate: s.rotate === 1 ? 0 : 1})),
@@ -123,8 +123,8 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           ...sanityValue,
           metadata: {
             ...sanityValue.metadata,
-            flipH: get().flipH,
-            flipV: get().flipV,
+            hFlip: get().hFlip,
+            vFlip: get().vFlip,
             rotate: get().rotate,
             size: get().size,
             color: get().color,
@@ -133,10 +133,10 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
 
         const patches = []
 
-        if (get().flipH !== sanityValue.metadata.flipH)
-          patches.push(patchSet(get().flipH, ['metadata.flipH']))
-        if (get().flipV !== sanityValue.metadata.flipV)
-          patches.push(patchSet(get().flipV, ['metadata.flipV']))
+        if (get().hFlip !== sanityValue.metadata.hFlip)
+          patches.push(patchSet(get().hFlip, ['metadata.hFlip']))
+        if (get().vFlip !== sanityValue.metadata.vFlip)
+          patches.push(patchSet(get().vFlip, ['metadata.vFlip']))
         if (get().rotate !== sanityValue.metadata.rotate)
           patches.push(patchSet(get().rotate, ['metadata.rotate']))
         if (get().size.width !== sanityValue.metadata.size.width)

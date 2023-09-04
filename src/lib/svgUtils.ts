@@ -17,8 +17,8 @@ const getIconCustomisations = (value?: AppStoreType) => {
     width: value.size.width,
     height: value.size.height,
     rotate: value.rotate,
-    hFlip: value.flipH,
-    vFlip: value.flipV,
+    hFlip: value.hFlip,
+    vFlip: value.vFlip,
   }
 }
 
@@ -34,7 +34,7 @@ export const generateSvgDownloadUrl = (original?: boolean): string => {
       if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
       if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
       if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
-      const flipValue = getFlipValue(appState.flipH, appState.flipV)
+      const flipValue = getFlipValue(appState.hFlip, appState.vFlip)
       if (flipValue) searchParams.append('flip', flipValue)
       if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
     }
