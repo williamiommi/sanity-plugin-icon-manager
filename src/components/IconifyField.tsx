@@ -25,7 +25,7 @@ const IconifyField = (props: IconifyFieldProps) => {
         <ThemeProvider theme={theme}>
           <Box style={{position: 'relative'}}>
             <Flex justify='space-between' gap={1}>
-              <SelectedIcon />
+              {props.value && <SelectedIcon />}
               <CustomFieldPresence objectFieldProps={props} />
             </Flex>
             {sanityUserCanEdit && (

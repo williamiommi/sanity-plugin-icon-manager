@@ -1,5 +1,5 @@
 import {FormEvent} from 'react'
-import {set as patchSet} from 'sanity'
+import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {toastError} from '../lib/toastUtils'
@@ -90,8 +90,7 @@ export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice
     try {
       const sanityPatch = get().sanityPatch
       if (sanityPatch) {
-        await sanityPatch(patchSet({}))
-        get().setSanityValue(undefined)
+        await sanityPatch(patchUnset())
         get().closeRemoveDialog()
       }
     } catch (e: any) {
