@@ -31,7 +31,7 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
       setRotate(value.metadata.rotate)
       setWidth(value.metadata.size.width)
       setHeight(value.metadata.size.height)
-      setInlineSvg(!!value.metadata.inlineSvg)
+      setInlineSvg(value.metadata.inlineSvg)
       if (value.metadata.color) setColor(value.metadata.color?.hex)
     }
   }, [fieldProps.value])

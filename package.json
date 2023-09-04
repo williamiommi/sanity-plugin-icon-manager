@@ -52,6 +52,7 @@
     "@iconify/utils": "^2.1.9",
     "@sanity/incompatible-plugin": "^1.0.4",
     "@sanity/ui": "^1.7.9",
+    "dompurify": "^3.0.5",
     "react-colorful": "^5.6.1",
     "zustand": "^4.4.1"
   },
@@ -62,6 +63,7 @@
     "@sanity/pkg-utils": "^2.3.10",
     "@sanity/plugin-kit": "^3.1.7",
     "@sanity/semantic-release-preset": "^4.1.2",
+    "@types/dompurify": "^3.0.2",
     "@types/react": "^18.2.18",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^6.2.1",

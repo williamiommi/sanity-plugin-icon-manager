@@ -13,7 +13,7 @@ const initialState = {
   hFlip: false,
   vFlip: false,
   rotate: 0,
-  inlineSvg: false,
+  inlineSvg: '',
   size: {width: 16, height: 16},
   uniqueSize: false,
   color: undefined,
@@ -25,7 +25,7 @@ export interface ConfigureSlice {
   vFlip: boolean
   rotate: number
   size: IconifySize
-  inlineSvg: boolean
+  inlineSvg: string
   uniqueSize: boolean
   previewBorder: boolean
   color?: IconifyColor
@@ -41,7 +41,7 @@ export interface ConfigureSlice {
   setRotate90: () => void
   setRotate180: () => void
   setRotate270: () => void
-  setInlineSvg: (inlineSvg?: boolean) => void
+  setInlineSvg: (inlineSvg?: string) => void
   setWidth: (event: FormEvent<HTMLInputElement> | number) => void
   setHeight: (event: FormEvent<HTMLInputElement> | number) => void
   toggleUniqueSize: () => void
@@ -77,7 +77,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
       rotate: get().sanityValue?.metadata.rotate,
       size: get().sanityValue?.metadata.size,
       color: get().sanityValue?.metadata.color,
-      inlineSvg: !!get().sanityValue?.metadata.inlineSvg,
+      inlineSvg: get().sanityValue?.metadata.inlineSvg,
       previewBorder: false,
       uniqueSize: false,
     })),
@@ -90,7 +90,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   setRotate90: () => set((s) => ({rotate: s.rotate === 1 ? 0 : 1})),
   setRotate180: () => set((s) => ({rotate: s.rotate === 2 ? 0 : 2})),
   setRotate270: () => set((s) => ({rotate: s.rotate === 3 ? 0 : 3})),
-  setInlineSvg: (inlineSvg?: boolean) => set(() => ({inlineSvg: !!inlineSvg})),
+  setInlineSvg: (inlineSvg?: string) => set(() => ({inlineSvg})),
   setWidth: (event: FormEvent<HTMLInputElement> | number) =>
     set((s) => {
       const width = typeof event === 'number' ? event : Number(event.currentTarget.value)
@@ -138,11 +138,6 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           patches.push(patchSet(get().size?.width, ['metadata.size.width']))
         if (get().size.height !== sanityValue.metadata.size.height)
           patches.push(patchSet(get().size?.height, ['metadata.size.height']))
-        if (get().inlineSvg) {
-          patches.push(patchSet(await generateSvgHtml(), ['metadata.inlineSvg']))
-        } else if (sanityValue.metadata.inlineSvg) {
-          patches.push(patchUnset(['metadata.inlineSvg']))
-        }
 
         const color = get().color
         const sanityColor = sanityValue.metadata.color
@@ -158,10 +153,15 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
         else if (color && sanityColor) {
           if (color.hex !== sanityColor.hex) {
             patches.push(patchSet(color.hex, ['metadata.color.hex']))
-          }
-          if (color.rgba !== sanityValue.metadata.color?.rgba) {
             patches.push(patchSet(color.rgba, ['metadata.color.rgba']))
           }
+        }
+
+        // generate updated svg html
+        if (!get().inlineSvg && sanityValue.metadata.inlineSvg) {
+          patches.push(patchUnset(['metadata.inlineSvg']))
+        } else if (get().inlineSvg) {
+          patches.push(patchSet(await generateSvgHtml(), ['metadata.inlineSvg']))
         }
 
         if (patches.length > 0) {

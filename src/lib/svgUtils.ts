@@ -71,7 +71,7 @@ export const generateSvgDownloadUrl = (original: boolean = false): string => {
   }
 }
 
-export const generateSvgHtml = async (original?: boolean): Promise<void | string> => {
+export const generateSvgHtml = async (original?: boolean): Promise<string> => {
   try {
     const appState = useAppStore.getState()
     const icon = appState.sanityValue?.icon
@@ -85,12 +85,11 @@ export const generateSvgHtml = async (original?: boolean): Promise<void | string
 
     let html = await buildIconHtml(icon, customizations)
     if (!html) throw Error('Unable to generate Svg Html')
-    if (appState.sanityValue?.metadata.color?.hex)
-      html = html.replaceAll('currentColor', appState.sanityValue.metadata.color.hex)
+    if (appState.color?.hex) html = html.replaceAll('currentColor', appState.color?.hex)
     return DomPurify.sanitize(html)
   } catch (e: any) {
     toastError(e)
-    return undefined
+    return ''
   }
 }
 
