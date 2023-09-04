@@ -25,14 +25,13 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
     // setup sanity slice
     setSanityValue(value)
 
-    setInlineSvg(!!value.inlineSvg)
-
     if (value?.metadata) {
       // setup configure slice
       setFlip(value.metadata.hFlip, value.metadata.vFlip)
       setRotate(value.metadata.rotate)
       setWidth(value.metadata.size.width)
       setHeight(value.metadata.size.height)
+      setInlineSvg(!!value.metadata.inlineSvg)
       if (value.metadata.color) setColor(value.metadata.color?.hex)
     }
   }, [fieldProps.value])

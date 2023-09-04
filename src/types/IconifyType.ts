@@ -15,10 +15,10 @@ export type IconifySize = {
 
 export type IconifyType = {
   icon: string
-  url: string
-  downloadUrl: string
-  inlineSvg?: string
   metadata: {
+    url: string
+    downloadUrl: string
+    inlineSvg?: string
     collectionId: string
     collectionName: string
     iconName: string

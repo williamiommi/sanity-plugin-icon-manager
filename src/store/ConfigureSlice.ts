@@ -60,7 +60,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     let count = 0
     const SV = get().sanityValue
     if (!SV || !SV.metadata) return false
-    if (SV.inlineSvg) count++
+    if (SV.metadata.inlineSvg) count++
     if (SV.metadata.hFlip) count++
     if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
@@ -77,7 +77,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
       rotate: get().sanityValue?.metadata.rotate,
       size: get().sanityValue?.metadata.size,
       color: get().sanityValue?.metadata.color,
-      inlineSvg: !!get().sanityValue?.inlineSvg,
+      inlineSvg: !!get().sanityValue?.metadata.inlineSvg,
       previewBorder: false,
       uniqueSize: false,
     })),
@@ -139,9 +139,9 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
         if (get().size.height !== sanityValue.metadata.size.height)
           patches.push(patchSet(get().size?.height, ['metadata.size.height']))
         if (get().inlineSvg) {
-          patches.push(patchSet(await generateSvgHtml(), ['inlineSvg']))
-        } else if (sanityValue.inlineSvg) {
-          patches.push(patchUnset(['inlineSvg']))
+          patches.push(patchSet(await generateSvgHtml(), ['metadata.inlineSvg']))
+        } else if (sanityValue.metadata.inlineSvg) {
+          patches.push(patchUnset(['metadata.inlineSvg']))
         }
 
         const color = get().color
@@ -166,8 +166,8 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
 
         if (patches.length > 0) {
           // update urls too if something has changed
-          patches.push(patchSet(generateSvgHttpUrl(), ['url']))
-          patches.push(patchSet(generateSvgDownloadUrl(), ['downloadUrl']))
+          patches.push(patchSet(generateSvgHttpUrl(), ['metadata.url']))
+          patches.push(patchSet(generateSvgDownloadUrl(), ['metadata.downloadUrl']))
 
           await sanityPatch(patches)
           get().closeConfigDialog()
