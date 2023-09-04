@@ -44,12 +44,14 @@ const IconDiffWrapper = (props: IconDiffProps) => {
   // CASE 4: icon added
   if (action === 'added' && toValue) {
     return (
-      <Flex direction='column' justify='center' style={{margin: '10px auto'}}>
-        <Badge tone='positive' size={1} marginBottom={2}>
-          NEW
-        </Badge>
-        <IconPreview value={toValue} />
-      </Flex>
+      <Box style={{margin: '10px auto'}}>
+        <Flex align='center' gap={5}>
+          <Badge tone='primary' size={1}>
+            EMPTY
+          </Badge>{' '}
+          → <IconPreview value={toValue} />
+        </Flex>
+      </Box>
     )
   }
 
