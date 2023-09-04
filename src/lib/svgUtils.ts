@@ -1,7 +1,7 @@
 import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify-icon/react'
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import {AppStoreType, useAppStore} from '../store'
-import {getFlipValue} from './iconTransformation'
+import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
 
 const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisations) => {

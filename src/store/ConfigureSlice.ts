@@ -4,7 +4,7 @@ import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
-import {Flip, getFlipValue} from '../lib/iconTransformation'
+import {Flip, getFlipValue} from '../lib/iconifyUtils'
 import {toastError, toastSuccess, toastWarning} from '../lib/toastUtils'
 import {IconifyColor, IconifySize, IconifyType} from '../types/IconifyType'
 

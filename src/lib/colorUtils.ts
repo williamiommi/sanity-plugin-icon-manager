@@ -1,12 +1,22 @@
-import {colorToString, stringToColor} from '@iconify/utils'
+import {stringToColor} from '@iconify/utils'
 import {RGBColor} from '@iconify/utils/lib/colors/types'
 import {RgbaColor} from 'react-colorful'
 
 export const HEX_BLACK = '#000000'
 
+const round = (number: number, digits = 0, base = Math.pow(10, digits)): number => {
+  return Math.round(base * number) / base
+}
+
+const format = (number: number) => {
+  const hex = number.toString(16)
+  return hex.length < 2 ? `0${hex}` : hex
+}
+
 export const rgbaToHex = ({r, g, b, a}: RgbaColor): string => {
-  const color = colorToString({type: 'rgb', r, g, b, alpha: a})
-  return color || ''
+  if (r === undefined || g === undefined || b === undefined || a === undefined) return ''
+  const alphaHex = a < 1 ? format(round(a * 255)) : ''
+  return `#${format(r)}${format(g)}${format(b)}${alphaHex}`
 }
 
 export const hexToRgba = (hex: string): RgbaColor => {
