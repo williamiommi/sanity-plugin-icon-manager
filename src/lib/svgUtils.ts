@@ -1,5 +1,6 @@
 import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify-icon/react'
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
+import DomPurify from 'dompurify'
 import {AppStoreType, useAppStore} from '../store'
 import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
@@ -86,7 +87,7 @@ export const generateSvgHtml = async (original?: boolean): Promise<void | string
     if (!html) throw Error('Unable to generate Svg Html')
     if (appState.sanityValue?.metadata.color?.hex)
       html = html.replaceAll('currentColor', appState.sanityValue.metadata.color.hex)
-    return html
+    return DomPurify.sanitize(html)
   } catch (e: any) {
     toastError(e)
     return undefined
