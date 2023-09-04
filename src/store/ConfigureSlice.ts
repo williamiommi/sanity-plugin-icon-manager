@@ -143,13 +143,25 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           patches.push(patchSet(get().size?.width, ['metadata.size.width']))
         if (get().size.height !== sanityValue.metadata.size.height)
           patches.push(patchSet(get().size?.height, ['metadata.size.height']))
-        if (get().color) {
-          if (get().color?.hex !== sanityValue.metadata.color?.hex)
-            patches.push(patchSet(get().color?.hex, ['metadata.color.hex']))
-          if (get().color?.rgba !== sanityValue.metadata.color?.rgba)
-            patches.push(patchSet(get().color?.rgba, ['metadata.color.rgba']))
-        } else if (get().color !== sanityValue.metadata.color) {
+
+        const color = get().color
+        const sanityColor = sanityValue.metadata.color
+        // CASE 1: new color and no previous color saved
+        if (!sanityColor && color) {
+          patches.push(patchSet(color, ['metadata.color']))
+        }
+        // CASE 2: previous color and new color removed
+        else if (sanityColor && !color) {
           patches.push(patchUnset(['metadata.color']))
+        }
+        // CASE 3: both populated
+        else if (color && sanityColor) {
+          if (color.hex !== sanityColor.hex) {
+            patches.push(patchSet(color.hex, ['metadata.color.hex']))
+          }
+          if (color.rgba !== sanityValue.metadata.color?.rgba) {
+            patches.push(patchSet(color.rgba, ['metadata.color.rgba']))
+          }
         }
 
         if (patches.length > 0) {
