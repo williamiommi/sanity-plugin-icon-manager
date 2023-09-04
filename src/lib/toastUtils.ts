@@ -1,8 +1,19 @@
 import {useAppStore} from '../store'
 
+interface ToastProps {
+  title: string
+  description?: string
+  duration?: number
+}
+
 export const toastSuccess = (title: string, description?: string): void => {
   const sanityToast = useAppStore.getState().sanityToast
   if (sanityToast) sanityToast.push({status: 'success', title, description, duration: 1000})
+}
+
+export const toastWarning = ({title, description, duration = 3000}: ToastProps): void => {
+  const sanityToast = useAppStore.getState().sanityToast
+  if (sanityToast) sanityToast.push({status: 'warning', title, description, duration})
 }
 
 export const toastError = (e: unknown): void => {

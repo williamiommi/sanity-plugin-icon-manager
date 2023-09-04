@@ -1,11 +1,11 @@
 import {FormEvent} from 'react'
 import {RgbaColor} from 'react-colorful'
-import {set as patchSet} from 'sanity'
+import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
 import {Flip, getFlipValue} from '../lib/iconTransformation'
-import {toastError, toastSuccess} from '../lib/toastUtils'
+import {toastError, toastSuccess, toastWarning} from '../lib/toastUtils'
 import {IconifyColor, IconifySize, IconifyType} from '../types/IconifyType'
 
 const initialState = {
@@ -56,7 +56,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
   hasBeenCustomized: () => {
     let count = 0
     const SV = get().sanityValue
-    if (!SV) return false
+    if (!SV || !SV.metadata) return false
     if (SV.metadata.flipH) count++
     if (SV.metadata.flipV) count++
     if (SV.metadata.rotate > 0) count++
@@ -130,10 +130,36 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
             color: get().color,
           },
         }
-        await sanityPatch(patchSet(objToSave))
-        get().setSanityValue(objToSave)
-        get().closeConfigDialog()
-        toastSuccess('Configuration Saved')
+
+        const patches = []
+
+        if (get().flipH !== sanityValue.metadata.flipH)
+          patches.push(patchSet(get().flipH, ['metadata.flipH']))
+        if (get().flipV !== sanityValue.metadata.flipV)
+          patches.push(patchSet(get().flipV, ['metadata.flipV']))
+        if (get().rotate !== sanityValue.metadata.rotate)
+          patches.push(patchSet(get().rotate, ['metadata.rotate']))
+        if (get().size.width !== sanityValue.metadata.size.width)
+          patches.push(patchSet(get().size?.width, ['metadata.size.width']))
+        if (get().size.height !== sanityValue.metadata.size.height)
+          patches.push(patchSet(get().size?.height, ['metadata.size.height']))
+        if (get().color) {
+          if (get().color?.hex !== sanityValue.metadata.color?.hex)
+            patches.push(patchSet(get().color?.hex, ['metadata.color.hex']))
+          if (get().color?.rgba !== sanityValue.metadata.color?.rgba)
+            patches.push(patchSet(get().color?.rgba, ['metadata.color.rgba']))
+        } else if (get().color !== sanityValue.metadata.color) {
+          patches.push(patchUnset(['metadata.color']))
+        }
+
+        if (patches.length > 0) {
+          await sanityPatch(patches)
+          get().setSanityValue(objToSave)
+          get().closeConfigDialog()
+          toastSuccess('Configuration Saved')
+        } else {
+          toastWarning({title: 'Nothing to update', description: `Configuration didn't change`})
+        }
       }
     } catch (e: unknown) {
       toastError(e)
