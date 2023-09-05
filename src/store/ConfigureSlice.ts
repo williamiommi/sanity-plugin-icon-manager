@@ -3,7 +3,7 @@ import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
-import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
+import {hexToRgba, isValidHex, rgbaToHex} from '../lib/colorUtils'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../lib/constants'
 import {Flip, getFlipValue} from '../lib/iconifyUtils'
 import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../lib/svgUtils'
@@ -144,17 +144,25 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
         const sanityColor = sanityValue.metadata.color
         // CASE 1: new color and no previous color saved
         if (!sanityColor && color) {
-          patches.push(patchSet(color, ['metadata.color']))
+          if (isValidHex(color.hex)) {
+            patches.push(patchSet(color, ['metadata.color']))
+          } else {
+            toastError(`${color.hex} is not a valid color`)
+            return
+          }
         }
         // CASE 2: previous color and new color removed
         else if (sanityColor && !color) {
           patches.push(patchUnset(['metadata.color']))
         }
-        // CASE 3: both populated
-        else if (color && sanityColor) {
-          if (color.hex !== sanityColor.hex) {
+        // CASE 3: both populated and not equals
+        else if (color && sanityColor && color.hex !== sanityColor.hex) {
+          if (isValidHex(color.hex)) {
             patches.push(patchSet(color.hex, ['metadata.color.hex']))
             patches.push(patchSet(color.rgba, ['metadata.color.rgba']))
+          } else {
+            toastError(`${color.hex} is not a valid color`)
+            return
           }
         }
 

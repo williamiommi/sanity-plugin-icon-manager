@@ -24,3 +24,7 @@ export const hexToRgba = (hex: string): RgbaColor => {
   if (color) return {r: color.r, g: color.g, b: color.b, a: color.alpha}
   return {r: 0, g: 0, b: 0, a: 1}
 }
+
+export const isValidHex = (hex: string): boolean => {
+  return /^#[0-9A-F]{6}[0-9a-f]{0,2}$/i.test(hex)
+}
