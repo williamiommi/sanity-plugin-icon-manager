@@ -4,6 +4,7 @@ import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
 import {hexToRgba, rgbaToHex} from '../lib/colorUtils'
+import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../lib/constants'
 import {Flip, getFlipValue} from '../lib/iconifyUtils'
 import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../lib/svgUtils'
 import {toastError, toastSuccess, toastWarning} from '../lib/toastUtils'
@@ -14,7 +15,7 @@ const initialState = {
   vFlip: false,
   rotate: 0,
   inlineSvg: '',
-  size: {width: 16, height: 16},
+  size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
   uniqueSize: false,
   color: undefined,
   previewBorder: false,
@@ -64,8 +65,8 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
     if (SV.metadata.hFlip) count++
     if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
-    if (SV.metadata.size.width !== 16) count++
-    if (SV.metadata.size.height !== 16) count++
+    if (SV.metadata.size.width !== INITIAL_WIDTH) count++
+    if (SV.metadata.size.height !== INITIAL_HEIGHT) count++
     if (SV.metadata.color && SV.metadata.color.hex) count++
     return count > 0
   },
