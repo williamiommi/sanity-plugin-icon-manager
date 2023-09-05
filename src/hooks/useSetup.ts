@@ -3,10 +3,12 @@ import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {ObjectFieldProps} from 'sanity'
 import {useAppStore} from '../store'
+import IconifyPluginOptions from '../types/IconifyPluginOptions'
 import {IconifyType} from '../types/IconifyType'
 
-const useSetup = (fieldProps: ObjectFieldProps): void => {
+const useSetup = (fieldProps: ObjectFieldProps, pluginOptions: IconifyPluginOptions): void => {
   const sanityToast = useToast()
+  const setPluginOptionApiUrl = useAppStore((s) => s.setPluginOptionApiUrl)
   const setSanityFieldPath = useAppStore((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStore((s) => s.setSanityValue)
   const setSanityPatch = useAppStore((s) => s.setSanityPatch)
@@ -42,6 +44,7 @@ const useSetup = (fieldProps: ObjectFieldProps): void => {
     setSanityPathFocus(fieldProps.inputProps.onPathFocus)
     setSanityToast(sanityToast)
     setSanityUserCanEdit(!fieldProps.inputProps.readOnly)
+    setPluginOptionApiUrl(pluginOptions.apiUrl!)
     // disable iconify cache
     disableCache('all')
   }, [])

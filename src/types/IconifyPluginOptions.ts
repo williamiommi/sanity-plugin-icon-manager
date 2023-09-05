@@ -1,1 +1,3 @@
-export default interface IconifyPluginOptions {}
+export default interface IconifyPluginOptions {
+  apiUrl?: string
+}

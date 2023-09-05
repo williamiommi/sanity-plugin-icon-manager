@@ -4,6 +4,7 @@ import {ObjectFieldProps} from 'sanity'
 import {ThemeProvider} from 'styled-components'
 import useSetup from '../hooks/useSetup'
 import {useAppStore} from '../store'
+import IconifyPluginOptions from '../types/IconifyPluginOptions'
 import ChangeIndicatorWrapper from './ChangeIndicatorWrapper'
 import CustomFieldPresence from './CustomFieldPresence'
 import RemoveDialog from './RemoveDialog'
@@ -11,10 +12,8 @@ import SearchDialog from './SearchDialog'
 import SelectedIcon from './SelectedIcon'
 import {StyledBaseButton} from './shared/SharedStyledComponents'
 
-type IconifyFieldProps = ObjectFieldProps & {}
-
-const IconifyField = (props: IconifyFieldProps) => {
-  useSetup(props)
+const IconifyField = (props: ObjectFieldProps, pluginOptions: IconifyPluginOptions) => {
+  useSetup(props, pluginOptions)
   const {sanity: theme} = useTheme()
   const openSearchDialog = useAppStore((s) => s.openSearchDialog)
   const sanityUserCanEdit = useAppStore((s) => s.sanityUserCanEdit)

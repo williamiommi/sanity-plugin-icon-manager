@@ -54,14 +54,14 @@ const generateInitialSearchParams = (download: boolean = false): string => {
   return searchParams.toString()
 }
 
-export const generateInitialSvgHttpUrl = (icon: string): string => {
+export const generateInitialSvgHttpUrl = (apiUrl: string, icon: string): string => {
   const searchParams = generateInitialSearchParams()
-  return `https://api.iconify.design/${icon}.svg?${searchParams}`
+  return `${apiUrl}/${icon}.svg?${searchParams}`
 }
 
-export const generateInitialSvgDownloadUrl = (icon: string): string => {
+export const generateInitialSvgDownloadUrl = (apiUrl: string, icon: string): string => {
   const searchParams = generateInitialSearchParams(true)
-  return `https://api.iconify.design/${icon}.svg?${searchParams}`
+  return `${apiUrl}/${icon}.svg?${searchParams}`
 }
 
 export const generateSvgHttpUrl = (original: boolean = false): string => {
@@ -71,7 +71,7 @@ export const generateSvgHttpUrl = (original: boolean = false): string => {
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, false)
-    return `https://api.iconify.design/${icon}.svg${searchParams}`
+    return `${appState.pluginOptions?.apiUrl}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(e)
     return '#'
@@ -85,7 +85,7 @@ export const generateSvgDownloadUrl = (original: boolean = false): string => {
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, true)
-    return `https://api.iconify.design/${icon}.svg${searchParams}`
+    return `${appState.pluginOptions?.apiUrl}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(e)
     return '#'

@@ -40,7 +40,7 @@ export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice
       results = cacheResults.get(searchParamsString)!
     } else {
       cacheResults.delete(searchParamsString)
-      const res = await fetch(`https://api.iconify.design/search?${searchParams.toString()}`)
+      const res = await fetch(`${get().pluginOptions?.apiUrl}/search?${searchParams.toString()}`)
       results = (await res.json()) as IconifyQueryResponse
       results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
       cacheResults.set(searchParams.toString(), results)
@@ -57,8 +57,8 @@ export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice
         const objToSave: IconifyType = {
           icon: value!,
           metadata: {
-            downloadUrl: generateInitialSvgDownloadUrl(value!),
-            url: generateInitialSvgHttpUrl(value!),
+            downloadUrl: generateInitialSvgDownloadUrl(get().pluginOptions?.apiUrl!, value!),
+            url: generateInitialSvgHttpUrl(get().pluginOptions?.apiUrl!, value!),
             collectionId: iconInfo[0],
             collectionName: collection?.name || '',
             iconName: iconInfo[1],
