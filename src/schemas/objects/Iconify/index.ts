@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
+import IconifyDiffComponent from '../../../components/IconifyDiffComponent'
 import IconifyField from '../../../components/IconifyField'
-import IconifyFieldDiff from '../../../components/IconifyFieldDiff'
 import IconifyPluginOptions from '../../../types/IconifyPluginOptions'
 import extraFields from './extra.fields'
 import IconifyMetadata from './metadata'
@@ -25,7 +25,7 @@ const Iconify = (pluginOptions: IconifyPluginOptions): any =>
     ],
     components: {
       field: (props) => IconifyField(props, pluginOptions),
-      diff: IconifyFieldDiff,
+      diff: IconifyDiffComponent,
     },
   })
 
