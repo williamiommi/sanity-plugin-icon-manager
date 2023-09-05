@@ -2,6 +2,7 @@ import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify-icon/reac
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import DomPurify from 'dompurify'
 import {AppStoreType, useAppStore} from '../store'
+import {INITIAL_HEIGHT, INITIAL_WIDTH} from './constants'
 import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
 
@@ -38,9 +39,29 @@ const generateSearchParams = (
     if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
   }
   if (download) {
-    searchParams.append('download', `1`)
+    searchParams.append('download', '1')
   }
   return searchParams.size > 0 ? `?${searchParams.toString()}` : ''
+}
+
+const generateInitialSearchParams = (download: boolean = false): string => {
+  const searchParams = new URLSearchParams()
+  searchParams.append('width', `${INITIAL_WIDTH}`)
+  searchParams.append('height', `${INITIAL_HEIGHT}`)
+  if (download) {
+    searchParams.append('download', '1')
+  }
+  return searchParams.toString()
+}
+
+export const generateInitialSvgHttpUrl = (icon: string): string => {
+  const searchParams = generateInitialSearchParams()
+  return `https://api.iconify.design/${icon}.svg?${searchParams}`
+}
+
+export const generateInitialSvgDownloadUrl = (icon: string): string => {
+  const searchParams = generateInitialSearchParams(true)
+  return `https://api.iconify.design/${icon}.svg?${searchParams}`
 }
 
 export const generateSvgHttpUrl = (original: boolean = false): string => {

@@ -157,13 +157,21 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           }
         }
 
-        // generate updated svg html
-        if (!get().inlineSvg && sanityValue.metadata.inlineSvg) {
+        // check for inlineSvg option
+        const currentInlineSvg = get().inlineSvg
+        const prevInlineSvg = sanityValue.metadata.inlineSvg
+        if (!currentInlineSvg && prevInlineSvg) {
           patches.push(patchUnset(['metadata.inlineSvg']))
-        } else if (get().inlineSvg) {
+        }
+        if (
+          (currentInlineSvg && !prevInlineSvg) ||
+          (currentInlineSvg && currentInlineSvg !== prevInlineSvg) ||
+          (currentInlineSvg && patches.length > 0)
+        ) {
           patches.push(patchSet(await generateSvgHtml(), ['metadata.inlineSvg']))
         }
 
+        // if we have some patches, update the document
         if (patches.length > 0) {
           // update urls too if something has changed
           patches.push(patchSet(generateSvgHttpUrl(), ['metadata.url']))

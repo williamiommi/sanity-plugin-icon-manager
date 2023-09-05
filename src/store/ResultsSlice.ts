@@ -2,6 +2,8 @@ import {FormEvent} from 'react'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {AppStoreType} from '.'
+import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../lib/constants'
+import {generateInitialSvgDownloadUrl, generateInitialSvgHttpUrl} from '../lib/svgUtils'
 import {toastError} from '../lib/toastUtils'
 import IconifyQueryResponse from '../types/IconifyQueryResponse'
 import {IconifyType} from '../types/IconifyType'
@@ -55,12 +57,12 @@ export const createResultsSlice: StateCreator<AppStoreType, [], [], ResultsSlice
         const objToSave: IconifyType = {
           icon: value!,
           metadata: {
-            downloadUrl: `https://api.iconify.design/${value!}.svg?download=1`,
-            url: `https://api.iconify.design/${value!}.svg`,
+            downloadUrl: generateInitialSvgDownloadUrl(value!),
+            url: generateInitialSvgHttpUrl(value!),
             collectionId: iconInfo[0],
             collectionName: collection?.name || '',
             iconName: iconInfo[1],
-            size: {width: 16, height: 16},
+            size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
             hFlip: false,
             vFlip: false,
             rotate: 0,
