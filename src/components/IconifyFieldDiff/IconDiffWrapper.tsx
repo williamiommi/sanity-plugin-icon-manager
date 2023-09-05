@@ -1,17 +1,14 @@
-import {Badge, Box, Card, Flex, Text} from '@sanity/ui'
-import {ObjectDiff} from 'sanity'
+import {DocumentIcon} from '@sanity/icons'
+import {Badge, Box, Flex, Text} from '@sanity/ui'
+import {DiffCard, DiffProps, DiffTooltip, ObjectDiff} from 'sanity'
 import {IconifyType} from '../../types/IconifyType'
 import IconPreview from '../IconPreview'
 
-interface IconDiffProps {
-  diff: ObjectDiff<IconifyType>
-}
-
-const IconDiffWrapper = (props: IconDiffProps) => {
+const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconifyType>>) => {
   const {fromValue, toValue, action} = props.diff
 
   // CASE 1: icon unchanged
-  if (action === 'unchanged') {
+  if (action === 'unchanged' && fromValue.icon) {
     return (
       <Flex justify='center' style={{margin: '10px auto'}}>
         <IconPreview value={fromValue} />
@@ -19,7 +16,7 @@ const IconDiffWrapper = (props: IconDiffProps) => {
     )
   }
   // CASE 2: icon changed
-  if (action === 'changed' && fromValue && toValue) {
+  if (action === 'changed' && fromValue.icon && toValue.icon) {
     return (
       <Box style={{margin: '10px auto'}}>
         <Flex align='center' gap={5}>
@@ -29,7 +26,7 @@ const IconDiffWrapper = (props: IconDiffProps) => {
     )
   }
   // CASE 3: icon removed
-  if (action === 'removed' && fromValue && !toValue) {
+  if (action === 'removed' && fromValue.icon && !toValue) {
     return (
       <Box style={{margin: '10px auto'}}>
         <Flex align='center' gap={5}>
@@ -42,7 +39,7 @@ const IconDiffWrapper = (props: IconDiffProps) => {
     )
   }
   // CASE 4: icon added
-  if (action === 'added' && toValue) {
+  if (action === 'added' && toValue.icon) {
     return (
       <Box style={{margin: '10px auto'}}>
         <Flex align='center' gap={5}>
@@ -56,9 +53,18 @@ const IconDiffWrapper = (props: IconDiffProps) => {
   }
 
   return (
-    <Card tone='critical' padding={2}>
-      <Text size={1}>UNABLED TO RENDER UI DIFF</Text>
-    </Card>
+    <DiffTooltip diff={props.diff}>
+      <DiffCard diff={props.diff}>
+        <Box padding={2}>
+          <Flex align='center' gap={3}>
+            <DocumentIcon fontSize={32} />
+            <Text muted size={2}>
+              Untitled
+            </Text>
+          </Flex>
+        </Box>
+      </DiffCard>
+    </DiffTooltip>
   )
 }
 
