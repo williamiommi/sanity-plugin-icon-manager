@@ -71,7 +71,7 @@ export const generateSvgHttpUrl = (original: boolean = false): string => {
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, false)
-    return `${appState.pluginOptions?.apiUrl}/${icon}.svg${searchParams}`
+    return `${appState.apiUrl}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(e)
     return '#'
@@ -85,7 +85,7 @@ export const generateSvgDownloadUrl = (original: boolean = false): string => {
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, true)
-    return `${appState.pluginOptions?.apiUrl}/${icon}.svg${searchParams}`
+    return `${appState.apiUrl}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(e)
     return '#'

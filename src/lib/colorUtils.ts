@@ -26,5 +26,5 @@ export const hexToRgba = (hex: string): RgbaColor => {
 }
 
 export const isValidHex = (hex: string): boolean => {
-  return /^#[0-9A-F]{6}[0-9a-f]{0,2}$/i.test(hex)
+  return !!stringToColor(hex)
 }

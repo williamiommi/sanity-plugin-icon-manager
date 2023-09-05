@@ -4,9 +4,10 @@ import IconifyTestDocument from '../schemas/documents/iconify.test.document'
 import Iconify from '../schemas/objects/Iconify'
 import IconifyPluginOptions from '../types/IconifyPluginOptions'
 
-export const IconifyPlugin = definePlugin<IconifyPluginOptions>((config: IconifyPluginOptions) => {
+export const IconifyPlugin = definePlugin<IconifyPluginOptions>((config?: IconifyPluginOptions) => {
   const pluginConfig: IconifyPluginOptions = {
-    apiUrl: config.apiUrl || DEFAULT_API_URL,
+    ...config,
+    apiUrl: config?.apiUrl || DEFAULT_API_URL,
   }
   return {
     name: `sanity-plugin-iconify`,

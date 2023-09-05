@@ -52,3 +52,26 @@ export const StyledColorPicker = styled(Card)`
     height: 15px;
   }
 `
+
+export const StyledColorPaletteWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  max-width: 272px;
+  background-color: ${(p) => p.theme.color.base.skeleton.to};
+`
+
+interface StyledColorPaletteBoxProps {
+  bgColor: string
+}
+export const StyledColorPaletteBox = styled.button<StyledColorPaletteBoxProps>`
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background: ${(p) => p.bgColor};
+  cursor: pointer;
+  border: none;
+`

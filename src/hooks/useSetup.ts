@@ -9,6 +9,7 @@ import {IconifyType} from '../types/IconifyType'
 const useSetup = (fieldProps: ObjectFieldProps, pluginOptions: IconifyPluginOptions): void => {
   const sanityToast = useToast()
   const setPluginOptionApiUrl = useAppStore((s) => s.setPluginOptionApiUrl)
+  const setPluginOptionCustomPalette = useAppStore((s) => s.setPluginOptionCustomPalette)
   const setSanityFieldPath = useAppStore((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStore((s) => s.setSanityValue)
   const setSanityPatch = useAppStore((s) => s.setSanityPatch)
@@ -45,6 +46,7 @@ const useSetup = (fieldProps: ObjectFieldProps, pluginOptions: IconifyPluginOpti
     setSanityToast(sanityToast)
     setSanityUserCanEdit(!fieldProps.inputProps.readOnly)
     setPluginOptionApiUrl(pluginOptions.apiUrl!)
+    if (pluginOptions.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
     // disable iconify cache
     disableCache('all')
   }, [])

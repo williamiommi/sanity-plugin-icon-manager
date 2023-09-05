@@ -4,6 +4,7 @@ import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
 import useClickOutside from '../../hooks/useClickOutside'
 import {useAppStore} from '../../store'
+import ColorPalette from './ColorPalette'
 import {StyledColorPicker} from './Styled'
 
 interface ColorPickerProps {
@@ -24,10 +25,10 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
     const value = Number(event.currentTarget.value)
     setColor({...color?.rgba!, [input]: value})
   }
-
   return (
     <StyledColorPicker ref={pickerRef} padding={4}>
       <RgbaColorPicker {...(color?.rgba && {color: color.rgba})} onChange={setColor} />
+      <ColorPalette />
       <Flex gap={1} align='center'>
         <Text weight='bold' size={1} style={{width: '50px'}}>
           HEX
