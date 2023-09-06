@@ -1,5 +1,5 @@
 import {Card, Flex, Text, Tooltip} from '@sanity/ui'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import ConfigDialog from './ConfigDialog'
 import IconPreview from './IconPreview'
 import InfoDialog from './InfoDialog'
@@ -9,14 +9,14 @@ import CustomizeIcon from './icons/CustomizeIcon'
 interface SelectedIconProps {}
 
 const SelectedIcon = (props: SelectedIconProps) => {
-  const SV = useAppStore((s) => s.sanityValue)
-  const hasBeenCustomized = useAppStore((s) => s.hasBeenCustomized())
+  const sanityValue = useAppStoreContext((s) => s.sanityValue)
+  const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
 
-  if (!SV?.icon) return null
+  if (!sanityValue?.icon) return null
 
   return (
     <Flex gap={1}>
-      <StyledSelectedIcon border bgColor={SV.metadata.color?.hex}>
+      <StyledSelectedIcon border bgColor={sanityValue.metadata?.color?.hex}>
         {hasBeenCustomized && (
           <Tooltip
             content={
@@ -30,7 +30,7 @@ const SelectedIcon = (props: SelectedIconProps) => {
             </StyledEditIcon>
           </Tooltip>
         )}
-        <IconPreview value={SV} />
+        <IconPreview value={sanityValue} />
       </StyledSelectedIcon>
       <Flex direction='column' justify='flex-end' align='flex-start'>
         <InfoDialog />

@@ -1,16 +1,16 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Grid, Popover} from '@sanity/ui'
 import {useState} from 'react'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import ColorBucketIcon from '../icons/ColorBucketIcon'
 import {StyledBaseButton, StyledIconButton} from '../shared/SharedStyledComponents'
 import ColorPicker from './ColorPicker'
 import {StyledHeading} from './Styled'
 
 const Color = () => {
-  const sanityValue = useAppStore((s) => s.sanityValue)
-  const color = useAppStore((s) => s.color)
-  const clearColor = useAppStore((s) => s.clearColor)
+  const sanityValue = useAppStoreContext((s) => s.sanityValue)
+  const color = useAppStoreContext((s) => s.color)
+  const clearColor = useAppStoreContext((s) => s.clearColor)
   const [isColorOpen, setIsColorOpen] = useState(false)
 
   if (!sanityValue || sanityValue.metadata.palette) return null

@@ -1,16 +1,16 @@
 import {WarningOutlineIcon} from '@sanity/icons'
 import {Badge, Card, Flex, Grid, Text} from '@sanity/ui'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import SearchPagination from './SearchPagination'
 import SearchResultsIcon from './SearchResults.Icon'
 
 interface SearchResultsProps {}
 
 const SearchResults = (props: SearchResultsProps) => {
-  const queryResults = useAppStore((s) => s.queryResults)
-  const iconsPerPage = useAppStore((s) => s.iconsPerPage)
-  const currentPage = useAppStore((s) => s.currentPage)
-  const selectIcon = useAppStore((s) => s.selectIcon)
+  const queryResults = useAppStoreContext((s) => s.queryResults)
+  const iconsPerPage = useAppStoreContext((s) => s.iconsPerPage)
+  const currentPage = useAppStoreContext((s) => s.currentPage)
+  const selectIcon = useAppStoreContext((s) => s.selectIcon)
 
   if (!queryResults) return null
 

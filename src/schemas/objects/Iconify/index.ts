@@ -1,7 +1,8 @@
-import {defineField, defineType} from 'sanity'
+import {ObjectInputProps, defineField, defineType} from 'sanity'
 import IconifyDiffComponent from '../../../components/IconifyDiffComponent'
-import IconifyField from '../../../components/IconifyField'
+import IconifyInputComponent from '../../../components/IconifyInputComponent'
 import IconifyPluginOptions from '../../../types/IconifyPluginOptions'
+import {IconifyType} from '../../../types/IconifyType'
 import extraFields from './extra.fields'
 import IconifyMetadata from './metadata'
 
@@ -24,7 +25,8 @@ const Iconify = (pluginOptions: IconifyPluginOptions): any =>
       }),
     ],
     components: {
-      field: (props) => IconifyField(props, pluginOptions),
+      input: (props) =>
+        IconifyInputComponent(props as ObjectInputProps<IconifyType>, pluginOptions),
       diff: IconifyDiffComponent,
     },
   })

@@ -1,5 +1,5 @@
 import {Card, Flex} from '@sanity/ui'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import FilterLimit from './FilterLimit'
 import FilterPalette from './FilterPalette'
 import FilterSeparator from './FilterSeparator'
@@ -8,7 +8,7 @@ import FilterStyle from './FilterStyle'
 interface SearchFiltersProps {}
 
 const SearchFilters = (props: SearchFiltersProps) => {
-  const isFiltersOpen = useAppStore((s) => s.isFiltersOpen)
+  const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
 
   if (!isFiltersOpen) return null
 

@@ -1,15 +1,15 @@
 import {Flex, Grid} from '@sanity/ui'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import HeightIcon from '../icons/HeightIcon'
 import WidthIcon from '../icons/WidthIcon'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Flip = () => {
-  const hFlip = useAppStore((s) => s.hFlip)
-  const vFlip = useAppStore((s) => s.vFlip)
-  const toggleHFlip = useAppStore((s) => s.toggleHFlip)
-  const toggleVFlip = useAppStore((s) => s.toggleVFlip)
+  const hFlip = useAppStoreContext((s) => s.hFlip)
+  const vFlip = useAppStoreContext((s) => s.vFlip)
+  const toggleHFlip = useAppStoreContext((s) => s.toggleHFlip)
+  const toggleVFlip = useAppStoreContext((s) => s.toggleVFlip)
 
   return (
     <Flex

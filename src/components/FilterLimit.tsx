@@ -1,12 +1,12 @@
 import {Flex, Inline, Text, TextInput} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 
 interface FilterLimitProps {}
 
 const FilterLimit = (props: FilterLimitProps) => {
-  const limit = useAppStore((s) => s.limit)
-  const setLimit = useAppStore((s) => s.setLimit)
+  const limit = useAppStoreContext((s) => s.limit)
+  const setLimit = useAppStoreContext((s) => s.setLimit)
 
   const onChangeLimit = useCallback(
     (event: FormEvent<HTMLInputElement>) => {

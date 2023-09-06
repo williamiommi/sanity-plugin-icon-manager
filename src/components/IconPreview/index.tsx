@@ -11,12 +11,12 @@ interface IconPreviewProps {
 }
 
 const IconPreview = ({value, width = 50, height = 50, hideText = false}: IconPreviewProps) => {
+  if (!value.icon) return null
+
   const {
     icon,
     metadata: {hFlip, vFlip, rotate, color, size},
   } = value
-
-  if (!value.icon) return null
 
   return (
     <Flex direction='column' align='center' justify='center' gap={2}>

@@ -1,19 +1,24 @@
 import {Flex} from '@sanity/ui'
-import {FieldMember, FieldPresenceWithoutOverlay, ObjectFieldProps} from 'sanity'
-import {useAppStore} from '../../store'
+import {FieldMember, FieldPresenceWithOverlay, ObjectInputProps} from 'sanity'
+import {useAppStoreContext} from '../../store/context'
 
 interface CustomFieldPresenceProps {
-  objectFieldProps: ObjectFieldProps
+  objectInputProps: ObjectInputProps
 }
 
-const CustomFieldPresence = ({objectFieldProps}: CustomFieldPresenceProps) => {
-  const sanityFieldPath = useAppStore((s) => s.sanityFieldPath)
-  const members = objectFieldProps.inputProps.members as FieldMember[]
-  if (Array.isArray(members) && members.length === 0 && !members[0].field && !sanityFieldPath)
+const CustomFieldPresence = ({objectInputProps}: CustomFieldPresenceProps) => {
+  const sanityFieldPath = useAppStoreContext((s) => s.sanityFieldPath)
+  const members = objectInputProps.members as FieldMember[]
+
+  if (
+    (Array.isArray(members) && members.length === 0 && !members[0].field && !sanityFieldPath) ||
+    members[0].field.presence.length === 0
+  )
     return null
+
   return (
     <Flex justify='flex-end'>
-      <FieldPresenceWithoutOverlay presence={members[0].field.presence} maxAvatars={7} />
+      <FieldPresenceWithOverlay presence={members[0].field.presence} maxAvatars={7} />
     </Flex>
   )
 }

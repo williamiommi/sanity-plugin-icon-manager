@@ -1,15 +1,15 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Grid, Switch} from '@sanity/ui'
 import {generateSvgHtml} from '../../lib/svgUtils'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import {StyledHeading} from './Styled'
 
 const InlineSvg = () => {
-  const inlineSvg = useAppStore((s) => s.inlineSvg)
-  const setInlineSvg = useAppStore((s) => s.setInlineSvg)
+  const state = useAppStoreContext((s) => s)
+  const {inlineSvg, setInlineSvg} = state
 
   const onChangeInlineSvg = async () => {
-    setInlineSvg(inlineSvg ? undefined : await generateSvgHtml())
+    setInlineSvg(inlineSvg ? undefined : await generateSvgHtml(state))
   }
 
   return (

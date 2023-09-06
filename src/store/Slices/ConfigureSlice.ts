@@ -2,13 +2,18 @@ import {FormEvent} from 'react'
 import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
-import {AppStoreType} from '.'
-import {hexToRgba, isValidHex, rgbaToHex} from '../lib/colorUtils'
-import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../lib/constants'
-import {Flip, getFlipValue} from '../lib/iconifyUtils'
-import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../lib/svgUtils'
-import {toastError, toastSuccess, toastWarning} from '../lib/toastUtils'
-import {IconifyColor, IconifySize} from '../types/IconifyType'
+import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/colorUtils'
+import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
+import {Flip, getFlipValue} from '../../lib/iconifyUtils'
+import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../../lib/svgUtils'
+import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
+import {IconifyColor, IconifySize} from '../../types/IconifyType'
+import {DialogSlice} from './DialogSlice'
+import {FiltersSlice} from './FiltersSlice'
+import {PaginationSlice} from './PaginationSlice'
+import {PluginOptionsSlice} from './PluginOptionsSlice'
+import {ResultsSlice} from './ResultsSlice'
+import {SanitySlice} from './SanitySlice'
 
 const initialState = {
   hFlip: false,
@@ -52,10 +57,18 @@ export interface ConfigureSlice {
   saveConfiguration: () => void
 }
 
-export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureSlice> = (
-  set,
-  get,
-) => ({
+export const createConfigureSlice: StateCreator<
+  ConfigureSlice &
+    SanitySlice &
+    DialogSlice &
+    FiltersSlice &
+    ResultsSlice &
+    PluginOptionsSlice &
+    PaginationSlice,
+  [],
+  [],
+  ConfigureSlice
+> = (set, get) => ({
   ...initialState,
   hasBeenCustomized: () => {
     let count = 0
@@ -147,7 +160,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           if (isValidHex(color.hex)) {
             patches.push(patchSet(color, ['metadata.color']))
           } else {
-            toastError(`${color.hex} is not a valid color`)
+            toastError(get().sanityToast, `${color.hex} is not a valid color`)
             return
           }
         }
@@ -161,7 +174,7 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
             patches.push(patchSet(color.hex, ['metadata.color.hex']))
             patches.push(patchSet(color.rgba, ['metadata.color.rgba']))
           } else {
-            toastError(`${color.hex} is not a valid color`)
+            toastError(get().sanityToast, `${color.hex} is not a valid color`)
             return
           }
         }
@@ -177,24 +190,28 @@ export const createConfigureSlice: StateCreator<AppStoreType, [], [], ConfigureS
           (currentInlineSvg && currentInlineSvg !== prevInlineSvg) ||
           (currentInlineSvg && patches.length > 0)
         ) {
-          patches.push(patchSet(await generateSvgHtml(), ['metadata.inlineSvg']))
+          patches.push(patchSet(await generateSvgHtml(get()), ['metadata.inlineSvg']))
         }
 
         // if we have some patches, update the document
         if (patches.length > 0) {
           // update urls too if something has changed
-          patches.push(patchSet(generateSvgHttpUrl(), ['metadata.url']))
-          patches.push(patchSet(generateSvgDownloadUrl(), ['metadata.downloadUrl']))
+          patches.push(patchSet(generateSvgHttpUrl(get()), ['metadata.url']))
+          patches.push(patchSet(generateSvgDownloadUrl(get()), ['metadata.downloadUrl']))
 
           await sanityPatch(patches)
           get().closeConfigDialog()
-          toastSuccess('Configuration Saved')
+          toastSuccess({sanityToast: get().sanityToast, title: 'Configuration Saved'})
         } else {
-          toastWarning({title: 'Nothing to update', description: `Configuration didn't change`})
+          toastWarning({
+            sanityToast: get().sanityToast,
+            title: 'Nothing to update',
+            description: `Configuration didn't change`,
+          })
         }
       }
     } catch (e: unknown) {
-      toastError(e)
+      toastError(get().sanityToast, e)
     }
   },
 })
