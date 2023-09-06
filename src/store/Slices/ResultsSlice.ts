@@ -1,5 +1,5 @@
 import {FormEvent} from 'react'
-import {unset as patchUnset, setIfMissing} from 'sanity'
+import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
 import {generateInitialSvgDownloadUrl, generateInitialSvgHttpUrl} from '../../lib/svgUtils'
@@ -72,9 +72,9 @@ export const createResultsSlice: StateCreator<
 
         const patches = []
 
-        patches.push(setIfMissing(value!, ['icon']))
+        patches.push(patchSet(value!, ['icon']))
         patches.push(
-          setIfMissing(
+          patchSet(
             {
               downloadUrl: generateInitialSvgDownloadUrl(get().apiUrl!, value!),
               url: generateInitialSvgHttpUrl(get().apiUrl!, value!),
@@ -98,34 +98,9 @@ export const createResultsSlice: StateCreator<
             ['metadata'],
           ),
         )
-
-        // const objToSave: IconifyType = {
-        //   icon: value!,
-        //   metadata: {
-        //     downloadUrl: generateInitialSvgDownloadUrl(get().apiUrl!, value!),
-        //     url: generateInitialSvgHttpUrl(get().apiUrl!, value!),
-        //     collectionId: iconInfo[0],
-        //     collectionName: collection?.name || '',
-        //     iconName: iconInfo[1],
-        //     size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
-        //     hFlip: false,
-        //     vFlip: false,
-        //     rotate: 0,
-        //     palette: collection?.palette,
-        //     author: {
-        //       name: collection?.author.name,
-        //       url: collection?.author.url,
-        //     },
-        //     license: {
-        //       name: collection?.license.title,
-        //       url: collection?.license.url,
-        //     },
-        //   },
-        // }
         const sanityPatch = get().sanityPatch
         if (sanityPatch) {
           await sanityPatch(patches)
-          // get().setSanityValue(objToSave)
           get().closeSearchDialog()
           get().clearConfiguration()
         }
