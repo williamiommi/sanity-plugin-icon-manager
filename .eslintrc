@@ -13,6 +13,6 @@
     "plugin:react/jsx-runtime"
   ],
   "rules": {
-    "require-default-props": 0
+    "react/require-default-props": 0
   }
 }
