@@ -1,4 +1,3 @@
-import {disableCache} from '@iconify-icon/react'
 import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {ObjectInputProps} from 'sanity'
@@ -51,8 +50,6 @@ const useInputSetup = (
     setSanityUserCanEdit(!objectInputProps.readOnly)
     setPluginOptionApiUrl(pluginOptions.apiUrl!)
     if (pluginOptions.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
-    // disable iconify cache
-    disableCache('all')
   }, [])
 }
 

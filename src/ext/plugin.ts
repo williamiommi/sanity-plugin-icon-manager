@@ -1,3 +1,4 @@
+import {disableCache} from '@iconify-icon/react'
 import {definePlugin} from 'sanity'
 import {DEFAULT_API_URL} from '../lib/constants'
 import IconifyTestDocument from '../schemas/documents/iconify.test.document'
@@ -5,6 +6,9 @@ import Iconify from '../schemas/objects/Iconify'
 import IconifyPluginOptions from '../types/IconifyPluginOptions'
 
 export const IconifyPlugin = definePlugin<IconifyPluginOptions>((config?: IconifyPluginOptions) => {
+  // disable iconify cache
+  disableCache('all')
+
   const pluginConfig: IconifyPluginOptions = {
     ...config,
     apiUrl: config?.apiUrl || DEFAULT_API_URL,
