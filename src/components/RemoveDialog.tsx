@@ -1,18 +1,19 @@
 import {TrashIcon} from '@sanity/icons'
 import {Box, Dialog, Flex, Text} from '@sanity/ui'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import {StyledBaseButton} from './shared/SharedStyledComponents'
 
 interface RemoveDialogProps {}
 
 const RemoveDialog = (props: RemoveDialogProps) => {
-  const sanityValue = useAppStore((s) => s.sanityValue)
-  const isRemoveDialogOpen = useAppStore((s) => s.isRemoveDialogOpen)
-  const openRemoveDialog = useAppStore((s) => s.openRemoveDialog)
-  const closeRemoveDialog = useAppStore((s) => s.closeRemoveDialog)
-  const clearIcon = useAppStore((s) => s.clearIcon)
+  const sanityValue = useAppStoreContext((s) => s.sanityValue)
+  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
+  const isRemoveDialogOpen = useAppStoreContext((s) => s.isRemoveDialogOpen)
+  const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
+  const closeRemoveDialog = useAppStoreContext((s) => s.closeRemoveDialog)
+  const clearIcon = useAppStoreContext((s) => s.clearIcon)
 
-  if (!sanityValue) return null
+  if (!sanityValue?.icon) return null
 
   const DialogActions = () => (
     <Flex gap={2} justify='flex-end' margin={2}>
@@ -42,6 +43,7 @@ const RemoveDialog = (props: RemoveDialogProps) => {
         icon={<TrashIcon width={18} />}
         fontSize={1}
         onClick={openRemoveDialog}
+        disabled={!sanityUserCanEdit}
       />
       {isRemoveDialogOpen && (
         <Dialog id='remove-dialog' footer={<DialogActions />} width={0}>

@@ -1,7 +1,6 @@
 import {StateCreator} from 'zustand'
-import {AppStoreType} from '.'
-import {isValidHex} from '../lib/colorUtils'
-import {PluginCustomColor, PluginCustomPalette} from '../types/IconifyPluginOptions'
+import {isValidHex} from '../../lib/colorUtils'
+import {PluginCustomColor, PluginCustomPalette} from '../../types/IconifyPluginOptions'
 
 export interface PluginOptionsSlice {
   apiUrl?: string
@@ -10,9 +9,12 @@ export interface PluginOptionsSlice {
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => void
 }
 
-export const createPluginOptionsSlice: StateCreator<AppStoreType, [], [], PluginOptionsSlice> = (
-  set,
-) => ({
+export const createPluginOptionsSlice: StateCreator<
+  PluginOptionsSlice,
+  [],
+  [],
+  PluginOptionsSlice
+> = (set) => ({
   setPluginOptionApiUrl: (apiUrl: string) => set(() => ({apiUrl})),
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => {
     if (!customPalette) return // do nothing

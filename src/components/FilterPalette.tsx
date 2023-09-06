@@ -1,12 +1,12 @@
 import {Flex, Inline, Radio, Text} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 
 interface FilterPaletteProps {}
 
 const FilterPalette = (props: FilterPaletteProps) => {
-  const filterPalette = useAppStore((s) => s.filterPalette)
-  const setFilterPalette = useAppStore((s) => s.setFilterPalette)
+  const filterPalette = useAppStoreContext((s) => s.filterPalette)
+  const setFilterPalette = useAppStoreContext((s) => s.setFilterPalette)
 
   const onSetFilterPalette = useCallback(
     (event: FormEvent<HTMLInputElement>) => {

@@ -1,6 +1,7 @@
 import {StateCreator} from 'zustand'
-import {AppStoreType} from '.'
+import {ConfigureSlice} from './ConfigureSlice'
 import {DEFAULT_FILTER_LIMIT} from './FiltersSlice'
+import {SanitySlice} from './SanitySlice'
 
 export interface DialogSlice {
   isSearchDialogOpen?: boolean
@@ -20,7 +21,12 @@ export interface DialogSlice {
   closeRemoveDialog: () => void
 }
 
-export const createDialogSlice: StateCreator<AppStoreType, [], [], DialogSlice> = (set, get) => ({
+export const createDialogSlice: StateCreator<
+  DialogSlice & SanitySlice & ConfigureSlice,
+  [],
+  [],
+  DialogSlice
+> = (set, get) => ({
   openSearchDialog: () =>
     set(() => {
       get().setSanityPresence()

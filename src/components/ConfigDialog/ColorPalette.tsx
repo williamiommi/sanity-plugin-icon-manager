@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import {Box, Text, Tooltip} from '@sanity/ui'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import {StyledColorPaletteBox, StyledColorPaletteWrapper} from './Styled'
 
 interface ColorPaletteProps {}
 
 const ColorPalette = (props: ColorPaletteProps) => {
-  const customPalette = useAppStore((s) => s.customPalette)
-  const setColor = useAppStore((s) => s.setColor)
+  const customPalette = useAppStoreContext((s) => s.customPalette)
+  const setColor = useAppStoreContext((s) => s.setColor)
 
   if (!customPalette) return null
 

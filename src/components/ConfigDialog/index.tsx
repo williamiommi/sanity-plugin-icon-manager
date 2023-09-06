@@ -3,7 +3,7 @@ import {CogIcon, DownloadIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
 import {copyDataUrlToClipboard, copyHtmlToClipboard} from '../../lib/clipboardUtils'
 import {generateSvgDownloadUrl} from '../../lib/svgUtils'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import CustomizeIcon from '../icons/CustomizeIcon'
 import DataUrlIcon from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
@@ -24,10 +24,18 @@ const DialogHeader = () => (
 
 interface DialogFooterProps {
   downloadableUrl: string
+  onCopyHtmlToClipboard: () => void
+  onCopyDataUrlToClipboard: () => void
   onClear: () => void
   onSave: () => void
 }
-const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => (
+const DialogFooter = ({
+  downloadableUrl,
+  onCopyHtmlToClipboard,
+  onCopyDataUrlToClipboard,
+  onClear,
+  onSave,
+}: DialogFooterProps) => (
   <Flex
     direction={['column', 'column', 'column', 'row']}
     margin={2}
@@ -42,14 +50,14 @@ const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => 
       <StyledIconButton
         title='Copy svg html to clipboard'
         padding='3px'
-        onClick={() => copyHtmlToClipboard()}
+        onClick={onCopyHtmlToClipboard}
       >
         <HtmlIcon width='28px' height='28px' />
       </StyledIconButton>
       <StyledIconButton
         title='Copy svg Data URL to clipboard'
         padding='3px'
-        onClick={() => copyDataUrlToClipboard()}
+        onClick={onCopyDataUrlToClipboard}
       >
         <DataUrlIcon width='28px' height='28px' />
       </StyledIconButton>
@@ -76,15 +84,16 @@ const DialogFooter = ({downloadableUrl, onClear, onSave}: DialogFooterProps) => 
 interface ConfigDialogProps {}
 
 const ConfigDialog = (props: ConfigDialogProps) => {
-  const isConfigDialogOpen = useAppStore((s) => s.isConfigDialogOpen)
-  const openConfigDialog = useAppStore((s) => s.openConfigDialog)
-  const closeConfigDialog = useAppStore((s) => s.closeConfigDialog)
-  const clearConfiguration = useAppStore((s) => s.clearConfiguration)
-  const saveConfiguration = useAppStore((s) => s.saveConfiguration)
-  const downloadableUrl = useAppStore(() => generateSvgDownloadUrl())
-  const sanityUserCanEdit = useAppStore((s) => s.sanityUserCanEdit)
-
-  if (!sanityUserCanEdit) return null
+  const state = useAppStoreContext((s) => s)
+  const {
+    sanityUserCanEdit,
+    openConfigDialog,
+    isConfigDialogOpen,
+    clearConfiguration,
+    saveConfiguration,
+    closeConfigDialog,
+  } = state
+  const downloadableUrl = useAppStoreContext(() => generateSvgDownloadUrl(state))
 
   return (
     <>
@@ -96,6 +105,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
         fontSize={1}
         text='Customize'
         padding={2}
+        disabled={!sanityUserCanEdit}
       />
       {isConfigDialogOpen && (
         <Dialog
@@ -104,6 +114,8 @@ const ConfigDialog = (props: ConfigDialogProps) => {
           footer={
             <DialogFooter
               downloadableUrl={downloadableUrl}
+              onCopyHtmlToClipboard={() => copyHtmlToClipboard(state)}
+              onCopyDataUrlToClipboard={() => copyDataUrlToClipboard(state)}
               onClear={clearConfiguration}
               onSave={saveConfiguration}
             />

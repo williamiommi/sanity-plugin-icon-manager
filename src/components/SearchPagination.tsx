@@ -1,14 +1,14 @@
 import {Flex, Text} from '@sanity/ui'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import {StyledPaginationButton} from './shared/SharedStyledComponents'
 
 interface SearchPaginationProps {}
 
 const SearchPagination = (props: SearchPaginationProps) => {
-  const queryResults = useAppStore((s) => s.queryResults)
-  const currentPage = useAppStore((s) => s.currentPage)
-  const setPrevPage = useAppStore((s) => s.setPrevPage)
-  const setNextPage = useAppStore((s) => s.setNextPage)
+  const queryResults = useAppStoreContext((s) => s.queryResults)
+  const currentPage = useAppStoreContext((s) => s.currentPage)
+  const setPrevPage = useAppStoreContext((s) => s.setPrevPage)
+  const setNextPage = useAppStoreContext((s) => s.setNextPage)
 
   if (!queryResults || queryResults.totalPages < 2) return null
 

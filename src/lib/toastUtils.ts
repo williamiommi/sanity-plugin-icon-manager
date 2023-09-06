@@ -1,23 +1,31 @@
-import {useAppStore} from '../store'
+import {ToastContextValue} from '@sanity/ui'
 
 interface ToastProps {
+  sanityToast: ToastContextValue | undefined
   title: string
   description?: string
   duration?: number
 }
 
-export const toastSuccess = (title: string, description?: string): void => {
-  const sanityToast = useAppStore.getState().sanityToast
-  if (sanityToast) sanityToast.push({status: 'success', title, description, duration: 1000})
+export const toastSuccess = ({
+  sanityToast,
+  title,
+  description,
+  duration = 1000,
+}: ToastProps): void => {
+  if (sanityToast) sanityToast.push({status: 'success', title, description, duration})
 }
 
-export const toastWarning = ({title, description, duration = 3000}: ToastProps): void => {
-  const sanityToast = useAppStore.getState().sanityToast
+export const toastWarning = ({
+  sanityToast,
+  title,
+  description,
+  duration = 3000,
+}: ToastProps): void => {
   if (sanityToast) sanityToast.push({status: 'warning', title, description, duration})
 }
 
-export const toastError = (e: unknown): void => {
-  const sanityToast = useAppStore.getState().sanityToast
+export const toastError = (sanityToast: ToastContextValue | undefined, e: unknown): void => {
   let message
   if (typeof e === 'string') {
     message = e

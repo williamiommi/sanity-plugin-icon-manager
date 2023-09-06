@@ -1,5 +1,4 @@
 import {StateCreator} from 'zustand'
-import {AppStoreType} from '.'
 
 export const DEFAULT_FILTER_LIMIT = 999
 
@@ -15,7 +14,7 @@ export interface FiltersSlice {
   setFilterPalette: (palette: string) => void
 }
 
-export const createFiltersSlice: StateCreator<AppStoreType, [], [], FiltersSlice> = (set, get) => ({
+export const createFiltersSlice: StateCreator<FiltersSlice, [], [], FiltersSlice> = (set, get) => ({
   limit: DEFAULT_FILTER_LIMIT,
   filterStyle: '',
   filterPalette: '',

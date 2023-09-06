@@ -1,5 +1,5 @@
 import {Dialog, Flex} from '@sanity/ui'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import IconifySmile from './IconifySmile'
 import SearchFilters from './SearchFilters'
 import SearchInput from './SearchInput'
@@ -14,8 +14,8 @@ const DialogHeader = () => (
 )
 
 const SearchDialog = (props: SearchDialogProps) => {
-  const isSearchDialogOpen = useAppStore((s) => s.isSearchDialogOpen)
-  const closeSearchDialog = useAppStore((s) => s.closeSearchDialog)
+  const isSearchDialogOpen = useAppStoreContext((s) => s.isSearchDialogOpen)
+  const closeSearchDialog = useAppStoreContext((s) => s.closeSearchDialog)
 
   if (!isSearchDialogOpen) return null
 

@@ -1,5 +1,5 @@
 import {Flex, Grid, useTheme} from '@sanity/ui'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import BorderIcon from '../icons/BorderIcon'
 import HeightIcon from '../icons/HeightIcon'
 import LinkIcon from '../icons/LinkIcon'
@@ -10,13 +10,13 @@ import {StyledHeading, StyledSizeInput} from './Styled'
 
 const Size = () => {
   const {sanity: theme} = useTheme()
-  const size = useAppStore((s) => s.size)
-  const uniqueSize = useAppStore((s) => s.uniqueSize)
-  const previewBorder = useAppStore((s) => s.previewBorder)
-  const setWidth = useAppStore((s) => s.setWidth)
-  const setHeight = useAppStore((s) => s.setHeight)
-  const toggleUniqueSize = useAppStore((s) => s.toggleUniqueSize)
-  const togglePreviewBorder = useAppStore((s) => s.togglePreviewBorder)
+  const size = useAppStoreContext((s) => s.size)
+  const uniqueSize = useAppStoreContext((s) => s.uniqueSize)
+  const previewBorder = useAppStoreContext((s) => s.previewBorder)
+  const setWidth = useAppStoreContext((s) => s.setWidth)
+  const setHeight = useAppStoreContext((s) => s.setHeight)
+  const toggleUniqueSize = useAppStoreContext((s) => s.toggleUniqueSize)
+  const togglePreviewBorder = useAppStoreContext((s) => s.togglePreviewBorder)
 
   return (
     <Flex

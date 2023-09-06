@@ -3,7 +3,7 @@ import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
 import useClickOutside from '../../hooks/useClickOutside'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import ColorPalette from './ColorPalette'
 import {StyledColorPicker} from './Styled'
 
@@ -13,8 +13,8 @@ interface ColorPickerProps {
 
 const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
   const pickerRef = useClickOutside<HTMLDivElement>(onClickOutsideHandler)
-  const color = useAppStore((s) => s.color)
-  const setColor = useAppStore((s) => s.setColor)
+  const color = useAppStoreContext((s) => s.color)
+  const setColor = useAppStoreContext((s) => s.setColor)
 
   const handleHexInput = (event: FormEvent<HTMLInputElement>) => {
     setColor(event.currentTarget.value)

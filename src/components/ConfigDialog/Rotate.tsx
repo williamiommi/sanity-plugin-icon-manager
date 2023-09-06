@@ -1,5 +1,5 @@
 import {Flex, Grid} from '@sanity/ui'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import Rotate180 from '../icons/Rotate180'
 import Rotate270 from '../icons/Rotate270'
 import Rotate90 from '../icons/Rotate90'
@@ -7,11 +7,11 @@ import {StyledBaseButton} from '../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Rotate = () => {
-  const rotate = useAppStore((s) => s.rotate)
-  const setRotate0 = useAppStore((s) => s.setRotate0)
-  const setRotate90 = useAppStore((s) => s.setRotate90)
-  const setRotate180 = useAppStore((s) => s.setRotate180)
-  const setRotate270 = useAppStore((s) => s.setRotate270)
+  const rotate = useAppStoreContext((s) => s.rotate)
+  const setRotate0 = useAppStoreContext((s) => s.setRotate0)
+  const setRotate90 = useAppStoreContext((s) => s.setRotate90)
+  const setRotate180 = useAppStoreContext((s) => s.setRotate180)
+  const setRotate270 = useAppStoreContext((s) => s.setRotate270)
 
   return (
     <Flex

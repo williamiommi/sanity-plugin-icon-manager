@@ -1,18 +1,18 @@
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
 import {useCallback} from 'react'
-import {useAppStore} from '../store'
+import {useAppStoreContext} from '../store/context'
 import FilterBadge from './FilterBadge'
 
 interface SearchInputProps {}
 
 const SearchInput = (props: SearchInputProps) => {
-  const searchTerm = useAppStore((s) => s.searchTerm)
-  const isFiltersOpen = useAppStore((s) => s.isFiltersOpen)
-  const countFiltersApplied = useAppStore((s) => s.countFiltersApplied())
-  const toggleFilters = useAppStore((s) => s.toggleFilters)
-  const searchIcons = useAppStore((s) => s.searchIcons)
-  const setSearchTerm = useAppStore((s) => s.setSearchTerm)
+  const searchTerm = useAppStoreContext((s) => s.searchTerm)
+  const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
+  const countFiltersApplied = useAppStoreContext((s) => s.countFiltersApplied())
+  const toggleFilters = useAppStoreContext((s) => s.toggleFilters)
+  const searchIcons = useAppStoreContext((s) => s.searchIcons)
+  const setSearchTerm = useAppStoreContext((s) => s.setSearchTerm)
 
   const onToggleFilters = useCallback(() => {
     toggleFilters()

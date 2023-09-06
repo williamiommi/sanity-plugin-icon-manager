@@ -1,7 +1,7 @@
 import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify-icon/react'
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import DomPurify from 'dompurify'
-import {AppStoreType, useAppStore} from '../store'
+import {AppStoreType} from '../store/context'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from './constants'
 import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
@@ -64,37 +64,40 @@ export const generateInitialSvgDownloadUrl = (apiUrl: string, icon: string): str
   return `${apiUrl}/${icon}.svg?${searchParams}`
 }
 
-export const generateSvgHttpUrl = (original: boolean = false): string => {
+export const generateSvgHttpUrl = (appState: AppStoreType, original: boolean = false): string => {
   try {
-    const appState = useAppStore.getState()
     const icon = appState.sanityValue?.icon
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, false)
     return `${appState.apiUrl}/${icon}.svg${searchParams}`
   } catch (e: any) {
-    toastError(e)
+    toastError(appState.sanityToast, e)
     return '#'
   }
 }
 
-export const generateSvgDownloadUrl = (original: boolean = false): string => {
+export const generateSvgDownloadUrl = (
+  appState: AppStoreType,
+  original: boolean = false,
+): string => {
   try {
-    const appState = useAppStore.getState()
     const icon = appState.sanityValue?.icon
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, true)
     return `${appState.apiUrl}/${icon}.svg${searchParams}`
   } catch (e: any) {
-    toastError(e)
+    toastError(appState.sanityToast, e)
     return '#'
   }
 }
 
-export const generateSvgHtml = async (original?: boolean): Promise<string> => {
+export const generateSvgHtml = async (
+  appState: AppStoreType,
+  original?: boolean,
+): Promise<string> => {
   try {
-    const appState = useAppStore.getState()
     const icon = appState.sanityValue?.icon
 
     if (!icon) throw Error('Unable to find the icon.')
@@ -109,20 +112,23 @@ export const generateSvgHtml = async (original?: boolean): Promise<string> => {
     if (appState.color?.hex) html = html.replaceAll('currentColor', appState.color?.hex)
     return DomPurify.sanitize(html)
   } catch (e: any) {
-    toastError(e)
+    toastError(appState.sanityToast, e)
     return ''
   }
 }
 
-export const generateSvgDataUrl = async (original?: boolean): Promise<void | string> => {
+export const generateSvgDataUrl = async (
+  appState: AppStoreType,
+  original?: boolean,
+): Promise<void | string> => {
   try {
-    const html = await generateSvgHtml(original)
+    const html = await generateSvgHtml(appState, original)
     if (!html) return undefined
     const base64 = svgToData(html)
     if (!base64) throw Error('Unable to generate Svg Data URL')
     return base64
   } catch (e: any) {
-    toastError(e)
+    toastError(appState.sanityToast, e)
     return undefined
   }
 }

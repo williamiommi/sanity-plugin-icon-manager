@@ -5,7 +5,7 @@ import {Box, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
 import {copyDataUrlToClipboard, copyHtmlToClipboard} from '../../lib/clipboardUtils'
 import {generateSvgDownloadUrl} from '../../lib/svgUtils'
-import {useAppStore} from '../../store'
+import {useAppStoreContext} from '../../store/context'
 import {default as DataUrlIcon} from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
 import {
@@ -31,10 +31,8 @@ const DialogHeader = () => (
 interface InfoDialogProps {}
 
 const InfoDialog = (props: InfoDialogProps) => {
-  const sanityValue = useAppStore((s) => s.sanityValue)
-  const isInfoDialogOpen = useAppStore((s) => s.isInfoDialogOpen)
-  const openInfoDialog = useAppStore((s) => s.openInfoDialog)
-  const closeInfoDialog = useAppStore((s) => s.closeInfoDialog)
+  const state = useAppStoreContext((s) => s)
+  const {sanityValue, isInfoDialogOpen, openInfoDialog, closeInfoDialog} = state
 
   return (
     <>
@@ -73,20 +71,20 @@ const InfoDialog = (props: InfoDialogProps) => {
             </StyledCell>
             <StyledCell bold>Original Svg:</StyledCell>
             <Grid columns={3} gap={2}>
-              <StyledIconLink href={generateSvgDownloadUrl(true)} title='Download SVG'>
+              <StyledIconLink href={generateSvgDownloadUrl(state, true)} title='Download SVG'>
                 <DownloadIcon width='25px' height='25px' />
               </StyledIconLink>
 
               <StyledIconButton
                 title='Copy svg html to clipboard'
-                onClick={() => copyHtmlToClipboard(true)}
+                onClick={() => copyHtmlToClipboard(state, true)}
               >
                 <HtmlIcon width='25px' height='25px' />
               </StyledIconButton>
 
               <StyledIconButton
                 title='Copy svg Data URL to clipboard'
-                onClick={() => copyDataUrlToClipboard(true)}
+                onClick={() => copyDataUrlToClipboard(state, true)}
               >
                 <DataUrlIcon width='25px' height='25px' />
               </StyledIconButton>
