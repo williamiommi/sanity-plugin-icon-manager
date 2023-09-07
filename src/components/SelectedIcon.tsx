@@ -1,8 +1,8 @@
 import {Card, Flex, Text, Tooltip} from '@sanity/ui'
 import {useAppStoreContext} from '../store/context'
-import ConfigDialog from './ConfigDialog'
+import ConfigDialog from './Dialogs/ConfigDialog'
+import InfoDialog from './Dialogs/InfoDialog'
 import IconPreview from './IconPreview'
-import InfoDialog from './InfoDialog'
 import {StyledEditIcon, StyledSelectedIcon} from './SelectedIcon.style'
 import CustomizeIcon from './icons/CustomizeIcon'
 

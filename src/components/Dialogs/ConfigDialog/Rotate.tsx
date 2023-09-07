@@ -1,9 +1,9 @@
 import {Flex, Grid} from '@sanity/ui'
-import {useAppStoreContext} from '../../store/context'
-import Rotate180 from '../icons/Rotate180'
-import Rotate270 from '../icons/Rotate270'
-import Rotate90 from '../icons/Rotate90'
-import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import {useAppStoreContext} from '../../../store/context'
+import Rotate180 from '../../icons/Rotate180'
+import Rotate270 from '../../icons/Rotate270'
+import Rotate90 from '../../icons/Rotate90'
+import {StyledBaseButton} from '../../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Rotate = () => {

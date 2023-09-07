@@ -1,6 +1,6 @@
 import {BookIcon} from '@sanity/icons'
 import {useAppStoreContext} from '../../store/context'
-import SearchDialog from '../SearchDialog'
+import SearchDialog from '../Dialogs/SearchDialog'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 
 const EmptyIconState = () => {

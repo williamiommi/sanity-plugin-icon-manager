@@ -2,8 +2,8 @@
 import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
-import useClickOutside from '../../hooks/useClickOutside'
-import {useAppStoreContext} from '../../store/context'
+import useClickOutside from '../../../hooks/useClickOutside'
+import {useAppStoreContext} from '../../../store/context'
 import ColorPalette from './ColorPalette'
 import {StyledColorPicker} from './Styled'
 

@@ -2,7 +2,7 @@ import {Icon} from '@iconify-icon/react'
 import {InfoOutlineIcon} from '@sanity/icons'
 import {Card, Flex, Text, Tooltip, useTheme} from '@sanity/ui'
 import {useMemo} from 'react'
-import {useAppStoreContext} from '../../store/context'
+import {useAppStoreContext} from '../../../store/context'
 
 const PREVIEW_SIZE_LIMIT = 300
 

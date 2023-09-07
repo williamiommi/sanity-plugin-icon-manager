@@ -1,9 +1,9 @@
 import {Dialog, Flex} from '@sanity/ui'
-import {useAppStoreContext} from '../store/context'
-import IconifySmile from './IconifySmile'
-import SearchFilters from './SearchFilters'
-import SearchInput from './SearchInput'
-import SearchResults from './SearchResults'
+import {useAppStoreContext} from '../../../store/context'
+import IconifySmile from '../../IconifySmile'
+import SearchFilters from '../../Search/SearchFilters'
+import SearchInput from '../../Search/SearchInput'
+import SearchResults from '../../Search/SearchResults'
 
 interface SearchDialogProps {}
 

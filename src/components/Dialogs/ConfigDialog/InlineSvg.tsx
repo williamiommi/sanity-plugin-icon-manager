@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Grid, Switch} from '@sanity/ui'
-import useSvgUtils from '../../hooks/useSvgUtils'
-import {useAppStoreContext} from '../../store/context'
+import useSvgUtils from '../../../hooks/useSvgUtils'
+import {useAppStoreContext} from '../../../store/context'
 import {StyledHeading} from './Styled'
 
 const InlineSvg = () => {

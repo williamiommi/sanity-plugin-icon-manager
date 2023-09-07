@@ -1,11 +1,11 @@
 import {Flex, Grid, useTheme} from '@sanity/ui'
-import {useAppStoreContext} from '../../store/context'
-import BorderIcon from '../icons/BorderIcon'
-import HeightIcon from '../icons/HeightIcon'
-import LinkIcon from '../icons/LinkIcon'
-import UnlinkIcon from '../icons/UnlinkIcon'
-import WidthIcon from '../icons/WidthIcon'
-import {StyledIconButton} from '../shared/SharedStyledComponents'
+import {useAppStoreContext} from '../../../store/context'
+import BorderIcon from '../../icons/BorderIcon'
+import HeightIcon from '../../icons/HeightIcon'
+import LinkIcon from '../../icons/LinkIcon'
+import UnlinkIcon from '../../icons/UnlinkIcon'
+import WidthIcon from '../../icons/WidthIcon'
+import {StyledIconButton} from '../../shared/SharedStyledComponents'
 import {StyledHeading, StyledSizeInput} from './Styled'
 
 const Size = () => {

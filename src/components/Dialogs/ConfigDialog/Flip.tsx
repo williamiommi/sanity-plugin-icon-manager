@@ -1,8 +1,8 @@
 import {Flex, Grid} from '@sanity/ui'
-import {useAppStoreContext} from '../../store/context'
-import HeightIcon from '../icons/HeightIcon'
-import WidthIcon from '../icons/WidthIcon'
-import {StyledBaseButton} from '../shared/SharedStyledComponents'
+import {useAppStoreContext} from '../../../store/context'
+import HeightIcon from '../../icons/HeightIcon'
+import WidthIcon from '../../icons/WidthIcon'
+import {StyledBaseButton} from '../../shared/SharedStyledComponents'
 import {StyledHeading} from './Styled'
 
 const Flip = () => {

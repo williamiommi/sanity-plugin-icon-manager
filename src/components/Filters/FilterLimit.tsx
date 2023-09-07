@@ -1,6 +1,6 @@
 import {Flex, Inline, Text, TextInput} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
-import {useAppStoreContext} from '../store/context'
+import {useAppStoreContext} from '../../store/context'
 
 interface FilterLimitProps {}
 

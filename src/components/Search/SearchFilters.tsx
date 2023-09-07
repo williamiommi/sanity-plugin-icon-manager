@@ -1,9 +1,9 @@
 import {Card, Flex} from '@sanity/ui'
-import {useAppStoreContext} from '../store/context'
-import FilterLimit from './FilterLimit'
-import FilterPalette from './FilterPalette'
-import FilterSeparator from './FilterSeparator'
-import FilterStyle from './FilterStyle'
+import {useAppStoreContext} from '../../store/context'
+import FilterLimit from '../Filters/FilterLimit'
+import FilterPalette from '../Filters/FilterPalette'
+import FilterSeparator from '../Filters/FilterSeparator'
+import FilterStyle from '../Filters/FilterStyle'
 
 interface SearchFiltersProps {}
 

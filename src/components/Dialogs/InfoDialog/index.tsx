@@ -3,16 +3,16 @@ import {Icon} from '@iconify-icon/react'
 import {DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
 import {Box, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
-import useSvgUtils from '../../hooks/useSvgUtils'
-import {useAppStoreContext} from '../../store/context'
-import {default as DataUrlIcon} from '../icons/DataURLIcon'
-import HtmlIcon from '../icons/HtmlIcon'
+import useSvgUtils from '../../../hooks/useSvgUtils'
+import {useAppStoreContext} from '../../../store/context'
+import {default as DataUrlIcon} from '../../icons/DataURLIcon'
+import HtmlIcon from '../../icons/HtmlIcon'
 import {
   StyledBaseButton,
   StyledGridForm,
   StyledIconButton,
   StyledIconLink,
-} from '../shared/SharedStyledComponents'
+} from '../../shared/SharedStyledComponents'
 
 const StyledCell = styled.span<{bold?: boolean}>`
   font-size: 13px;

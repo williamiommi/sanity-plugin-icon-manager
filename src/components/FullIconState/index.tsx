@@ -1,8 +1,8 @@
 import {BookIcon} from '@sanity/icons'
 import {Flex, useTheme} from '@sanity/ui'
 import {useAppStoreContext} from '../../store/context'
-import RemoveDialog from '../RemoveDialog'
-import SearchDialog from '../SearchDialog'
+import RemoveDialog from '../Dialogs/RemoveDialog'
+import SearchDialog from '../Dialogs/SearchDialog'
 import SelectedIcon from '../SelectedIcon'
 import {StyledBaseButton} from '../shared/SharedStyledComponents'
 

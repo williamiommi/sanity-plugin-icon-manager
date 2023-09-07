@@ -1,6 +1,6 @@
 import {WarningOutlineIcon} from '@sanity/icons'
 import {Badge, Card, Flex, Grid, Text} from '@sanity/ui'
-import {useAppStoreContext} from '../store/context'
+import {useAppStoreContext} from '../../store/context'
 import SearchPagination from './SearchPagination'
 import SearchResultsIcon from './SearchResults.Icon'
 

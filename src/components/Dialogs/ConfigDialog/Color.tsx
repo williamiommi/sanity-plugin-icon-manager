@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Grid, Popover} from '@sanity/ui'
 import {useState} from 'react'
-import {useAppStoreContext} from '../../store/context'
-import ColorBucketIcon from '../icons/ColorBucketIcon'
-import {StyledBaseButton, StyledIconButton} from '../shared/SharedStyledComponents'
+import {useAppStoreContext} from '../../../store/context'
+import ColorBucketIcon from '../../icons/ColorBucketIcon'
+import {StyledBaseButton, StyledIconButton} from '../../shared/SharedStyledComponents'
 import ColorPicker from './ColorPicker'
 import {StyledHeading} from './Styled'
 

@@ -1,12 +1,16 @@
 /* eslint-disable react/jsx-no-bind */
 import {CogIcon, DownloadIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
-import useSvgUtils from '../../hooks/useSvgUtils'
-import {useAppStoreContext} from '../../store/context'
-import CustomizeIcon from '../icons/CustomizeIcon'
-import DataUrlIcon from '../icons/DataURLIcon'
-import HtmlIcon from '../icons/HtmlIcon'
-import {StyledBaseButton, StyledIconButton, StyledIconLink} from '../shared/SharedStyledComponents'
+import useSvgUtils from '../../../hooks/useSvgUtils'
+import {useAppStoreContext} from '../../../store/context'
+import CustomizeIcon from '../../icons/CustomizeIcon'
+import DataUrlIcon from '../../icons/DataURLIcon'
+import HtmlIcon from '../../icons/HtmlIcon'
+import {
+  StyledBaseButton,
+  StyledIconButton,
+  StyledIconLink,
+} from '../../shared/SharedStyledComponents'
 import Color from './Color'
 import Flip from './Flip'
 import InlineSvg from './InlineSvg'
