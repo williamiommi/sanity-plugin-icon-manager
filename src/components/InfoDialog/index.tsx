@@ -3,8 +3,7 @@ import {Icon} from '@iconify-icon/react'
 import {DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
 import {Box, Dialog, Flex, Grid} from '@sanity/ui'
 import styled from 'styled-components'
-import {copyDataUrlToClipboard, copyHtmlToClipboard} from '../../lib/clipboardUtils'
-import {generateSvgDownloadUrl} from '../../lib/svgUtils'
+import useSvgUtils from '../../hooks/useSvgUtils'
 import {useAppStoreContext} from '../../store/context'
 import {default as DataUrlIcon} from '../icons/DataURLIcon'
 import HtmlIcon from '../icons/HtmlIcon'
@@ -31,8 +30,11 @@ const DialogHeader = () => (
 interface InfoDialogProps {}
 
 const InfoDialog = (props: InfoDialogProps) => {
-  const state = useAppStoreContext((s) => s)
-  const {sanityValue, isInfoDialogOpen, openInfoDialog, closeInfoDialog} = state
+  const {onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard} = useSvgUtils()
+  const sanityValue = useAppStoreContext((s) => s.sanityValue)
+  const isInfoDialogOpen = useAppStoreContext((s) => s.isInfoDialogOpen)
+  const openInfoDialog = useAppStoreContext((s) => s.openInfoDialog)
+  const closeInfoDialog = useAppStoreContext((s) => s.closeInfoDialog)
 
   return (
     <>
@@ -71,20 +73,20 @@ const InfoDialog = (props: InfoDialogProps) => {
             </StyledCell>
             <StyledCell bold>Original Svg:</StyledCell>
             <Grid columns={3} gap={2}>
-              <StyledIconLink href={generateSvgDownloadUrl(state, true)} title='Download SVG'>
+              <StyledIconLink href={onGenerateSvgDownloadUrl(true)} title='Download SVG'>
                 <DownloadIcon width='25px' height='25px' />
               </StyledIconLink>
 
               <StyledIconButton
                 title='Copy svg html to clipboard'
-                onClick={() => copyHtmlToClipboard(state, true)}
+                onClick={() => onCopyHtmlToClipboard(true)}
               >
                 <HtmlIcon width='25px' height='25px' />
               </StyledIconButton>
 
               <StyledIconButton
                 title='Copy svg Data URL to clipboard'
-                onClick={() => copyDataUrlToClipboard(state, true)}
+                onClick={() => onCopyDataUrlToClipboard(true)}
               >
                 <DataUrlIcon width='25px' height='25px' />
               </StyledIconButton>

@@ -3,6 +3,11 @@ import {AppStoreType} from '../store/context'
 import {generateSvgDataUrl, generateSvgHtml} from './svgUtils'
 import {toastError, toastSuccess} from './toastUtils'
 
+type AppStoreTypePartial = Pick<
+  AppStoreType,
+  'sanityValue' | 'hFlip' | 'vFlip' | 'rotate' | 'size' | 'color' | 'sanityToast' | 'apiUrl'
+>
+
 export const copy2Clipboard = async (
   text: string,
   sanityToast: ToastContextValue | undefined,
@@ -18,7 +23,7 @@ export const copy2Clipboard = async (
 }
 
 export const copyHtmlToClipboard = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<void> => {
   const html = await generateSvgHtml(appState, original)
@@ -26,7 +31,7 @@ export const copyHtmlToClipboard = async (
 }
 
 export const copyDataUrlToClipboard = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<void> => {
   const dataUrl = await generateSvgDataUrl(appState, original)

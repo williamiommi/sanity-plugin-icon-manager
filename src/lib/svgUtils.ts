@@ -6,6 +6,11 @@ import {INITIAL_HEIGHT, INITIAL_WIDTH} from './constants'
 import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
 
+type AppStoreTypePartial = Pick<
+  AppStoreType,
+  'sanityValue' | 'hFlip' | 'vFlip' | 'rotate' | 'size' | 'color' | 'sanityToast' | 'apiUrl'
+>
+
 const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisations) => {
   const lData = await loadIcon(icon)
   const bData = buildIcon(lData, customizations || {})
@@ -13,7 +18,7 @@ const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisa
   return html
 }
 
-const getIconCustomisations = (value?: AppStoreType) => {
+const getIconCustomisations = (value?: AppStoreTypePartial) => {
   if (!value) return undefined
   return {
     width: value.size.width,
@@ -26,7 +31,7 @@ const getIconCustomisations = (value?: AppStoreType) => {
 
 const generateSearchParams = (
   original: boolean,
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   download: boolean,
 ): string => {
   const searchParams = new URLSearchParams()
@@ -64,7 +69,10 @@ export const generateInitialSvgDownloadUrl = (apiUrl: string, icon: string): str
   return `${apiUrl}/${icon}.svg?${searchParams}`
 }
 
-export const generateSvgHttpUrl = (appState: AppStoreType, original: boolean = false): string => {
+export const generateSvgHttpUrl = (
+  appState: AppStoreTypePartial,
+  original: boolean = false,
+): string => {
   try {
     const icon = appState.sanityValue?.icon
     if (!icon) throw Error('Unable to find the icon.')
@@ -78,7 +86,7 @@ export const generateSvgHttpUrl = (appState: AppStoreType, original: boolean = f
 }
 
 export const generateSvgDownloadUrl = (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original: boolean = false,
 ): string => {
   try {
@@ -94,7 +102,7 @@ export const generateSvgDownloadUrl = (
 }
 
 export const generateSvgHtml = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<string> => {
   try {
@@ -118,7 +126,7 @@ export const generateSvgHtml = async (
 }
 
 export const generateSvgDataUrl = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<void | string> => {
   try {

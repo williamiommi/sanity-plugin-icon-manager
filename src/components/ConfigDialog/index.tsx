@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {CogIcon, DownloadIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
-import {copyDataUrlToClipboard, copyHtmlToClipboard} from '../../lib/clipboardUtils'
-import {generateSvgDownloadUrl} from '../../lib/svgUtils'
+import useSvgUtils from '../../hooks/useSvgUtils'
 import {useAppStoreContext} from '../../store/context'
 import CustomizeIcon from '../icons/CustomizeIcon'
 import DataUrlIcon from '../icons/DataURLIcon'
@@ -84,16 +83,14 @@ const DialogFooter = ({
 interface ConfigDialogProps {}
 
 const ConfigDialog = (props: ConfigDialogProps) => {
-  const state = useAppStoreContext((s) => s)
-  const {
-    sanityUserCanEdit,
-    openConfigDialog,
-    isConfigDialogOpen,
-    clearConfiguration,
-    saveConfiguration,
-    closeConfigDialog,
-  } = state
-  const downloadableUrl = useAppStoreContext(() => generateSvgDownloadUrl(state))
+  const {onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard} = useSvgUtils()
+  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
+  const openConfigDialog = useAppStoreContext((s) => s.openConfigDialog)
+  const isConfigDialogOpen = useAppStoreContext((s) => s.isConfigDialogOpen)
+  const clearConfiguration = useAppStoreContext((s) => s.clearConfiguration)
+  const saveConfiguration = useAppStoreContext((s) => s.saveConfiguration)
+  const closeConfigDialog = useAppStoreContext((s) => s.closeConfigDialog)
+  const downloadableUrl = useAppStoreContext(() => onGenerateSvgDownloadUrl())
 
   return (
     <>
@@ -114,8 +111,8 @@ const ConfigDialog = (props: ConfigDialogProps) => {
           footer={
             <DialogFooter
               downloadableUrl={downloadableUrl}
-              onCopyHtmlToClipboard={() => copyHtmlToClipboard(state)}
-              onCopyDataUrlToClipboard={() => copyDataUrlToClipboard(state)}
+              onCopyHtmlToClipboard={onCopyHtmlToClipboard}
+              onCopyDataUrlToClipboard={onCopyDataUrlToClipboard}
               onClear={clearConfiguration}
               onSave={saveConfiguration}
             />
