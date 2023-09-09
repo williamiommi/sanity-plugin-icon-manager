@@ -5,6 +5,10 @@ import IconifyPluginOptions from '../../types/IconifyPluginOptions'
 import {IconifyType} from '../../types/IconifyType'
 import ChangeIndicatorWrapper from '../ChangeIndicatorWrapper'
 import CustomFieldPresence from '../CustomFieldPresence'
+import ConfigDialog from '../Dialogs/ConfigDialog'
+import InfoDialog from '../Dialogs/InfoDialog'
+import RemoveDialog from '../Dialogs/RemoveDialog'
+import SearchDialog from '../Dialogs/SearchDialog'
 import EmptyIconState from '../EmptyIconState'
 import FullIconState from '../FullIconState'
 
@@ -27,6 +31,12 @@ const IconifyInputComponent = ({objectInputProps, pluginOptions}: IconifyInputCo
         hasFocus={!!objectInputProps.focused}
         withHoverEffect
       />
+
+      {/* Dialogs */}
+      <InfoDialog />
+      <ConfigDialog />
+      <SearchDialog />
+      <RemoveDialog />
     </Box>
   )
 }

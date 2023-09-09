@@ -3,7 +3,6 @@ import {CogIcon, DownloadIcon} from '@sanity/icons'
 import {Card, Dialog, Flex} from '@sanity/ui'
 import useSvgUtils from '../../../hooks/useSvgUtils'
 import {useAppStoreContext} from '../../../store/context'
-import CustomizeIcon from '../../icons/CustomizeIcon'
 import DataUrlIcon from '../../icons/DataURLIcon'
 import HtmlIcon from '../../icons/HtmlIcon'
 import {
@@ -88,55 +87,40 @@ interface ConfigDialogProps {}
 
 const ConfigDialog = (props: ConfigDialogProps) => {
   const {onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard} = useSvgUtils()
-  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
-  const openConfigDialog = useAppStoreContext((s) => s.openConfigDialog)
   const isConfigDialogOpen = useAppStoreContext((s) => s.isConfigDialogOpen)
   const clearConfiguration = useAppStoreContext((s) => s.clearConfiguration)
   const saveConfiguration = useAppStoreContext((s) => s.saveConfiguration)
   const closeConfigDialog = useAppStoreContext((s) => s.closeConfigDialog)
   const downloadableUrl = useAppStoreContext(() => onGenerateSvgDownloadUrl())
 
+  if (!isConfigDialogOpen) return null
   return (
-    <>
-      <StyledBaseButton
-        mode='bleed'
-        tone='positive'
-        icon={<CustomizeIcon width={15} height={15} />}
-        onClick={openConfigDialog}
-        fontSize={1}
-        text='Customize'
-        padding={2}
-        disabled={!sanityUserCanEdit}
-      />
-      {isConfigDialogOpen && (
-        <Dialog
-          id='config-dialog'
-          header={<DialogHeader />}
-          footer={
-            <DialogFooter
-              downloadableUrl={downloadableUrl}
-              onCopyHtmlToClipboard={onCopyHtmlToClipboard}
-              onCopyDataUrlToClipboard={onCopyDataUrlToClipboard}
-              onClear={clearConfiguration}
-              onSave={saveConfiguration}
-            />
-          }
-          onClose={closeConfigDialog}
-          width={1}
-        >
-          <Card marginY={4} marginX={[4, 4, 6, 7]}>
-            <Flex direction='column' gap={3}>
-              <Flip />
-              <Rotate />
-              <Size />
-              <InlineSvg />
-              <Color />
-            </Flex>
-            <Preview />
-          </Card>
-        </Dialog>
-      )}
-    </>
+    <Dialog
+      id='config-dialog'
+      header={<DialogHeader />}
+      footer={
+        <DialogFooter
+          downloadableUrl={downloadableUrl}
+          onCopyHtmlToClipboard={onCopyHtmlToClipboard}
+          onCopyDataUrlToClipboard={onCopyDataUrlToClipboard}
+          onClear={clearConfiguration}
+          onSave={saveConfiguration}
+        />
+      }
+      onClose={closeConfigDialog}
+      width={1}
+    >
+      <Card marginY={4} marginX={[4, 4, 6, 7]}>
+        <Flex direction='column' gap={3}>
+          <Flip />
+          <Rotate />
+          <Size />
+          <InlineSvg />
+          <Color />
+        </Flex>
+        <Preview />
+      </Card>
+    </Dialog>
   )
 }
 
