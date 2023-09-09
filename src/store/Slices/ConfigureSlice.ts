@@ -9,10 +9,6 @@ import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../..
 import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
 import {IconifyColor, IconifySize} from '../../types/IconifyType'
 import {DialogSlice} from './DialogSlice'
-import {FiltersSlice} from './FiltersSlice'
-import {PaginationSlice} from './PaginationSlice'
-import {PluginOptionsSlice} from './PluginOptionsSlice'
-import {ResultsSlice} from './ResultsSlice'
 import {SanitySlice} from './SanitySlice'
 
 const initialState = {
@@ -58,13 +54,7 @@ export interface ConfigureSlice {
 }
 
 export const createConfigureSlice: StateCreator<
-  ConfigureSlice &
-    SanitySlice &
-    DialogSlice &
-    FiltersSlice &
-    ResultsSlice &
-    PluginOptionsSlice &
-    PaginationSlice,
+  ConfigureSlice & SanitySlice & DialogSlice,
   [],
   [],
   ConfigureSlice
@@ -84,17 +74,19 @@ export const createConfigureSlice: StateCreator<
     return count > 0
   },
   clearConfiguration: () => set(initialState),
-  resetConfiguration: () =>
+  resetConfiguration: () => {
+    const sanityValue = get().sanityValue
     set(() => ({
-      hFlip: get().sanityValue?.metadata.hFlip,
-      vFlip: get().sanityValue?.metadata.vFlip,
-      rotate: get().sanityValue?.metadata.rotate,
-      size: get().sanityValue?.metadata.size,
-      color: get().sanityValue?.metadata.color,
-      inlineSvg: get().sanityValue?.metadata.inlineSvg,
+      hFlip: sanityValue?.metadata.hFlip,
+      vFlip: sanityValue?.metadata.vFlip,
+      rotate: sanityValue?.metadata.rotate,
+      size: sanityValue?.metadata.size,
+      color: sanityValue?.metadata.color,
+      inlineSvg: sanityValue?.metadata.inlineSvg,
       previewBorder: false,
       uniqueSize: false,
-    })),
+    }))
+  },
   getFlipValue: () => getFlipValue(get().hFlip, get().vFlip),
   setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip})),
   toggleHFlip: () => set((s) => ({hFlip: !s.hFlip})),
