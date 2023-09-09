@@ -30,7 +30,7 @@ const InfoDialog = (props: InfoDialogProps) => {
   const isInfoDialogOpen = useAppStoreContext((s) => s.isInfoDialogOpen)
   const closeInfoDialog = useAppStoreContext((s) => s.closeInfoDialog)
 
-  if (!isInfoDialogOpen) return null
+  if (!isInfoDialogOpen || !sanityValue?.icon) return null
 
   return (
     <Dialog id='info-dialog' header={<DialogHeader />} onClose={closeInfoDialog} width={0}>

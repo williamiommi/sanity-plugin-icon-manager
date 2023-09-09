@@ -94,6 +94,7 @@ const ConfigDialog = (props: ConfigDialogProps) => {
   const downloadableUrl = useAppStoreContext(() => onGenerateSvgDownloadUrl())
 
   if (!isConfigDialogOpen) return null
+
   return (
     <Dialog
       id='config-dialog'

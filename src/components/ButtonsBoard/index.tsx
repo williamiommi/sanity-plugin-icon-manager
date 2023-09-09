@@ -1,7 +1,8 @@
 import {BookIcon, InfoOutlineIcon, TrashIcon} from '@sanity/icons'
-import {Button, Card, Flex, Text, Tooltip} from '@sanity/ui'
+import {Button, Flex} from '@sanity/ui'
 import {useAppStoreContext} from '../../store/context'
 import CustomizeIcon from '../icons/CustomizeIcon'
+import ButtonTooltip from './ButtonTooltip'
 
 const ButtonsBoard = () => {
   const openInfoDialog = useAppStoreContext((s) => s.openInfoDialog)
@@ -9,35 +10,18 @@ const ButtonsBoard = () => {
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
+
   return (
     <Flex direction='column' align='flex-start'>
-      <Tooltip
-        portal
-        placement='left'
-        fallbackPlacements={['right', 'bottom']}
-        content={
-          <Card padding={1}>
-            <Text size={1}>Show Info</Text>
-          </Card>
-        }
-      >
+      <ButtonTooltip tooltipText='Show Info'>
         <Button
           mode='bleed'
           tone='primary'
           icon={<InfoOutlineIcon width={25} height={25} />}
           onClick={openInfoDialog}
         />
-      </Tooltip>
-      <Tooltip
-        portal
-        placement='left'
-        fallbackPlacements={['right', 'bottom']}
-        content={
-          <Card padding={1}>
-            <Text size={1}>Customize Icon</Text>
-          </Card>
-        }
-      >
+      </ButtonTooltip>
+      <ButtonTooltip tooltipText='Customize Icon'>
         <Button
           mode='bleed'
           tone='positive'
@@ -45,17 +29,8 @@ const ButtonsBoard = () => {
           onClick={openConfigDialog}
           disabled={!sanityUserCanEdit}
         />
-      </Tooltip>
-      <Tooltip
-        portal
-        placement='left'
-        fallbackPlacements={['right', 'bottom']}
-        content={
-          <Card padding={1}>
-            <Text size={1}>Change Icon</Text>
-          </Card>
-        }
-      >
+      </ButtonTooltip>
+      <ButtonTooltip tooltipText='Change Icon'>
         <Button
           mode='bleed'
           tone='primary'
@@ -63,17 +38,8 @@ const ButtonsBoard = () => {
           onClick={openSearchDialog}
           disabled={!sanityUserCanEdit}
         />
-      </Tooltip>
-      <Tooltip
-        portal
-        placement='left'
-        fallbackPlacements={['right', 'bottom']}
-        content={
-          <Card padding={1}>
-            <Text size={1}>Delete Icon</Text>
-          </Card>
-        }
-      >
+      </ButtonTooltip>
+      <ButtonTooltip tooltipText='Delete Icon'>
         <Button
           mode='bleed'
           tone='critical'
@@ -81,7 +47,7 @@ const ButtonsBoard = () => {
           onClick={openRemoveDialog}
           disabled={!sanityUserCanEdit}
         />
-      </Tooltip>
+      </ButtonTooltip>
     </Flex>
   )
 }
