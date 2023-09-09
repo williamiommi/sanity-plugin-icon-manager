@@ -7,7 +7,7 @@ const Header = () => {
   if (!sanityValue?.icon) return null
   return (
     <Flex>
-      <IconPreview value={sanityValue} width={25} height={25} hideText />
+      <IconPreview icon={sanityValue.icon} width={25} height={25} />
     </Flex>
   )
 }

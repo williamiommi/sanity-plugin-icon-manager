@@ -1,9 +1,9 @@
 import {Card, Text, Tooltip} from '@sanity/ui'
-import {ReactNode} from 'react'
+import {ReactElement} from 'react'
 
 interface ButtonTooltipProps {
   tooltipText: string
-  children: ReactNode
+  children: ReactElement
 }
 
 const ButtonTooltip = ({tooltipText, children}: ButtonTooltipProps) => {
@@ -18,7 +18,7 @@ const ButtonTooltip = ({tooltipText, children}: ButtonTooltipProps) => {
         </Card>
       }
     >
-      <>{children}</>
+      {children}
     </Tooltip>
   )
 }

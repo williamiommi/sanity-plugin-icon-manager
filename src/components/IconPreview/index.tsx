@@ -4,24 +4,32 @@ import {getFlipValue} from '../../lib/iconifyUtils'
 import {IconifyType} from '../../types/IconifyType'
 
 interface IconPreviewProps {
-  value: IconifyType
+  value?: IconifyType
+  icon?: string
   width?: string | number
   height?: string | number
   hideText?: boolean
 }
 
-const IconPreview = ({value, width = 50, height = 50, hideText = false}: IconPreviewProps) => {
-  if (!value.icon) return null
+const IconPreview = ({
+  icon,
+  value,
+  width = 50,
+  height = 50,
+  hideText = false,
+}: IconPreviewProps) => {
+  if (icon) return <Icon icon={icon} width={width} height={height} />
+
+  if (!value?.icon) return null
 
   const {
-    icon,
     metadata: {hFlip, vFlip, rotate, color, size},
   } = value
 
   return (
     <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
-        icon={icon}
+        icon={value.icon}
         {...((hFlip || vFlip) && {flip: getFlipValue(hFlip, vFlip)})}
         {...(rotate && {rotate})}
         style={{
