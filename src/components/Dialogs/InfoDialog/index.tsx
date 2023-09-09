@@ -1,31 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
-import {Icon} from '@iconify-icon/react'
-import {DownloadIcon, InfoOutlineIcon, LaunchIcon} from '@sanity/icons'
-import {Box, Dialog, Flex, Grid} from '@sanity/ui'
-import styled from 'styled-components'
-import useSvgUtils from '../../../hooks/useSvgUtils'
+import {Dialog, Flex} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
-import {default as DataUrlIcon} from '../../icons/DataURLIcon'
-import HtmlIcon from '../../icons/HtmlIcon'
-import {StyledGridForm, StyledIconButton, StyledIconLink} from '../../shared/SharedStyledComponents'
+import Footer from './Footer'
+import Header from './Header'
+import Row from './Row'
 
-const StyledCell = styled.span<{bold?: boolean}>`
-  font-size: 13px;
-  font-weight: ${(props) => (props.bold ? 'bold' : 'normal')};
-  align-self: center;
-`
-
-const DialogHeader = () => (
-  <Flex align='center' gap={3}>
-    <InfoOutlineIcon />
-    <span>Info</span>
-  </Flex>
-)
-
-interface InfoDialogProps {}
-
-const InfoDialog = (props: InfoDialogProps) => {
-  const {onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard} = useSvgUtils()
+const InfoDialog = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const isInfoDialogOpen = useAppStoreContext((s) => s.isInfoDialogOpen)
   const closeInfoDialog = useAppStoreContext((s) => s.closeInfoDialog)
@@ -33,50 +13,27 @@ const InfoDialog = (props: InfoDialogProps) => {
   if (!isInfoDialogOpen || !sanityValue?.icon) return null
 
   return (
-    <Dialog id='info-dialog' header={<DialogHeader />} onClose={closeInfoDialog} width={0}>
-      <Box marginX={4} marginTop={2}>
-        <Icon icon={sanityValue?.icon!} width={20} height={20} />
-      </Box>
-      <StyledGridForm margin={4} marginTop={2} columns={[1, 2]} gapY={[2, 3]}>
-        <StyledCell bold>Icon Name:</StyledCell>
-        <StyledCell>{sanityValue?.metadata?.iconName}</StyledCell>
-        <StyledCell bold>Collection:</StyledCell>
-        <StyledCell>{sanityValue?.metadata?.collectionName}</StyledCell>
-        <StyledCell bold>Author:</StyledCell>
-        <StyledCell>
-          <a href={sanityValue?.metadata?.author?.url} target='_blank' rel='noreferrer'>
-            <span>{sanityValue?.metadata?.author?.name}</span>&nbsp;
-            <LaunchIcon width={10} />
-          </a>
-        </StyledCell>
-        <StyledCell bold>License:</StyledCell>
-        <StyledCell>
-          <a href={sanityValue?.metadata?.license?.url} target='_blank' rel='noreferrer'>
-            {sanityValue?.metadata?.license?.name}&nbsp;
-            <LaunchIcon width={10} />
-          </a>
-        </StyledCell>
-        <StyledCell bold>Original Svg:</StyledCell>
-        <Grid columns={3} gap={2}>
-          <StyledIconLink href={onGenerateSvgDownloadUrl(true)} title='Download SVG'>
-            <DownloadIcon width='25px' height='25px' />
-          </StyledIconLink>
-
-          <StyledIconButton
-            title='Copy svg html to clipboard'
-            onClick={() => onCopyHtmlToClipboard(true)}
-          >
-            <HtmlIcon width='25px' height='25px' />
-          </StyledIconButton>
-
-          <StyledIconButton
-            title='Copy svg Data URL to clipboard'
-            onClick={() => onCopyDataUrlToClipboard(true)}
-          >
-            <DataUrlIcon width='25px' height='25px' />
-          </StyledIconButton>
-        </Grid>
-      </StyledGridForm>
+    <Dialog
+      id='info-dialog'
+      header={<Header />}
+      footer={<Footer />}
+      onClose={closeInfoDialog}
+      width={0}
+    >
+      <Flex direction='column' margin={4} gap={3}>
+        <Row heading='Name:' value={sanityValue?.metadata?.iconName} />
+        <Row heading='Collection:' value={sanityValue?.metadata?.collectionName} />
+        <Row
+          heading='Author:'
+          href={sanityValue?.metadata?.author?.url}
+          value={sanityValue?.metadata?.author?.name}
+        />
+        <Row
+          heading='Author:'
+          href={sanityValue?.metadata?.license?.url}
+          value={sanityValue?.metadata?.license?.name}
+        />
+      </Flex>
     </Dialog>
   )
 }

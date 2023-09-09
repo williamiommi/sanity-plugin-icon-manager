@@ -18,6 +18,7 @@ const ButtonsBoard = () => {
           mode='bleed'
           tone='primary'
           icon={<InfoOutlineIcon width={25} height={25} />}
+          style={{cursor: 'pointer'}}
           onClick={openInfoDialog}
         />
       </ButtonTooltip>
@@ -26,6 +27,7 @@ const ButtonsBoard = () => {
           mode='bleed'
           tone='positive'
           icon={<CustomizeIcon width={19} height={19} />}
+          style={{cursor: 'pointer'}}
           onClick={openConfigDialog}
           disabled={!sanityUserCanEdit}
         />
@@ -35,6 +37,7 @@ const ButtonsBoard = () => {
           mode='bleed'
           tone='primary'
           icon={<BookIcon width={25} height={25} />}
+          style={{cursor: 'pointer'}}
           onClick={openSearchDialog}
           disabled={!sanityUserCanEdit}
         />
@@ -44,6 +47,7 @@ const ButtonsBoard = () => {
           mode='bleed'
           tone='critical'
           icon={<TrashIcon width={25} height={25} />}
+          style={{cursor: 'pointer'}}
           onClick={openRemoveDialog}
           disabled={!sanityUserCanEdit}
         />

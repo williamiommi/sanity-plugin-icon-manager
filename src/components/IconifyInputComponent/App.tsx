@@ -1,6 +1,7 @@
 import {Box} from '@sanity/ui'
 import {ObjectInputProps} from 'sanity'
 import useInputSetup from '../../hooks/useInputSetup'
+import {useAppStoreContext} from '../../store/context'
 import IconifyPluginOptions from '../../types/IconifyPluginOptions'
 import {IconifyType} from '../../types/IconifyType'
 import EmptyState from '../AppStates/EmptyState'
@@ -19,6 +20,7 @@ interface IconifyInputComponentProps {
 
 const IconifyInputComponent = ({objectInputProps, pluginOptions}: IconifyInputComponentProps) => {
   useInputSetup(objectInputProps, pluginOptions)
+  const sanityValue = useAppStoreContext((s) => s.sanityValue)
 
   return (
     <Box style={{position: 'relative'}}>
@@ -27,7 +29,7 @@ const IconifyInputComponent = ({objectInputProps, pluginOptions}: IconifyInputCo
       <FilledState />
 
       {/* Dialogs */}
-      {objectInputProps.value?.icon && (
+      {sanityValue?.icon && (
         <>
           <InfoDialog />
           <ConfigDialog />
