@@ -29,7 +29,7 @@ const InfoDialog = () => {
           value={sanityValue?.metadata?.author?.name}
         />
         <Row
-          heading='Author:'
+          heading='License:'
           href={sanityValue?.metadata?.license?.url}
           value={sanityValue?.metadata?.license?.name}
         />
