@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledChangeIndicatorWrapper = styled.div`
+const ChangeIndicatorWrapper = styled.div`
   display: flex;
   height: 100%;
   position: absolute;
@@ -11,3 +11,7 @@ export const StyledChangeIndicatorWrapper = styled.div`
     height: 100%;
   }
 `
+
+const S = {ChangeIndicatorWrapper}
+
+export default S
