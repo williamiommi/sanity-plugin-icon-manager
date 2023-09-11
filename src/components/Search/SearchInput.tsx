@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-no-bind */
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
-import {useCallback} from 'react'
 import {useAppStoreContext} from '../../store/context'
 import FilterBadge from '../FilterBadge'
 
@@ -13,10 +13,6 @@ const SearchInput = (props: SearchInputProps) => {
   const toggleFilters = useAppStoreContext((s) => s.toggleFilters)
   const searchIcons = useAppStoreContext((s) => s.searchIcons)
   const setSearchTerm = useAppStoreContext((s) => s.setSearchTerm)
-
-  const onToggleFilters = useCallback(() => {
-    toggleFilters()
-  }, [toggleFilters])
 
   return (
     <Flex
@@ -34,7 +30,7 @@ const SearchInput = (props: SearchInputProps) => {
           mode={isFiltersOpen ? 'default' : 'ghost'}
           tone='primary'
           style={{cursor: 'pointer'}}
-          onClick={onToggleFilters}
+          onClick={() => toggleFilters()}
         />
       </Box>
       <Box style={{flex: 1}}>
