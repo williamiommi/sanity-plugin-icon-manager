@@ -1,4 +1,4 @@
-import {Flex, Inline, Radio, Text} from '@sanity/ui'
+import {Flex, Select, Text} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
 import {useAppStoreContext} from '../../store/context'
 
@@ -9,42 +9,28 @@ const FilterPalette = (props: FilterPaletteProps) => {
   const setFilterPalette = useAppStoreContext((s) => s.setFilterPalette)
 
   const onSetFilterPalette = useCallback(
-    (event: FormEvent<HTMLInputElement>) => {
+    (event: FormEvent<HTMLSelectElement>) => {
       setFilterPalette(event.currentTarget.value || '')
     },
     [setFilterPalette],
   )
 
   return (
-    <Flex align='center' gap={4}>
-      <Text weight='bold' style={{width: '100px'}}>
+    <Flex align='center'>
+      <Text weight='bold' size={1} style={{width: '100px'}}>
         Palette:
       </Text>
-      <Inline>
-        <Radio
-          name='palette'
-          value=''
-          checked={filterPalette === ''}
-          onChange={onSetFilterPalette}
-        />
-        <Text style={{marginLeft: '5px'}}>n/a</Text>
-        <Radio
-          name='palette'
-          value='1'
-          style={{marginLeft: '15px'}}
-          checked={filterPalette === '1'}
-          onChange={onSetFilterPalette}
-        />
-        <Text style={{marginLeft: '5px'}}>Yes</Text>
-        <Radio
-          name='palette'
-          value='0'
-          style={{marginLeft: '15px'}}
-          checked={filterPalette === '0'}
-          onChange={onSetFilterPalette}
-        />
-        <Text style={{marginLeft: '5px'}}>No</Text>
-      </Inline>
+      <Flex style={{width: '100%'}}>
+        <Select onChange={onSetFilterPalette} fontSize={1}>
+          <option value=''>Select...</option>
+          <option value='1' selected={filterPalette === '1'}>
+            Polychrome
+          </option>
+          <option value='0' selected={filterPalette === '0'}>
+            Monochrome
+          </option>
+        </Select>
+      </Flex>
     </Flex>
   )
 }

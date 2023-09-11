@@ -1,8 +1,7 @@
-import {Card, Flex} from '@sanity/ui'
+import {Flex, Grid} from '@sanity/ui'
 import {useAppStoreContext} from '../../store/context'
 import FilterLimit from '../Filters/FilterLimit'
 import FilterPalette from '../Filters/FilterPalette'
-import FilterSeparator from '../Filters/FilterSeparator'
 import FilterStyle from '../Filters/FilterStyle'
 
 interface SearchFiltersProps {}
@@ -13,15 +12,13 @@ const SearchFilters = (props: SearchFiltersProps) => {
   if (!isFiltersOpen) return null
 
   return (
-    <Card marginX={4} marginBottom={4} radius={2} padding={3} border>
-      <Flex direction='column' gap={3} marginY={3}>
+    <Grid columns={[1, 1, 1, 1, 2]} margin={4} marginTop={0}>
+      <Flex direction='column' gap={3}>
         <FilterStyle />
-        <FilterSeparator />
         <FilterPalette />
-        <FilterSeparator />
         <FilterLimit />
       </Flex>
-    </Card>
+    </Grid>
   )
 }
 

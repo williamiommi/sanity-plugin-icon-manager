@@ -1,4 +1,4 @@
-import {Flex, Inline, Text, TextInput} from '@sanity/ui'
+import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
 import {useAppStoreContext} from '../../store/context'
 
@@ -16,23 +16,24 @@ const FilterLimit = (props: FilterLimitProps) => {
   )
 
   return (
-    <Flex align='center' gap={4}>
-      <Text weight='bold' style={{width: '100px'}}>
+    <Flex align='center'>
+      <Text weight='bold' size={1} style={{width: '100px'}}>
         Limit:
       </Text>
-      <Inline>
+      <Flex align='center' gap={2} style={{width: '100%'}}>
         <TextInput
           type='number'
-          padding={2}
           min={32}
           max={999}
           value={limit}
+          fontSize={1}
           onChange={onChangeLimit}
+          style={{padding: '5px 1px 5px 5px'}}
         />
-        <Text size={0} style={{marginLeft: '5px', fontStyle: 'italic'}}>
-          (min 32 / max 999 - default 999)
+        <Text as='i' size={0}>
+          (min 32 / max 999)
         </Text>
-      </Inline>
+      </Flex>
     </Flex>
   )
 }
