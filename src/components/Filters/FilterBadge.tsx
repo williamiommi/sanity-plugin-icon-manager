@@ -1,4 +1,4 @@
-import {StyledFilterBadge} from './Style'
+import {StyledFilterBadge} from '../../style'
 
 interface FilterBadgeProps {
   count: number

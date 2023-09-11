@@ -2,7 +2,7 @@
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
 import {useAppStoreContext} from '../../store/context'
-import FilterBadge from '../FilterBadge'
+import FilterBadge from '../Filters/FilterBadge'
 
 interface SearchInputProps {}
 
