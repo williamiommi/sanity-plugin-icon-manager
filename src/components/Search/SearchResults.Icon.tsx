@@ -1,6 +1,6 @@
-import {Icon} from '@iconify-icon/react'
 import {Button, Flex} from '@sanity/ui'
 import {FormEvent} from 'react'
+import IconPreview from '../IconPreview'
 
 interface SearchResultsIconProps {
   icon: string
@@ -9,25 +9,15 @@ interface SearchResultsIconProps {
 
 const SearchResultsIcon = ({icon, onClick}: SearchResultsIconProps) => {
   return (
-    <Flex
-      justify='center'
-      as='li'
-      key={icon}
-      style={{width: 50, height: 50, justifySelf: 'center'}}
-    >
+    <Flex justify='center' as='li' key={icon}>
       <Button
         key={icon}
         mode='bleed'
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-        }}
         title={icon}
-        icon={<Icon icon={icon} width='30' />}
+        icon={<IconPreview icon={icon} width='30' height='30' />}
         data-value={icon}
         onClick={onClick}
+        style={{cursor: 'pointer'}}
       />
     </Flex>
   )

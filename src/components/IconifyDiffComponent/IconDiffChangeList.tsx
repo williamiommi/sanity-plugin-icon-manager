@@ -1,8 +1,7 @@
-import {Box} from '@sanity/ui'
+import {Box, Button} from '@sanity/ui'
 import {useCallback, useState} from 'react'
 import {ChangeList, DiffProps, ObjectDiff} from 'sanity'
 import {IconifyType} from '../../types/IconifyType'
-import {StyledBaseButton} from '../shared/SharedStyledComponents'
 
 const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconifyType>>) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
@@ -15,11 +14,12 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconifyType>>) => {
 
   return (
     <>
-      <StyledBaseButton
+      <Button
         mode='ghost'
         tone='primary'
         text={`${isDetailsOpen ? 'Hide' : 'Show'} details`}
         onClick={onClickDetailsHandler}
+        style={{cursor: 'pointer'}}
       />
       {isDetailsOpen && (
         <Box marginTop={5}>

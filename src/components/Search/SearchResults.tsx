@@ -37,13 +37,13 @@ const SearchResults = (props: SearchResultsProps) => {
         align='center'
         style={{minHeight: '22px'}}
       >
-        <Text size={1} style={{fontStyle: 'italic'}}>
+        <Text as='i' size={1}>
           {queryResults.total} {queryResults.total === 1 ? 'icon' : 'icons'} found
         </Text>
         <SearchPagination />
       </Flex>
-      <Card border radius={2} marginX={4} padding={4} style={{marginBottom: '20px'}}>
-        <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3} autoCols='fr'>
+      <Card border radius={2} marginX={4} marginBottom={5} padding={4}>
+        <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3}>
           {queryResults?.icons
             .slice(currentPage * iconsPerPage, (currentPage + 1) * iconsPerPage)
             .map((icon) => <SearchResultsIcon key={icon} icon={icon} onClick={selectIcon} />)}
