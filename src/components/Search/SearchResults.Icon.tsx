@@ -9,7 +9,12 @@ interface SearchResultsIconProps {
 
 const SearchResultsIcon = ({icon, onClick}: SearchResultsIconProps) => {
   return (
-    <Flex justify='center' as='li' key={icon}>
+    <Flex
+      justify='center'
+      as='li'
+      key={icon}
+      style={{width: 50, height: 50, justifySelf: 'center'}}
+    >
       <Button
         key={icon}
         mode='bleed'
