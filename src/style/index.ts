@@ -1,4 +1,4 @@
-import {Badge} from '@sanity/ui'
+import {Badge, Card} from '@sanity/ui'
 import styled from 'styled-components'
 
 export const PaginationButton = styled.button`
@@ -21,4 +21,66 @@ export const StyledFilterBadge = styled(Badge)`
   width: 20px;
   height: 20px;
   padding: 0;
+`
+
+// ###
+// COLOR PICKER UI
+// ###
+export const StyledColorPicker = styled(Card)`
+  border-radius: 6px !important;
+
+  .react-colorful {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .react-colorful__hue {
+    order: -1;
+  }
+
+  .react-colorful__saturation {
+    margin: 12px 0;
+    border-radius: 0;
+    border: none;
+  }
+
+  .react-colorful__alpha,
+  .react-colorful__hue {
+    height: 14px;
+    border-radius: 0;
+  }
+
+  .react-colorful__saturation-pointer {
+    width: 22px;
+    height: 22px;
+  }
+
+  .react-colorful__alpha-pointer,
+  .react-colorful__hue-pointer {
+    width: 15px;
+    height: 15px;
+  }
+`
+
+export const StyledColorPaletteWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  max-width: 272px;
+  background-color: ${(p) => p.theme.color.base.skeleton.to};
+`
+
+interface StyledColorPaletteBoxProps {
+  bgColor: string
+}
+export const StyledColorPaletteBox = styled.button<StyledColorPaletteBoxProps>`
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background: ${(p) => p.bgColor};
+  cursor: pointer;
+  border: 1px solid ${(p) => p.theme.color.base.fg};
 `

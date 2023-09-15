@@ -26,7 +26,7 @@ const Preview = () => {
       <Tooltip
         content={
           <Text size={0} style={{padding: '5px'}}>
-            Preview limited to 300x300, but your custom size is always stored.
+            Preview limited to 300x300, but your custom size is preserved.
           </Text>
         }
         fallbackPlacements={['right', 'left']}
@@ -50,7 +50,8 @@ const Preview = () => {
       <Flex align='center' justify='center' paddingY={5} paddingX={2}>
         <Card
           tone={previewBorder ? 'positive' : 'default'}
-          style={{transition: 'all .3s ease-in-out', overflow: 'hidden'}}
+          border={!!previewBorder}
+          style={{overflow: 'hidden'}}
         >
           <Icon
             icon={sanityValue.icon}

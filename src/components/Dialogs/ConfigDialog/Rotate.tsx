@@ -1,10 +1,5 @@
-import {Flex, Grid} from '@sanity/ui'
+import {Button, Flex, Grid, Text} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
-import Rotate180 from '../../icons/Rotate180'
-import Rotate270 from '../../icons/Rotate270'
-import Rotate90 from '../../icons/Rotate90'
-import {StyledBaseButton} from '../../shared/SharedStyledComponents'
-import {StyledHeading} from './Styled'
 
 const Rotate = () => {
   const rotate = useAppStoreContext((s) => s.rotate)
@@ -20,52 +15,51 @@ const Rotate = () => {
       align={['flex-start', 'flex-start', 'center']}
       style={{width: '100%'}}
     >
-      <StyledHeading>Rotate:</StyledHeading>
+      <Text weight='bold' size={1} style={{width: '100px'}}>
+        Rotate:
+      </Text>
       <Grid columns={[2, 2, 4]} gap={1} style={{width: '100%'}}>
-        <StyledBaseButton
+        <Button
           text='0°'
           mode={`${rotate === 0 ? 'default' : 'ghost'}`}
           tone='primary'
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%'}}
+          style={{width: '100%', cursor: 'pointer'}}
           data-value={0}
           onClick={setRotate0}
         />
-        <StyledBaseButton
-          icon={<Rotate90 width={15} height={15} />}
+        <Button
           text='90°'
           mode={`${rotate === 1 ? 'default' : 'ghost'}`}
           tone='primary'
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%'}}
+          style={{width: '100%', cursor: 'pointer'}}
           data-value={1}
           onClick={setRotate90}
         />
-        <StyledBaseButton
-          icon={<Rotate180 width={15} height={15} />}
+        <Button
           text='180°'
           mode={`${rotate === 2 ? 'default' : 'ghost'}`}
           tone='primary'
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%'}}
+          style={{width: '100%', cursor: 'pointer'}}
           data-value={2}
           onClick={setRotate180}
         />
-        <StyledBaseButton
-          icon={<Rotate270 width={15} height={15} />}
+        <Button
           text='270°'
           mode={`${rotate === 3 ? 'default' : 'ghost'}`}
           tone='primary'
           fontSize={0}
           padding={2}
           paddingX={0}
-          style={{width: '100%'}}
+          style={{width: '100%', cursor: 'pointer'}}
           data-value={3}
           onClick={setRotate270}
         />

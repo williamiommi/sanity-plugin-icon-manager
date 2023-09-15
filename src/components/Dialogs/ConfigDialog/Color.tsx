@@ -1,11 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
-import {Flex, Grid, Popover} from '@sanity/ui'
+import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
 import {useState} from 'react'
 import {useAppStoreContext} from '../../../store/context'
-import ColorBucketIcon from '../../icons/ColorBucketIcon'
-import {StyledBaseButton, StyledIconButton} from '../../shared/SharedStyledComponents'
 import ColorPicker from './ColorPicker'
-import {StyledHeading} from './Styled'
 
 const Color = () => {
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
@@ -22,18 +19,11 @@ const Color = () => {
       align={['flex-start', 'flex-start', 'center']}
       style={{width: '100%'}}
     >
-      <StyledHeading>Color:</StyledHeading>
+      <Text weight='bold' size={1} style={{width: '100px'}}>
+        Color:
+      </Text>
       <Grid columns={1} style={{width: '100%'}}>
         <Flex gap={1} align='center'>
-          <div
-            style={{
-              width: '40px',
-              height: '24px',
-              backgroundColor: color?.hex || 'currentColor',
-            }}
-          >
-            &nbsp;
-          </div>
           <Popover
             placement='top'
             fallbackPlacements={['right', 'left']}
@@ -41,23 +31,31 @@ const Color = () => {
             content={<ColorPicker onClickOutsideHandler={() => setIsColorOpen(false)} />}
             open={isColorOpen}
           >
-            <StyledIconButton
-              mode={isColorOpen ? 'default' : 'ghost'}
+            <button
+              type='button'
+              style={{
+                width: '40px',
+                height: '20px',
+                backgroundColor: color?.hex || 'currentColor',
+                cursor: 'pointer',
+                border: 'none',
+                borderRadius: '3px',
+              }}
               onClick={() => setIsColorOpen(!isColorOpen)}
-              padding='2px'
-            >
-              <ColorBucketIcon width={18} height={18} />
-            </StyledIconButton>
+            />
           </Popover>
-          <StyledBaseButton
-            text='Clear color'
-            mode='bleed'
-            tone='primary'
-            title='Set the color to "currentColor"'
-            fontSize={0}
-            padding={1}
-            onClick={clearColor}
-          />
+          {color && (
+            <Button
+              text='Clear color'
+              mode='bleed'
+              tone='primary'
+              title='Set the color to "currentColor"'
+              fontSize={0}
+              padding={1}
+              style={{cursor: 'pointer'}}
+              onClick={clearColor}
+            />
+          )}
         </Flex>
       </Grid>
     </Flex>

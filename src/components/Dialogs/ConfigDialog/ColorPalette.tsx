@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {Box, Text, Tooltip} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
-import {StyledColorPaletteBox, StyledColorPaletteWrapper} from './Styled'
+import {StyledColorPaletteBox, StyledColorPaletteWrapper} from '../../../style'
 
 interface ColorPaletteProps {}
 

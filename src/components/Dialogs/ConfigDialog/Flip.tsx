@@ -1,9 +1,7 @@
-import {Flex, Grid} from '@sanity/ui'
+import {Button, Flex, Text} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
 import HeightIcon from '../../icons/HeightIcon'
 import WidthIcon from '../../icons/WidthIcon'
-import {StyledBaseButton} from '../../shared/SharedStyledComponents'
-import {StyledHeading} from './Styled'
 
 const Flip = () => {
   const hFlip = useAppStoreContext((s) => s.hFlip)
@@ -18,9 +16,11 @@ const Flip = () => {
       align={['flex-start', 'flex-start', 'center']}
       style={{width: '100%'}}
     >
-      <StyledHeading>Flip:</StyledHeading>
-      <Grid columns={2} gap={1} style={{width: '100%'}}>
-        <StyledBaseButton
+      <Text weight='bold' size={1} style={{width: '100px'}}>
+        Flip:
+      </Text>
+      <Flex gap={1} style={{width: '100%'}}>
+        <Button
           icon={<WidthIcon width={15} height={15} />}
           title='Horizontal'
           mode={`${hFlip ? 'default' : 'ghost'}`}
@@ -28,9 +28,9 @@ const Flip = () => {
           fontSize={1}
           padding={2}
           onClick={toggleHFlip}
-          style={{width: '100%'}}
+          style={{cursor: 'pointer', width: '100%'}}
         />
-        <StyledBaseButton
+        <Button
           icon={<HeightIcon width={15} height={15} />}
           title='Vertical'
           mode={`${vFlip ? 'default' : 'ghost'}`}
@@ -38,9 +38,9 @@ const Flip = () => {
           fontSize={1}
           padding={2}
           onClick={toggleVFlip}
-          style={{width: '100%'}}
+          style={{cursor: 'pointer', width: '100%'}}
         />
-      </Grid>
+      </Flex>
     </Flex>
   )
 }

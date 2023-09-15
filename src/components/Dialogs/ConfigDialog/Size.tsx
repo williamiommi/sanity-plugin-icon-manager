@@ -1,12 +1,10 @@
-import {Flex, Grid, useTheme} from '@sanity/ui'
+import {Button, Card, Flex, Text, TextInput, useTheme} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
 import BorderIcon from '../../icons/BorderIcon'
 import HeightIcon from '../../icons/HeightIcon'
 import LinkIcon from '../../icons/LinkIcon'
 import UnlinkIcon from '../../icons/UnlinkIcon'
 import WidthIcon from '../../icons/WidthIcon'
-import {StyledIconButton} from '../../shared/SharedStyledComponents'
-import {StyledHeading, StyledSizeInput} from './Styled'
 
 const Size = () => {
   const {sanity: theme} = useTheme()
@@ -25,45 +23,58 @@ const Size = () => {
       align={['flex-start', 'flex-start', 'center']}
       style={{width: '100%'}}
     >
-      <StyledHeading>Size:</StyledHeading>
-      <Grid columns={1} gap={1} style={{width: '100%'}}>
-        <Flex align='center' gap={1}>
-          <WidthIcon
-            width={18}
-            height='100%'
-            color={theme.color.button.ghost.primary.enabled.fg}
-            style={{minWidth: '18px'}}
+      <Text weight='bold' size={1} style={{width: '100px'}}>
+        Size:
+      </Text>
+      <Flex gap={1} align='center' style={{width: '100%'}}>
+        <Card flex={1}>
+          <TextInput
+            type='number'
+            min={0}
+            value={size.width}
+            fontSize={1}
+            padding={2}
+            space={3}
+            style={{paddingLeft: '22px', paddingRight: '2px'}}
+            icon={<WidthIcon width={15} color={theme.color.button.ghost.primary.enabled.fg} />}
+            onChange={setWidth}
           />
-          <StyledSizeInput type='number' min={0} value={size.width} onChange={setWidth} />
-          <HeightIcon
-            width={18}
-            height='100%'
-            color={theme.color.button.ghost.primary.enabled.fg}
-            style={{minWidth: '18px'}}
+        </Card>
+        <Card flex={1}>
+          <TextInput
+            type='number'
+            min={0}
+            value={size.height}
+            fontSize={1}
+            padding={2}
+            style={{paddingLeft: '22px', paddingRight: '2px'}}
+            icon={<HeightIcon width={15} color={theme.color.button.ghost.primary.enabled.fg} />}
+            onChange={setHeight}
           />
-          <StyledSizeInput type='number' min={0} value={size.height} onChange={setHeight} />
-          <StyledIconButton
-            title='Constrain proportions'
-            mode={uniqueSize ? 'default' : 'ghost'}
-            onClick={toggleUniqueSize}
-            padding='4px'
-          >
-            {uniqueSize ? (
-              <LinkIcon width={14} height={14} />
-            ) : (
-              <UnlinkIcon width={14} height={14} />
-            )}
-          </StyledIconButton>
-          <StyledIconButton
-            title='Show boundaries'
-            mode={previewBorder ? 'default' : 'ghost'}
-            onClick={togglePreviewBorder}
-            padding='4px'
-          >
-            <BorderIcon width={14} height={14} />
-          </StyledIconButton>
-        </Flex>
-      </Grid>
+        </Card>
+        <Button
+          title='Constrain proportions'
+          tone='primary'
+          mode={uniqueSize ? 'default' : 'ghost'}
+          icon={
+            uniqueSize ? <LinkIcon width={14} height={14} /> : <UnlinkIcon width={14} height={14} />
+          }
+          fontSize={1}
+          padding={2}
+          style={{width: '25px', cursor: 'pointer'}}
+          onClick={toggleUniqueSize}
+        />
+        <Button
+          title='Show boundaries'
+          tone='primary'
+          mode={previewBorder ? 'default' : 'ghost'}
+          icon={<BorderIcon width={14} height={14} />}
+          fontSize={1}
+          padding={2}
+          style={{width: '25px', cursor: 'pointer'}}
+          onClick={togglePreviewBorder}
+        />
+      </Flex>
     </Flex>
   )
 }
