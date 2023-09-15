@@ -5,8 +5,8 @@ import {useAppStoreContext} from '../../../store/context'
 
 const InlineSvg = () => {
   const {onGenerateSvgHtml} = useSvgUtils()
-  const state = useAppStoreContext((s) => s)
-  const {inlineSvg, setInlineSvg} = state
+  const inlineSvg = useAppStoreContext((s) => s.inlineSvg)
+  const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
 
   const onChangeInlineSvg = async () => {
     setInlineSvg(inlineSvg ? undefined : await onGenerateSvgHtml())
