@@ -10,7 +10,7 @@ const ButtonTooltip = ({tooltipText, children}: ButtonTooltipProps) => {
   return (
     <Tooltip
       portal
-      placement='right'
+      placement='top'
       fallbackPlacements={['bottom']}
       content={
         <Card padding={2}>
