@@ -29,7 +29,7 @@ const Footer = () => {
           title='Clear Configuration'
           mode='bleed'
           tone='critical'
-          fontSize={1}
+          fontSize={2}
           style={{cursor: 'pointer'}}
           onClick={clearConfiguration}
         />
@@ -38,7 +38,7 @@ const Footer = () => {
           title='Save Configuration'
           mode='bleed'
           tone='positive'
-          fontSize={1}
+          fontSize={2}
           style={{cursor: 'pointer'}}
           onClick={saveConfiguration}
         />

@@ -22,12 +22,12 @@ const SvgButtonsBoard = ({
         tone='primary'
         href={downloadUrl}
         title='Download SVG'
-        icon={<DownloadIcon width='15px' height='15px' />}
+        icon={<DownloadIcon />}
       />
       <Button
         mode='bleed'
         tone='primary'
-        icon={<HtmlIcon width='20px' height='20px' />}
+        icon={<HtmlIcon width='25px' height='25px' />}
         title='Copy svg html to clipboard'
         style={{cursor: 'pointer'}}
         onClick={onCopyHtmlToClipboard}
@@ -35,7 +35,7 @@ const SvgButtonsBoard = ({
       <Button
         mode='bleed'
         tone='primary'
-        icon={<DataUrlIcon width='21px' height='21px' style={{paddingTop: '6px'}} />}
+        icon={<DataUrlIcon width='25px' height='25px' style={{paddingTop: '6px'}} />}
         title='Copy svg Data URL to clipboard'
         style={{cursor: 'pointer'}}
         onClick={onCopyDataUrlToClipboard}
