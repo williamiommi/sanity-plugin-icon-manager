@@ -1,16 +1,16 @@
 import {ChangeIndicator, ChangeIndicatorProps} from 'sanity'
-import S from './Styled'
+import {StyledChangeIndicatorWrapper} from '../../style'
 
 const ChangeIndicatorWrapper = (props: ChangeIndicatorProps) => {
   return (
-    <S.ChangeIndicatorWrapper>
+    <StyledChangeIndicatorWrapper>
       <ChangeIndicator
         path={props.path}
         isChanged={props.isChanged}
         hasFocus={props.hasFocus}
         withHoverEffect={props.withHoverEffect}
       />
-    </S.ChangeIndicatorWrapper>
+    </StyledChangeIndicatorWrapper>
   )
 }
 

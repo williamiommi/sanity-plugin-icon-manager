@@ -23,6 +23,18 @@ export const StyledFilterBadge = styled(Badge)`
   padding: 0;
 `
 
+export const StyledChangeIndicatorWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  * {
+    height: 100%;
+  }
+`
+
 // ###
 // COLOR PICKER UI
 // ###
