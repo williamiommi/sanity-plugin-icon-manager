@@ -12,11 +12,12 @@ const ButtonsBoard = () => {
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
 
   return (
-    <Flex direction='column' align='flex-start'>
+    <Flex direction='column'>
       <ButtonTooltip tooltipText='Show Info'>
         <Button
           mode='bleed'
           tone='primary'
+          radius={6}
           icon={<InfoOutlineIcon width={25} height={25} />}
           style={{cursor: 'pointer'}}
           onClick={openInfoDialog}
@@ -26,6 +27,7 @@ const ButtonsBoard = () => {
         <Button
           mode='bleed'
           tone='positive'
+          radius={6}
           icon={<CustomizeIcon width={19} height={19} />}
           style={{cursor: 'pointer'}}
           onClick={openConfigDialog}
@@ -36,6 +38,7 @@ const ButtonsBoard = () => {
         <Button
           mode='bleed'
           tone='primary'
+          radius={6}
           icon={<BookIcon width={25} height={25} />}
           style={{cursor: 'pointer'}}
           onClick={openSearchDialog}
@@ -46,6 +49,7 @@ const ButtonsBoard = () => {
         <Button
           mode='bleed'
           tone='critical'
+          radius={6}
           icon={<TrashIcon width={25} height={25} />}
           style={{cursor: 'pointer'}}
           onClick={openRemoveDialog}
