@@ -4,7 +4,7 @@
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
-- [🎭 Custom Diff View](-custom-diff-view)
+- [🎭 Custom Diff View](#-custom-diff-view)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
