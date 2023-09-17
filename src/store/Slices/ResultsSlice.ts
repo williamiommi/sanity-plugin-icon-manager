@@ -41,27 +41,31 @@ export const createResultsSlice: StateCreator<
   setQueryResults: (queryResults: IconifyQueryResponse) =>
     set(() => ({queryResults, currentPage: 0})),
   searchIcons: async () => {
-    if (!get().searchTerm) return
+    try {
+      if (!get().searchTerm) return
 
-    const searchParams = new URLSearchParams()
-    const keywordStyle = get().filterStyle ? ` style=${get().filterStyle}` : ''
-    const keywordPalette = get().filterPalette ? ` palette=${get().filterPalette}` : ''
-    searchParams.append('query', `${get().searchTerm}${keywordStyle}${keywordPalette}`)
-    searchParams.append('limit', get().limit.toString())
+      const searchParams = new URLSearchParams()
+      const keywordStyle = get().filterStyle ? ` style=${get().filterStyle}` : ''
+      const keywordPalette = get().filterPalette ? ` palette=${get().filterPalette}` : ''
+      searchParams.append('query', `${get().searchTerm}${keywordStyle}${keywordPalette}`)
+      searchParams.append('limit', get().limit.toString())
 
-    let results
-    const searchParamsString = searchParams.toString()
-    if (cacheResults.has(searchParamsString)) {
-      results = cacheResults.get(searchParamsString)!
-    } else {
-      cacheResults.delete(searchParamsString)
-      const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
-      results = (await res.json()) as IconifyQueryResponse
-      results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
-      cacheResults.set(searchParams.toString(), results)
+      let results
+      const searchParamsString = searchParams.toString()
+      if (cacheResults.has(searchParamsString)) {
+        results = cacheResults.get(searchParamsString)!
+      } else {
+        cacheResults.delete(searchParamsString)
+        const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
+        results = (await res.json()) as IconifyQueryResponse
+        results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
+        cacheResults.set(searchParams.toString(), results)
+      }
+      get().setQueryResults(results)
+      get().toggleFilters(false)
+    } catch (e: unknown) {
+      toastError(get().sanityToast, e)
     }
-    get().setQueryResults(results)
-    get().toggleFilters(false)
   },
   selectIcon: async (event: FormEvent<HTMLButtonElement>) => {
     try {
@@ -117,9 +121,7 @@ export const createResultsSlice: StateCreator<
         get().closeRemoveDialog()
       }
     } catch (e: any) {
-      const sanityToast = get().sanityToast
-      if (sanityToast)
-        sanityToast.push({status: 'error', title: 'Something went wrong', description: e.message})
+      toastError(get().sanityToast, e)
     }
   },
 })
