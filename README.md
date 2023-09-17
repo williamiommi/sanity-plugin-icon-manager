@@ -97,25 +97,25 @@ You can have tree different custom diff views:
 ### Icon Added
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
+  <img width="50%" src="docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
 </p>
 
 ### Icon Changed
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
+  <img width="50%" src="docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
 </p>
 
 ### Icon Removed
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
+  <img width="50%" src="docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
 </p>
 
 In any of the above cases you can always see the list of all the changes clicking on the `Show details` CTA.
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 ## 🗃️ Data model
