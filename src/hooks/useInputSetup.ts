@@ -1,16 +1,17 @@
 import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {ObjectInputProps} from 'sanity'
+import {DEFAULT_API_URL} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
 import IconifyPluginOptions from '../types/IconifyPluginOptions'
 import {IconifyType} from '../types/IconifyType'
 
 const useInputSetup = (
   objectInputProps: ObjectInputProps,
-  pluginOptions: IconifyPluginOptions,
+  pluginOptions: void | IconifyPluginOptions,
 ): void => {
   const sanityToast = useToast()
-  const setPluginOptionApiUrl = useAppStoreContext((s) => s.setPluginOptionApiUrl)
+  const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
   const setPluginOptionCustomPalette = useAppStoreContext((s) => s.setPluginOptionCustomPalette)
   const setSanityFieldPath = useAppStoreContext((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStoreContext((s) => s.setSanityValue)
@@ -48,8 +49,8 @@ const useInputSetup = (
     setSanityPathFocus(objectInputProps.onPathFocus)
     setSanityToast(sanityToast)
     setSanityUserCanEdit(!objectInputProps.readOnly)
-    setPluginOptionApiUrl(pluginOptions.apiUrl!)
-    if (pluginOptions.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
+    setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
+    if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
   }, [])
 }
 

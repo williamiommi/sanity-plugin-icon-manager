@@ -8,7 +8,7 @@ import IconifyInputComponent from './App'
 
 const IconifyInputComponentWrapper = (
   objectInputProps: ObjectInputProps<IconifyType>,
-  pluginOptions: IconifyPluginOptions,
+  pluginOptions: void | IconifyPluginOptions,
 ) => {
   const {sanity: theme} = useTheme()
   return (

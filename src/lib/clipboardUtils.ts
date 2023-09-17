@@ -5,7 +5,14 @@ import {toastError, toastSuccess} from './toastUtils'
 
 type AppStoreTypePartial = Pick<
   AppStoreType,
-  'sanityValue' | 'hFlip' | 'vFlip' | 'rotate' | 'size' | 'color' | 'sanityToast' | 'apiUrl'
+  | 'sanityValue'
+  | 'hFlip'
+  | 'vFlip'
+  | 'rotate'
+  | 'size'
+  | 'color'
+  | 'sanityToast'
+  | 'iconifyEndpoint'
 >
 
 export const copy2Clipboard = async (

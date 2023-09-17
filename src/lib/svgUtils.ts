@@ -8,7 +8,14 @@ import {toastError} from './toastUtils'
 
 type AppStoreTypePartial = Pick<
   AppStoreType,
-  'sanityValue' | 'hFlip' | 'vFlip' | 'rotate' | 'size' | 'color' | 'sanityToast' | 'apiUrl'
+  | 'sanityValue'
+  | 'hFlip'
+  | 'vFlip'
+  | 'rotate'
+  | 'size'
+  | 'color'
+  | 'sanityToast'
+  | 'iconifyEndpoint'
 >
 
 const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisations) => {
@@ -59,14 +66,14 @@ const generateInitialSearchParams = (download: boolean = false): string => {
   return searchParams.toString()
 }
 
-export const generateInitialSvgHttpUrl = (apiUrl: string, icon: string): string => {
+export const generateInitialSvgHttpUrl = (iconifyEndpoint: string, icon: string): string => {
   const searchParams = generateInitialSearchParams()
-  return `${apiUrl}/${icon}.svg?${searchParams}`
+  return `${iconifyEndpoint}/${icon}.svg?${searchParams}`
 }
 
-export const generateInitialSvgDownloadUrl = (apiUrl: string, icon: string): string => {
+export const generateInitialSvgDownloadUrl = (iconifyEndpoint: string, icon: string): string => {
   const searchParams = generateInitialSearchParams(true)
-  return `${apiUrl}/${icon}.svg?${searchParams}`
+  return `${iconifyEndpoint}/${icon}.svg?${searchParams}`
 }
 
 export const generateSvgHttpUrl = (
@@ -78,7 +85,7 @@ export const generateSvgHttpUrl = (
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, false)
-    return `${appState.apiUrl}/${icon}.svg${searchParams}`
+    return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(appState.sanityToast, e)
     return '#'
@@ -94,7 +101,7 @@ export const generateSvgDownloadUrl = (
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, true)
-    return `${appState.apiUrl}/${icon}.svg${searchParams}`
+    return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(appState.sanityToast, e)
     return '#'

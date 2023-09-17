@@ -55,7 +55,7 @@ export const createResultsSlice: StateCreator<
       results = cacheResults.get(searchParamsString)!
     } else {
       cacheResults.delete(searchParamsString)
-      const res = await fetch(`${get().apiUrl}/search?${searchParams.toString()}`)
+      const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
       results = (await res.json()) as IconifyQueryResponse
       results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
       cacheResults.set(searchParams.toString(), results)
@@ -76,8 +76,8 @@ export const createResultsSlice: StateCreator<
         patches.push(
           patchSet(
             {
-              downloadUrl: generateInitialSvgDownloadUrl(get().apiUrl!, value!),
-              url: generateInitialSvgHttpUrl(get().apiUrl!, value!),
+              downloadUrl: generateInitialSvgDownloadUrl(get().iconifyEndpoint!, value!),
+              url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, value!),
               collectionId: iconInfo[0],
               collectionName: collection?.name || '',
               iconName: iconInfo[1],

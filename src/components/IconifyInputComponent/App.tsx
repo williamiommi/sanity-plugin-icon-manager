@@ -15,7 +15,7 @@ import SearchDialog from '../Dialogs/SearchDialog'
 
 interface IconifyInputComponentProps {
   objectInputProps: ObjectInputProps<IconifyType>
-  pluginOptions: IconifyPluginOptions
+  pluginOptions: void | IconifyPluginOptions
 }
 
 const IconifyInputComponent = ({objectInputProps, pluginOptions}: IconifyInputComponentProps) => {

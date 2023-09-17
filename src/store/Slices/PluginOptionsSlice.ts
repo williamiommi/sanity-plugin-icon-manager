@@ -3,9 +3,9 @@ import {isValidHex} from '../../lib/colorUtils'
 import {PluginCustomColor, PluginCustomPalette} from '../../types/IconifyPluginOptions'
 
 export interface PluginOptionsSlice {
-  apiUrl?: string
+  iconifyEndpoint?: string
   customPalette?: PluginCustomColor[]
-  setPluginOptionApiUrl: (apiUrl: string) => void
+  setIconifyEndpoint: (iconifyEndpoint: string) => void
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => void
 }
 
@@ -15,7 +15,7 @@ export const createPluginOptionsSlice: StateCreator<
   [],
   PluginOptionsSlice
 > = (set) => ({
-  setPluginOptionApiUrl: (apiUrl: string) => set(() => ({apiUrl})),
+  setIconifyEndpoint: (iconifyEndpoint: string) => set(() => ({iconifyEndpoint})),
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => {
     if (!customPalette) return // do nothing
     const paletteSet = new Set()

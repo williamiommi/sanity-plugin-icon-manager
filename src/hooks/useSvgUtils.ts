@@ -9,30 +9,39 @@ const useSvgUtils = () => {
   const rotate = useAppStoreContext((s) => s.rotate)
   const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)
-  const apiUrl = useAppStoreContext((s) => s.apiUrl)
+  const iconifyEndpoint = useAppStoreContext((s) => s.iconifyEndpoint)
   const sanityToast = useAppStoreContext((s) => s.sanityToast)
 
   const onGenerateSvgHtml = () => {
-    return generateSvgHtml({sanityValue, hFlip, vFlip, rotate, size, color, apiUrl, sanityToast})
+    return generateSvgHtml({
+      sanityValue,
+      hFlip,
+      vFlip,
+      rotate,
+      size,
+      color,
+      iconifyEndpoint,
+      sanityToast,
+    })
   }
 
   const onGenerateSvgDownloadUrl = (original?: boolean) => {
     return generateSvgDownloadUrl(
-      {sanityValue, hFlip, vFlip, rotate, size, color, apiUrl, sanityToast},
+      {sanityValue, hFlip, vFlip, rotate, size, color, iconifyEndpoint, sanityToast},
       original,
     )
   }
 
   const onCopyHtmlToClipboard = (original?: boolean) => {
     copyHtmlToClipboard(
-      {sanityValue, hFlip, vFlip, rotate, size, color, apiUrl, sanityToast},
+      {sanityValue, hFlip, vFlip, rotate, size, color, iconifyEndpoint, sanityToast},
       original,
     )
   }
 
   const onCopyDataUrlToClipboard = (original?: boolean) => {
     copyDataUrlToClipboard(
-      {sanityValue, hFlip, vFlip, rotate, size, color, apiUrl, sanityToast},
+      {sanityValue, hFlip, vFlip, rotate, size, color, iconifyEndpoint, sanityToast},
       original,
     )
   }

@@ -9,7 +9,7 @@ import {IconifyType} from '../../../types/IconifyType'
 import extraFields from './extra.fields'
 import IconifyMetadata from './metadata'
 
-const Iconify = (pluginOptions: IconifyPluginOptions): any =>
+const Iconify = (pluginOptions: void | IconifyPluginOptions): any =>
   defineType({
     type: 'object',
     name: IconifyMetadata.name,

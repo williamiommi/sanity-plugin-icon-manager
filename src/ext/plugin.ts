@@ -1,22 +1,18 @@
-import {disableCache} from '@iconify-icon/react'
+import {disableCache, enableCache} from '@iconify-icon/react'
 import {definePlugin} from 'sanity'
-import {DEFAULT_API_URL} from '../lib/constants'
 import IconifyTestDocument from '../schemas/documents/iconify.test.document'
 import Iconify from '../schemas/objects/Iconify'
 import IconifyPluginOptions from '../types/IconifyPluginOptions'
 
-export const IconifyPlugin = definePlugin<IconifyPluginOptions>((config?: IconifyPluginOptions) => {
+export const IconifyPlugin = definePlugin<void | IconifyPluginOptions>((config) => {
   // disable iconify cache
   disableCache('all')
+  enableCache('session')
 
-  const pluginConfig: IconifyPluginOptions = {
-    ...config,
-    apiUrl: config?.apiUrl || DEFAULT_API_URL,
-  }
   return {
     name: `sanity-plugin-iconify`,
     schema: {
-      types: [Iconify(pluginConfig), IconifyTestDocument],
+      types: [Iconify(config), IconifyTestDocument],
     },
   }
 })
