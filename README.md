@@ -1,9 +1,12 @@
 # Iconify Plugin
 
+A Sanity plugin to select, manage and customize icons based on and powered by the amazing [iconify project](https://iconify.design/)
+
 - [⚡️ Features](#%EF%B8%8F-features)
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
+- [👀 Document List Preview](#-document-list-preview)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
@@ -67,7 +70,7 @@ const SampleDocument = defineType({
   ],
 })
 
-export default IconifyDocument
+export default SampleDocument
 ```
 
 ## ⚙️ Plugin Configuration
@@ -89,6 +92,49 @@ This is the main configuration of the plugin, and the available options are as f
   ]
 }
 ```
+
+## 👀 Document List Preview
+
+The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.
+You can pass a second argument (a `true` boolean value) to the function if you want to see always the original icon.
+
+```ts
+import {defineField, defineType} from 'sanity'
+import {mediaPreview} from 'sanity-plugin-iconify'
+
+const SampleDocument = defineType({
+  type: 'document',
+  name: 'sampleDocument',
+  title: 'Sample Document',
+  preview: {
+    select: {
+      // ...
+      icon: 'icon'
+    },
+    prepare({icon, ...rest}) {
+      return {
+        // ...rest
+        media: mediaPreview(icon)
+      }
+    }
+  }
+  fields: [
+    // ...
+    defineField({
+      type: 'iconify',
+      name: 'icon',
+      title: 'Icon',
+    }),
+    // ...
+  ],
+})
+
+export default SampleDocument
+```
+
+<p align="center">
+  <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
+</p>
 
 ## 🎨 Custom Color Palette
 
@@ -237,3 +283,7 @@ Semantic release will only release on configured branches, so it is safe to run 
 # una nota sulla sessione, magari da rendere opzionale?
 
 # rendere opzionale anche lo store inline dell'icona? se metti a true sarà sempre settato a true, ma puoi decheccarlo se vuoi sulla singola icona. Oppure anche come opzione sul field (piu complicato quest'ultimo).
+
+```
+
+```
