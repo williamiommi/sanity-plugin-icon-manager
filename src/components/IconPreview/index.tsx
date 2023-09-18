@@ -18,7 +18,19 @@ const IconPreview = ({
   height = 50,
   hideText = false,
 }: IconPreviewProps) => {
-  if (icon) return <Icon icon={icon} width={width} height={height} />
+  if (icon)
+    return (
+      <Icon
+        icon={icon}
+        width={width}
+        height={height}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      />
+    )
 
   if (!value?.icon) return null
 
