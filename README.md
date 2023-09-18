@@ -4,6 +4,7 @@
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
+- [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [📝 License](#-license)
@@ -88,6 +89,60 @@ This is the main configuration of the plugin, and the available options are as f
   ]
 }
 ```
+
+## 🎨 Custom Color Palette
+
+You can pass a list of custom colors to fill your monochrome icons with your brand identity.
+You need to provide a list of valid hex colors (with an optional title).
+As a result, you will have access to these colors within the color picker, available when you customize a monochrome icon.
+
+```ts
+import {defineConfig} from 'sanity'
+import {IconifyPlugin} from 'sanity-plugin-iconify'
+
+export default defineConfig({
+  //...
+  plugins: [
+    IconifyPlugin({
+      customPalette: [
+        {
+          hex: '#AB87FF',
+          title: 'Tropical Indigo',
+        },
+        {
+          hex: '#B4E1FF',
+          title: 'Uranian Blue',
+        },
+        {
+          hex: '#F49E4C',
+          title: 'Sandy brown',
+        },
+        {
+          hex: '#2D728F',
+          title: 'Cerulean',
+        },
+        {
+          hex: '#C14953',
+          title: 'Bittersweet shimmer',
+        },
+        {
+          hex: '#AEA4BF',
+          title: 'Rose quartz',
+        },
+        {
+          hex: '#02C39A',
+          title: 'Mint',
+        },
+      ],
+    }),
+  ],
+  // ...
+})
+```
+
+<p align="left">
+  <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
+</p>
 
 ## 🎭 Custom Diff View
 
