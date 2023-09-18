@@ -30,7 +30,6 @@ const ColorPalette = (props: ColorPaletteProps) => {
           <StyledColorPaletteBox
             key={currColor.hex}
             bgColor={currColor.hex}
-            title={currColor.title}
             onClick={() => setColor(currColor.hex)}
           />
         </Tooltip>
