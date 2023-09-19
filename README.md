@@ -1,6 +1,6 @@
 # Iconify Plugin
 
-A Sanity plugin to select, manage and customize icons based on and powered by the amazing [iconify project](https://iconify.design/)
+A Sanity plugin to select, manage and customize icons. Powered by [Iconify](https://iconify.design/)
 
 - [⚡️ Features](#%EF%B8%8F-features)
 - [🔌 Installation](#-installation)
@@ -234,7 +234,7 @@ export default defineConfig({
 ## 🎭 Custom Diff View
 
 The plugin comes with a [custom diff component](https://www.sanity.io/docs/custom-diff-components) that lets you see the differences in a more human-readable way.
-You can have tree different custom diff views:
+You can have three different custom diff views:
 
 ### Icon Added
 
@@ -275,7 +275,8 @@ In any of the above cases you can always see the list of all the changes clickin
       inlineSvg: string
       hFlip: boolean
       vFlip: boolean
-      rotate: number
+      flip: 'horizontal' | 'vertical' | 'horizontal,vertical'
+      rotate: 0 | 1 | 2 | 3
       size: {
         width: number
         height: number
@@ -300,6 +301,55 @@ In any of the above cases you can always see the list of all the changes clickin
       }
     }
   }
+```
+
+## 🎬 How to render the icon on your website
+
+Regardless of how you retrieve data from Sanity, you can render the icon in different ways.\
+You can use the inline option to render the SVG directly. Alternatively, Iconify provides various rendering possibilities:
+
+- [React](https://iconify.design/docs/icon-components/react/)
+- [Vue](https://iconify.design/docs/icon-components/vue/)
+- [Svelte](https://iconify.design/docs/icon-components/svelte/)
+- [More...](https://iconify.design/docs/usage/)
+
+Here an example with the React package:
+
+```ts
+// Let's assume that we have retrieved the following data from Sanity
+
+{
+  icon: 'bi:check2-circle',
+  metadata: {
+    flip: 'horizontal',
+    size: {
+      width: 20,
+      height: 20,
+    },
+    rotate: 0,
+    color: {
+      hex: '#6aceeb'
+    }
+  }
+}
+
+------------------------------------------------------------------------------------
+
+import {Icon} from '@iconify-icon/react'
+
+const MyComponent = (props) => {
+  const {icon, metadata: {flip, rotate, size, color} } = props
+  return (
+    <Icon
+      icon={icon}
+      flip={flip}
+      rotate={rotate}
+      width={size.width}
+      height={size.height}
+      style={{color: color.hex}}
+    />
+  )
+}
 ```
 
 ## 📝 License
