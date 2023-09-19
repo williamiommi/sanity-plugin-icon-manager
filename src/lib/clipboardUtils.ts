@@ -1,19 +1,6 @@
 import {ToastContextValue} from '@sanity/ui'
-import {AppStoreType} from '../store/context'
-import {generateSvgDataUrl, generateSvgHtml} from './svgUtils'
+import {AppStoreTypePartial, generateSvgDataUrl, generateSvgHtml} from './svgUtils'
 import {toastError, toastSuccess} from './toastUtils'
-
-type AppStoreTypePartial = Pick<
-  AppStoreType,
-  | 'sanityValue'
-  | 'hFlip'
-  | 'vFlip'
-  | 'rotate'
-  | 'size'
-  | 'color'
-  | 'sanityToast'
-  | 'iconifyEndpoint'
->
 
 export const copy2Clipboard = async (
   text: string,

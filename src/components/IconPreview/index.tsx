@@ -1,6 +1,5 @@
 import {Icon} from '@iconify-icon/react'
 import {Flex, Text} from '@sanity/ui'
-import {getFlipValue} from '../../lib/iconifyUtils'
 import {IconifyType} from '../../types/IconifyType'
 
 interface IconPreviewProps {
@@ -35,14 +34,14 @@ const IconPreview = ({
   if (!value?.icon) return null
 
   const {
-    metadata: {hFlip, vFlip, rotate, color, size},
+    metadata: {flip, rotate, color, size},
   } = value
 
   return (
     <Flex direction='column' align='center' justify='center' gap={2}>
       <Icon
         icon={value.icon}
-        {...((hFlip || vFlip) && {flip: getFlipValue(hFlip, vFlip)})}
+        {...(flip && {flip})}
         {...(rotate && {rotate})}
         style={{
           display: 'flex',

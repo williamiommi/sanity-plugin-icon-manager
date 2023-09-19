@@ -3,14 +3,14 @@ import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import DomPurify from 'dompurify'
 import {AppStoreType} from '../store/context'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from './constants'
-import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
 
-type AppStoreTypePartial = Pick<
+export type AppStoreTypePartial = Pick<
   AppStoreType,
   | 'sanityValue'
   | 'hFlip'
   | 'vFlip'
+  | 'flip'
   | 'rotate'
   | 'size'
   | 'color'
@@ -46,8 +46,7 @@ const generateSearchParams = (
     if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
     if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
     if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
-    const flipValue = getFlipValue(appState.hFlip, appState.vFlip)
-    if (flipValue) searchParams.append('flip', flipValue)
+    if (appState.flip) searchParams.append('flip', appState.flip)
     if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
   }
   if (download) {

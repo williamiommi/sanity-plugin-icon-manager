@@ -10,7 +10,7 @@ const Preview = () => {
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
-  const flip = useAppStoreContext((s) => s.getFlipValue())
+  const flip = useAppStoreContext((s) => s.flip)
   const rotate = useAppStoreContext((s) => s.rotate)
   const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)

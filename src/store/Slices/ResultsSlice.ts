@@ -88,6 +88,7 @@ export const createResultsSlice: StateCreator<
               size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
               hFlip: false,
               vFlip: false,
+              flip: '',
               rotate: 0,
               palette: collection?.palette,
               author: {

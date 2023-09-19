@@ -34,6 +34,7 @@ export type IconifyType = {
     size: IconifySize
     hFlip: boolean
     vFlip: boolean
+    flip: string
     rotate: number
     color?: IconifyColor
   }
