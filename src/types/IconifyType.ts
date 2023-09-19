@@ -34,7 +34,7 @@ export type IconifyType = {
     size: IconifySize
     hFlip: boolean
     vFlip: boolean
-    flip: string
+    flip: 'horizontal' | 'vertical' | 'horizontal,vertical'
     rotate: 0 | 1 | 2 | 3
     color?: IconifyColor
   }
