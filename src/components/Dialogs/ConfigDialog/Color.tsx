@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 import {useAppStoreContext} from '../../../store/context'
 import ColorPicker from './ColorPicker'
 
@@ -9,6 +9,7 @@ const Color = () => {
   const color = useAppStoreContext((s) => s.color)
   const clearColor = useAppStoreContext((s) => s.clearColor)
   const [isColorOpen, setIsColorOpen] = useState(false)
+  const ref = useRef(null)
 
   if (!sanityValue || sanityValue.metadata.palette) return null
 
@@ -18,6 +19,7 @@ const Color = () => {
       gap={[2, 2, 1]}
       align={['flex-start', 'flex-start', 'center']}
       style={{width: '100%'}}
+      ref={ref}
     >
       <Text weight='bold' size={1} style={{width: '100px'}}>
         Color:
@@ -25,11 +27,12 @@ const Color = () => {
       <Grid columns={1} style={{width: '100%'}}>
         <Flex gap={1} align='center'>
           <Popover
-            placement='top'
-            fallbackPlacements={['right', 'left']}
+            placement='right'
+            fallbackPlacements={['top', 'left']}
             portal
             content={<ColorPicker onClickOutsideHandler={() => setIsColorOpen(false)} />}
             open={isColorOpen}
+            referenceBoundary={ref.current} // required to fix an issue (color picker not visible) with popover coming from potable text
           >
             <button
               type='button'
