@@ -7,9 +7,11 @@ A Sanity plugin to select, manage and customize icons based on and powered by th
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
 - [👀 Document List Preview](#-document-list-preview)
+- [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
+- [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
 
@@ -20,8 +22,8 @@ A Sanity plugin to select, manage and customize icons based on and powered by th
 - Store the svg code in Sanity
 - Media preview component for your entry
 - Download or copy to clipboard your icon
+- Presence and Change Indicator preserved
 - Custom Diff View
-- Custom Preview Component
 - Provide your own color palette for monochrome icons
 - Basic API Hosting
 
@@ -134,6 +136,45 @@ export default SampleDocument
 
 <p align="center">
   <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
+</p>
+
+## 🧩 Add Icons to Portable Text
+
+You can easily use the plugin inside your Portable Text both for inline or block components. The preview will shows the rendered icon and the related name.
+
+```ts
+import {defineField, defineType} from 'sanity'
+
+const SampleDocument = defineType({
+  type: 'document',
+  name: 'sampleDocument',
+  title: 'Sample Document',
+  fields: [
+    // ...
+    defineField({
+      name: 'body',
+      type: 'array',
+      title: 'Body',
+      of: [
+        {
+          type: 'block',
+          of: [{type: IconifyMetadata.name, title: 'Iconify Inline'}],
+        },
+        {
+          type: IconifyMetadata.name,
+          title: 'Iconify Block',
+        },
+      ],
+    }),
+    // ...
+  ],
+})
+
+export default SampleDocument
+```
+
+<p align="center">
+  <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
 
 ## 🎨 Custom Color Palette
