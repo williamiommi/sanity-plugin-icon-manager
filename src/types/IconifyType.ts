@@ -35,7 +35,7 @@ export type IconifyType = {
     hFlip: boolean
     vFlip: boolean
     flip: string
-    rotate: number
+    rotate: 0 | 1 | 2 | 3
     color?: IconifyColor
   }
 }
