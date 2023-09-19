@@ -158,10 +158,10 @@ const SampleDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: IconifyMetadata.name, title: 'Iconify Inline'}],
+          of: [{type: 'iconify', title: 'Iconify Inline'}],
         },
         {
-          type: IconifyMetadata.name,
+          type: 'iconify',
           title: 'Iconify Block',
         },
       ],
