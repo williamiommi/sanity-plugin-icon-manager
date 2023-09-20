@@ -23,33 +23,17 @@ const IconifyDocument = defineType({
       of: [{type: IconifyMetadata.name}],
     }),
     defineField({
-      type: 'iconPicker',
-      name: 'iconPicker',
-    }),
-    defineField({
+      name: 'content',
       type: 'array',
-      name: 'iconPickerFieldArray',
-      of: [{type: 'iconPicker'}],
-    }),
-    defineField({
-      type: 'array',
-      name: 'testArray',
+      title: 'Content',
       of: [
         {
-          type: 'object',
-          name: 'testTest',
-          fields: [
-            defineField({
-              type: 'string',
-              name: 'test',
-              title: 'Test',
-            }),
-            defineField({
-              type: 'string',
-              name: 'test2',
-              title: 'Test2',
-            }),
-          ],
+          type: 'block',
+          of: [{type: IconifyMetadata.name, title: 'Iconify Inline'}],
+        },
+        {
+          type: IconifyMetadata.name,
+          title: 'Iconify Block',
         },
       ],
     }),
