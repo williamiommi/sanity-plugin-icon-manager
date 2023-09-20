@@ -103,7 +103,7 @@ This is the main configuration of the plugin. The available options are:
 
 ## 👀 Document List Preview
 
-The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.
+The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.\
 You can pass a second argument (a `true` boolean value) to the function if you want to see always the original icon.
 
 ```ts
@@ -186,7 +186,7 @@ export default SampleDocument
 ## 🎨 Custom Color Palette
 
 You can pass a list of custom colors to fill your monochrome icons with your brand identity.
-You need to provide a list of valid hex colors (with an optional title).
+You need to provide a list of valid hex colors (with an optional title).\
 As a result, you will have access to these colors within the color picker when customizing a monochrome icon.
 
 ```ts
@@ -268,7 +268,7 @@ In any of the above cases you can always see the list of all the changes clickin
 
 ## 🌎 Basic Hosting
 
-The Iconify project allows you to host the API on your server. You can learn more about it in their [official documentation](https://iconify.design/docs/api/hosting.html)
+The Iconify project allows you to host the API on your server. You can learn more about it in their [official documentation](https://iconify.design/docs/api/hosting.html).\
 This plugin offers a basic customization through the `customEndpoint` option. If you pass a valid URL, hosting a custom Iconify implementation, the plugin will use it as the base path for all the interactions (searching and rendering).
 
 ```ts
