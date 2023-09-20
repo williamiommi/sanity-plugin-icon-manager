@@ -164,11 +164,11 @@ const SampleDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: 'icon.manager', title: 'Icon Inline'}],
+          of: [{type: 'icon.manager', title: 'Inline Icon'}],
         },
         {
           type: 'icon.manager',
-          title: 'Icon Block',
+          title: 'Block Icon',
         },
       ],
     }),
