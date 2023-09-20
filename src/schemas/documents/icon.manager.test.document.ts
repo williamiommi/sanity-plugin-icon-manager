@@ -1,10 +1,10 @@
 import {defineField, defineType} from 'sanity'
-import IconifyMetadata from '../objects/Iconify/metadata'
+import IconManagerMetadata from '../objects/IconManager/metadata'
 
-const IconifyDocument = defineType({
+const IconManagerTestDocument = defineType({
   type: 'document',
-  name: 'iconify.test',
-  title: 'Iconify Test',
+  name: 'icon.manager.test',
+  title: 'Icon Manager Test',
   fields: [
     defineField({
       type: 'string',
@@ -12,15 +12,15 @@ const IconifyDocument = defineType({
       title: 'Test',
     }),
     defineField({
-      type: IconifyMetadata.name,
+      type: IconManagerMetadata.name,
       name: 'icon',
       title: 'Icon',
       description: 'This is a description',
     }),
     defineField({
       type: 'array',
-      name: 'iconifyFieldArray',
-      of: [{type: IconifyMetadata.name}],
+      name: 'iconManagerFieldArray',
+      of: [{type: IconManagerMetadata.name}],
     }),
     defineField({
       name: 'content',
@@ -29,15 +29,15 @@ const IconifyDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: IconifyMetadata.name, title: 'Iconify Inline'}],
+          of: [{type: IconManagerMetadata.name, title: 'Inline Icon'}],
         },
         {
-          type: IconifyMetadata.name,
-          title: 'Iconify Block',
+          type: IconManagerMetadata.name,
+          title: 'Block Icon',
         },
       ],
     }),
   ],
 })
 
-export default IconifyDocument
+export default IconManagerTestDocument

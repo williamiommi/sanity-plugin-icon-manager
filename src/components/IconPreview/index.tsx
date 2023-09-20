@@ -1,9 +1,9 @@
-import {Icon} from '@iconify-icon/react'
+import {Icon} from '@iconify/react'
 import {Flex, Text} from '@sanity/ui'
-import {IconifyType} from '../../types/IconifyType'
+import {IconManagerType} from '../../types/IconManagerType'
 
 interface IconPreviewProps {
-  value?: IconifyType
+  value?: IconManagerType
   icon?: string
   width?: string | number
   height?: string | number

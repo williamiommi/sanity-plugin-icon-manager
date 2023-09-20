@@ -1,6 +1,6 @@
 import {StateCreator} from 'zustand'
 import {isValidHex} from '../../lib/colorUtils'
-import {PluginCustomColor, PluginCustomPalette} from '../../types/IconifyPluginOptions'
+import {PluginCustomColor, PluginCustomPalette} from '../../types/IconManagerPluginOptions'
 
 export interface PluginOptionsSlice {
   iconifyEndpoint?: string

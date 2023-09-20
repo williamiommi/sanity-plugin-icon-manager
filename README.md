@@ -20,6 +20,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
+  <br /><br />
 
 ## ⚡️ Features
 
@@ -33,11 +34,15 @@ Powered by [Iconify](https://iconify.design/)
 - Provide your own color palette for monochrome icons
 - Basic API Hosting
 
+<br /><br />
+
 ## 🔌 Installation
 
 ```sh
 npm install sanity-plugin-icon-manager
 ```
+
+<br /><br />
 
 ## 🧑‍💻 Usage
 
@@ -45,12 +50,12 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-icon-manager'
+import {IconManager} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
   plugins: [
-    IconifyPlugin({
+    IconManager({
       // your optional configuration here
     }),
   ],
@@ -58,7 +63,7 @@ export default defineConfig({
 })
 ```
 
-The plugin introduces one new object type called: `iconify`. You can define a new field with this type inside your documents.
+The plugin introduces one new object type called: `icon.manager`. You can define a new field with this type inside your documents.
 
 ```ts
 import {defineField, defineType} from 'sanity'
@@ -70,7 +75,7 @@ const SampleDocument = defineType({
   fields: [
     // ...
     defineField({
-      type: 'iconify',
+      type: 'icon.manager',
       name: 'icon',
       title: 'Icon',
     }),
@@ -80,6 +85,8 @@ const SampleDocument = defineType({
 
 export default SampleDocument
 ```
+
+<br /><br />
 
 ## ⚙️ Plugin Configuration
 
@@ -101,9 +108,11 @@ This is the main configuration of the plugin. The available options are:
 }
 ```
 
+<br /><br />
+
 ## 👀 Document List Preview
 
-The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.
+The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.\
 You can pass a second argument (a `true` boolean value) to the function if you want to see always the original icon.
 
 ```ts
@@ -129,7 +138,7 @@ const SampleDocument = defineType({
   fields: [
     // ...
     defineField({
-      type: 'iconify',
+      type: 'icon.manager',
       name: 'icon',
       title: 'Icon',
     }),
@@ -143,6 +152,8 @@ export default SampleDocument
 <p align="center">
   <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
 </p>
+
+<br /><br />
 
 ## 🧩 Add Icons to Portable Text
 
@@ -164,11 +175,11 @@ const SampleDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: 'iconify', title: 'Iconify Inline'}],
+          of: [{type: 'icon.manager', title: 'Inline Icon'}],
         },
         {
-          type: 'iconify',
-          title: 'Iconify Block',
+          type: 'icon.manager',
+          title: 'Block Icon',
         },
       ],
     }),
@@ -183,20 +194,22 @@ export default SampleDocument
   <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
 
+<br /><br />
+
 ## 🎨 Custom Color Palette
 
 You can pass a list of custom colors to fill your monochrome icons with your brand identity.
-You need to provide a list of valid hex colors (with an optional title).
+You need to provide a list of valid hex colors (with an optional title).\
 As a result, you will have access to these colors within the color picker when customizing a monochrome icon.
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-icon-manager'
+import {IconManager} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
   plugins: [
-    IconifyPlugin({
+    IconManager({
       customPalette: [
         {
           hex: '#AB87FF',
@@ -237,6 +250,8 @@ export default defineConfig({
   <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
 </p>
 
+<br /><br />
+
 ## 🎭 Custom Diff View
 
 The plugin includes a [custom diff component](https://www.sanity.io/docs/custom-diff-components) that allows you to view differences in a more human-readable way.
@@ -266,19 +281,21 @@ In any of the above cases you can always see the list of all the changes clickin
   <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
+<br /><br />
+
 ## 🌎 Basic Hosting
 
-The Iconify project allows you to host the API on your server. You can learn more about it in their [official documentation](https://iconify.design/docs/api/hosting.html)
+The Iconify project allows you to host the API on your server. You can learn more about it in their [official documentation](https://iconify.design/docs/api/hosting.html).\
 This plugin offers a basic customization through the `customEndpoint` option. If you pass a valid URL, hosting a custom Iconify implementation, the plugin will use it as the base path for all the interactions (searching and rendering).
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-icon-manager'
+import {IconManager} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
   plugins: [
-    IconifyPlugin({
+    IconManager({
       customEndpoint: 'https://my.iconify.project.com',
     }),
   ],
@@ -286,11 +303,13 @@ export default defineConfig({
 })
 ```
 
+<br /><br />
+
 ## 🗃️ Data model
 
 ```ts
   {
-    _type: 'iconify',
+    _type: 'icon.manager',
     icon: string
     metadata: {
       iconName: string
@@ -329,6 +348,8 @@ export default defineConfig({
   }
 ```
 
+<br /><br />
+
 ## 🎬 How to render the icon on your website
 
 Regardless of how you retrieve data from Sanity, you can render the icon in different ways.\
@@ -361,7 +382,7 @@ Here an example with the React package:
 
 ------------------------------------------------------------------------------------
 
-import {Icon} from '@iconify-icon/react'
+import {Icon} from '@iconify/react'
 
 const MyComponent = (props) => {
   const {icon, metadata: {flip, rotate, size, color} } = props
@@ -377,6 +398,8 @@ const MyComponent = (props) => {
   )
 }
 ```
+
+<br /><br />
 
 ## 📝 License
 

@@ -1,4 +1,4 @@
-export default interface IconifyQueryRequest {
+export default interface IconManagerQueryRequest {
   query: string
   limit?: number
   start?: number

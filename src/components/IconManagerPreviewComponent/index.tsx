@@ -1,10 +1,10 @@
 import {PreviewProps} from 'sanity'
-import {IconifyType} from '../../types/IconifyType'
+import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
-export type IconifyPreviewComponentProps = PreviewProps & IconifyType
+export type IconManagerPreviewComponentProps = PreviewProps & IconManagerType
 
-const IconifyPreviewComponent = (props: IconifyPreviewComponentProps) => {
+const IconManagerPreviewComponent = (props: IconManagerPreviewComponentProps) => {
   if (props.isPlaceholder || !props.icon) return props.renderDefault(props)
 
   return props.renderDefault({
@@ -21,4 +21,4 @@ const IconifyPreviewComponent = (props: IconifyPreviewComponentProps) => {
   })
 }
 
-export default IconifyPreviewComponent
+export default IconManagerPreviewComponent

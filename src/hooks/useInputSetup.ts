@@ -3,12 +3,12 @@ import {useEffect} from 'react'
 import {ObjectInputProps} from 'sanity'
 import {DEFAULT_API_URL} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
-import IconifyPluginOptions from '../types/IconifyPluginOptions'
-import {IconifyType} from '../types/IconifyType'
+import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
+import {IconManagerType} from '../types/IconManagerType'
 
 const useInputSetup = (
   objectInputProps: ObjectInputProps,
-  pluginOptions: void | IconifyPluginOptions,
+  pluginOptions: void | IconManagerPluginOptions,
 ): void => {
   const sanityToast = useToast()
   const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
@@ -27,7 +27,7 @@ const useInputSetup = (
   const setColor = useAppStoreContext((s) => s.setColor)
 
   useEffect(() => {
-    const value = objectInputProps.value as IconifyType
+    const value = objectInputProps.value as IconManagerType
 
     // setup sanity slice
     setSanityValue(value)

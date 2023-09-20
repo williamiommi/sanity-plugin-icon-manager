@@ -5,7 +5,7 @@ export type PluginCustomColor = {
 
 export type PluginCustomPalette = (string | PluginCustomColor)[]
 
-export default interface IconifyPluginOptions {
+export default interface IconManagerPluginOptions {
   customEndpoint?: string
   customPalette?: PluginCustomPalette
 }

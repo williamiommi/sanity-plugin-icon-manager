@@ -1,4 +1,4 @@
-import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify-icon/react'
+import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify/react'
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import DomPurify from 'dompurify'
 import {AppStoreType} from '../store/context'

@@ -1,6 +1,6 @@
-import IconifyTestDocument from './documents/iconify.test.document'
-import Iconify from './objects/Iconify'
+import IconManagerTestDocument from './documents/icon.manager.test.document'
+import IconManagerObject from './objects/IconManager'
 
-const schemaTypes = [Iconify, IconifyTestDocument]
+const schemaTypes = [IconManagerObject, IconManagerTestDocument]
 
 export default schemaTypes

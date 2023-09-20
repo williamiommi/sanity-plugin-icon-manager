@@ -1,16 +1,16 @@
 import {definePlugin} from 'sanity'
-import iconifySetup from '../lib/iconifySetup'
-import IconifyTestDocument from '../schemas/documents/iconify.test.document'
-import Iconify from '../schemas/objects/Iconify'
-import IconifyPluginOptions from '../types/IconifyPluginOptions'
+import iconManagerSetup from '../lib/iconManagerSetup'
+import IconManagerTestDocument from '../schemas/documents/icon.manager.test.document'
+import IconManagerObject from '../schemas/objects/IconManager'
+import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 
-export const IconifyPlugin = definePlugin<void | IconifyPluginOptions>((config) => {
-  iconifySetup(config)
+export const IconManager = definePlugin<void | IconManagerPluginOptions>((config) => {
+  iconManagerSetup(config)
 
   return {
-    name: `sanity-plugin-iconify`,
+    name: `sanity-plugin-icon-manager`,
     schema: {
-      types: [Iconify(config), IconifyTestDocument],
+      types: [IconManagerObject(config), IconManagerTestDocument],
     },
   }
 })

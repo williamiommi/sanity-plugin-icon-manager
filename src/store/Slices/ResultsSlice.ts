@@ -4,7 +4,7 @@ import {StateCreator} from 'zustand'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
 import {generateInitialSvgDownloadUrl, generateInitialSvgHttpUrl} from '../../lib/svgUtils'
 import {toastError} from '../../lib/toastUtils'
-import IconifyQueryResponse from '../../types/IconifyQueryResponse'
+import IconManagerQueryResponse from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DialogSlice} from './DialogSlice'
 import {FiltersSlice} from './FiltersSlice'
@@ -12,13 +12,13 @@ import {PaginationSlice} from './PaginationSlice'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
-const cacheResults = new Map<string, IconifyQueryResponse>()
+const cacheResults = new Map<string, IconManagerQueryResponse>()
 
 export interface ResultsSlice {
   searchTerm?: string
-  queryResults?: IconifyQueryResponse
+  queryResults?: IconManagerQueryResponse
   setSearchTerm: (event: FormEvent<HTMLInputElement>) => void
-  setQueryResults: (queryResults: IconifyQueryResponse) => void
+  setQueryResults: (queryResults: IconManagerQueryResponse) => void
   searchIcons: () => void
   selectIcon: (event: FormEvent<HTMLButtonElement>) => void
   clearIcon: () => void
@@ -38,7 +38,7 @@ export const createResultsSlice: StateCreator<
 > = (set, get) => ({
   setSearchTerm: (event: FormEvent<HTMLInputElement>) =>
     set(() => ({searchTerm: event.currentTarget.value})),
-  setQueryResults: (queryResults: IconifyQueryResponse) =>
+  setQueryResults: (queryResults: IconManagerQueryResponse) =>
     set(() => ({queryResults, currentPage: 0})),
   searchIcons: async () => {
     try {
@@ -57,7 +57,7 @@ export const createResultsSlice: StateCreator<
       } else {
         cacheResults.delete(searchParamsString)
         const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
-        results = (await res.json()) as IconifyQueryResponse
+        results = (await res.json()) as IconManagerQueryResponse
         results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
         cacheResults.set(searchParams.toString(), results)
       }

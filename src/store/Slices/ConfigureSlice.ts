@@ -7,7 +7,7 @@ import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
 import {getFlipValue} from '../../lib/iconifyUtils'
 import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../../lib/svgUtils'
 import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
-import {IconifyColor, IconifySize} from '../../types/IconifyType'
+import {IconManagerColor, IconManagerSize} from '../../types/IconManagerType'
 import {DialogSlice} from './DialogSlice'
 import {SanitySlice} from './SanitySlice'
 
@@ -28,11 +28,11 @@ export interface ConfigureSlice {
   vFlip: boolean
   flip: string
   rotate: number
-  size: IconifySize
+  size: IconManagerSize
   inlineSvg: string
   uniqueSize: boolean
   previewBorder: boolean
-  color?: IconifyColor
+  color?: IconManagerColor
   hasBeenCustomized: () => boolean
   clearConfiguration: () => void
   resetConfiguration: () => void
