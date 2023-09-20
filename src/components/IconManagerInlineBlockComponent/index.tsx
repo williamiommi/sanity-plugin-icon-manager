@@ -1,4 +1,4 @@
-import {Card, Text, Tooltip} from '@sanity/ui'
+import {Flex, Text, Tooltip} from '@sanity/ui'
 import {BlockProps} from 'sanity'
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
@@ -13,9 +13,16 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
       portal
       placement='top'
       content={
-        <Card padding={2}>
-          <Text size={1}>{value.icon}</Text>
-        </Card>
+        <Flex padding={2} direction='column' gap={2}>
+          <Text size={1} weight='bold'>
+            {value.metadata.iconName || value.icon}
+          </Text>
+          {value.metadata.collectionName && (
+            <Text size={1} muted>
+              {value.metadata.collectionName}
+            </Text>
+          )}
+        </Flex>
       }
     >
       <div style={{padding: '0 10px'}}>
