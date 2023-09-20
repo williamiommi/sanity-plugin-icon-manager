@@ -1,6 +1,6 @@
 # Iconify Manager Plugin
 
-A Sanity plugin to select, manage and customize icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
+A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
 Powered by [Iconify](https://iconify.design/)
 
 - [⚡️ Features](#%EF%B8%8F-features)
@@ -20,8 +20,8 @@ Powered by [Iconify](https://iconify.design/)
 ## ⚡️ Features
 
 - Sanity v3 plugin
-- Icons are customizable
-- Store the svg code in Sanity
+- Customizable icons
+- SVG code stored in Sanity
 - Media preview component for your entry
 - Download or copy to clipboard your icon
 - Presence and Change Indicator preserved
@@ -54,7 +54,7 @@ export default defineConfig({
 })
 ```
 
-The plugin will provide one new object type called: `iconify`. You can define a new field with this type inside your documents.
+The plugin introduces one new object type called: `iconify`. You can define a new field with this type inside your documents.
 
 ```ts
 import {defineField, defineType} from 'sanity'
@@ -79,7 +79,7 @@ export default SampleDocument
 
 ## ⚙️ Plugin Configuration
 
-This is the main configuration of the plugin, and the available options are as follows:
+This is the main configuration of the plugin. The available options are:
 
 ```ts
 {
@@ -89,8 +89,8 @@ This is the main configuration of the plugin, and the available options are as f
   // an optional array of custom color palette
   customPalette?: [
     {
-      hex: string, // the hex of your custom color
-      title?: string // an optional title for you custom color used as tooltip inside the color picker.
+      hex: string, // the hex code of your custom color
+      title?: string // an optional title for you custom color used as a tooltip inside the color picker.
     },
     // other colors
   ]
@@ -142,7 +142,7 @@ export default SampleDocument
 
 ## 🧩 Add Icons to Portable Text
 
-You can easily use the plugin inside your Portable Text both for inline or block components. The preview will shows the rendered icon and the related name.
+You can easily use the plugin inside your Portable Text, both for inline or block components. The preview will shows the rendered icon and its related name.
 
 ```ts
 import {defineField, defineType} from 'sanity'
@@ -183,7 +183,7 @@ export default SampleDocument
 
 You can pass a list of custom colors to fill your monochrome icons with your brand identity.
 You need to provide a list of valid hex colors (with an optional title).
-As a result, you will have access to these colors within the color picker, available when you customize a monochrome icon.
+As a result, you will have access to these colors within the color picker when customizing a monochrome icon.
 
 ```ts
 import {defineConfig} from 'sanity'
@@ -235,7 +235,7 @@ export default defineConfig({
 
 ## 🎭 Custom Diff View
 
-The plugin comes with a [custom diff component](https://www.sanity.io/docs/custom-diff-components) that lets you see the differences in a more human-readable way.
+The plugin includes a [custom diff component](https://www.sanity.io/docs/custom-diff-components) that allows you to view differences in a more human-readable way.
 You can have three different custom diff views:
 
 ### Icon Added
