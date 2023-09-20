@@ -408,7 +408,7 @@ const MyComponent = (props) => {
 ## 🛣️ Roadmap
 
 - Search/filter by collections
-- Analyze the possibility of adding custom icon sets via configuration ([https://iconify.design/docs/icons/custom.html](https://iconify.design/docs/icons/custom.html))
+- Analyze the possibility of adding [custom icon sets](https://iconify.design/docs/icons/custom.html) via configuration
 - 🤔
 
 <br /><br />
