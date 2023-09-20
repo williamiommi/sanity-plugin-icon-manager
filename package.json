@@ -1,18 +1,18 @@
 {
-  "name": "sanity-plugin-iconify",
+  "name": "sanity-plugin-icon-manager",
   "version": "1.0.0",
   "description": "An alternative way to manage groups inside your Sanity Document",
   "keywords": [
     "sanity",
     "sanity-plugin"
   ],
-  "homepage": "https://github.com/williamiommi/sanity-plugin-iconify#readme",
+  "homepage": "https://github.com/williamiommi/sanity-plugin-icon-manager#readme",
   "bugs": {
-    "url": "https://github.com/williamiommi/sanity-plugin-iconify/issues"
+    "url": "https://github.com/williamiommi/sanity-plugin-icon-manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/williamiommi/sanity-plugin-iconify.git"
+    "url": "git+ssh://git@github.com/williamiommi/sanity-plugin-icon-manager.git"
   },
   "license": "MIT",
   "author": "William Iommi <william.iommi@gmail.com>",

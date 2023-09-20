@@ -1,4 +1,4 @@
-# Iconify Manager Plugin
+# Sanity Icon Manager
 
 <p align="center">
   <img width="50%" src="docs/images/hero.jpg" alt="Diff: Icon Removed"/>
@@ -36,7 +36,7 @@ Powered by [Iconify](https://iconify.design/)
 ## 🔌 Installation
 
 ```sh
-npm install sanity-plugin-iconify-manager
+npm install sanity-plugin-icon-manager
 ```
 
 ## 🧑‍💻 Usage
@@ -45,7 +45,7 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-iconify-manager'
+import {IconifyPlugin} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
@@ -108,7 +108,7 @@ You can pass a second argument (a `true` boolean value) to the function if you w
 
 ```ts
 import {defineField, defineType} from 'sanity'
-import {mediaPreview} from 'sanity-plugin-iconify-manager'
+import {mediaPreview} from 'sanity-plugin-icon-manager'
 
 const SampleDocument = defineType({
   type: 'document',
@@ -191,7 +191,7 @@ As a result, you will have access to these colors within the color picker when c
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-iconify-manager'
+import {IconifyPlugin} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
@@ -273,7 +273,7 @@ This plugin offers a basic customization through the `customEndpoint` option. If
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-iconify-manager'
+import {IconifyPlugin} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
