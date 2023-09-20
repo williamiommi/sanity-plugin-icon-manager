@@ -4,9 +4,7 @@ import IconManagerInlineBlockComponent, {
   IconManagerInlineBlockComponentProps,
 } from '../../../components/IconManagerInlineBlockComponent'
 import IconManagerInputComponent from '../../../components/IconManagerInputComponent'
-import IconManagerPreviewComponent, {
-  IconManagerPreviewComponentProps,
-} from '../../../components/IconManagerPreviewComponent'
+import {mediaPreview} from '../../../ext/mediaPreview'
 import IconManagerPluginOptions from '../../../types/IconManagerPluginOptions'
 import {IconManagerType} from '../../../types/IconManagerType'
 import extraFields from './extra.fields'
@@ -21,6 +19,13 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any 
       select: {
         icon: 'icon',
         metadata: 'metadata',
+      },
+      prepare(value) {
+        return {
+          title: value.metadata?.iconName || value.icon || '???',
+          subtitle: value.metadata.collectionName || undefined,
+          media: mediaPreview(value),
+        }
       },
     },
     fields: [
@@ -39,7 +44,6 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any 
     components: {
       input: (props) =>
         IconManagerInputComponent(props as ObjectInputProps<IconManagerType>, pluginOptions),
-      preview: (props) => IconManagerPreviewComponent(props as IconManagerPreviewComponentProps),
       inlineBlock: (props) =>
         IconManagerInlineBlockComponent(props as IconManagerInlineBlockComponentProps),
       diff: IconManagerDiffComponent,
