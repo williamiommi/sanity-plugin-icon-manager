@@ -24,6 +24,8 @@ const IconifyInputComponent = ({objectInputProps, pluginOptions}: IconifyInputCo
 
   return (
     <Box style={{position: 'relative'}}>
+      <CustomFieldPresence objectInputProps={objectInputProps} />
+
       {/* App States */}
       <EmptyState />
       <FilledState />
@@ -38,8 +40,6 @@ const IconifyInputComponent = ({objectInputProps, pluginOptions}: IconifyInputCo
       )}
       <SearchDialog />
 
-      {/* Sanity stuff */}
-      <CustomFieldPresence objectInputProps={objectInputProps} />
       <ChangeIndicatorWrapper
         path={objectInputProps.path}
         isChanged={objectInputProps.changed}
