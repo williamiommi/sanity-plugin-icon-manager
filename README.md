@@ -1,6 +1,7 @@
-# Iconify Plugin
+# Iconify Manager Plugin
 
-A Sanity plugin to select, manage and customize icons. Powered by [Iconify](https://iconify.design/)
+A Sanity plugin to select, manage and customize icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
+Powered by [Iconify](https://iconify.design/)
 
 - [⚡️ Features](#%EF%B8%8F-features)
 - [🔌 Installation](#-installation)
@@ -10,6 +11,7 @@ A Sanity plugin to select, manage and customize icons. Powered by [Iconify](http
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
+- [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
 - [📝 License](#-license)
@@ -30,7 +32,7 @@ A Sanity plugin to select, manage and customize icons. Powered by [Iconify](http
 ## 🔌 Installation
 
 ```sh
-npm install sanity-plugin-iconify
+npm install sanity-plugin-iconify-manager
 ```
 
 ## 🧑‍💻 Usage
@@ -39,7 +41,7 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-iconify'
+import {IconifyPlugin} from 'sanity-plugin-iconify-manager'
 
 export default defineConfig({
   //...
@@ -102,7 +104,7 @@ You can pass a second argument (a `true` boolean value) to the function if you w
 
 ```ts
 import {defineField, defineType} from 'sanity'
-import {mediaPreview} from 'sanity-plugin-iconify'
+import {mediaPreview} from 'sanity-plugin-iconify-manager'
 
 const SampleDocument = defineType({
   type: 'document',
@@ -185,7 +187,7 @@ As a result, you will have access to these colors within the color picker, avail
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-iconify'
+import {IconifyPlugin} from 'sanity-plugin-iconify-manager'
 
 export default defineConfig({
   //...
@@ -259,6 +261,26 @@ In any of the above cases you can always see the list of all the changes clickin
 <p align="left">
   <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
+
+## 🌎 Basic Hosting
+
+The Iconify project allows you to host the API on your server. You can learn more about it in their [official documentation](https://iconify.design/docs/api/hosting.html)
+This plugin offers a basic customization through the `customEndpoint` option. If you pass a valid URL, hosting a custom Iconify implementation, the plugin will use it as the base path for all the interactions (searching and rendering).
+
+```ts
+import {defineConfig} from 'sanity'
+import {IconifyPlugin} from 'sanity-plugin-iconify-manager'
+
+export default defineConfig({
+  //...
+  plugins: [
+    IconifyPlugin({
+      customEndpoint: 'https://my.iconify.project.com',
+    }),
+  ],
+  // ...
+})
+```
 
 ## 🗃️ Data model
 
@@ -370,11 +392,3 @@ Run ["CI & Release" workflow](https://github.com/williamiommi/sanity-plugin-i18n
 Make sure to select the main branch and check "Release new version".
 
 Semantic release will only release on configured branches, so it is safe to run release on any branch.
-
-# una nota sulla sessione, magari da rendere opzionale?
-
-# rendere opzionale anche lo store inline dell'icona? se metti a true sarà sempre settato a true, ma puoi decheccarlo se vuoi sulla singola icona. Oppure anche come opzione sul field (piu complicato quest'ultimo).
-
-```
-
-```
