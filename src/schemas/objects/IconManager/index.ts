@@ -1,5 +1,8 @@
 import {ObjectInputProps, defineField, defineType} from 'sanity'
 import IconManagerDiffComponent from '../../../components/IconManagerDiffComponent'
+import IconManagerInlineBlockComponent, {
+  IconManagerInlineBlockComponentProps,
+} from '../../../components/IconManagerInlineBlockComponent'
 import IconManagerInputComponent from '../../../components/IconManagerInputComponent'
 import IconManagerPreviewComponent, {
   IconManagerPreviewComponentProps,
@@ -37,6 +40,8 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any 
       input: (props) =>
         IconManagerInputComponent(props as ObjectInputProps<IconManagerType>, pluginOptions),
       preview: (props) => IconManagerPreviewComponent(props as IconManagerPreviewComponentProps),
+      inlineBlock: (props) =>
+        IconManagerInlineBlockComponent(props as IconManagerInlineBlockComponentProps),
       diff: IconManagerDiffComponent,
     },
   })

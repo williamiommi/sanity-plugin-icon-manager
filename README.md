@@ -1,7 +1,10 @@
 # Sanity Icon Manager
 
 <p align="center">
-  <img width="50%" src="docs/images/hero.jpg" alt="Diff: Icon Removed"/>
+  <img width="200" src="docs/images/SanityIconManager.png" alt="Hero"/>
+</p>
+<p align="center">
+  <img width="50%" src="docs/images/hero.jpg" alt="Hero"/>
 </p>
 
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
