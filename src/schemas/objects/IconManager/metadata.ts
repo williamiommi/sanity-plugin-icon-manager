@@ -1,6 +1,6 @@
 const IconManagerMetadata = {
   name: 'icon.manager',
-  title: 'Icon Manager',
+  title: 'Icon',
 }
 
 export default IconManagerMetadata
