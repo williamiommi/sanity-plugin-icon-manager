@@ -1,6 +1,6 @@
 // export the mediaPreview function
 export {mediaPreview} from './ext/mediaPreview'
 // export the plugin
-export {IconifyPlugin} from './ext/plugin'
+export {IconManager} from './ext/plugin'
 // export types
-export * from './types/IconifyType'
+export * from './types/IconManagerType'

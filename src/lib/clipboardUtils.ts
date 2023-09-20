@@ -1,6 +1,5 @@
 import {ToastContextValue} from '@sanity/ui'
-import {AppStoreType} from '../store/context'
-import {generateSvgDataUrl, generateSvgHtml} from './svgUtils'
+import {AppStoreTypePartial, generateSvgDataUrl, generateSvgHtml} from './svgUtils'
 import {toastError, toastSuccess} from './toastUtils'
 
 export const copy2Clipboard = async (
@@ -18,7 +17,7 @@ export const copy2Clipboard = async (
 }
 
 export const copyHtmlToClipboard = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<void> => {
   const html = await generateSvgHtml(appState, original)
@@ -26,7 +25,7 @@ export const copyHtmlToClipboard = async (
 }
 
 export const copyDataUrlToClipboard = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<void> => {
   const dataUrl = await generateSvgDataUrl(appState, original)

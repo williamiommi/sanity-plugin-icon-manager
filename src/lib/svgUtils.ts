@@ -1,10 +1,22 @@
-import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify-icon/react'
+import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify/react'
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import DomPurify from 'dompurify'
 import {AppStoreType} from '../store/context'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from './constants'
-import {getFlipValue} from './iconifyUtils'
 import {toastError} from './toastUtils'
+
+export type AppStoreTypePartial = Pick<
+  AppStoreType,
+  | 'sanityValue'
+  | 'hFlip'
+  | 'vFlip'
+  | 'flip'
+  | 'rotate'
+  | 'size'
+  | 'color'
+  | 'sanityToast'
+  | 'iconifyEndpoint'
+>
 
 const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisations) => {
   const lData = await loadIcon(icon)
@@ -13,7 +25,7 @@ const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisa
   return html
 }
 
-const getIconCustomisations = (value?: AppStoreType) => {
+const getIconCustomisations = (value?: AppStoreTypePartial) => {
   if (!value) return undefined
   return {
     width: value.size.width,
@@ -26,7 +38,7 @@ const getIconCustomisations = (value?: AppStoreType) => {
 
 const generateSearchParams = (
   original: boolean,
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   download: boolean,
 ): string => {
   const searchParams = new URLSearchParams()
@@ -34,8 +46,7 @@ const generateSearchParams = (
     if (appState.size.width) searchParams.append('width', `${appState.size.width}`)
     if (appState.size.height) searchParams.append('height', `${appState.size.height}`)
     if (appState.rotate > 0) searchParams.append('rotate', `${appState.rotate}`)
-    const flipValue = getFlipValue(appState.hFlip, appState.vFlip)
-    if (flipValue) searchParams.append('flip', flipValue)
+    if (appState.flip) searchParams.append('flip', appState.flip)
     if (appState.color && appState.color.hex) searchParams.append('color', appState.color.hex)
   }
   if (download) {
@@ -54,23 +65,26 @@ const generateInitialSearchParams = (download: boolean = false): string => {
   return searchParams.toString()
 }
 
-export const generateInitialSvgHttpUrl = (apiUrl: string, icon: string): string => {
+export const generateInitialSvgHttpUrl = (iconifyEndpoint: string, icon: string): string => {
   const searchParams = generateInitialSearchParams()
-  return `${apiUrl}/${icon}.svg?${searchParams}`
+  return `${iconifyEndpoint}/${icon}.svg?${searchParams}`
 }
 
-export const generateInitialSvgDownloadUrl = (apiUrl: string, icon: string): string => {
+export const generateInitialSvgDownloadUrl = (iconifyEndpoint: string, icon: string): string => {
   const searchParams = generateInitialSearchParams(true)
-  return `${apiUrl}/${icon}.svg?${searchParams}`
+  return `${iconifyEndpoint}/${icon}.svg?${searchParams}`
 }
 
-export const generateSvgHttpUrl = (appState: AppStoreType, original: boolean = false): string => {
+export const generateSvgHttpUrl = (
+  appState: AppStoreTypePartial,
+  original: boolean = false,
+): string => {
   try {
     const icon = appState.sanityValue?.icon
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, false)
-    return `${appState.apiUrl}/${icon}.svg${searchParams}`
+    return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(appState.sanityToast, e)
     return '#'
@@ -78,7 +92,7 @@ export const generateSvgHttpUrl = (appState: AppStoreType, original: boolean = f
 }
 
 export const generateSvgDownloadUrl = (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original: boolean = false,
 ): string => {
   try {
@@ -86,7 +100,7 @@ export const generateSvgDownloadUrl = (
     if (!icon) throw Error('Unable to find the icon.')
 
     const searchParams = generateSearchParams(original, appState, true)
-    return `${appState.apiUrl}/${icon}.svg${searchParams}`
+    return `${appState.iconifyEndpoint}/${icon}.svg${searchParams}`
   } catch (e: any) {
     toastError(appState.sanityToast, e)
     return '#'
@@ -94,7 +108,7 @@ export const generateSvgDownloadUrl = (
 }
 
 export const generateSvgHtml = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<string> => {
   try {
@@ -118,7 +132,7 @@ export const generateSvgHtml = async (
 }
 
 export const generateSvgDataUrl = async (
-  appState: AppStoreType,
+  appState: AppStoreTypePartial,
   original?: boolean,
 ): Promise<void | string> => {
   try {

@@ -1,7 +1,9 @@
 import IconPreview from '../components/IconPreview'
-import {IconifyType} from '../types/IconifyType'
+import {IconManagerType} from '../types/IconManagerType'
 
-export const mediaPreview = (value: IconifyType) => {
+export const mediaPreview = (value: IconManagerType, original?: boolean) => {
   if (!value || !value.icon) return null
-  return IconPreview({value, width: '80%', height: '80%', hideText: true})
+  const obj = {icon: value.icon, width: '80%', height: '80%', hideText: true}
+  if (original) return IconPreview(obj)
+  return IconPreview({...obj, value, icon: undefined})
 }

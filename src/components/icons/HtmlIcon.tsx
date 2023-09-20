@@ -5,13 +5,14 @@ interface HtmlIconProps extends SVGProps<SVGSVGElement> {}
 const HtmlIcon = (props: HtmlIconProps) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width={props.width || 20}
-    height={props.height || 20}
-    viewBox='0 0 20 20'
+    width={props.width || 256}
+    height={props.height || 256}
+    viewBox='0 0 256 256'
+    style={{display: 'block'}}
   >
     <path
       fill='currentColor'
-      d='M4 16v-2H2v2H1v-5h1v2h2v-2h1v5H4zm3 0v-4H5.6v-1h3.7v1H8v4H7zm3 0v-5h1l1.4 3.4h.1L14 11h1v5h-1v-3.1h-.1l-1.1 2.5h-.6l-1.1-2.5H11V16h-1zm9 0h-3v-5h1v4h2v1zM9.4 4.2L7.1 6.5l2.3 2.3l-.6 1.2l-3.5-3.5L8.8 3l.6 1.2zm1.2 4.6l2.3-2.3l-2.3-2.3l.6-1.2l3.5 3.5l-3.5 3.5l-.6-1.2z'
+      d='M128 152a8 8 0 0 1-8 8h-8v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8Zm-64-8a8 8 0 0 0-8 8v20H40v-20a8 8 0 0 0-16 0v56a8 8 0 0 0 16 0v-20h16v20a8 8 0 0 0 16 0v-56a8 8 0 0 0-8-8Zm176 56h-12v-48a8 8 0 0 0-16 0v56a8 8 0 0 0 8 8h20a8 8 0 0 0 0-16Zm-45.86-55.71a8 8 0 0 0-9 3.59L168 176.45l-17.14-28.57A8 8 0 0 0 136 152v56a8 8 0 0 0 16 0v-27.12l9.14 15.24a8 8 0 0 0 13.72 0l9.14-15.24V208a8 8 0 0 0 16 0v-56a8 8 0 0 0-5.86-7.71ZM208 120a8 8 0 0 1-8-8V96h-48a8 8 0 0 1-8-8V40H56v72a8 8 0 0 1-16 0V40a16 16 0 0 1 16-16h96a8 8 0 0 1 5.66 2.34l56 56A8 8 0 0 1 216 88v24a8 8 0 0 1-8 8Zm-19.31-40L160 51.31V80Z'
     />
   </svg>
 )

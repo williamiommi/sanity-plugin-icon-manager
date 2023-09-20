@@ -4,7 +4,7 @@ import {StateCreator} from 'zustand'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
 import {generateInitialSvgDownloadUrl, generateInitialSvgHttpUrl} from '../../lib/svgUtils'
 import {toastError} from '../../lib/toastUtils'
-import IconifyQueryResponse from '../../types/IconifyQueryResponse'
+import IconManagerQueryResponse from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DialogSlice} from './DialogSlice'
 import {FiltersSlice} from './FiltersSlice'
@@ -12,13 +12,13 @@ import {PaginationSlice} from './PaginationSlice'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
-const cacheResults = new Map<string, IconifyQueryResponse>()
+const cacheResults = new Map<string, IconManagerQueryResponse>()
 
 export interface ResultsSlice {
   searchTerm?: string
-  queryResults?: IconifyQueryResponse
+  queryResults?: IconManagerQueryResponse
   setSearchTerm: (event: FormEvent<HTMLInputElement>) => void
-  setQueryResults: (queryResults: IconifyQueryResponse) => void
+  setQueryResults: (queryResults: IconManagerQueryResponse) => void
   searchIcons: () => void
   selectIcon: (event: FormEvent<HTMLButtonElement>) => void
   clearIcon: () => void
@@ -38,30 +38,34 @@ export const createResultsSlice: StateCreator<
 > = (set, get) => ({
   setSearchTerm: (event: FormEvent<HTMLInputElement>) =>
     set(() => ({searchTerm: event.currentTarget.value})),
-  setQueryResults: (queryResults: IconifyQueryResponse) =>
+  setQueryResults: (queryResults: IconManagerQueryResponse) =>
     set(() => ({queryResults, currentPage: 0})),
   searchIcons: async () => {
-    if (!get().searchTerm) return
+    try {
+      if (!get().searchTerm) return
 
-    const searchParams = new URLSearchParams()
-    const keywordStyle = get().filterStyle ? ` style=${get().filterStyle}` : ''
-    const keywordPalette = get().filterPalette ? ` palette=${get().filterPalette}` : ''
-    searchParams.append('query', `${get().searchTerm}${keywordStyle}${keywordPalette}`)
-    searchParams.append('limit', get().limit.toString())
+      const searchParams = new URLSearchParams()
+      const keywordStyle = get().filterStyle ? ` style=${get().filterStyle}` : ''
+      const keywordPalette = get().filterPalette ? ` palette=${get().filterPalette}` : ''
+      searchParams.append('query', `${get().searchTerm}${keywordStyle}${keywordPalette}`)
+      searchParams.append('limit', get().limit.toString())
 
-    let results
-    const searchParamsString = searchParams.toString()
-    if (cacheResults.has(searchParamsString)) {
-      results = cacheResults.get(searchParamsString)!
-    } else {
-      cacheResults.delete(searchParamsString)
-      const res = await fetch(`${get().apiUrl}/search?${searchParams.toString()}`)
-      results = (await res.json()) as IconifyQueryResponse
-      results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
-      cacheResults.set(searchParams.toString(), results)
+      let results
+      const searchParamsString = searchParams.toString()
+      if (cacheResults.has(searchParamsString)) {
+        results = cacheResults.get(searchParamsString)!
+      } else {
+        cacheResults.delete(searchParamsString)
+        const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
+        results = (await res.json()) as IconManagerQueryResponse
+        results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
+        cacheResults.set(searchParams.toString(), results)
+      }
+      get().setQueryResults(results)
+      get().toggleFilters(false)
+    } catch (e: unknown) {
+      toastError(get().sanityToast, e)
     }
-    get().setQueryResults(results)
-    get().toggleFilters(false)
   },
   selectIcon: async (event: FormEvent<HTMLButtonElement>) => {
     try {
@@ -76,14 +80,15 @@ export const createResultsSlice: StateCreator<
         patches.push(
           patchSet(
             {
-              downloadUrl: generateInitialSvgDownloadUrl(get().apiUrl!, value!),
-              url: generateInitialSvgHttpUrl(get().apiUrl!, value!),
+              downloadUrl: generateInitialSvgDownloadUrl(get().iconifyEndpoint!, value!),
+              url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, value!),
               collectionId: iconInfo[0],
               collectionName: collection?.name || '',
               iconName: iconInfo[1],
               size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
               hFlip: false,
               vFlip: false,
+              flip: '',
               rotate: 0,
               palette: collection?.palette,
               author: {
@@ -117,9 +122,7 @@ export const createResultsSlice: StateCreator<
         get().closeRemoveDialog()
       }
     } catch (e: any) {
-      const sanityToast = get().sanityToast
-      if (sanityToast)
-        sanityToast.push({status: 'error', title: 'Something went wrong', description: e.message})
+      toastError(get().sanityToast, e)
     }
   },
 })

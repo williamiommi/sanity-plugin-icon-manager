@@ -27,11 +27,10 @@ export const createDialogSlice: StateCreator<
   [],
   DialogSlice
 > = (set, get) => ({
-  openSearchDialog: () =>
-    set(() => {
-      get().setSanityPresence()
-      return {isSearchDialogOpen: true}
-    }),
+  openSearchDialog: () => {
+    get().setSanityPresence()
+    set(() => ({isSearchDialogOpen: true}))
+  },
   closeSearchDialog: () =>
     set(() => ({
       isSearchDialogOpen: false,
@@ -47,18 +46,14 @@ export const createDialogSlice: StateCreator<
   openInfoDialog: () => set(() => ({isInfoDialogOpen: true})),
   closeInfoDialog: () => set(() => ({isInfoDialogOpen: false})),
 
-  openConfigDialog: () =>
-    set(() => {
-      get().setSanityPresence()
-      return {isConfigDialogOpen: true}
-    }),
-  closeConfigDialog: () =>
-    set(() => {
-      get().resetConfiguration()
-      return {
-        isConfigDialogOpen: false,
-      }
-    }),
+  openConfigDialog: () => {
+    get().setSanityPresence()
+    set(() => ({isConfigDialogOpen: true}))
+  },
+  closeConfigDialog: () => {
+    get().resetConfiguration()
+    set(() => ({isConfigDialogOpen: false}))
+  },
 
   openRemoveDialog: () => set(() => ({isRemoveDialogOpen: true})),
   closeRemoveDialog: () => set(() => ({isRemoveDialogOpen: false})),

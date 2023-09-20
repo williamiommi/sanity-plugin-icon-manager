@@ -1,5 +1,5 @@
 import {ReactNode, createContext, useContext, useRef} from 'react'
-import {createStore, useStore} from 'zustand'
+import {StoreApi, createStore, useStore} from 'zustand'
 import {ConfigureSlice, createConfigureSlice} from './Slices/ConfigureSlice'
 import {DialogSlice, createDialogSlice} from './Slices/DialogSlice'
 import {FiltersSlice, createFiltersSlice} from './Slices/FiltersSlice'
@@ -27,10 +27,10 @@ const createMyStore = () =>
     ...createConfigureSlice(...a),
   }))
 
-const AppStoreContext = createContext<ReturnType<typeof createMyStore> | null>(null)
+const AppStoreContext = createContext<StoreApi<AppStoreType> | null>(null)
 
 export function AppStoreContextProvider({children}: {children: ReactNode}) {
-  const storeRef = useRef<ReturnType<typeof createMyStore>>()
+  const storeRef = useRef<StoreApi<AppStoreType>>()
   if (!storeRef.current) {
     storeRef.current = createMyStore()
   }

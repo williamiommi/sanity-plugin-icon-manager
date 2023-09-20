@@ -4,20 +4,17 @@ import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/colorUtils'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
-import {Flip, getFlipValue} from '../../lib/iconifyUtils'
+import {getFlipValue} from '../../lib/iconifyUtils'
 import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../../lib/svgUtils'
 import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
-import {IconifyColor, IconifySize} from '../../types/IconifyType'
+import {IconManagerColor, IconManagerSize} from '../../types/IconManagerType'
 import {DialogSlice} from './DialogSlice'
-import {FiltersSlice} from './FiltersSlice'
-import {PaginationSlice} from './PaginationSlice'
-import {PluginOptionsSlice} from './PluginOptionsSlice'
-import {ResultsSlice} from './ResultsSlice'
 import {SanitySlice} from './SanitySlice'
 
 const initialState = {
   hFlip: false,
   vFlip: false,
+  flip: '',
   rotate: 0,
   inlineSvg: '',
   size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
@@ -29,16 +26,16 @@ const initialState = {
 export interface ConfigureSlice {
   hFlip: boolean
   vFlip: boolean
+  flip: string
   rotate: number
-  size: IconifySize
+  size: IconManagerSize
   inlineSvg: string
   uniqueSize: boolean
   previewBorder: boolean
-  color?: IconifyColor
+  color?: IconManagerColor
   hasBeenCustomized: () => boolean
   clearConfiguration: () => void
   resetConfiguration: () => void
-  getFlipValue: () => Flip
   setFlip: (hFlip: boolean, vFlip: boolean) => void
   toggleHFlip: () => void
   toggleVFlip: () => void
@@ -58,13 +55,7 @@ export interface ConfigureSlice {
 }
 
 export const createConfigureSlice: StateCreator<
-  ConfigureSlice &
-    SanitySlice &
-    DialogSlice &
-    FiltersSlice &
-    ResultsSlice &
-    PluginOptionsSlice &
-    PaginationSlice,
+  ConfigureSlice & SanitySlice & DialogSlice,
   [],
   [],
   ConfigureSlice
@@ -84,21 +75,23 @@ export const createConfigureSlice: StateCreator<
     return count > 0
   },
   clearConfiguration: () => set(initialState),
-  resetConfiguration: () =>
+  resetConfiguration: () => {
+    const sanityValue = get().sanityValue
     set(() => ({
-      hFlip: get().sanityValue?.metadata.hFlip,
-      vFlip: get().sanityValue?.metadata.vFlip,
-      rotate: get().sanityValue?.metadata.rotate,
-      size: get().sanityValue?.metadata.size,
-      color: get().sanityValue?.metadata.color,
-      inlineSvg: get().sanityValue?.metadata.inlineSvg,
+      hFlip: sanityValue?.metadata.hFlip,
+      vFlip: sanityValue?.metadata.vFlip,
+      flip: getFlipValue(sanityValue?.metadata.hFlip, sanityValue?.metadata.vFlip),
+      rotate: sanityValue?.metadata.rotate,
+      size: sanityValue?.metadata.size,
+      color: sanityValue?.metadata.color,
+      inlineSvg: sanityValue?.metadata.inlineSvg,
       previewBorder: false,
       uniqueSize: false,
-    })),
-  getFlipValue: () => getFlipValue(get().hFlip, get().vFlip),
-  setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip})),
-  toggleHFlip: () => set((s) => ({hFlip: !s.hFlip})),
-  toggleVFlip: () => set((s) => ({vFlip: !s.vFlip})),
+    }))
+  },
+  setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip, flip: getFlipValue(hFlip, vFlip)})),
+  toggleHFlip: () => set((s) => ({hFlip: !s.hFlip, flip: getFlipValue(!s.hFlip, get().vFlip)})),
+  toggleVFlip: () => set((s) => ({vFlip: !s.vFlip, flip: getFlipValue(get().hFlip, !s.vFlip)})),
   setRotate: (rotate: number) => set(() => ({rotate})),
   setRotate0: () => set(() => ({rotate: 0})),
   setRotate90: () => set((s) => ({rotate: s.rotate === 1 ? 0 : 1})),
@@ -146,6 +139,8 @@ export const createConfigureSlice: StateCreator<
           patches.push(patchSet(get().hFlip, ['metadata.hFlip']))
         if (get().vFlip !== sanityValue.metadata.vFlip)
           patches.push(patchSet(get().vFlip, ['metadata.vFlip']))
+        if (get().flip !== sanityValue.metadata.flip)
+          patches.push(patchSet(get().flip, ['metadata.flip']))
         if (get().rotate !== sanityValue.metadata.rotate)
           patches.push(patchSet(get().rotate, ['metadata.rotate']))
         if (get().size.width !== sanityValue.metadata.size.width)

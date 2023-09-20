@@ -1,22 +1,16 @@
-import {disableCache} from '@iconify-icon/react'
 import {definePlugin} from 'sanity'
-import {DEFAULT_API_URL} from '../lib/constants'
-import IconifyTestDocument from '../schemas/documents/iconify.test.document'
-import Iconify from '../schemas/objects/Iconify'
-import IconifyPluginOptions from '../types/IconifyPluginOptions'
+import iconManagerSetup from '../lib/iconManagerSetup'
+import IconManagerTestDocument from '../schemas/documents/icon.manager.test.document'
+import IconManagerObject from '../schemas/objects/IconManager'
+import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 
-export const IconifyPlugin = definePlugin<IconifyPluginOptions>((config?: IconifyPluginOptions) => {
-  // disable iconify cache
-  disableCache('all')
+export const IconManager = definePlugin<void | IconManagerPluginOptions>((config) => {
+  iconManagerSetup(config)
 
-  const pluginConfig: IconifyPluginOptions = {
-    ...config,
-    apiUrl: config?.apiUrl || DEFAULT_API_URL,
-  }
   return {
-    name: `sanity-plugin-iconify`,
+    name: `sanity-plugin-icon-manager`,
     schema: {
-      types: [Iconify(pluginConfig), IconifyTestDocument],
+      types: [IconManagerObject(config), IconManagerTestDocument],
     },
   }
 })

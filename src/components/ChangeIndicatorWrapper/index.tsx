@@ -1,5 +1,5 @@
 import {ChangeIndicator, ChangeIndicatorProps} from 'sanity'
-import {StyledChangeIndicatorWrapper} from './Styled'
+import {StyledChangeIndicatorWrapper} from '../../style'
 
 const ChangeIndicatorWrapper = (props: ChangeIndicatorProps) => {
   return (
