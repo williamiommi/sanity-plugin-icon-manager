@@ -21,7 +21,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
-- [🛣️ Roadmap](#-roadmap)
+- [🛣️ Roadmap](#%EF%B8%8F-roadmap)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
   <br /><br />
