@@ -20,6 +20,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
+  <br /><br />
 
 ## ⚡️ Features
 
@@ -33,11 +34,15 @@ Powered by [Iconify](https://iconify.design/)
 - Provide your own color palette for monochrome icons
 - Basic API Hosting
 
+<br /><br />
+
 ## 🔌 Installation
 
 ```sh
 npm install sanity-plugin-icon-manager
 ```
+
+<br /><br />
 
 ## 🧑‍💻 Usage
 
@@ -81,6 +86,8 @@ const SampleDocument = defineType({
 export default SampleDocument
 ```
 
+<br /><br />
+
 ## ⚙️ Plugin Configuration
 
 This is the main configuration of the plugin. The available options are:
@@ -100,6 +107,8 @@ This is the main configuration of the plugin. The available options are:
   ]
 }
 ```
+
+<br /><br />
 
 ## 👀 Document List Preview
 
@@ -144,6 +153,8 @@ export default SampleDocument
   <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
 </p>
 
+<br /><br />
+
 ## 🧩 Add Icons to Portable Text
 
 You can easily use the plugin inside your Portable Text, both for inline or block components. The preview will shows the rendered icon and its related name.
@@ -182,6 +193,8 @@ export default SampleDocument
 <p align="center">
   <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
+
+<br /><br />
 
 ## 🎨 Custom Color Palette
 
@@ -237,6 +250,8 @@ export default defineConfig({
   <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
 </p>
 
+<br /><br />
+
 ## 🎭 Custom Diff View
 
 The plugin includes a [custom diff component](https://www.sanity.io/docs/custom-diff-components) that allows you to view differences in a more human-readable way.
@@ -266,6 +281,8 @@ In any of the above cases you can always see the list of all the changes clickin
   <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
+<br /><br />
+
 ## 🌎 Basic Hosting
 
 The Iconify project allows you to host the API on your server. You can learn more about it in their [official documentation](https://iconify.design/docs/api/hosting.html).\
@@ -285,6 +302,8 @@ export default defineConfig({
   // ...
 })
 ```
+
+<br /><br />
 
 ## 🗃️ Data model
 
@@ -328,6 +347,8 @@ export default defineConfig({
     }
   }
 ```
+
+<br /><br />
 
 ## 🎬 How to render the icon on your website
 
@@ -377,6 +398,8 @@ const MyComponent = (props) => {
   )
 }
 ```
+
+<br /><br />
 
 ## 📝 License
 
