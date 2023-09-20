@@ -21,6 +21,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
+- [🛣️ Roadmap](#-roadmap)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
   <br /><br />
@@ -403,6 +404,12 @@ const MyComponent = (props) => {
 ```
 
 <br /><br />
+
+## 🛣️ Roadmap
+
+- Search/filter by collections
+- Analyze the possibility of adding custom icon sets via configuration ([https://iconify.design/docs/icons/custom.html](https://iconify.design/docs/icons/custom.html))
+- 🤔
 
 ## 📝 License
 
