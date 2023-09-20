@@ -45,12 +45,12 @@ Add it as a plugin in `sanity.config.ts` (or .js):
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-icon-manager'
+import {IconManager} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
   plugins: [
-    IconifyPlugin({
+    IconManager({
       // your optional configuration here
     }),
   ],
@@ -58,7 +58,7 @@ export default defineConfig({
 })
 ```
 
-The plugin introduces one new object type called: `iconify`. You can define a new field with this type inside your documents.
+The plugin introduces one new object type called: `icon.manager`. You can define a new field with this type inside your documents.
 
 ```ts
 import {defineField, defineType} from 'sanity'
@@ -70,7 +70,7 @@ const SampleDocument = defineType({
   fields: [
     // ...
     defineField({
-      type: 'iconify',
+      type: 'icon.manager',
       name: 'icon',
       title: 'Icon',
     }),
@@ -129,7 +129,7 @@ const SampleDocument = defineType({
   fields: [
     // ...
     defineField({
-      type: 'iconify',
+      type: 'icon.manager',
       name: 'icon',
       title: 'Icon',
     }),
@@ -164,11 +164,11 @@ const SampleDocument = defineType({
       of: [
         {
           type: 'block',
-          of: [{type: 'iconify', title: 'Iconify Inline'}],
+          of: [{type: 'icon.manager', title: 'Icon Inline'}],
         },
         {
-          type: 'iconify',
-          title: 'Iconify Block',
+          type: 'icon.manager',
+          title: 'Icon Block',
         },
       ],
     }),
@@ -191,12 +191,12 @@ As a result, you will have access to these colors within the color picker when c
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-icon-manager'
+import {IconManager} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
   plugins: [
-    IconifyPlugin({
+    IconManager({
       customPalette: [
         {
           hex: '#AB87FF',
@@ -273,12 +273,12 @@ This plugin offers a basic customization through the `customEndpoint` option. If
 
 ```ts
 import {defineConfig} from 'sanity'
-import {IconifyPlugin} from 'sanity-plugin-icon-manager'
+import {IconManager} from 'sanity-plugin-icon-manager'
 
 export default defineConfig({
   //...
   plugins: [
-    IconifyPlugin({
+    IconManager({
       customEndpoint: 'https://my.iconify.project.com',
     }),
   ],
@@ -290,7 +290,7 @@ export default defineConfig({
 
 ```ts
   {
-    _type: 'iconify',
+    _type: 'icon.manager',
     icon: string
     metadata: {
       iconName: string
@@ -361,7 +361,7 @@ Here an example with the React package:
 
 ------------------------------------------------------------------------------------
 
-import {Icon} from '@iconify-icon/react'
+import {Icon} from '@iconify/react'
 
 const MyComponent = (props) => {
   const {icon, metadata: {flip, rotate, size, color} } = props
