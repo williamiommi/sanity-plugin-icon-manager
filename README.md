@@ -411,6 +411,8 @@ const MyComponent = (props) => {
 - Analyze the possibility of adding custom icon sets via configuration ([https://iconify.design/docs/icons/custom.html](https://iconify.design/docs/icons/custom.html))
 - 🤔
 
+<br /><br />
+
 ## 📝 License
 
 [MIT](LICENSE) © William Iommi
