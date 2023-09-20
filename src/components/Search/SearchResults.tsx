@@ -46,7 +46,27 @@ const SearchResults = (props: SearchResultsProps) => {
         <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3}>
           {queryResults?.icons
             .slice(currentPage * iconsPerPage, (currentPage + 1) * iconsPerPage)
-            .map((icon) => <SearchResultsIcon key={icon} icon={icon} onClick={selectIcon} />)}
+            .map((icon) => {
+              const iconInfo = icon?.split(':')
+              let iconName
+              let collectionName
+              try {
+                iconName = iconInfo[1]
+                collectionName =
+                  (iconInfo[0] && queryResults?.collections[iconInfo[0]].name) || undefined
+              } catch (e) {
+                console.error(e)
+              }
+              return (
+                <SearchResultsIcon
+                  key={icon}
+                  icon={icon}
+                  iconName={iconName}
+                  collectionName={collectionName}
+                  onClick={selectIcon}
+                />
+              )
+            })}
         </Grid>
       </Card>
     </>

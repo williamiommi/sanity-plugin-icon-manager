@@ -13,7 +13,7 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
       portal
       placement='top'
       content={
-        <Flex padding={2} direction='column' gap={1}>
+        <Flex padding={2} direction='column' gap={2}>
           <Text size={1} weight='bold'>
             {value.metadata.iconName || value.icon}
           </Text>
