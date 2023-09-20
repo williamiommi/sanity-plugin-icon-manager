@@ -21,14 +21,10 @@ const FilterPalette = (props: FilterPaletteProps) => {
         Palette:
       </Text>
       <Flex style={{width: '100%'}}>
-        <Select onChange={onSetFilterPalette} fontSize={1}>
+        <Select onChange={onSetFilterPalette} value={filterPalette} fontSize={1}>
           <option value=''>Select...</option>
-          <option value='1' selected={filterPalette === '1'}>
-            Polychrome
-          </option>
-          <option value='0' selected={filterPalette === '0'}>
-            Monochrome
-          </option>
+          <option value='1'>Polychrome</option>
+          <option value='0'>Monochrome</option>
         </Select>
       </Flex>
     </Flex>

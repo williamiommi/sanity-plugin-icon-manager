@@ -21,14 +21,10 @@ const FilterStyle = (props: FilterStyleProps) => {
         Style:
       </Text>
       <Flex style={{width: '100%'}}>
-        <Select onChange={onSetFilterStyle} fontSize={1}>
+        <Select onChange={onSetFilterStyle} value={filterStyle} fontSize={1}>
           <option value=''>Select...</option>
-          <option value='stroke' selected={filterStyle === 'stroke'}>
-            Stroke
-          </option>
-          <option value='fill' selected={filterStyle === 'fill'}>
-            Fill
-          </option>
+          <option value='stroke'>Stroke</option>
+          <option value='fill'>Fill</option>
         </Select>
       </Flex>
     </Flex>
