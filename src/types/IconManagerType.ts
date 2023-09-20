@@ -1,4 +1,4 @@
-export type IconifyColor = {
+export type IconManagerColor = {
   hex: string
   rgba: {
     r: number
@@ -8,12 +8,12 @@ export type IconifyColor = {
   }
 }
 
-export type IconifySize = {
+export type IconManagerSize = {
   width: number
   height: number
 }
 
-export type IconifyType = {
+export type IconManagerType = {
   icon: string
   metadata: {
     url: string
@@ -31,11 +31,11 @@ export type IconifyType = {
       name?: string
       url?: string
     }
-    size: IconifySize
+    size: IconManagerSize
     hFlip: boolean
     vFlip: boolean
     flip: 'horizontal' | 'vertical' | 'horizontal,vertical'
     rotate: 0 | 1 | 2 | 3
-    color?: IconifyColor
+    color?: IconManagerColor
   }
 }

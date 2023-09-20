@@ -1,10 +1,10 @@
 import {DocumentIcon} from '@sanity/icons'
 import {Badge, Box, Flex, Text} from '@sanity/ui'
 import {DiffCard, DiffProps, DiffTooltip, ObjectDiff} from 'sanity'
-import {IconifyType} from '../../types/IconifyType'
+import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
-const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconifyType>>) => {
+const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
   const {fromValue, toValue, action} = props.diff
 
   // CASE 1: icon unchanged

@@ -1,9 +1,9 @@
 import {Box, Button} from '@sanity/ui'
 import {useCallback, useState} from 'react'
 import {ChangeList, DiffProps, ObjectDiff} from 'sanity'
-import {IconifyType} from '../../types/IconifyType'
+import {IconManagerType} from '../../types/IconManagerType'
 
-const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconifyType>>) => {
+const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
   const onClickDetailsHandler = useCallback(() => {

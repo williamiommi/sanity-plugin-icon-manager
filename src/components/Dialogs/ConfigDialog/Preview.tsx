@@ -1,4 +1,4 @@
-import {Icon} from '@iconify-icon/react'
+import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
 import {Card, Flex, Text, Tooltip, useTheme} from '@sanity/ui'
 import {useMemo} from 'react'
