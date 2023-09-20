@@ -1,5 +1,9 @@
 # Iconify Manager Plugin
 
+<p align="center">
+  <img width="50%" src="docs/images/hero.jpg" alt="Diff: Icon Removed"/>
+</p>
+
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
 Powered by [Iconify](https://iconify.design/)
 
