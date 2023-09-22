@@ -1,10 +1,10 @@
 # Sanity Icon Manager
 
 <p align="center">
-  <img width="200" src="docs/images/SanityIconManager.png" alt="Hero"/>
+  <img width="200" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/SanityIconManager.png" alt="Hero"/>
 </p>
 <p align="center">
-  <img width="50%" src="docs/images/hero.jpg" alt="Hero"/>
+  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/hero.jpg" alt="Hero"/>
 </p>
 
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
@@ -154,7 +154,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
+  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/document-list-preview.jpg" alt="Document list preview"/>
 </p>
 
 <br /><br />
@@ -195,7 +195,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
+  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
 
 <br /><br />
@@ -251,7 +251,7 @@ export default defineConfig({
 ```
 
 <p align="left">
-  <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -264,25 +264,25 @@ You can have three different custom diff views:
 ### Icon Added
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
+  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
 </p>
 
 ### Icon Changed
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
+  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
 </p>
 
 ### Icon Removed
 
 <p align="left">
-  <img width="30%" src="docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
+  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
 </p>
 
 In any of the above cases you can always see the list of all the changes clicking on the `Show details` CTA.
 
 <p align="left">
-  <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
