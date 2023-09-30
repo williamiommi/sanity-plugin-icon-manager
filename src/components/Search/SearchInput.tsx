@@ -2,6 +2,7 @@
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
 import {useAppStoreContext} from '../../store/context'
+import {TextFilterCollection} from '../../style'
 import FilterBadge from '../Filters/FilterBadge'
 
 interface SearchInputProps {}
@@ -13,6 +14,7 @@ const SearchInput = (props: SearchInputProps) => {
   const toggleFilters = useAppStoreContext((s) => s.toggleFilters)
   const searchIcons = useAppStoreContext((s) => s.searchIcons)
   const setSearchTerm = useAppStoreContext((s) => s.setSearchTerm)
+  const filterCollection = useAppStoreContext((s) => s.filterCollection)
 
   return (
     <Flex
@@ -33,8 +35,15 @@ const SearchInput = (props: SearchInputProps) => {
           onClick={() => toggleFilters()}
         />
       </Box>
-      <Box style={{flex: 1}}>
-        <TextInput placeholder='Search icons...' onChange={setSearchTerm} />
+      <Box style={{flex: 1, position: 'relative'}}>
+        <TextFilterCollection size={1} muted>
+          Collection: <strong>{filterCollection ? filterCollection.name : 'All'}</strong>
+        </TextFilterCollection>
+        <TextInput
+          style={{paddingTop: '18px'}}
+          placeholder='Search icons...'
+          onChange={setSearchTerm}
+        />
       </Box>
       <Button
         type='submit'

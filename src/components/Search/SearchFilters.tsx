@@ -1,12 +1,11 @@
 import {Flex, Grid} from '@sanity/ui'
 import {useAppStoreContext} from '../../store/context'
+import FilterCollection from '../Filters/FilterCollection'
 import FilterLimit from '../Filters/FilterLimit'
 import FilterPalette from '../Filters/FilterPalette'
 import FilterStyle from '../Filters/FilterStyle'
 
-interface SearchFiltersProps {}
-
-const SearchFilters = (props: SearchFiltersProps) => {
+const SearchFilters = () => {
   const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
 
   if (!isFiltersOpen) return null
@@ -16,6 +15,7 @@ const SearchFilters = (props: SearchFiltersProps) => {
       <Flex direction='column' gap={3}>
         <FilterStyle />
         <FilterPalette />
+        <FilterCollection />
         <FilterLimit />
       </Flex>
     </Grid>

@@ -25,6 +25,7 @@ const useInputSetup = (
   const setWidth = useAppStoreContext((s) => s.setWidth)
   const setHeight = useAppStoreContext((s) => s.setHeight)
   const setColor = useAppStoreContext((s) => s.setColor)
+  const fetchCollections = useAppStoreContext((s) => s.fetchCollections)
 
   useEffect(() => {
     const value = objectInputProps.value as IconManagerType
@@ -51,6 +52,9 @@ const useInputSetup = (
     setSanityUserCanEdit(!objectInputProps.readOnly)
     setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
     if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
+
+    // fetch collections
+    fetchCollections()
   }, [])
 }
 
