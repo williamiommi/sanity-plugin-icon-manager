@@ -1,6 +1,6 @@
 import {StateCreator} from 'zustand'
 import {ConfigureSlice} from './ConfigureSlice'
-import {DEFAULT_FILTER_LIMIT} from './FiltersSlice'
+import {DEFAULT_FILTER_LIMIT, FiltersSlice} from './FiltersSlice'
 import {SanitySlice} from './SanitySlice'
 
 export interface DialogSlice {
@@ -22,7 +22,7 @@ export interface DialogSlice {
 }
 
 export const createDialogSlice: StateCreator<
-  DialogSlice & SanitySlice & ConfigureSlice,
+  DialogSlice & SanitySlice & ConfigureSlice & FiltersSlice,
   [],
   [],
   DialogSlice
@@ -39,6 +39,7 @@ export const createDialogSlice: StateCreator<
       isFiltersOpen: false,
       filterPalette: '',
       filterStyle: '',
+      filterCollection: undefined,
       limit: DEFAULT_FILTER_LIMIT,
       currentPage: 0,
     })),

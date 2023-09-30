@@ -7,11 +7,13 @@ export interface FiltersSlice {
   isFiltersOpen?: boolean
   filterStyle: string
   filterPalette: string
+  filterCollection?: {code: string; name: string}
   countFiltersApplied: () => number
   toggleFilters: (force?: boolean) => void
   setLimit: (limit: number) => void
-  setFilterStyle: (style: string) => void
-  setFilterPalette: (palette: string) => void
+  setFilterStyle: (filterStyle: string) => void
+  setFilterPalette: (filterPalette: string) => void
+  setFilterCollection: (code: string, name: string) => void
 }
 
 export const createFiltersSlice: StateCreator<FiltersSlice, [], [], FiltersSlice> = (set, get) => ({
@@ -22,12 +24,15 @@ export const createFiltersSlice: StateCreator<FiltersSlice, [], [], FiltersSlice
     let count = 0
     if (get().filterStyle) count++
     if (get().filterPalette) count++
+    if (get().filterCollection) count++
     if (get().limit !== DEFAULT_FILTER_LIMIT) count++
     return count
   },
   toggleFilters: (force?: boolean) =>
     set((s) => ({isFiltersOpen: force === undefined ? !s.isFiltersOpen : force})),
   setLimit: (limit: number) => set(() => ({limit})),
-  setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
+  setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
+  setFilterCollection: (code: string, name: string) =>
+    set(() => ({filterCollection: {code, name}})),
 })

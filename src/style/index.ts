@@ -1,4 +1,4 @@
-import {Badge, Card} from '@sanity/ui'
+import {Badge, Card, Text} from '@sanity/ui'
 import styled from 'styled-components'
 
 export const PaginationButton = styled.button`
@@ -32,6 +32,20 @@ export const StyledChangeIndicatorWrapper = styled.div`
   right: 0;
   * {
     height: 100%;
+  }
+`
+
+export const TextFilterCollection = styled(Text)`
+  z-index: 2;
+  span {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: clip;
+    width: 95%;
   }
 `
 
