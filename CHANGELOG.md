@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.1.0...v1.1.1) (2023-10-02)
+
+### Bug Fixes
+
+- fix issue on the input text collection label when removing related filter ([ae039a3](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/ae039a3cc9abe65fab5f1919746ed493c1fe0f5e))
+
 ## [1.1.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.0.0...v1.1.0) (2023-09-30)
 
 ### Features
