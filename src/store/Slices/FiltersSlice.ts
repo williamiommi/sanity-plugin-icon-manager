@@ -33,6 +33,8 @@ export const createFiltersSlice: StateCreator<FiltersSlice, [], [], FiltersSlice
   setLimit: (limit: number) => set(() => ({limit})),
   setFilterStyle: (filterStyle: string) => set(() => ({filterStyle})),
   setFilterPalette: (filterPalette: string) => set(() => ({filterPalette})),
-  setFilterCollection: (code: string, name: string) =>
-    set(() => ({filterCollection: {code, name}})),
+  setFilterCollection: (code: string, name: string) => {
+    const newCollection = code ? {code, name} : undefined
+    set(() => ({filterCollection: newCollection}))
+  },
 })
