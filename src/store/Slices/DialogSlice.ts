@@ -41,7 +41,6 @@ export const createDialogSlice: StateCreator<
       filterStyle: '',
       filterCollection: undefined,
       limit: DEFAULT_FILTER_LIMIT,
-      currentPage: 0,
     })),
 
   openInfoDialog: () => set(() => ({isInfoDialogOpen: true})),

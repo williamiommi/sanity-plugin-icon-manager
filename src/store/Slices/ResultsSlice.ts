@@ -8,7 +8,6 @@ import IconManagerQueryResponse from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DialogSlice} from './DialogSlice'
 import {FiltersSlice} from './FiltersSlice'
-import {PaginationSlice} from './PaginationSlice'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
@@ -25,21 +24,14 @@ export interface ResultsSlice {
 }
 
 export const createResultsSlice: StateCreator<
-  ResultsSlice &
-    FiltersSlice &
-    PaginationSlice &
-    PluginOptionsSlice &
-    SanitySlice &
-    DialogSlice &
-    ConfigureSlice,
+  ResultsSlice & FiltersSlice & PluginOptionsSlice & SanitySlice & DialogSlice & ConfigureSlice,
   [],
   [],
   ResultsSlice
 > = (set, get) => ({
   setSearchTerm: (event: FormEvent<HTMLInputElement>) =>
     set(() => ({searchTerm: event.currentTarget.value})),
-  setQueryResults: (queryResults: IconManagerQueryResponse) =>
-    set(() => ({queryResults, currentPage: 0})),
+  setQueryResults: (queryResults: IconManagerQueryResponse) => set(() => ({queryResults})),
   searchIcons: async () => {
     try {
       if (!get().searchTerm) return
@@ -64,7 +56,6 @@ export const createResultsSlice: StateCreator<
         cacheResults.delete(searchParamsString)
         const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
         results = (await res.json()) as IconManagerQueryResponse
-        results.totalPages = results.total ? Math.ceil(results.total / get().iconsPerPage) : 1
         cacheResults.set(searchParams.toString(), results)
       }
       get().setQueryResults(results)

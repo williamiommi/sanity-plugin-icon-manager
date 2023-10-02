@@ -4,14 +4,12 @@ import {CollectionsSlice, createCollectionsSlice} from './Slices/CollectionsSlic
 import {ConfigureSlice, createConfigureSlice} from './Slices/ConfigureSlice'
 import {DialogSlice, createDialogSlice} from './Slices/DialogSlice'
 import {FiltersSlice, createFiltersSlice} from './Slices/FiltersSlice'
-import {PaginationSlice, createPaginationSlice} from './Slices/PaginationSlice'
 import {PluginOptionsSlice, createPluginOptionsSlice} from './Slices/PluginOptionsSlice'
 import {ResultsSlice, createResultsSlice} from './Slices/ResultsSlice'
 import {SanitySlice, createSanitySlice} from './Slices/SanitySlice'
 
 export type AppStoreType = SanitySlice &
   FiltersSlice &
-  PaginationSlice &
   PluginOptionsSlice &
   DialogSlice &
   ResultsSlice &
@@ -22,7 +20,6 @@ const createMyStore = () =>
   createStore<AppStoreType>((...a) => ({
     ...createSanitySlice(...a),
     ...createFiltersSlice(...a),
-    ...createPaginationSlice(...a),
     ...createPluginOptionsSlice(...a),
     ...createDialogSlice(...a),
     ...createResultsSlice(...a),

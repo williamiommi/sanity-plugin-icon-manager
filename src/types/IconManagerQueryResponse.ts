@@ -8,5 +8,4 @@ export default interface IconManagerQueryResponse {
   start: number
   collections: Record<string, IconifyInfo>
   request: IconManagerQueryRequest
-  totalPages: number
 }
