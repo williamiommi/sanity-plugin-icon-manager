@@ -10,6 +10,12 @@ export const getFlipValue = (hFlip?: boolean, vFlip?: boolean): Flip => {
   return output
 }
 
+export const stringifyHeight = (str?: number | number[]): string => {
+  if (!str) return ''
+  if (typeof str === 'number') return str.toString()
+  return str.join(', ')
+}
+
 export const parseSearchResults = (results: IconManagerQueryResponse): IconManagerIconInfo[] => {
   return results.icons.reduce((acc, curr) => {
     const iconInfo = curr.split(':')

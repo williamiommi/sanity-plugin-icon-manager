@@ -5,6 +5,9 @@ import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
+let cacheCollections: Record<string, IconifyInfoEnhanced>
+let cacheGroupedCollections: Record<string, IconifyInfoEnhanced[]>
+
 export interface CollectionsSlice {
   collections?: Record<string, IconifyInfoEnhanced>
   groupedCollections?: Record<string, IconifyInfoEnhanced[]>
@@ -19,11 +22,15 @@ export const createCollectionsSlice: StateCreator<
 > = (set, get) => ({
   fetchCollections: async () => {
     try {
-      if (!get().collections) {
+      if (cacheCollections && cacheGroupedCollections) {
+        set(() => ({collections: cacheCollections, groupedCollections: cacheGroupedCollections}))
+      } else {
         const res = await fetch(`${get().iconifyEndpoint}/collections`)
         if (!res.ok) throw Error('Something went wrong', {cause: res.statusText})
         const collections = (await res.json()) as Record<string, IconifyInfoEnhanced>
-        set(() => ({collections, groupedCollections: groupAndSortCollections(collections)}))
+        cacheCollections = collections
+        cacheGroupedCollections = groupAndSortCollections(collections)
+        set(() => ({collections, groupedCollections: cacheGroupedCollections}))
       }
     } catch (e: any) {
       toastError(get().sanityToast, e)

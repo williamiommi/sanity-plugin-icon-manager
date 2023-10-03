@@ -1,7 +1,8 @@
 import {BookIcon, SearchIcon} from '@sanity/icons'
-import {Tab, TabList, TabPanel} from '@sanity/ui'
+import {Tab, TabList} from '@sanity/ui'
 import {useCallback, useState} from 'react'
-import SearchTab from './SearchTab'
+import TabPanelCollection from '../TabPanelCollection'
+import TabContentSearch from '../TabPanelSearch'
 
 const Tabs = () => {
   const [tab, setTab] = useState<'search' | 'collection'>('search')
@@ -36,16 +37,8 @@ const Tabs = () => {
           onClick={handleClickCollectionTab}
         />
       </TabList>
-      <TabPanel id='search-panel' aria-labelledby='search-tab' hidden={tab !== 'search'}>
-        <SearchTab />
-      </TabPanel>
-      <TabPanel
-        id='collection-panel'
-        aria-labelledby='collection-tab'
-        hidden={tab !== 'collection'}
-      >
-        Collection
-      </TabPanel>
+      <TabContentSearch hidden={tab !== 'search'} />
+      <TabPanelCollection hidden={tab !== 'collection'} />
     </>
   )
 }
