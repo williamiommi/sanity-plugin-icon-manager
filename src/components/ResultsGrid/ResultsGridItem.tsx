@@ -1,15 +1,14 @@
 import {Button, Flex, Text, Tooltip} from '@sanity/ui'
-import {FormEvent} from 'react'
 import IconPreview from '../IconPreview'
 
-interface SearchResultsIconProps {
+interface ResultsGridItemProps {
   icon: string
   iconName?: string
   collectionName?: string
-  onClick: (event: FormEvent<HTMLButtonElement>) => void
+  onClick: () => void
 }
 
-const SearchResultsIcon = ({icon, iconName, collectionName, onClick}: SearchResultsIconProps) => {
+const ResultsGridItem = ({icon, iconName, collectionName, onClick}: ResultsGridItemProps) => {
   return (
     <Flex
       justify='center'
@@ -46,4 +45,4 @@ const SearchResultsIcon = ({icon, iconName, collectionName, onClick}: SearchResu
   )
 }
 
-export default SearchResultsIcon
+export default ResultsGridItem

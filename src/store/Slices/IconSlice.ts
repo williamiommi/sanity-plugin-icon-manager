@@ -3,14 +3,14 @@ import {StateCreator} from 'zustand'
 import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
 import {generateInitialSvgDownloadUrl, generateInitialSvgHttpUrl} from '../../lib/svgUtils'
 import {toastError} from '../../lib/toastUtils'
-import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
+import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DialogSlice} from './DialogSlice'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
 export interface IconSlice {
-  saveIcon: (icon: string, iconName: string, collection: IconifyInfoEnhanced) => void
+  saveIcon: (item: IconManagerIconInfo) => void
   removeIcon: () => void
 }
 
@@ -20,7 +20,7 @@ export const createIconSlice: StateCreator<
   [],
   IconSlice
 > = (set, get) => ({
-  saveIcon: async (icon: string, iconName: string, collection: IconifyInfoEnhanced) => {
+  saveIcon: async ({icon, iconName, collection}: IconManagerIconInfo) => {
     try {
       const patches = []
       patches.push(patchSet(icon, ['icon']))

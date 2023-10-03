@@ -1,11 +1,9 @@
 import {BookIcon, SearchIcon} from '@sanity/icons'
 import {Tab, TabList, TabPanel} from '@sanity/ui'
 import {useCallback, useState} from 'react'
-import SearchFilters from '../Search/SearchFilters'
-import SearchInput from '../Search/SearchInput'
-import SearchResults from '../Search/SearchResults'
+import SearchTab from './SearchTab'
 
-const SearchTabs = () => {
+const Tabs = () => {
   const [tab, setTab] = useState<'search' | 'collection'>('search')
 
   const handleClickSearchTab = useCallback(() => {
@@ -39,9 +37,7 @@ const SearchTabs = () => {
         />
       </TabList>
       <TabPanel id='search-panel' aria-labelledby='search-tab' hidden={tab !== 'search'}>
-        <SearchInput />
-        <SearchFilters />
-        <SearchResults />
+        <SearchTab />
       </TabPanel>
       <TabPanel
         id='collection-panel'
@@ -54,4 +50,4 @@ const SearchTabs = () => {
   )
 }
 
-export default SearchTabs
+export default Tabs

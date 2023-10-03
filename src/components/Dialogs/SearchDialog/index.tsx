@@ -1,6 +1,6 @@
 import {Dialog} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
-import SearchTabs from '../../SearchTabs'
+import Tabs from '../../Tabs'
 import Header from './Header'
 
 const SearchDialog = () => {
@@ -11,7 +11,7 @@ const SearchDialog = () => {
 
   return (
     <Dialog id='search-dialog' header={<Header />} onClose={closeSearchDialog} width={2}>
-      <SearchTabs />
+      <Tabs />
     </Dialog>
   )
 }
