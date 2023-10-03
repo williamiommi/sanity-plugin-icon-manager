@@ -47,7 +47,7 @@ export const groupAndSortCollections = (
 }
 
 export const filterCollections = (
-  searchTerm: string,
+  searchTerm?: string,
   groupedCollections?: Record<string, IconifyInfoEnhanced[]>,
 ): Record<string, IconifyInfoEnhanced[]> | undefined => {
   if (!searchTerm || !groupedCollections) return groupedCollections
@@ -58,6 +58,7 @@ export const filterCollections = (
   Object.keys(clonedItems).forEach((group) => {
     clonedItems[group] = clonedItems[group].filter((collection) => {
       return (
+        group.toLowerCase().includes(lowerCaseSearchTerm) ||
         collection.author.name.toLowerCase().includes(lowerCaseSearchTerm) ||
         collection.name.toLowerCase().includes(lowerCaseSearchTerm)
       )

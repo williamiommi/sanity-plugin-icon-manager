@@ -1,20 +1,26 @@
 /* eslint-disable react/jsx-no-bind */
 import {SearchIcon} from '@sanity/icons'
 import {Box, TextInput} from '@sanity/ui'
-import {FormEvent} from 'react'
+import {FormEvent, useCallback} from 'react'
 
 interface CollectionInputProps {
-  onInput: (e: FormEvent<HTMLInputElement>) => void
+  onChange: (searchTerm: string) => void
 }
 
-const CollectionInput = ({onInput}: CollectionInputProps) => {
+const CollectionInput = ({onChange}: CollectionInputProps) => {
+  const handleOnChange = useCallback(
+    (e: FormEvent<HTMLInputElement>) => {
+      onChange(e.currentTarget.value)
+    },
+    [onChange],
+  )
   return (
-    <Box margin={4}>
+    <Box margin={4} marginBottom={6}>
       <TextInput
         placeholder='Filter collection...'
         padding={4}
         iconRight={SearchIcon}
-        onChange={onInput}
+        onChange={handleOnChange}
       />
     </Box>
   )

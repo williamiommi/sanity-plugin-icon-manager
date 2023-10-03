@@ -1,76 +1,85 @@
 import {Icon} from '@iconify/react'
-import {Card, Flex, Grid, Text} from '@sanity/ui'
+import {Box, Card, Flex, Grid, Text} from '@sanity/ui'
+import {memo, useMemo} from 'react'
+import {filterCollections} from '../../lib/collectionsUtils'
 import {stringifyHeight} from '../../lib/iconifyUtils'
-import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
+import {useAppStoreContext} from '../../store/context'
 import HeightLightIcon from '../icons/HeightLightIcon'
 
 interface CollectionsGridProps {
-  collections?: Record<string, IconifyInfoEnhanced[]>
+  searchTerm?: string
 }
 
-const CollectionsGrid = ({collections}: CollectionsGridProps) => {
-  if (!collections) return null
+const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
+  const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
+  const filteredCollections = useMemo(() => {
+    return filterCollections(searchTerm, groupedCollections)
+  }, [searchTerm, groupedCollections])
+
+  if (!filteredCollections) return null
 
   return (
-    <Flex direction='column' margin={4} marginTop={0} gap={6}>
-      {Object.keys(collections).map((collectionCode) => {
-        const items = collections[collectionCode]
+    <Box style={{height: '400px', overflowY: 'scroll'}}>
+      <Flex direction='column' margin={4} marginTop={0} gap={6}>
+        {Object.keys(filteredCollections).map((collectionCode) => {
+          const items = filteredCollections[collectionCode]
 
-        if (items.length === 0) return null
+          if (items.length === 0) return null
 
-        return (
-          <Flex key={collectionCode} direction='column' gap={3}>
-            <Text as='i' weight='bold' size={4}>
-              {collectionCode}
-            </Text>
-            <Grid columns={[1, 1, 2, 2, 3]} gap={3}>
-              {collections[collectionCode].map((collection) => {
-                return (
-                  <Card key={collection.code} border style={{cursor: 'pointer'}}>
-                    <Flex direction='column' style={{height: '100%'}} justify='space-between'>
-                      <Flex direction='column' paddingX={3} paddingY={4} gap={2}>
-                        <Text weight='bold' size={2}>
-                          {collection.name}
-                        </Text>
-                        <Text as='i' muted size={1}>
-                          by {collection.author.name}
-                        </Text>
-                      </Flex>
-                      <Card tone='transparent' paddingX={3} paddingY={2}>
-                        <Flex justify='space-between' align='center'>
-                          <Flex gap={2} align='center'>
-                            {collection.samples?.map((sample) => (
-                              <Icon
-                                key={sample}
-                                icon={`${collection.code}:${sample}`}
-                                width={18}
-                                height={18}
-                              />
-                            ))}
-                          </Flex>
-                          <Flex align='center' gap={2}>
-                            <Text as='i' size={1} weight='semibold'>
-                              #{collection.total}
-                            </Text>
-                            {collection.height && (
-                              <Flex align='center' gap={0}>
-                                <HeightLightIcon />
-                                <Text size={0}>{stringifyHeight(collection.height)}</Text>
-                              </Flex>
-                            )}
-                          </Flex>
+          return (
+            <Flex key={collectionCode} direction='column' gap={3}>
+              <Text as='i' weight='bold' size={4}>
+                {collectionCode}
+              </Text>
+              <Grid columns={[1, 1, 2, 2, 3]} gap={3}>
+                {filteredCollections[collectionCode].map((collection) => {
+                  return (
+                    <Card key={collection.code} border style={{cursor: 'pointer'}}>
+                      <Flex direction='column' style={{height: '100%'}} justify='space-between'>
+                        <Flex direction='column' paddingX={3} paddingY={4} gap={2}>
+                          <Text weight='bold' size={2}>
+                            {collection.name}
+                          </Text>
+                          <Text as='i' muted size={1}>
+                            by {collection.author.name}
+                          </Text>
                         </Flex>
-                      </Card>
-                    </Flex>
-                  </Card>
-                )
-              })}
-            </Grid>
-          </Flex>
-        )
-      })}
-    </Flex>
+                        <Card tone='transparent' paddingX={3} paddingY={2}>
+                          <Flex justify='space-between' align='center'>
+                            <Flex gap={2} align='center'>
+                              {collection.samples?.map((sample) => (
+                                <Icon
+                                  key={sample}
+                                  icon={`${collection.code}:${sample}`}
+                                  width={18}
+                                  height={18}
+                                />
+                              ))}
+                            </Flex>
+                            <Flex align='center' gap={2}>
+                              <Text as='i' size={1} weight='semibold'>
+                                #{collection.total}
+                              </Text>
+                              {collection.height && (
+                                <Flex align='center' gap={0}>
+                                  <HeightLightIcon />
+                                  <Text size={0}>{stringifyHeight(collection.height)}</Text>
+                                </Flex>
+                              )}
+                            </Flex>
+                          </Flex>
+                        </Card>
+                      </Flex>
+                    </Card>
+                  )
+                })}
+              </Grid>
+            </Flex>
+          )
+        })}
+      </Flex>
+    </Box>
   )
 }
 
-export default CollectionsGrid
+export default memo(CollectionsGrid)
