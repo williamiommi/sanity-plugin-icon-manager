@@ -45,3 +45,24 @@ export const groupAndSortCollections = (
 ): Record<string, IconifyInfoEnhanced[]> => {
   return sortCollections(groupByCategory(filterVisibleCollections(collections)))
 }
+
+export const filterCollections = (
+  searchTerm: string,
+  groupedCollections?: Record<string, IconifyInfoEnhanced[]>,
+): Record<string, IconifyInfoEnhanced[]> | undefined => {
+  if (!searchTerm || !groupedCollections) return groupedCollections
+
+  const clonedItems = {...groupedCollections}
+
+  const lowerCaseSearchTerm = searchTerm.toLowerCase()
+  Object.keys(clonedItems).forEach((group) => {
+    clonedItems[group] = clonedItems[group].filter((collection) => {
+      return (
+        collection.author.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+        collection.name.toLowerCase().includes(lowerCaseSearchTerm)
+      )
+    })
+  })
+
+  return clonedItems
+}

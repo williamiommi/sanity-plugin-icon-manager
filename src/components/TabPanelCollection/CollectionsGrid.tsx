@@ -1,18 +1,20 @@
 import {Icon} from '@iconify/react'
 import {Card, Flex, Grid, Text} from '@sanity/ui'
 import {stringifyHeight} from '../../lib/iconifyUtils'
-import {useAppStoreContext} from '../../store/context'
+import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
 import HeightLightIcon from '../icons/HeightLightIcon'
 
-const CollectionsGrid = () => {
-  const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
+interface CollectionsGridProps {
+  collections?: Record<string, IconifyInfoEnhanced[]>
+}
 
-  if (!groupedCollections) return null
+const CollectionsGrid = ({collections}: CollectionsGridProps) => {
+  if (!collections) return null
 
   return (
     <Flex direction='column' margin={4} marginTop={0} gap={6}>
-      {Object.keys(groupedCollections).map((collectionCode) => {
-        const items = groupedCollections[collectionCode]
+      {Object.keys(collections).map((collectionCode) => {
+        const items = collections[collectionCode]
 
         if (items.length === 0) return null
 
@@ -22,7 +24,7 @@ const CollectionsGrid = () => {
               {collectionCode}
             </Text>
             <Grid columns={[1, 1, 2, 2, 3]} gap={3}>
-              {groupedCollections[collectionCode].map((collection) => {
+              {collections[collectionCode].map((collection) => {
                 return (
                   <Card key={collection.code} border style={{cursor: 'pointer'}}>
                     <Flex direction='column' style={{height: '100%'}} justify='space-between'>
