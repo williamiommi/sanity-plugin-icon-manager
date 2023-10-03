@@ -4,6 +4,7 @@ import {CollectionsSlice, createCollectionsSlice} from './Slices/CollectionsSlic
 import {ConfigureSlice, createConfigureSlice} from './Slices/ConfigureSlice'
 import {DialogSlice, createDialogSlice} from './Slices/DialogSlice'
 import {FiltersSlice, createFiltersSlice} from './Slices/FiltersSlice'
+import {IconSlice, createIconSlice} from './Slices/IconSlice'
 import {PluginOptionsSlice, createPluginOptionsSlice} from './Slices/PluginOptionsSlice'
 import {ResultsSlice, createResultsSlice} from './Slices/ResultsSlice'
 import {SanitySlice, createSanitySlice} from './Slices/SanitySlice'
@@ -14,7 +15,8 @@ export type AppStoreType = SanitySlice &
   DialogSlice &
   ResultsSlice &
   ConfigureSlice &
-  CollectionsSlice
+  CollectionsSlice &
+  IconSlice
 
 const createMyStore = () =>
   createStore<AppStoreType>((...a) => ({
@@ -25,6 +27,7 @@ const createMyStore = () =>
     ...createResultsSlice(...a),
     ...createConfigureSlice(...a),
     ...createCollectionsSlice(...a),
+    ...createIconSlice(...a),
   }))
 
 const AppStoreContext = createContext<StoreApi<AppStoreType> | null>(null)
