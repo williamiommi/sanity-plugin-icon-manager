@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import {Icon} from '@iconify/react'
 import {Box, Card, Flex, Grid, Text} from '@sanity/ui'
 import {memo, useMemo} from 'react'
@@ -12,6 +13,7 @@ interface CollectionsGridProps {
 
 const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
+  const searchCollection = useAppStoreContext((s) => s.searchCollection)
   const filteredCollections = useMemo(() => {
     return filterCollections(searchTerm, groupedCollections)
   }, [searchTerm, groupedCollections])
@@ -34,7 +36,13 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
               <Grid columns={[1, 1, 2, 2, 3]} gap={3}>
                 {filteredCollections[collectionCode].map((collection) => {
                   return (
-                    <Card key={collection.code} border style={{cursor: 'pointer'}}>
+                    <Card
+                      role='button'
+                      key={collection.code}
+                      border
+                      style={{cursor: 'pointer'}}
+                      onClick={() => searchCollection(collection.code)}
+                    >
                       <Flex direction='column' style={{height: '100%'}} justify='space-between'>
                         <Flex direction='column' paddingX={3} paddingY={4} gap={2}>
                           <Text weight='bold' size={2}>

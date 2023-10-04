@@ -29,7 +29,7 @@ export const createIconSlice: StateCreator<
           {
             downloadUrl: generateInitialSvgDownloadUrl(get().iconifyEndpoint!, icon),
             url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, icon),
-            collectionId: collection.code,
+            collectionId: collection?.code,
             collectionName: collection?.name || '',
             iconName,
             size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},

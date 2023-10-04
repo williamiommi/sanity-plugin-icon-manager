@@ -31,7 +31,7 @@ export const toastError = (sanityToast: ToastContextValue | undefined, e: unknow
     message = e
   }
   if (e instanceof Error) {
-    message = e.message
+    message = `${e.message || e.cause}`
   }
   console.error(e)
   if (sanityToast)

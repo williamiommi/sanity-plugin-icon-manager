@@ -3,11 +3,13 @@ import {SearchIcon} from '@sanity/icons'
 import {Box, TextInput} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
 
-interface CollectionInputProps {
+interface InputProps {
+  placeholder: string
+  term?: string
   onChange: (searchTerm: string) => void
 }
 
-const CollectionInput = ({onChange}: CollectionInputProps) => {
+const Input = ({placeholder, term, onChange}: InputProps) => {
   const handleOnChange = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
       onChange(e.currentTarget.value)
@@ -15,15 +17,16 @@ const CollectionInput = ({onChange}: CollectionInputProps) => {
     [onChange],
   )
   return (
-    <Box margin={4} marginBottom={6}>
+    <Box margin={4} marginBottom={5}>
       <TextInput
-        placeholder='Filter collection...'
+        placeholder={placeholder}
         padding={4}
         iconRight={SearchIcon}
         onChange={handleOnChange}
+        value={term}
       />
     </Box>
   )
 }
 
-export default CollectionInput
+export default Input

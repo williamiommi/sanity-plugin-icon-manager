@@ -1,4 +1,5 @@
 import {StateCreator} from 'zustand'
+import {CollectionsSlice} from './CollectionsSlice'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DEFAULT_FILTER_LIMIT, FiltersSlice} from './FiltersSlice'
 import {ResultsSlice} from './ResultsSlice'
@@ -23,7 +24,7 @@ export interface DialogSlice {
 }
 
 export const createDialogSlice: StateCreator<
-  DialogSlice & SanitySlice & ConfigureSlice & FiltersSlice & ResultsSlice,
+  DialogSlice & SanitySlice & ConfigureSlice & FiltersSlice & ResultsSlice & CollectionsSlice,
   [],
   [],
   DialogSlice
@@ -37,6 +38,7 @@ export const createDialogSlice: StateCreator<
       isSearchDialogOpen: false,
       searchTerm: undefined,
       searchResults: undefined,
+      hasSelectedCollection: false,
       isFiltersOpen: false,
       filterPalette: '',
       filterStyle: '',

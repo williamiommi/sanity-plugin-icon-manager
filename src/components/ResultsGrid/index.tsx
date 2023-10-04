@@ -4,14 +4,16 @@ import {Badge, Card, Grid} from '@sanity/ui'
 import usePagination from '../../hooks/usePagination'
 import {useAppStoreContext} from '../../store/context'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
+import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
 import Pagination from '../Pagination'
 import ResultsGridItem from './ResultsGridItem'
 
 interface ResultsGridProps {
   items?: IconManagerIconInfo[]
+  collection?: IconifyInfoEnhanced
 }
 
-const ResultsGrid = ({items}: ResultsGridProps) => {
+const ResultsGrid = ({items, collection}: ResultsGridProps) => {
   const {currentItems, ...paginationBag} = usePagination<IconManagerIconInfo>(items)
   const saveIcon = useAppStoreContext((s) => s.saveIcon)
 
@@ -47,8 +49,8 @@ const ResultsGrid = ({items}: ResultsGridProps) => {
               key={item.icon}
               icon={item.icon}
               iconName={item.iconName}
-              collectionName={item.collection.name}
-              onClick={() => saveIcon(item)}
+              collectionName={collection?.name || item.collection?.name || ''}
+              onClick={() => saveIcon({...item, collection: collection || item.collection})}
             />
           ))}
         </Grid>

@@ -5,7 +5,7 @@ import {IconifyInfoEnhanced} from './IconifyInfoEnhanced'
 export type IconManagerIconInfo = {
   icon: string
   iconName: string
-  collection: IconifyInfoEnhanced
+  collection?: IconifyInfoEnhanced
 }
 
 export default interface IconManagerQueryResponse {
