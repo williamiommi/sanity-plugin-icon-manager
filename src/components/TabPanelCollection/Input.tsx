@@ -17,7 +17,7 @@ const Input = ({placeholder, term, onChange}: InputProps) => {
     [onChange],
   )
   return (
-    <Box margin={4} marginBottom={5}>
+    <Box margin={4}>
       <TextInput
         placeholder={placeholder}
         padding={4}

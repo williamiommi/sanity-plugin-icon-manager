@@ -19,7 +19,7 @@ const Tabs = () => {
 
   return (
     <>
-      <TabList padding={4} paddingBottom={0}>
+      <TabList padding={4} paddingBottom={0} space={1}>
         <Tab
           id='search-tab'
           aria-controls='search-panel'
