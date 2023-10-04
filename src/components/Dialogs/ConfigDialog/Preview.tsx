@@ -50,8 +50,8 @@ const Preview = () => {
       <Flex align='center' justify='center' paddingY={5} paddingX={2}>
         <Card
           tone={previewBorder ? 'positive' : 'default'}
-          border={!!previewBorder}
-          style={{overflow: 'hidden'}}
+          border
+          style={{overflow: 'hidden', borderColor: 'transparent'}}
         >
           <Icon
             icon={sanityValue.icon}
