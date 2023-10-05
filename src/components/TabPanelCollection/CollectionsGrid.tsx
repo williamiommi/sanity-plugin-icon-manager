@@ -21,7 +21,7 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
   if (!filteredCollections) return null
 
   return (
-    <Box style={{height: '400px', overflowY: 'scroll'}}>
+    <Box style={{height: '400px', overflowY: 'scroll'}} paddingTop={1}>
       <Flex direction='column' margin={4} marginTop={0} gap={6}>
         {Object.keys(filteredCollections).map((collectionCode) => {
           const items = filteredCollections[collectionCode]

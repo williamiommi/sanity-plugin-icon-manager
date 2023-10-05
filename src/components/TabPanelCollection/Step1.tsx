@@ -1,7 +1,7 @@
-import {Flex, Text} from '@sanity/ui'
+import {Icon} from '@iconify/react'
+import {Box, Flex, Text} from '@sanity/ui'
 import {useDeferredValue, useState} from 'react'
 import {useAppStoreContext} from '../../store/context'
-import {PaginationButton} from '../../style'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
@@ -12,13 +12,38 @@ const Step1 = () => {
   const deferredSearchTerm = useDeferredValue(searchTerm)
   return (
     <>
-      <Flex gap={2} marginX={4} align='center' marginTop={4}>
-        <PaginationButton type='button' onClick={clearSelectedCollection}>
+      <Flex direction='column' gap={2} marginX={4} marginTop={4} marginBottom={5}>
+        <Box
+          role='button'
+          onClick={clearSelectedCollection}
+          style={{cursor: 'pointer', fontSize: '22px'}}
+        >
           ←
-        </PaginationButton>
-        <Text weight='bold' size={3}>
-          {selectedCollection?.collection.name}
-        </Text>
+        </Box>
+        <Flex gap={2} marginTop={2} justify='center'>
+          {selectedCollection?.collection.samples?.map((sample) => (
+            <Icon
+              key={`${selectedCollection?.collection.code}:${sample}`}
+              icon={`${selectedCollection?.collection.code}:${sample}`}
+              width={22}
+              height={22}
+            />
+          ))}
+        </Flex>
+        <Flex align='center' direction='column' gap={3}>
+          <Text weight='bold' size={4}>
+            {selectedCollection?.collection.name}
+          </Text>
+          <Text
+            as='a'
+            href={selectedCollection?.collection.author.url}
+            muted
+            size={2}
+            style={{textDecoration: 'none', fontStyle: 'italic'}}
+          >
+            by {selectedCollection?.collection.author.name}
+          </Text>
+        </Flex>
       </Flex>
       <Input placeholder='Filter icons...' term={searchTerm} onChange={setSearchTerm} />
       <IconsGrid searchTerm={deferredSearchTerm} />
