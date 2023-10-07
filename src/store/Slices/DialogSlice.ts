@@ -31,6 +31,7 @@ export const createDialogSlice: StateCreator<
 > = (set, get) => ({
   openSearchDialog: () => {
     get().setSanityPresence()
+    get().fetchCollections()
     set(() => ({isSearchDialogOpen: true}))
   },
   closeSearchDialog: () =>

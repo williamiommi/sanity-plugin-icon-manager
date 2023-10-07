@@ -1,21 +1,12 @@
+/* eslint-disable react/jsx-no-bind */
 import {BookIcon, SearchIcon} from '@sanity/icons'
 import {Tab, TabList} from '@sanity/ui'
-import {useCallback, useState} from 'react'
+import {useState} from 'react'
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'
 
 const Tabs = () => {
   const [tab, setTab] = useState<'search' | 'collection'>('search')
-
-  const handleClickSearchTab = useCallback(() => {
-    setTab('search')
-    // clean collection data
-  }, [])
-
-  const handleClickCollectionTab = useCallback(() => {
-    setTab('collection')
-    // clean search data
-  }, [])
 
   return (
     <>
@@ -26,7 +17,7 @@ const Tabs = () => {
           selected={tab === 'search'}
           icon={SearchIcon}
           label='Search'
-          onClick={handleClickSearchTab}
+          onClick={() => setTab('search')}
         />
         <Tab
           id='collections-tab'
@@ -34,7 +25,7 @@ const Tabs = () => {
           selected={tab === 'collection'}
           icon={BookIcon}
           label='Collections'
-          onClick={handleClickCollectionTab}
+          onClick={() => setTab('collection')}
         />
       </TabList>
       <TabContentSearch hidden={tab !== 'search'} />
