@@ -48,7 +48,7 @@ export const createResultsSlice: StateCreator<
       let searchResults
       const searchParamsString = searchParams.toString()
       if (cacheResults.has(searchParamsString)) {
-        results = cacheResults.get(searchParamsString)!
+        searchResults = cacheResults.get(searchParamsString)!
       } else {
         cacheResults.delete(searchParamsString)
         const url = `${get().iconifyEndpoint}/search?${searchParams.toString()}`
