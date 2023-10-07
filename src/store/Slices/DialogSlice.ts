@@ -1,6 +1,8 @@
 import {StateCreator} from 'zustand'
+import {CollectionsSlice} from './CollectionsSlice'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DEFAULT_FILTER_LIMIT, FiltersSlice} from './FiltersSlice'
+import {ResultsSlice} from './ResultsSlice'
 import {SanitySlice} from './SanitySlice'
 
 export interface DialogSlice {
@@ -22,26 +24,27 @@ export interface DialogSlice {
 }
 
 export const createDialogSlice: StateCreator<
-  DialogSlice & SanitySlice & ConfigureSlice & FiltersSlice,
+  DialogSlice & SanitySlice & ConfigureSlice & FiltersSlice & ResultsSlice & CollectionsSlice,
   [],
   [],
   DialogSlice
 > = (set, get) => ({
   openSearchDialog: () => {
     get().setSanityPresence()
+    get().fetchCollections()
     set(() => ({isSearchDialogOpen: true}))
   },
   closeSearchDialog: () =>
     set(() => ({
       isSearchDialogOpen: false,
       searchTerm: undefined,
-      queryResults: undefined,
+      searchResults: undefined,
+      hasSelectedCollection: false,
       isFiltersOpen: false,
       filterPalette: '',
       filterStyle: '',
       filterCollection: undefined,
       limit: DEFAULT_FILTER_LIMIT,
-      currentPage: 0,
     })),
 
   openInfoDialog: () => set(() => ({isInfoDialogOpen: true})),

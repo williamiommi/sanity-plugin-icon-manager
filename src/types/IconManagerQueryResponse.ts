@@ -1,5 +1,12 @@
 import {IconifyInfo} from '@iconify/types'
 import IconManagerQueryRequest from './IconManagerQueryRequest'
+import {IconifyInfoEnhanced} from './IconifyInfoEnhanced'
+
+export type IconManagerIconInfo = {
+  icon: string
+  iconName: string
+  collection?: IconifyInfoEnhanced
+}
 
 export default interface IconManagerQueryResponse {
   icons: string[]
@@ -8,5 +15,4 @@ export default interface IconManagerQueryResponse {
   start: number
   collections: Record<string, IconifyInfo>
   request: IconManagerQueryRequest
-  totalPages: number
 }

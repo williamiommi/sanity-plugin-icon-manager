@@ -18,6 +18,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
+- [🗂️ Collections Tab](#-collections-tab)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
@@ -36,8 +37,9 @@ Powered by [Iconify](https://iconify.design/)
 - Presence and Change Indicator preserved
 - Custom Diff View
 - Provide your own color palette for monochrome icons
-- Filter by collection (since v1.1.0)
 - Basic API Hosting
+- v1.1.0+: Search filter 'Collection'
+- v1.2.0+: Collections tab
 
 <br /><br />
 
@@ -284,6 +286,21 @@ In any of the above cases you can always see the list of all the changes clickin
 
 <p align="left">
   <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
+</p>
+
+<br /><br />
+
+## 🗂️ Collections Tab
+
+Starting from v.1.2.0, you can browse icons through all available collections.\
+The search dialog now offers a 'Tabs view' where you can choose to search for your icons as before or via the new 'Collections' tab. Here, you can scroll through all the available collections, select one, and choose an icon from the available options within the selected collection.
+
+<p align="center">
+  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
+</p>
+
+<p align="center">
+  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
 </p>
 
 <br /><br />

@@ -1,4 +1,5 @@
 import {ToastContextValue} from '@sanity/ui'
+import SimpleHtmlRenderer from '../components/SimpleHtmlRenderer'
 
 interface ToastProps {
   sanityToast: ToastContextValue | undefined
@@ -31,9 +32,13 @@ export const toastError = (sanityToast: ToastContextValue | undefined, e: unknow
     message = e
   }
   if (e instanceof Error) {
-    message = e.message
+    message = `${e.message || e.cause}`
   }
   console.error(e)
   if (sanityToast)
-    sanityToast.push({status: 'error', title: 'Something Went Wrong', description: message})
+    sanityToast.push({
+      status: 'error',
+      title: 'Icon Manager Plugin',
+      description: SimpleHtmlRenderer({html: message}),
+    })
 }
