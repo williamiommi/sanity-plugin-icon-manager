@@ -31,8 +31,13 @@ export const createCollectionsSlice: StateCreator<
       if (cacheCollections && cacheGroupedCollections) {
         set(() => ({collections: cacheCollections, groupedCollections: cacheGroupedCollections}))
       } else {
-        const res = await fetch(`${get().iconifyEndpoint}/collections`)
-        if (!res.ok) throw Error('Something went wrong', {cause: res.statusText})
+        const url = `${get().iconifyEndpoint}/collections`
+        const res = await fetch(url)
+        if (!res.ok)
+          throw Error(
+            `Status: ${res.status || 'unknown'} <br />
+            ${res.statusText ? `${res.statusText}` : `Unable to fetch collections at '${url}'`}`,
+          )
         const collections = (await res.json()) as Record<string, IconifyInfoEnhanced>
         cacheCollections = collections
         cacheGroupedCollections = groupAndSortCollections(collections)
@@ -44,8 +49,13 @@ export const createCollectionsSlice: StateCreator<
   },
   searchCollection: async (prefix: string) => {
     try {
-      const res = await fetch(`${get().iconifyEndpoint}/collection?prefix=${prefix}`)
-      if (!res.ok) throw Error('Something went wrong', {cause: res.statusText})
+      const url = `${get().iconifyEndpoint}/collection?prefix=${prefix}`
+      const res = await fetch(url)
+      if (!res.ok)
+        throw Error(
+          `Status: ${res.status || 'unknown'} <br />
+              ${res.statusText ? `${res.statusText}` : `Unable to select collection at '${url}'`}`,
+        )
       const collection = (await res.json()) as IconManagerCollectionResponse
       const collections = get().collections
       set(() => ({

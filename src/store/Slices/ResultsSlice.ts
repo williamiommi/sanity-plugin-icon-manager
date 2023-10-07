@@ -51,7 +51,13 @@ export const createResultsSlice: StateCreator<
         results = cacheResults.get(searchParamsString)!
       } else {
         cacheResults.delete(searchParamsString)
-        const res = await fetch(`${get().iconifyEndpoint}/search?${searchParams.toString()}`)
+        const url = `${get().iconifyEndpoint}/search?${searchParams.toString()}`
+        const res = await fetch(url)
+        if (!res.ok)
+          throw Error(
+            `Status: ${res.status || 'unknown'} <br />
+            ${res.statusText ? `${res.statusText}` : `Unable to search icons at '${url}'`}`,
+          )
         results = (await res.json()) as IconManagerQueryResponse
         searchResults = parseSearchResults(results)
         cacheResults.set(searchParams.toString(), searchResults)
