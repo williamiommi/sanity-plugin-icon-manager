@@ -10,7 +10,8 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
     setIsDetailsOpen((state) => !state)
   }, [setIsDetailsOpen])
 
-  if (!props.diff.fromValue?.icon && !props.diff.toValue?.icon) return null
+  if (!props.diff.isChanged || (!props.diff.fromValue?.icon && !props.diff.toValue?.icon))
+    return null
 
   return (
     <>
