@@ -425,8 +425,8 @@ const MyComponent = (props) => {
 
 ## 🛣️ Roadmap
 
-- ~~Filter by Collection~~ (since v1.1.0)
-- Search within an entire collection
+- ~~Filter by Collection~~ (v1.1.0+)
+- ~~Search within an entire collection~~ (v1.2.0+)
 - Analyze the possibility of adding [custom icon sets](https://iconify.design/docs/icons/custom.html) via configuration
 - 🤔
 
