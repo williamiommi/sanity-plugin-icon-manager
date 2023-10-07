@@ -1,4 +1,5 @@
 import {Icon} from '@iconify/react'
+import {LaunchIcon} from '@sanity/icons'
 import {Box, Flex, Text} from '@sanity/ui'
 import {useDeferredValue, useState} from 'react'
 import {useAppStoreContext} from '../../store/context'
@@ -34,15 +35,19 @@ const Step1 = () => {
           <Text weight='bold' size={4}>
             {selectedCollection?.collection.name}
           </Text>
-          <Text
+          <Flex
+            gap={1}
+            align='center'
             as='a'
             href={selectedCollection?.collection.author.url}
-            muted
-            size={2}
+            target='_blank'
             style={{textDecoration: 'none', fontStyle: 'italic'}}
           >
-            by {selectedCollection?.collection.author.name}
-          </Text>
+            <Text muted size={2}>
+              by {selectedCollection?.collection.author.name}
+            </Text>
+            <LaunchIcon width={12} style={{color: 'initial'}} />
+          </Flex>
         </Flex>
       </Flex>
       <Input placeholder='Filter icons...' term={searchTerm} onChange={setSearchTerm} />
