@@ -37,9 +37,9 @@ Powered by [Iconify](https://iconify.design/)
 - Presence and Change Indicator preserved
 - Custom Diff View
 - Provide your own color palette for monochrome icons
-- Filter by collection (v1.1.0+)
-- Collections tab (v1.2.0+)
 - Basic API Hosting
+- v1.1.0+: Search filter 'Collection'
+- v1.2.0+: Collections tab
 
 <br /><br />
 
