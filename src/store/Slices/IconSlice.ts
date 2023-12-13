@@ -1,7 +1,17 @@
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
-import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
-import {generateInitialSvgDownloadUrl, generateInitialSvgHttpUrl} from '../../lib/svgUtils'
+import {
+  INITIAL_HEIGHT,
+  INITIAL_HFLIP,
+  INITIAL_ROTATE,
+  INITIAL_VFLIP,
+  INITIAL_WIDTH,
+} from '../../lib/constants'
+import {
+  generateInitialSvgDownloadUrl,
+  generateInitialSvgHttpUrl,
+  generateSvgHtml,
+} from '../../lib/svgUtils'
 import {toastError} from '../../lib/toastUtils'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
@@ -33,10 +43,10 @@ export const createIconSlice: StateCreator<
             collectionName: collection?.name || '',
             iconName,
             size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
-            hFlip: false,
-            vFlip: false,
+            hFlip: INITIAL_HFLIP,
+            vFlip: INITIAL_VFLIP,
             flip: '',
-            rotate: 0,
+            rotate: INITIAL_ROTATE,
             palette: collection?.palette,
             author: {
               name: collection?.author.name,
@@ -50,6 +60,14 @@ export const createIconSlice: StateCreator<
           ['metadata'],
         ),
       )
+
+      const storeInlineSvg = get().storeInlineSvg
+      if (storeInlineSvg) {
+        // Add inline svg when saving the icon
+        const inlineSvg = await generateSvgHtml(get(), undefined, icon)
+        patches.push(patchSet(inlineSvg, ['metadata.inlineSvg']))
+      }
+
       const sanityPatch = get().sanityPatch
       if (sanityPatch) {
         await sanityPatch(patches)

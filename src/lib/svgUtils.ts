@@ -2,7 +2,13 @@ import {IconifyIconCustomisations, buildIcon, loadIcon} from '@iconify/react'
 import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
 import DomPurify from 'dompurify'
 import {AppStoreType} from '../store/context'
-import {INITIAL_HEIGHT, INITIAL_WIDTH} from './constants'
+import {
+  INITIAL_HEIGHT,
+  INITIAL_HFLIP,
+  INITIAL_ROTATE,
+  INITIAL_VFLIP,
+  INITIAL_WIDTH,
+} from './constants'
 import {toastError} from './toastUtils'
 
 export type AppStoreTypePartial = Pick<
@@ -25,15 +31,18 @@ const buildIconHtml = async (icon: string, customizations?: IconifyIconCustomisa
   return html
 }
 
-const getIconCustomisations = (value?: AppStoreTypePartial) => {
+const getIconCustomisations = (value?: AppStoreTypePartial, saveIcon?: string) => {
   if (!value) return undefined
-  return {
-    width: value.size.width,
-    height: value.size.height,
-    rotate: value.rotate,
-    hFlip: value.hFlip,
-    vFlip: value.vFlip,
+
+  const customisations = {
+    width: saveIcon ? INITIAL_WIDTH : value.size.width,
+    height: saveIcon ? INITIAL_HEIGHT : value.size.height,
+    rotate: saveIcon ? INITIAL_ROTATE : value.rotate,
+    hFlip: saveIcon ? INITIAL_HFLIP : value.hFlip,
+    vFlip: saveIcon ? INITIAL_VFLIP : value.vFlip,
   }
+
+  return customisations
 }
 
 const generateSearchParams = (
@@ -110,15 +119,16 @@ export const generateSvgDownloadUrl = (
 export const generateSvgHtml = async (
   appState: AppStoreTypePartial,
   original?: boolean,
+  saveIcon?: string,
 ): Promise<string> => {
   try {
-    const icon = appState.sanityValue?.icon
+    const icon = saveIcon || appState.sanityValue?.icon
 
     if (!icon) throw Error('Unable to find the icon.')
 
     let customizations
     if (!original) {
-      customizations = getIconCustomisations(appState)
+      customizations = getIconCustomisations(appState, saveIcon)
     }
 
     let html = await buildIconHtml(icon, customizations)

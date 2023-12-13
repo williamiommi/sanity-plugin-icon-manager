@@ -3,19 +3,26 @@ import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/colorUtils'
-import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
+import {
+  INITIAL_HEIGHT,
+  INITIAL_HFLIP,
+  INITIAL_ROTATE,
+  INITIAL_VFLIP,
+  INITIAL_WIDTH,
+} from '../../lib/constants'
 import {getFlipValue} from '../../lib/iconifyUtils'
 import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../../lib/svgUtils'
 import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
 import {IconManagerColor, IconManagerSize} from '../../types/IconManagerType'
 import {DialogSlice} from './DialogSlice'
 import {SanitySlice} from './SanitySlice'
+import {PluginOptionsSlice} from './PluginOptionsSlice'
 
 const initialState = {
-  hFlip: false,
-  vFlip: false,
+  hFlip: INITIAL_HFLIP,
+  vFlip: INITIAL_VFLIP,
   flip: '',
-  rotate: 0,
+  rotate: INITIAL_ROTATE,
   inlineSvg: '',
   size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
   uniqueSize: false,
@@ -55,7 +62,7 @@ export interface ConfigureSlice {
 }
 
 export const createConfigureSlice: StateCreator<
-  ConfigureSlice & SanitySlice & DialogSlice,
+  ConfigureSlice & SanitySlice & DialogSlice & PluginOptionsSlice,
   [],
   [],
   ConfigureSlice
@@ -174,18 +181,24 @@ export const createConfigureSlice: StateCreator<
           }
         }
 
-        // check for inlineSvg option
-        const currentInlineSvg = get().inlineSvg
-        const prevInlineSvg = sanityValue.metadata.inlineSvg
-        if (!currentInlineSvg && prevInlineSvg) {
-          patches.push(patchUnset(['metadata.inlineSvg']))
-        }
-        if (
-          (currentInlineSvg && !prevInlineSvg) ||
-          (currentInlineSvg && currentInlineSvg !== prevInlineSvg) ||
-          (currentInlineSvg && patches.length > 0)
-        ) {
+        const storeInlineSvg = get().storeInlineSvg
+
+        if (storeInlineSvg) {
           patches.push(patchSet(await generateSvgHtml(get()), ['metadata.inlineSvg']))
+        } else {
+          // check for inlineSvg option
+          const currentInlineSvg = get().inlineSvg
+          const prevInlineSvg = sanityValue.metadata.inlineSvg
+          if (!currentInlineSvg && prevInlineSvg) {
+            patches.push(patchUnset(['metadata.inlineSvg']))
+          }
+          if (
+            (currentInlineSvg && !prevInlineSvg) ||
+            (currentInlineSvg && currentInlineSvg !== prevInlineSvg) ||
+            (currentInlineSvg && patches.length > 0)
+          ) {
+            patches.push(patchSet(await generateSvgHtml(get()), ['metadata.inlineSvg']))
+          }
         }
 
         // if we have some patches, update the document

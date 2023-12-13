@@ -13,6 +13,7 @@ import Size from './Size'
 const ConfigDialog = () => {
   const isConfigDialogOpen = useAppStoreContext((s) => s.isConfigDialogOpen)
   const closeConfigDialog = useAppStoreContext((s) => s.closeConfigDialog)
+  const storeInlineSvg = useAppStoreContext((s) => s.storeInlineSvg)
 
   if (!isConfigDialogOpen) return null
 
@@ -29,7 +30,7 @@ const ConfigDialog = () => {
           <Flip />
           <Rotate />
           <Size />
-          <InlineSvg />
+          {storeInlineSvg ? null : <InlineSvg />}
           <Color />
         </Flex>
         <Preview />

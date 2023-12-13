@@ -5,8 +5,10 @@ import {PluginCustomColor, PluginCustomPalette} from '../../types/IconManagerPlu
 export interface PluginOptionsSlice {
   iconifyEndpoint?: string
   customPalette?: PluginCustomColor[]
+  storeInlineSvg?: boolean
   setIconifyEndpoint: (iconifyEndpoint: string) => void
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => void
+  setPluginOptionStoreInlineSvg: (storeInlineSvg: boolean) => void
 }
 
 export const createPluginOptionsSlice: StateCreator<
@@ -34,4 +36,5 @@ export const createPluginOptionsSlice: StateCreator<
 
     set(() => ({customPalette: finalPalette}))
   },
+  setPluginOptionStoreInlineSvg: (storeInlineSvg: boolean) => set(() => ({storeInlineSvg})),
 })

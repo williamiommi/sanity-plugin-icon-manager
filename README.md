@@ -10,22 +10,26 @@
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
 Powered by [Iconify](https://iconify.design/)
 
-- [⚡️ Features](#%EF%B8%8F-features)
-- [🔌 Installation](#-installation)
-- [🧑‍💻 Usage](#-usage)
-- [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
-- [👀 Document List Preview](#-document-list-preview)
-- [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
-- [🎨 Custom Color Palette](#-custom-color-palette)
-- [🎭 Custom Diff View](#-custom-diff-view)
-- [🗂️ Collections Tab](#%EF%B8%8F-collections-tab)
-- [🌎 Basic Hosting](#-basic-hosting)
-- [🗃️ Data Model](#%EF%B8%8F-data-model)
-- [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
-- [🛣️ Roadmap](#%EF%B8%8F-roadmap)
-- [📝 License](#-license)
-- [🧪 Develop & test](#-develop--test)
-  <br /><br />
+- [Sanity Icon Manager](#sanity-icon-manager)
+  - [⚡️ Features](#️-features)
+  - [🔌 Installation](#-installation)
+  - [🧑‍💻 Usage](#-usage)
+  - [⚙️ Plugin Configuration](#️-plugin-configuration)
+  - [👀 Document List Preview](#-document-list-preview)
+  - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
+  - [🎨 Custom Color Palette](#-custom-color-palette)
+  - [🎭 Custom Diff View](#-custom-diff-view)
+    - [Icon Added](#icon-added)
+    - [Icon Changed](#icon-changed)
+    - [Icon Removed](#icon-removed)
+  - [🗂️ Collections Tab](#️-collections-tab)
+  - [🌎 Basic Hosting](#-basic-hosting)
+  - [🗃️ Data model](#️-data-model)
+  - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
+  - [🛣️ Roadmap](#️-roadmap)
+  - [📝 License](#-license)
+  - [🧪 Develop \& test](#-develop--test)
+    - [Release new version](#release-new-version)
 
 ## ⚡️ Features
 
@@ -112,6 +116,9 @@ This is the main configuration of the plugin. The available options are:
     },
     // other colors
   ]
+
+  // Optional flag for storing the icons as an inline svg by default
+  storeInlineSvg?: string
 }
 ```
 
