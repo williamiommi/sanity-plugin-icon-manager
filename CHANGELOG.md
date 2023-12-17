@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.2.2...v1.3.0) (2023-12-17)
+
+### Features
+
+- **inline-svg:** new global option to store inlinve svg by default ([6163ef8](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/6163ef83698980985c8711732fb77298a2e733aa))
+
 ## [1.2.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.2.1...v1.2.2) (2023-10-07)
 
 ### Bug Fixes
