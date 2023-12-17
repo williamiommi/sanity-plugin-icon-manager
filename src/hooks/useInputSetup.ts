@@ -13,6 +13,7 @@ const useInputSetup = (
   const sanityToast = useToast()
   const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
   const setPluginOptionCustomPalette = useAppStoreContext((s) => s.setPluginOptionCustomPalette)
+  const setInlineSvgOption = useAppStoreContext((s) => s.setInlineSvgOption)
   const setSanityFieldPath = useAppStoreContext((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStoreContext((s) => s.setSanityValue)
   const setSanityPatch = useAppStoreContext((s) => s.setSanityPatch)
@@ -51,6 +52,7 @@ const useInputSetup = (
     setSanityUserCanEdit(!objectInputProps.readOnly)
     setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
     if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
+    if (pluginOptions?.inlineSvg) setInlineSvgOption(pluginOptions.inlineSvg)
   }, [])
 }
 
