@@ -16,7 +16,6 @@ const initialState = {
   vFlip: false,
   flip: '',
   rotate: 0,
-  inlineSvg: '',
   size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
   uniqueSize: false,
   color: undefined,
@@ -29,7 +28,7 @@ export interface ConfigureSlice {
   flip: string
   rotate: number
   size: IconManagerSize
-  inlineSvg: string
+  inlineSvg?: string
   uniqueSize: boolean
   previewBorder: boolean
   color?: IconManagerColor
@@ -65,7 +64,6 @@ export const createConfigureSlice: StateCreator<
     let count = 0
     const SV = get().sanityValue
     if (!SV || !SV.metadata) return false
-    if (SV.metadata.inlineSvg) count++
     if (SV.metadata.hFlip) count++
     if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++

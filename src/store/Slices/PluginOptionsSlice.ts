@@ -3,10 +3,12 @@ import {isValidHex} from '../../lib/colorUtils'
 import {PluginCustomColor, PluginCustomPalette} from '../../types/IconManagerPluginOptions'
 
 export interface PluginOptionsSlice {
+  inlineSvgOption?: boolean
   iconifyEndpoint?: string
   customPalette?: PluginCustomColor[]
   setIconifyEndpoint: (iconifyEndpoint: string) => void
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => void
+  setInlineSvgOption: (inlineSvg: boolean) => void
 }
 
 export const createPluginOptionsSlice: StateCreator<
@@ -34,4 +36,5 @@ export const createPluginOptionsSlice: StateCreator<
 
     set(() => ({customPalette: finalPalette}))
   },
+  setInlineSvgOption: (inlineSvgOption: boolean) => set(() => ({inlineSvgOption})),
 })
