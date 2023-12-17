@@ -40,6 +40,7 @@ Powered by [Iconify](https://iconify.design/)
 - Basic API Hosting
 - v1.1.0+: Search filter 'Collection'
 - v1.2.0+: Collections tab
+- v1.3.0+: Global 'inline-svg' option
 
 <br /><br />
 
@@ -101,6 +102,9 @@ This is the main configuration of the plugin. The available options are:
 
 ```ts
 {
+  // When set to true, this global option allows you to automatically store the inline version of the selected icon. This means that the 'Inline Svg' checkbox will be preselected by default when you choose a new icon.
+  inlineSvg?: boolean
+
   // This is the endpoint if you decide to host your icon sets on your own server. For more details, see the dedicated session below
   customEndpoint?: string
 
