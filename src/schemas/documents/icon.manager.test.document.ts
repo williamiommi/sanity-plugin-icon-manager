@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import IconManagerMetadata from '../objects/IconManager/metadata'
+import IconManagerMetadata from '../objects/IconManager/info'
 
 const IconManagerTestDocument = defineType({
   type: 'document',
