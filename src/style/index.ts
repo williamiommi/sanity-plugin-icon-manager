@@ -96,7 +96,7 @@ export const StyledColorPaletteWrapper = styled.div`
   margin-bottom: 10px;
   border-radius: 2px;
   max-width: 272px;
-  background-color: ${(p) => p.theme.color.base.skeleton.to};
+  background-color: ${(p) => p.theme.color.base.border};
 `
 
 interface StyledColorPaletteBoxProps {
