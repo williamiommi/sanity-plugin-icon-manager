@@ -7,14 +7,14 @@ import IconManagerInputComponent from '../../../components/IconManagerInputCompo
 import {mediaPreview} from '../../../ext/mediaPreview'
 import IconManagerPluginOptions from '../../../types/IconManagerPluginOptions'
 import {IconManagerType} from '../../../types/IconManagerType'
-import extraFields from './extra.fields'
-import IconManagerMetadata from './metadata'
+import IconManagerMetadataInfo from '../IconManagerMetadata/info'
+import IconManagerInfo from './info'
 
 const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any =>
   defineType({
     type: 'object',
-    name: IconManagerMetadata.name,
-    title: IconManagerMetadata.title,
+    name: IconManagerInfo.name,
+    title: IconManagerInfo.title,
     preview: {
       select: {
         icon: 'icon',
@@ -35,10 +35,9 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any 
         title: 'Icon',
       }),
       defineField({
-        type: 'object',
+        type: IconManagerMetadataInfo.name,
         name: 'metadata',
         title: 'Metadata',
-        fields: extraFields,
       }),
     ],
     components: {
