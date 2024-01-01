@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.3.0...v1.3.1) (2024-01-01)
+
+### Bug Fixes
+
+- **graphql deploy:** lifted up all anonymous objects to enable graphql deployment ([95471fc](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/95471fcc3df81905d129207634739e349f43075d))
+- **sanity theme:** color.base.skeleton.to not available anymore, fixed with color.base.border ([ce92237](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/ce92237669e71e7a389c83108835b2f2c0d8d747))
+
 ## [1.3.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.2.2...v1.3.0) (2023-12-17)
 
 ### Features
