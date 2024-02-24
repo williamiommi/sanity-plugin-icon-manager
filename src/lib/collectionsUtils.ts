@@ -76,18 +76,21 @@ export const getIconsFromCollection = (
   collection: IconManagerCollectionResponse,
 ): IconManagerIconInfo[] => {
   const output: IconManagerIconInfo[] = []
+  const icons = new Set()
+
+  const addIcon = (icon: string) => {
+    if (!icons.has(icon)) {
+      icons.add(icon)
+      output.push({icon: `${collection.prefix}:${icon}`, iconName: icon})
+    }
+  }
 
   // loop trough uncategorized
-  if (collection.uncategorized)
-    collection.uncategorized?.forEach((icon) => {
-      output.push({icon: `${collection.prefix}:${icon}`, iconName: icon})
-    })
+  if (collection.uncategorized) collection.uncategorized?.forEach(addIcon)
   if (collection.categories) {
     Object.keys(collection.categories).forEach((category) => {
       if (collection.categories) {
-        collection.categories[category].forEach((icon) => {
-          output.push({icon: `${collection.prefix}:${icon}`, iconName: icon})
-        })
+        collection.categories[category].forEach(addIcon)
       }
     })
   }
