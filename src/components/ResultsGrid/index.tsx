@@ -26,6 +26,7 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
         tone='critical'
         margin={4}
         marginTop={0}
+        padding={2}
         style={{
           display: 'block',
           fontWeight: 'bold',

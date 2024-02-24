@@ -14,6 +14,7 @@ const useInputSetup = (
   const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
   const setPluginOptionCustomPalette = useAppStoreContext((s) => s.setPluginOptionCustomPalette)
   const setInlineSvgOption = useAppStoreContext((s) => s.setInlineSvgOption)
+  const setAvailableCollectionsOption = useAppStoreContext((s) => s.setAvailableCollectionsOption)
   const setSanityFieldPath = useAppStoreContext((s) => s.setSanityFieldPath)
   const setSanityValue = useAppStoreContext((s) => s.setSanityValue)
   const setSanityPatch = useAppStoreContext((s) => s.setSanityPatch)
@@ -53,6 +54,8 @@ const useInputSetup = (
     setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
     if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
     if (pluginOptions?.inlineSvg) setInlineSvgOption(pluginOptions.inlineSvg)
+    if (pluginOptions?.availableCollections)
+      setAvailableCollectionsOption(pluginOptions.availableCollections)
   }, [])
 }
 
