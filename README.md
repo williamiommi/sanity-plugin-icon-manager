@@ -103,7 +103,7 @@ This is the main configuration of the plugin. The available options are:
 
 ```ts
 {
-  // An array of strings containing a subset of collection IDs (e.g., ['ant-design', 'material-']). Can be used when you want to limit access to only specific collections. It utilizes the 'prefixes' query string available on the Iconify API. More information can be found [here](https://iconify.design/docs/api/collections.html).
+  // An array of strings containing a subset of collection IDs (e.g., ['ant-design', 'material-']). Can be used when you want to limit access to only specific collections. It utilizes the 'prefixes' query parameter available on the Iconify API. More information can be found [here](https://iconify.design/docs/api/collections.html).
   availableCollections?: string[]
   // When set to true, this global option allows you to automatically store the inline version of the selected icon. This means that the 'Inline Svg' checkbox will be preselected by default when you choose a new icon.
   inlineSvg?: boolean
