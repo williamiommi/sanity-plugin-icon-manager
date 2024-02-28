@@ -10,6 +10,7 @@ export default function NoCollectionBadge() {
         padding={4}
         flex={1}
         style={{textAlign: 'center'}}
+        radius={0}
       >
         No available collections.
         <br />

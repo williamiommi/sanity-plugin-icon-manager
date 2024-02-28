@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-bind */
-import {WarningOutlineIcon} from '@sanity/icons'
 import {Badge, Card, Grid} from '@sanity/ui'
 import usePagination from '../../hooks/usePagination'
 import {useAppStoreContext} from '../../store/context'
@@ -27,6 +26,7 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
         margin={4}
         marginTop={0}
         padding={2}
+        radius={0}
         style={{
           display: 'block',
           fontWeight: 'bold',
@@ -35,8 +35,7 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
           textAlign: 'center',
         }}
       >
-        <WarningOutlineIcon />
-        &nbsp;&nbsp;No icons found!
+        No icons found!
       </Badge>
     )
 
