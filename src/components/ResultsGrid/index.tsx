@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import {Badge, Card, Grid} from '@sanity/ui'
+import {Badge, Card, Grid, Label} from '@sanity/ui'
 import usePagination from '../../hooks/usePagination'
 import {useAppStoreContext} from '../../store/context'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
@@ -25,7 +25,6 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
         tone='critical'
         margin={4}
         marginTop={0}
-        padding={2}
         radius={0}
         style={{
           display: 'block',
@@ -35,7 +34,7 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
           textAlign: 'center',
         }}
       >
-        No icons found!
+        <Label style={{padding: '10px'}}>No icons found!</Label>
       </Badge>
     )
 
