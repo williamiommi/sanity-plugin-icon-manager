@@ -5,6 +5,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.3.2...v1.4.0) (2024-03-01)
+
+### Features
+
+- **collections limit:** fix issue on search keywords ([47b1492](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/47b149210d6708e19953ce34ec79287ca76b5f41))
+- **collections limit:** minor on badge radius ([1688de6](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/1688de6180727ab1124df8d2789529cbb0438922))
+- **collections limit:** new global option to limit the available collections ([45e982e](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/45e982e4ab2081dbd8ba502ad4f59c5032e573d6))
+
 ## [1.3.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.3.1...v1.3.2) (2024-02-24)
 
 ### Bug Fixes
