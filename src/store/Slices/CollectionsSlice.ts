@@ -31,7 +31,10 @@ export const createCollectionsSlice: StateCreator<
       if (cacheCollections && cacheGroupedCollections) {
         set(() => ({collections: cacheCollections, groupedCollections: cacheGroupedCollections}))
       } else {
-        const url = `${get().iconifyEndpoint}/collections`
+        const url = new URL(`${get().iconifyEndpoint}/collections`)
+        if (get().availableCollectionsOption) {
+          url.searchParams.set('prefixes', get().availableCollectionsOption!)
+        }
         const res = await fetch(url)
         if (!res.ok)
           throw Error(
