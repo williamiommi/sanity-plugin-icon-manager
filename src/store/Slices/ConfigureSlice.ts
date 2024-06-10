@@ -3,12 +3,13 @@ import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/colorUtils'
-import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
+import {FALLBACK_SIZE} from '../../lib/constants'
 import {getFlipValue} from '../../lib/iconifyUtils'
-import {generateSvgDownloadUrl, generateSvgHtml, generateSvgHttpUrl} from '../../lib/svgUtils'
+import {buildSvgHtml, buildSvgUrls} from '../../lib/svg-utils'
 import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
 import {IconManagerColor, IconManagerSize} from '../../types/IconManagerType'
 import {DialogSlice} from './DialogSlice'
+import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
 const initialState = {
@@ -16,7 +17,7 @@ const initialState = {
   vFlip: false,
   flip: '',
   rotate: 0,
-  size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
+  size: {width: FALLBACK_SIZE, height: FALLBACK_SIZE},
   uniqueSize: false,
   color: undefined,
   previewBorder: false,
@@ -54,7 +55,7 @@ export interface ConfigureSlice {
 }
 
 export const createConfigureSlice: StateCreator<
-  ConfigureSlice & SanitySlice & DialogSlice,
+  ConfigureSlice & SanitySlice & DialogSlice & PluginOptionsSlice,
   [],
   [],
   ConfigureSlice
@@ -67,12 +68,12 @@ export const createConfigureSlice: StateCreator<
     if (SV.metadata.hFlip) count++
     if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
-    if (SV.metadata.size.width !== INITIAL_WIDTH) count++
-    if (SV.metadata.size.height !== INITIAL_HEIGHT) count++
+    if (SV.metadata.size.width !== get().defaultSize?.width) count++
+    if (SV.metadata.size.height !== get().defaultSize?.height) count++
     if (SV.metadata.color && SV.metadata.color.hex) count++
     return count > 0
   },
-  clearConfiguration: () => set(initialState),
+  clearConfiguration: () => set({...initialState, size: {...get().defaultSize!}}),
   resetConfiguration: () => {
     const sanityValue = get().sanityValue
     set(() => ({
@@ -183,14 +184,23 @@ export const createConfigureSlice: StateCreator<
           (currentInlineSvg && currentInlineSvg !== prevInlineSvg) ||
           (currentInlineSvg && patches.length > 0)
         ) {
-          patches.push(patchSet(await generateSvgHtml(get()), ['metadata.inlineSvg']))
+          patches.push(
+            patchSet(await buildSvgHtml({icon: sanityValue.icon, ...get()}), [
+              'metadata.inlineSvg',
+            ]),
+          )
         }
 
         // if we have some patches, update the document
         if (patches.length > 0) {
           // update urls too if something has changed
-          patches.push(patchSet(generateSvgHttpUrl(get()), ['metadata.url']))
-          patches.push(patchSet(generateSvgDownloadUrl(get()), ['metadata.downloadUrl']))
+          const urls = await buildSvgUrls(get().iconifyEndpoint!, {
+            icon: sanityValue.icon!,
+            ...get(),
+          })
+
+          patches.push(patchSet(urls.downloadUrl, ['metadata.downloadUrl']))
+          patches.push(patchSet(urls.url, ['metadata.url']))
 
           await sanityPatch(patches)
           get().closeConfigDialog()

@@ -1,11 +1,6 @@
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
-import {INITIAL_HEIGHT, INITIAL_WIDTH} from '../../lib/constants'
-import {
-  generateInitialSvgDownloadUrl,
-  generateInitialSvgHttpUrl,
-  generateSvgHtml,
-} from '../../lib/svgUtils'
+import {buildSvgHtml, buildSvgUrls} from '../../lib/svg-utils'
 import {toastError} from '../../lib/toastUtils'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
@@ -26,41 +21,48 @@ export const createIconSlice: StateCreator<
 > = (set, get) => ({
   saveIcon: async ({icon, iconName, collection}: IconManagerIconInfo) => {
     try {
+      const size = {
+        width: get().defaultSize!.width,
+        height: get().defaultSize!.height,
+      }
+
+      const urls = await buildSvgUrls(get().iconifyEndpoint!, {icon, size})
+
       const patches = []
       patches.push(patchSet(icon, ['icon']))
-      patches.push(
-        patchSet(
-          {
-            downloadUrl: generateInitialSvgDownloadUrl(get().iconifyEndpoint!, icon),
-            url: generateInitialSvgHttpUrl(get().iconifyEndpoint!, icon),
-            collectionId: collection?.code,
-            collectionName: collection?.name || '',
-            iconName,
-            size: {width: INITIAL_WIDTH, height: INITIAL_HEIGHT},
-            hFlip: false,
-            vFlip: false,
-            flip: '',
-            rotate: 0,
-            palette: collection?.palette,
-            author: {
-              name: collection?.author.name,
-              url: collection?.author.url,
-            },
-            license: {
-              name: collection?.license.title,
-              url: collection?.license.url,
-            },
-          },
-          ['metadata'],
-        ),
-      )
+
+      const metadata = {
+        downloadUrl: urls.downloadUrl,
+        url: urls.url,
+        collectionId: collection?.code,
+        collectionName: collection?.name || '',
+        iconName,
+        size,
+        hFlip: false,
+        vFlip: false,
+        flip: '',
+        rotate: 0,
+        palette: collection?.palette,
+        author: {
+          name: collection?.author.name,
+          url: collection?.author.url,
+        },
+        license: {
+          name: collection?.license.title,
+          url: collection?.license.url,
+        },
+      }
+
+      patches.push(patchSet(metadata, ['metadata']))
       const sanityPatch = get().sanityPatch
       if (sanityPatch) {
         await sanityPatch(patches)
 
         // if saveInlineOption is true, we need to store also the inline svg
         if (get().inlineSvgOption) {
-          await sanityPatch(patchSet(await generateSvgHtml(get()), ['metadata.inlineSvg']))
+          await sanityPatch(
+            patchSet(await buildSvgHtml({icon, ...metadata}), ['metadata.inlineSvg']),
+          )
         }
 
         get().closeSearchDialog()
