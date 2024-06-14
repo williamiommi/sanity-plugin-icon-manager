@@ -1,7 +1,7 @@
 import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {ObjectInputProps} from 'sanity'
-import {DEFAULT_API_URL} from '../lib/constants'
+import {DEFAULT_API_URL, FALLBACK_SIZE} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 import {IconManagerType} from '../types/IconManagerType'
@@ -11,6 +11,7 @@ const useInputSetup = (
   pluginOptions: void | IconManagerPluginOptions,
 ): void => {
   const sanityToast = useToast()
+  const setDefaultSize = useAppStoreContext((s) => s.setDefaultSize)
   const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
   const setPluginOptionCustomPalette = useAppStoreContext((s) => s.setPluginOptionCustomPalette)
   const setInlineSvgOption = useAppStoreContext((s) => s.setInlineSvgOption)
@@ -52,6 +53,7 @@ const useInputSetup = (
     setSanityToast(sanityToast)
     setSanityUserCanEdit(!objectInputProps.readOnly)
     setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
+    setDefaultSize(pluginOptions?.defaultSize ?? {width: FALLBACK_SIZE, height: FALLBACK_SIZE})
     if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
     if (pluginOptions?.inlineSvg) setInlineSvgOption(pluginOptions.inlineSvg)
     if (pluginOptions?.availableCollections)
