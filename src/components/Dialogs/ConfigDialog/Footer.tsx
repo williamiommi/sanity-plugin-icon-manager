@@ -4,10 +4,10 @@ import {useAppStoreContext} from '../../../store/context'
 import SvgButtonsBoard from '../../SvgButtonsBoard'
 
 const Footer = () => {
-  const {onGenerateSvgDownloadUrl, onCopyHtmlToClipboard, onCopyDataUrlToClipboard} = useSvgUtils()
-  const downloadableUrl = useAppStoreContext(() => onGenerateSvgDownloadUrl())
+  const {customDownloadUrl, copyHtmlToClipboard, copyDataUrlToClipboard} = useSvgUtils()
   const clearConfiguration = useAppStoreContext((s) => s.clearConfiguration)
   const saveConfiguration = useAppStoreContext((s) => s.saveConfiguration)
+
   return (
     <Flex
       direction={['column', 'column', 'column', 'row']}
@@ -18,9 +18,9 @@ const Footer = () => {
     >
       <Flex align='center' gap={2}>
         <SvgButtonsBoard
-          downloadUrl={downloadableUrl}
-          onCopyHtmlToClipboard={onCopyHtmlToClipboard}
-          onCopyDataUrlToClipboard={onCopyDataUrlToClipboard}
+          downloadUrl={customDownloadUrl}
+          onCopyHtmlToClipboard={copyHtmlToClipboard}
+          onCopyDataUrlToClipboard={copyDataUrlToClipboard}
         />
       </Flex>
       <Flex align='center' gap={2}>
