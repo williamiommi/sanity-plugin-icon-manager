@@ -18,7 +18,7 @@ const copy2Clipboard = async (text: string): Promise<boolean> => {
   return true
 }
 
-export const buildSvgHtml = async (data?: SvgData) => {
+export const buildSvgHtml = async (data?: SvgData): Promise<string> => {
   if (!data?.icon) throw Error('Unable to find the icon')
 
   const customizations = {
@@ -46,10 +46,10 @@ const buildSvgDataUrl = async (data?: SvgData) => {
   return base64
 }
 
-export const buildSvgUrls = async (
+export const buildSvgUrls = (
   iconifyEndpoint: string,
   data?: SvgData,
-): Promise<{url: string; downloadUrl: string}> => {
+): {url: string; downloadUrl: string} => {
   if (!data?.icon) throw Error('Unable to find the icon')
 
   const searchParams = new URLSearchParams()

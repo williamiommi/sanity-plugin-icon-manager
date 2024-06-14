@@ -194,7 +194,7 @@ export const createConfigureSlice: StateCreator<
         // if we have some patches, update the document
         if (patches.length > 0) {
           // update urls too if something has changed
-          const urls = await buildSvgUrls(get().iconifyEndpoint!, {
+          const urls = buildSvgUrls(get().iconifyEndpoint!, {
             icon: sanityValue.icon!,
             ...get(),
           })

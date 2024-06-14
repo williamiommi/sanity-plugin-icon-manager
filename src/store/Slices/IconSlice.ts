@@ -26,7 +26,7 @@ export const createIconSlice: StateCreator<
         height: get().defaultSize!.height,
       }
 
-      const urls = await buildSvgUrls(get().iconifyEndpoint!, {icon, size})
+      const urls = buildSvgUrls(get().iconifyEndpoint!, {icon, size})
 
       const patches = []
       patches.push(patchSet(icon, ['icon']))
