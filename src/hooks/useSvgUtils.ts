@@ -1,6 +1,5 @@
 import {useEffect, useMemo, useState} from 'react'
 import {
-  SvgData,
   buildSvgHtml,
   buildSvgUrls,
   copy2ClipboardSvgDataUrl,
@@ -9,7 +8,17 @@ import {
 import {toastError, toastSuccess} from '../lib/toastUtils'
 import {useAppStoreContext} from '../store/context'
 
-const useSvgUtils = () => {
+type UrlsType = {url: string; downloadUrl: string}
+type ReturnType = {
+  urls?: UrlsType
+  copyHtmlToClipboard: () => void
+  copyDataUrlToClipboard: () => void
+  onGenerateSvgHtml: () => Promise<string>
+}
+
+export default function useSvgUtils(originalIcon?: boolean): ReturnType {
+  const sanityToast = useAppStoreContext((s) => s.sanityToast)
+  const iconifyEndpoint = useAppStoreContext((s) => s.iconifyEndpoint)
   const defaultSize = useAppStoreContext((s) => s.defaultSize)
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const inlineSvg = useAppStoreContext((s) => s.inlineSvg)
@@ -19,38 +28,26 @@ const useSvgUtils = () => {
   const rotate = useAppStoreContext((s) => s.rotate)
   const size = useAppStoreContext((s) => s.size)
   const color = useAppStoreContext((s) => s.color)
-  const iconifyEndpoint = useAppStoreContext((s) => s.iconifyEndpoint)
-  const sanityToast = useAppStoreContext((s) => s.sanityToast)
+  const [urls, setUrls] = useState<UrlsType>()
 
-  const originalSvgData = useMemo(
-    () => ({icon: sanityValue?.icon!, size: defaultSize}),
-    [sanityValue, defaultSize],
-  )
-
-  const customSvgData = useMemo(
-    () => ({icon: sanityValue?.icon!, size, rotate, hFlip, vFlip, flip, color, inlineSvg}),
-    [sanityValue, size, rotate, hFlip, vFlip, flip, color, inlineSvg],
-  )
-
-  const [originalDownloadUrl, setOriginalDownloadUrl] = useState('')
-  const [customDownloadUrl, setCustomDownloadUrl] = useState('')
+  const svgData = useMemo(() => {
+    if (originalIcon) return {icon: sanityValue?.icon!, size: defaultSize}
+    return {icon: sanityValue?.icon!, size, rotate, hFlip, vFlip, flip, color, inlineSvg}
+  }, [originalIcon, defaultSize, sanityValue, size, rotate, hFlip, vFlip, flip, color, inlineSvg])
 
   useEffect(() => {
-    const setData = async () => {
-      const originalUrls = await buildSvgUrls(iconifyEndpoint!, originalSvgData)
-      const customUrls = await buildSvgUrls(iconifyEndpoint!, customSvgData)
-      setOriginalDownloadUrl(originalUrls.downloadUrl)
-      setCustomDownloadUrl(customUrls.downloadUrl)
+    const updateUrls = async () => {
+      setUrls(await buildSvgUrls(iconifyEndpoint!, svgData))
     }
-    setData()
-  }, [iconifyEndpoint, customSvgData])
+    updateUrls()
+  }, [iconifyEndpoint, svgData])
 
-  const onGenerateSvgHtml = () => buildSvgHtml(customSvgData)
+  const onGenerateSvgHtml = () => buildSvgHtml(svgData)
 
-  const copy2Clipboard = async (isHtml: boolean, data: SvgData) => {
+  const copy2Clipboard = async (isHtml: boolean) => {
     try {
-      if (isHtml) await copy2ClipboardSvgHtml(data)
-      else await copy2ClipboardSvgDataUrl(data)
+      if (isHtml) await copy2ClipboardSvgHtml(svgData)
+      else await copy2ClipboardSvgDataUrl(svgData)
       toastSuccess({sanityToast, title: 'Copied to clipboard'})
     } catch (e: any) {
       toastError(sanityToast, e)
@@ -58,32 +55,12 @@ const useSvgUtils = () => {
   }
 
   const copyHtmlToClipboard = () => {
-    copy2Clipboard(true, customSvgData)
+    copy2Clipboard(true)
   }
 
   const copyDataUrlToClipboard = () => {
-    copy2Clipboard(false, customSvgData)
+    copy2Clipboard(false)
   }
 
-  const copyOriginalHtmlToClipboard = () => {
-    copy2Clipboard(true, originalSvgData)
-  }
-
-  const copyOriginalDataUrlToClipboard = () => {
-    copy2Clipboard(false, originalSvgData)
-  }
-
-  return {
-    originalDownloadUrl,
-    copyOriginalHtmlToClipboard,
-    copyOriginalDataUrlToClipboard,
-
-    onGenerateSvgHtml,
-
-    customDownloadUrl,
-    copyHtmlToClipboard,
-    copyDataUrlToClipboard,
-  }
+  return {urls, copyHtmlToClipboard, copyDataUrlToClipboard, onGenerateSvgHtml}
 }
-
-export default useSvgUtils

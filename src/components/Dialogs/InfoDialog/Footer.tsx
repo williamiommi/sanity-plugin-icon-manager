@@ -4,15 +4,14 @@ import useSvgUtils from '../../../hooks/useSvgUtils'
 import SvgButtonsBoard from '../../SvgButtonsBoard'
 
 const Footer = () => {
-  const {originalDownloadUrl, copyOriginalHtmlToClipboard, copyOriginalDataUrlToClipboard} =
-    useSvgUtils()
+  const {urls, copyHtmlToClipboard, copyDataUrlToClipboard} = useSvgUtils(true)
 
   return (
     <Flex padding={1} justify='flex-end' gap={3}>
       <SvgButtonsBoard
-        downloadUrl={originalDownloadUrl}
-        onCopyHtmlToClipboard={copyOriginalHtmlToClipboard}
-        onCopyDataUrlToClipboard={copyOriginalDataUrlToClipboard}
+        downloadUrl={urls?.downloadUrl!}
+        onCopyHtmlToClipboard={copyHtmlToClipboard}
+        onCopyDataUrlToClipboard={copyDataUrlToClipboard}
       />
     </Flex>
   )
