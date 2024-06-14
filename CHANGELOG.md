@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.4.0...v1.5.0) (2024-06-14)
+
+### Features
+
+- **custom-size-option:** new global option for size ([b97d73c](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/b97d73c98e78616e46c3b59a4c641c9586e19e4d))
+
 ## [1.4.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.3.2...v1.4.0) (2024-03-01)
 
 ### Features
