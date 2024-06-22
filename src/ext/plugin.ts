@@ -1,4 +1,5 @@
 import {definePlugin} from 'sanity'
+import i18nBundles from '../lib/i18n/bundles'
 import iconManagerSetup from '../lib/iconManagerSetup'
 import IconManagerObject from '../schemas/objects/IconManager'
 import IconManagerAuthorObject from '../schemas/objects/IconManagerAuthor'
@@ -24,6 +25,9 @@ export const IconManager = definePlugin<void | IconManagerPluginOptions>((config
         IconManagerMetadataObject(),
         IconManagerObject(config),
       ],
+    },
+    i18n: {
+      bundles: i18nBundles,
     },
   }
 })
