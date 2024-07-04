@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.5.1...v1.5.2) (2024-06-22)
+
+### Bug Fixes
+
+- **audit-report:** ws affected by a DoS when handling a request with many HTTP headers ([0d9b415](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/0d9b415b72568bd5bce37766c669761a5dc6151f))
+
 ## [1.5.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.5.0...v1.5.1) (2024-06-14)
 
 ### Bug Fixes
