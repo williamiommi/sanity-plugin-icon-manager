@@ -50,9 +50,15 @@ export default {
   'dialog.configure.reset.cta': 'Reset',
   'dialog.configure.save.cta': 'Save',
 
+  'icon.customized.label': 'Icon has been customized',
+  'icon.customized.badge': 'CUSTOMIZED',
+
   'show.info.tooltip': 'Show info',
+  'configure.icon.label': 'Configure',
   'configure.icon.tooltip': 'Configure icon',
+  'change.icon.label': 'Change',
   'change.icon.tooltip': 'Change icon',
+  'remove.icon.label': 'Remove',
   'remove.icon.tooltip': 'Remove icon',
 
   'download.svg.tooltip': 'Download SVG',
