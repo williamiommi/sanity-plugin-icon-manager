@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
-import {Box, Text, Tooltip} from '@sanity/ui'
 import {useAppStoreContext} from '../../../store/context'
 import {StyledColorPaletteBox, StyledColorPaletteWrapper} from '../../../style'
+import BaseTooltip from '../../BaseTooltip'
 
 interface ColorPaletteProps {}
 
@@ -14,15 +14,9 @@ const ColorPalette = (props: ColorPaletteProps) => {
   return (
     <StyledColorPaletteWrapper>
       {customPalette.map((currColor) => (
-        <Tooltip
+        <BaseTooltip
           key={currColor.hex}
-          content={
-            <Box padding={2}>
-              <Text muted size={0}>
-                {currColor.title}
-              </Text>
-            </Box>
-          }
+          content={currColor.title}
           fallbackPlacements={['right', 'left']}
           placement='top'
           portal
@@ -32,7 +26,7 @@ const ColorPalette = (props: ColorPaletteProps) => {
             bgColor={currColor.hex}
             onClick={() => setColor(currColor.hex)}
           />
-        </Tooltip>
+        </BaseTooltip>
       ))}
     </StyledColorPaletteWrapper>
   )

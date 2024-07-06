@@ -1,10 +1,11 @@
 import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
-import {Card, Flex, Text, Tooltip, useTheme} from '@sanity/ui'
+import {Card, Flex, Text, useTheme} from '@sanity/ui'
 import {useMemo} from 'react'
 import {useTranslation} from 'sanity'
 import {I18N_NAMESPACE} from '../../../lib/constants'
 import {useAppStoreContext} from '../../../store/context'
+import BaseTooltip from '../../BaseTooltip'
 
 const PREVIEW_SIZE_LIMIT = 300
 
@@ -26,12 +27,8 @@ const Preview = () => {
 
   return (
     <Card marginTop={5}>
-      <Tooltip
-        content={
-          <Text size={0} style={{padding: '5px'}}>
-            {t('dialog.configure.filter.preview.tooltip')}
-          </Text>
-        }
+      <BaseTooltip
+        content={t('dialog.configure.filter.preview.tooltip')}
         fallbackPlacements={['right', 'left']}
         placement='top'
         portal
@@ -48,7 +45,7 @@ const Preview = () => {
           <InfoOutlineIcon />
           &nbsp;&nbsp;{t('dialog.configure.filter.preview.label')}
         </Text>
-      </Tooltip>
+      </BaseTooltip>
 
       <Flex align='center' justify='center' paddingY={5} paddingX={2}>
         <Card

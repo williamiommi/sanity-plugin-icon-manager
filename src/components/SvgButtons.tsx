@@ -1,8 +1,9 @@
-import {Button, Card, Flex, Text, Tooltip} from '@sanity/ui'
+import {Button, Flex} from '@sanity/ui'
 import {useTranslation} from 'sanity'
 import useSvgUtils from '../hooks/useSvgUtils'
 import {I18N_NAMESPACE} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
+import BaseTooltip from './BaseTooltip'
 import Base64Icon from './icons/Base64Icon'
 import DownloadIcon from './icons/DownloadIcon'
 import PngIcon from './icons/PngIcon'
@@ -47,16 +48,7 @@ export default function SvgButtons() {
   return (
     <Flex justify='center' align='center' paddingTop={2} paddingBottom={1}>
       {actions.map((action) => (
-        <Tooltip
-          key={action.tooltip}
-          portal
-          placement='top'
-          content={
-            <Card padding={2}>
-              <Text size={1}>{action.tooltip}</Text>
-            </Card>
-          }
-        >
+        <BaseTooltip key={action.tooltip} portal placement='top' content={action.tooltip}>
           <Button
             {...(action.href && {as: 'a'})}
             mode='bleed'
@@ -66,7 +58,7 @@ export default function SvgButtons() {
             {...(action.onClick && {onClick: action.onClick})}
             {...(action.href && {href: action.href})}
           />
-        </Tooltip>
+        </BaseTooltip>
       ))}
     </Flex>
   )

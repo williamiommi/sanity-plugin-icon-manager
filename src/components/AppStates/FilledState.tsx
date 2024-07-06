@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
 import {EllipsisHorizontalIcon} from '@sanity/icons'
-import {Box, Button, Card, Flex, Menu, MenuButton, Text, Tooltip} from '@sanity/ui'
+import {Box, Button, Card, Flex, Menu, MenuButton} from '@sanity/ui'
 import {useState} from 'react'
 import {useTranslation} from 'sanity'
 import {I18N_NAMESPACE} from '../../lib/constants'
 import {useAppStoreContext} from '../../store/context'
+import BaseTooltip from '../BaseTooltip'
 import CustomizedBadge from '../CustomizedBadge'
 import IconMenu from '../IconMenu'
 import IconPreview from '../IconPreview'
@@ -63,16 +64,7 @@ export default function FilledState() {
             >
               {hasBeenCustomized && <CustomizedBadge />}
               {actions.map((action) => (
-                <Tooltip
-                  key={action.label}
-                  portal
-                  placement='top'
-                  content={
-                    <Card padding={2}>
-                      <Text size={1}>{action.tooltip}</Text>
-                    </Card>
-                  }
-                >
+                <BaseTooltip key={action.label} portal placement='top' content={action.tooltip}>
                   <Button
                     mode='bleed'
                     tone='default'
@@ -81,7 +73,7 @@ export default function FilledState() {
                     onClick={action.handleFn}
                     disabled={!sanityUserCanEdit}
                   />
-                </Tooltip>
+                </BaseTooltip>
               ))}
             </Flex>
           </Box>
