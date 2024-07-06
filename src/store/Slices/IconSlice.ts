@@ -1,7 +1,7 @@
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
 import {buildSvgHtml, buildSvgUrls} from '../../lib/svg-utils'
-import {toastError} from '../../lib/toastUtils'
+import {toastError} from '../../lib/toast-utils'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DialogSlice} from './DialogSlice'

@@ -5,7 +5,7 @@ import {
   copy2ClipboardSvgDataUrl,
   copy2ClipboardSvgHtml,
 } from '../lib/svg-utils'
-import {toastError, toastSuccess} from '../lib/toastUtils'
+import {toastError, toastSuccess} from '../lib/toast-utils'
 import {useAppStoreContext} from '../store/context'
 
 type UrlsType = {url: string; downloadUrl: string}

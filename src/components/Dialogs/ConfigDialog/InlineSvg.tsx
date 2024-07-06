@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Switch, Text} from '@sanity/ui'
 import useSvgUtils from '../../../hooks/useSvgUtils'
-import {toastError} from '../../../lib/toastUtils'
+import {toastError} from '../../../lib/toast-utils'
 import {useAppStoreContext} from '../../../store/context'
 
 const InlineSvg = () => {

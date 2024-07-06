@@ -1,6 +1,6 @@
 import {StateCreator} from 'zustand'
 import {getIconsFromCollection, groupAndSortCollections} from '../../lib/collections-utils'
-import {toastError} from '../../lib/toastUtils'
+import {toastError} from '../../lib/toast-utils'
 import IconManagerCollectionResponse from '../../types/IconManagerCollectionResponse'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
