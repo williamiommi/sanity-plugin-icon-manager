@@ -1,11 +1,11 @@
 import {buildIcon, loadIcon} from '@iconify/react'
-import {iconToHTML, replaceIDs, svgToData} from '@iconify/utils'
+import {iconToHTML, replaceIDs} from '@iconify/utils'
 import DOMPurify from 'dompurify'
 import {IconManagerColor, IconManagerSize} from '../types/IconManagerType'
 
 export type SvgData = {
   icon: string
-  size?: IconManagerSize
+  size: IconManagerSize
   rotate?: number
   flip?: string
   hFlip?: boolean
@@ -13,49 +13,73 @@ export type SvgData = {
   color?: IconManagerColor
 }
 
-const copy2Clipboard = async (text: string): Promise<boolean> => {
+export const keepAspectRatioCalculator = (
+  originalWidth: number,
+  originalHeight: number,
+  newWidth?: number,
+  newHeight?: number,
+): IconManagerSize => {
+  let outputWidth = 0
+  let outputHeight = 0
+  if (!newWidth && !newHeight) return {width: outputWidth, height: outputHeight}
+
+  const aspectRatio = originalWidth / originalHeight
+
+  if (newWidth) {
+    outputHeight = newWidth / aspectRatio
+  } else if (newHeight) {
+    outputWidth = newHeight * aspectRatio
+  }
+
+  return {
+    width: Math.round(outputWidth!),
+    height: Math.round(outputHeight!),
+  }
+}
+
+export const copy2Clipboard = async (text: string): Promise<boolean> => {
   await navigator.clipboard.writeText(text)
   return true
 }
 
-export const buildSvgHtml = async (data?: SvgData): Promise<string> => {
-  if (!data?.icon) throw Error('Unable to find the icon')
+export const buildSvgHtml = async (data: SvgData): Promise<string> => {
+  if (!data.icon) throw Error('Unable to find the icon')
 
   const customizations = {
-    ...(data.size?.width && {width: data.size?.width}),
-    ...(data.size?.height && {height: data.size?.height}),
-    ...(data.rotate && {rotate: data.rotate}),
-    ...(data.hFlip && {hFlip: data.hFlip}),
-    ...(data.vFlip && {vFlip: data.vFlip}),
+    width: data.size?.width,
+    height: data.size?.height,
+    rotate: data.rotate,
+    hFlip: data.hFlip,
+    vFlip: data.vFlip,
   }
 
   const lData = await loadIcon(data.icon)
   const bData = buildIcon(lData, customizations)
   let html = iconToHTML(replaceIDs(bData.body), bData.attributes)
 
-  if (!html) throw Error('Unable to generate Svg Html')
+  if (!html) throw Error('Unable to generate HTML')
   if (data.color?.hex) html = html.replaceAll('currentColor', data.color.hex)
   return DOMPurify.sanitize(html)
 }
 
-const buildSvgDataUrl = async (data?: SvgData) => {
+export const buildSvgDataUrl = async (data: SvgData): Promise<string> => {
   const html = await buildSvgHtml(data)
-  if (!html) throw Error('Unable to generate Svg Html')
-  const base64 = svgToData(html)
-  if (!base64) throw Error('Unable to generate Svg Data URL')
-  return base64
+  if (!html) throw Error('Unable to generate HTML')
+  const base64 = btoa(html)
+  if (!base64) throw Error('Unable to generate Base64')
+  return `data:image/svg+xml;base64,${base64}`
 }
 
 export const buildSvgUrls = (
   iconifyEndpoint: string,
-  data?: SvgData,
+  data: SvgData,
 ): {url: string; downloadUrl: string} => {
-  if (!data?.icon) throw Error('Unable to find the icon')
+  if (!data.icon) throw Error('Unable to find the icon')
 
   const searchParams = new URLSearchParams()
 
-  if (data.size?.width) searchParams.append('width', `${data.size.width}`)
-  if (data.size?.height) searchParams.append('height', `${data.size.height}`)
+  searchParams.append('width', `${data.size.width}`)
+  searchParams.append('height', `${data.size.height}`)
 
   if (data.rotate && data.rotate > 0) searchParams.append('rotate', `${data.rotate}`)
   if (data.flip) searchParams.append('flip', data.flip)
@@ -72,12 +96,12 @@ export const buildSvgUrls = (
   }
 }
 
-export const copy2ClipboardSvgHtml = async (data?: SvgData): Promise<void | string> => {
+export const copy2ClipboardSvgHtml = async (data: SvgData): Promise<void | string> => {
   const res = await buildSvgHtml(data)
   if (res) await copy2Clipboard(res)
 }
 
-export const copy2ClipboardSvgDataUrl = async (data?: SvgData): Promise<void | string> => {
+export const copy2ClipboardSvgDataUrl = async (data: SvgData): Promise<void | string> => {
   const res = await buildSvgDataUrl(data)
   if (res) copy2Clipboard(res)
 }

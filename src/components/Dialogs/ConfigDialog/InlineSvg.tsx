@@ -1,18 +1,30 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Switch, Text} from '@sanity/ui'
-import useSvgUtils from '../../../hooks/useSvgUtils'
 import {toastError} from '../../../lib/toast-utils'
 import {useAppStoreContext} from '../../../store/context'
+import {buildSvgHtml} from '../../../lib/svg-utils'
 
 const InlineSvg = () => {
-  const {onGenerateSvgHtml} = useSvgUtils()
-  const sanityToast = useAppStoreContext((s) => s.sanityToast)
-  const inlineSvg = useAppStoreContext((s) => s.inlineSvg)
-  const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
+  const {
+    sanityValue,
+    hFlip,
+    vFlip,
+    flip,
+    rotate,
+    size,
+    color,
+    inlineSvg,
+    setInlineSvg,
+    sanityToast,
+  } = useAppStoreContext((s) => s)
 
   const onChangeInlineSvg = async () => {
     try {
-      setInlineSvg(inlineSvg ? undefined : await onGenerateSvgHtml())
+      setInlineSvg(
+        inlineSvg
+          ? undefined
+          : await buildSvgHtml({icon: sanityValue?.icon!, size, hFlip, vFlip, flip, rotate, color}),
+      )
     } catch (e: any) {
       toastError(sanityToast, e)
     }
