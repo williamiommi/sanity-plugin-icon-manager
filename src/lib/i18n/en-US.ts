@@ -23,12 +23,6 @@ export default {
   'dialog.add.icons.found.label_other': 'icons found',
   'dialog.add.by.label': 'by',
 
-  // info dialog
-  'dialog.info.name.label': 'Name:',
-  'dialog.info.collection.label': 'Collection:',
-  'dialog.info.author.label': 'Author',
-  'dialog.info.license.label': 'License',
-
   // remove dialog
   'dialog.remove.icon.message': 'Do you really want to remove the icon?',
   'dialog.remove.cancel.cta': 'Cancel',
@@ -53,6 +47,14 @@ export default {
   'icon.customized.label': 'Icon has been customized',
   'icon.customized.badge': 'CUSTOMIZED',
 
+  // menu
+  'menu.info.title': 'Info',
+  'menu.actions.title': 'Actions',
+  'menu.info.name.label': 'Name:',
+  'menu.info.collection.label': 'Collection:',
+  'menu.info.author.label': 'Author:',
+  'menu.info.license.label': 'License:',
+
   'show.info.tooltip': 'Show info',
   'configure.icon.label': 'Configure',
   'configure.icon.tooltip': 'Configure icon',
@@ -64,6 +66,7 @@ export default {
   'download.svg.tooltip': 'Download SVG',
   'copy.svg.to.clipboard.tooltip': 'Copy SVG to clipboard',
   'copy.data.url.to.clipboard.tooltip': 'Copy Data Url to clipboard',
+  'download.png.tooltip': 'Download PNG',
 
   'diff.changes.show.details.cta': 'Show details',
   'diff.changes.empty.badge': 'EMPTY',
