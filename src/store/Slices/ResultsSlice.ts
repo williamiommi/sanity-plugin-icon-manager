@@ -1,6 +1,6 @@
 import {FormEvent} from 'react'
 import {StateCreator} from 'zustand'
-import {parseSearchResults} from '../../lib/iconifyUtils'
+import {parseSearchResults} from '../../lib/iconify-utils'
 import {toastError} from '../../lib/toastUtils'
 import IconManagerQueryResponse, {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {ConfigureSlice} from './ConfigureSlice'

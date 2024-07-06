@@ -3,7 +3,7 @@ import {Icon} from '@iconify/react'
 import {Box, Card, Flex, Grid, Text} from '@sanity/ui'
 import {memo, useMemo} from 'react'
 import {filterCollections} from '../../lib/collections-utils'
-import {stringifyHeight} from '../../lib/iconifyUtils'
+import {stringifyHeight} from '../../lib/iconify-utils'
 import {useAppStoreContext} from '../../store/context'
 import HeightLightIcon from '../icons/HeightLightIcon'
 
