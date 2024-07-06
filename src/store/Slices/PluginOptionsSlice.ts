@@ -1,5 +1,5 @@
 import {StateCreator} from 'zustand'
-import {isValidHex} from '../../lib/colorUtils'
+import {isValidHex} from '../../lib/color-utils'
 import {PluginCustomColor, PluginCustomPalette} from '../../types/IconManagerPluginOptions'
 import {IconManagerSize} from '../../types/IconManagerType'
 
