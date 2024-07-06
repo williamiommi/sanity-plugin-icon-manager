@@ -79,7 +79,14 @@ export default function FilledState() {
           </Box>
           <MenuButton
             id='menu'
-            button={<Button mode='bleed' tone='default' icon={EllipsisHorizontalIcon} />}
+            button={
+              <Button
+                mode='bleed'
+                tone='default'
+                icon={EllipsisHorizontalIcon}
+                style={{cursor: 'pointer'}}
+              />
+            }
             onOpen={() => setIsMenuOpen(true)}
             onClose={() => setIsMenuOpen(false)}
             popover={{placement: 'bottom-end'}}
