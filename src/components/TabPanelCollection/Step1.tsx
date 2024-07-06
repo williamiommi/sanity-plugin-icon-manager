@@ -46,7 +46,20 @@ const Step1 = () => {
             <Text muted size={2}>
               by {selectedCollection?.collection.author.name}
             </Text>
-            <LaunchIcon width={12} style={{color: 'initial'}} />
+            <LaunchIcon width={14} style={{color: 'initial'}} />
+          </Flex>
+          <Flex
+            gap={1}
+            align='center'
+            as='a'
+            href={selectedCollection?.collection.license.url}
+            target='_blank'
+            style={{textDecoration: 'none', fontStyle: 'italic'}}
+          >
+            <Text muted size={2}>
+              {selectedCollection?.collection.license.title}
+            </Text>
+            <LaunchIcon width={14} style={{color: 'initial'}} />
           </Flex>
         </Flex>
       </Flex>
