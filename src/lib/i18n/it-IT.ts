@@ -24,7 +24,8 @@ export default {
   'dialog.add.by.label': 'di',
 
   // remove dialog
-  'dialog.remove.icon.message': `Vuoi davveroi eliminare l'icona?`,
+  'dialog.remove.icon.title': 'Rimuovi icona',
+  'dialog.remove.icon.message': `Vuoi davvero eliminare l'icona?`,
   'dialog.remove.cancel.cta': 'Cancella',
   'dialog.remove.confirm.cta': 'Conferma',
 

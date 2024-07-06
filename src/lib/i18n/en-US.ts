@@ -24,6 +24,7 @@ export default {
   'dialog.add.by.label': 'by',
 
   // remove dialog
+  'dialog.remove.icon.title': 'Remove icon',
   'dialog.remove.icon.message': 'Do you really want to remove the icon?',
   'dialog.remove.cancel.cta': 'Cancel',
   'dialog.remove.confirm.cta': 'Confirm',
