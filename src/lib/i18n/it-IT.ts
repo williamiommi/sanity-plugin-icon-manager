@@ -31,14 +31,19 @@ export default {
 
   // configure dialog
   'dialog.configure.title': 'Configurazione',
-  'dialog.configure.filter.flip.label': 'Flip:',
+  'dialog.configure.filter.flip.label': 'Gira:',
+  'dialog.configure.filter.flip.vertical.label': 'Verticale',
+  'dialog.configure.filter.flip.horizontal.label': 'Orizzontale',
   'dialog.configure.filter.rotate.label': 'Ruota:',
   'dialog.configure.filter.size.label': 'Dimensioni:',
   'dialog.configure.filter.lock.aspect.ratio.tooltip': 'Blocca Aspect Ratio',
   'dialog.configure.filter.real.size.tooltip': 'Mostra dimensioni reali',
   'dialog.configure.filter.inline.svg.label': 'SVG in linea:',
   'dialog.configure.filter.color.label': 'Colore:',
+  'dialog.configure.filter.color.hex.label': 'HEX',
+  'dialog.configure.filter.color.rgba.label': 'RGBA',
   'dialog.configure.filter.clear.color.label': 'Elimina colore',
+  'dialog.configure.filter.clear.color.tooltip': 'Imposta il colore a "currentColor"',
   'dialog.configure.filter.preview.label': 'Preview:',
   'dialog.configure.filter.preview.tooltip':
     'La preview è limitata a 300x300, le dimensioni inserite sono comunque salvate.',

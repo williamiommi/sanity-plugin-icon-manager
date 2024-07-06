@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Switch, Text} from '@sanity/ui'
+import {useTranslation} from 'sanity'
+import {I18N_NAMESPACE} from '../../../lib/constants'
+import {buildSvgHtml} from '../../../lib/svg-utils'
 import {toastError} from '../../../lib/toast-utils'
 import {useAppStoreContext} from '../../../store/context'
-import {buildSvgHtml} from '../../../lib/svg-utils'
 
 const InlineSvg = () => {
+  const {t} = useTranslation(I18N_NAMESPACE)
   const {
     sanityValue,
     hFlip,
@@ -38,7 +41,7 @@ const InlineSvg = () => {
       style={{width: '100%'}}
     >
       <Text weight='bold' size={1} style={{width: '100px'}}>
-        Inline Svg:
+        {t('dialog.configure.filter.inline.svg.label')}
       </Text>
       <Flex style={{width: '100%'}}>
         <Switch checked={!!inlineSvg} onChange={onChangeInlineSvg} />

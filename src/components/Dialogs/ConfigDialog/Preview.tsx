@@ -2,11 +2,14 @@ import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
 import {Card, Flex, Text, Tooltip, useTheme} from '@sanity/ui'
 import {useMemo} from 'react'
+import {useTranslation} from 'sanity'
+import {I18N_NAMESPACE} from '../../../lib/constants'
 import {useAppStoreContext} from '../../../store/context'
 
 const PREVIEW_SIZE_LIMIT = 300
 
 const Preview = () => {
+  const {t} = useTranslation(I18N_NAMESPACE)
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
@@ -26,7 +29,7 @@ const Preview = () => {
       <Tooltip
         content={
           <Text size={0} style={{padding: '5px'}}>
-            Preview limited to 300x300, but your custom size is preserved.
+            {t('dialog.configure.filter.preview.tooltip')}
           </Text>
         }
         fallbackPlacements={['right', 'left']}
@@ -43,7 +46,7 @@ const Preview = () => {
           }}
         >
           <InfoOutlineIcon />
-          &nbsp;&nbsp;Preview:
+          &nbsp;&nbsp;{t('dialog.configure.filter.preview.label')}
         </Text>
       </Tooltip>
 

@@ -1,39 +1,42 @@
-import {Button, Flex} from '@sanity/ui'
+import {Button, Card, Flex} from '@sanity/ui'
+import {useTranslation} from 'sanity'
+import {I18N_NAMESPACE} from '../../../lib/constants'
 import {useAppStoreContext} from '../../../store/context'
 
 const Footer = () => {
+  const {t} = useTranslation(I18N_NAMESPACE)
   const clearConfiguration = useAppStoreContext((s) => s.clearConfiguration)
   const saveConfiguration = useAppStoreContext((s) => s.saveConfiguration)
 
   return (
-    <Flex
-      direction={['column', 'column', 'column', 'row']}
-      margin={2}
-      align={'center'}
-      justify='flex-end'
-      gap={2}
-    >
-      <Flex align='center' gap={2}>
-        <Button
-          text='Clear'
-          title='Clear Configuration'
-          mode='bleed'
-          tone='critical'
-          fontSize={2}
-          style={{cursor: 'pointer'}}
-          onClick={clearConfiguration}
-        />
-        <Button
-          text='Save'
-          title='Save Configuration'
-          mode='bleed'
-          tone='positive'
-          fontSize={2}
-          style={{cursor: 'pointer'}}
-          onClick={saveConfiguration}
-        />
+    <Card borderTop>
+      <Flex
+        direction={['column', 'column', 'column', 'row']}
+        margin={2}
+        align={'center'}
+        justify='flex-end'
+        gap={2}
+      >
+        <Flex align='center' gap={2}>
+          <Button
+            text={t('dialog.configure.reset.cta')}
+            mode='bleed'
+            tone='critical'
+            fontSize={2}
+            style={{cursor: 'pointer'}}
+            onClick={clearConfiguration}
+          />
+          <Button
+            text={t('dialog.configure.save.cta')}
+            mode='bleed'
+            tone='positive'
+            fontSize={2}
+            style={{cursor: 'pointer'}}
+            onClick={saveConfiguration}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </Card>
   )
 }
 

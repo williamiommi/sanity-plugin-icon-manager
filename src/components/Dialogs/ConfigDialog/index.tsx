@@ -29,8 +29,8 @@ const ConfigDialog = () => {
           <Flip />
           <Rotate />
           <Size />
-          <InlineSvg />
           <Color />
+          <InlineSvg />
         </Flex>
         <Preview />
       </Card>

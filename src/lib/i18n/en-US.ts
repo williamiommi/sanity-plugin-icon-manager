@@ -32,13 +32,18 @@ export default {
   // configure dialog
   'dialog.configure.title': 'Configuration',
   'dialog.configure.filter.flip.label': 'Flip:',
+  'dialog.configure.filter.flip.vertical.label': 'Vertical',
+  'dialog.configure.filter.flip.horizontal.label': 'Horizontal',
   'dialog.configure.filter.rotate.label': 'Rotate:',
   'dialog.configure.filter.size.label': 'Size:',
   'dialog.configure.filter.lock.aspect.ratio.tooltip': 'Lock Aspect Ratio',
   'dialog.configure.filter.real.size.tooltip': 'Show real size',
   'dialog.configure.filter.inline.svg.label': 'Inline SVG:',
   'dialog.configure.filter.color.label': 'Color:',
+  'dialog.configure.filter.color.hex.label': 'HEX',
+  'dialog.configure.filter.color.rgba.label': 'RGBA',
   'dialog.configure.filter.clear.color.label': 'Clear color',
+  'dialog.configure.filter.clear.color.tooltip': 'Set the color to "currentColor"',
   'dialog.configure.filter.preview.label': 'Preview:',
   'dialog.configure.filter.preview.tooltip':
     'Preview limited to 300x300, but your custom size is preserved.',
