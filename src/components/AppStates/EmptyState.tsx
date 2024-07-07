@@ -1,11 +1,10 @@
 import {AddIcon} from '@sanity/icons'
 import {Button} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
 const EmptyState = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)

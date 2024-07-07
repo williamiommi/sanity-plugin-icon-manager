@@ -1,11 +1,10 @@
 import {Flex, Select, Text} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
 const FilterCollection = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
   const filterCollection = useAppStoreContext((s) => s.filterCollection)
   const setFilterCollection = useAppStoreContext((s) => s.setFilterCollection)

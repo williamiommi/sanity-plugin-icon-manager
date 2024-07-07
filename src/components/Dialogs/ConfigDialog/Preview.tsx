@@ -2,15 +2,14 @@ import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
 import {Card, Flex, Text, useTheme} from '@sanity/ui'
 import {useMemo} from 'react'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'
 
 const PREVIEW_SIZE_LIMIT = 300
 
 const Preview = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)

@@ -2,13 +2,12 @@
 import {BookIcon, SearchIcon} from '@sanity/icons'
 import {Tab, TabList} from '@sanity/ui'
 import {useState} from 'react'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'
 
 const Tabs = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const [tab, setTab] = useState<'search' | 'collection'>('search')
 
   return (

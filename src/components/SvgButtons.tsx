@@ -1,7 +1,6 @@
 import {Button, Flex} from '@sanity/ui'
-import {useTranslation} from 'sanity'
+import usePluginTranslation from '../hooks/usePluginTranslation'
 import useSvgUtils from '../hooks/useSvgUtils'
-import {I18N_NAMESPACE} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
 import BaseTooltip from './BaseTooltip'
 import Base64Icon from './icons/Base64Icon'
@@ -10,7 +9,7 @@ import PngIcon from './icons/PngIcon'
 import SvgIcon from './icons/SvgIcon'
 
 export default function SvgButtons() {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const {urls, copyHtmlToClipboard, copyDataUrlToClipboard, downloadPng} = useSvgUtils({
     icon: sanityValue?.icon!,

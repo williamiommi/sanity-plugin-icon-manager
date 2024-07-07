@@ -1,10 +1,9 @@
 import {Flex, Heading} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import CogIcon from '../../icons/CogIcon'
 
 const Header = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
 
   return (
     <Flex align='center' gap={3}>

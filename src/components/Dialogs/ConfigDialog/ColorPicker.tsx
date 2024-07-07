@@ -2,9 +2,8 @@
 import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
-import {useTranslation} from 'sanity'
 import useClickOutside from '../../../hooks/useClickOutside'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import {StyledColorPicker} from '../../../style'
 import ColorPalette from './ColorPalette'
@@ -14,7 +13,7 @@ interface ColorPickerProps {
 }
 
 const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const pickerRef = useClickOutside<HTMLDivElement>(onClickOutsideHandler)
   const color = useAppStoreContext((s) => s.color)
   const setColor = useAppStoreContext((s) => s.setColor)

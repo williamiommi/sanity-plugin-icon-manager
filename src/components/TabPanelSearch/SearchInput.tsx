@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import {TextFilterCollection} from '../../style'
 import FilterBadge from '../Filters/FilterBadge'
@@ -10,7 +9,7 @@ import FilterBadge from '../Filters/FilterBadge'
 interface SearchInputProps {}
 
 const SearchInput = (props: SearchInputProps) => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const searchTerm = useAppStoreContext((s) => s.searchTerm)
   const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
   const countFiltersApplied = useAppStoreContext((s) => s.countFiltersApplied())

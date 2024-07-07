@@ -2,8 +2,7 @@
 import {EllipsisHorizontalIcon} from '@sanity/icons'
 import {Box, Button, Card, Flex, Menu, MenuButton} from '@sanity/ui'
 import {useState} from 'react'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import BaseTooltip from '../BaseTooltip'
 import CustomizedBadge from '../CustomizedBadge'
@@ -15,7 +14,7 @@ import TrashIcon from '../icons/TrashIcon'
 import SvgButtons from '../SvgButtons'
 
 export default function FilledState() {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const openConfigDialog = useAppStoreContext((s) => s.openConfigDialog)

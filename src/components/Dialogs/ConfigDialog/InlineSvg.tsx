@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Switch, Text} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {buildSvgHtml} from '../../../lib/svg-utils'
 import {toastError} from '../../../lib/toast-utils'
 import {useAppStoreContext} from '../../../store/context'
 
 const InlineSvg = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const {
     sanityValue,
     hFlip,

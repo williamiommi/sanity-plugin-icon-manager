@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
 import {useRef, useState} from 'react'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'
 import ColorPicker from './ColorPicker'
 
 const Color = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const color = useAppStoreContext((s) => s.color)
   const clearColor = useAppStoreContext((s) => s.clearColor)

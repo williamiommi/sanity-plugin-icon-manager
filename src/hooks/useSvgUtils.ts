@@ -1,8 +1,6 @@
 import {useEffect, useState} from 'react'
 import {toastError, toastSuccess} from '../lib/toast-utils'
 
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../lib/constants'
 import {
   buildSvgDataUrl,
   buildSvgUrls,
@@ -11,6 +9,7 @@ import {
   SvgData,
 } from '../lib/svg-utils'
 import {useAppStoreContext} from '../store/context'
+import usePluginTranslation from './usePluginTranslation'
 
 interface Response {
   urls?: {url: string; downloadUrl: string}
@@ -20,7 +19,7 @@ interface Response {
 }
 
 export default function useSvgUtils(data: SvgData & {inlineSvg?: string}): Response {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const iconifyEndpoint = useAppStoreContext((s) => s.iconifyEndpoint)
   const sanityToast = useAppStoreContext((s) => s.sanityToast)
   const [urls, setUrls] = useState<{url: string; downloadUrl: string}>()

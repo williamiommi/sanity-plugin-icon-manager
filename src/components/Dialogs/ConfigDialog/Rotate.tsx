@@ -1,10 +1,9 @@
 import {Button, Flex, Grid, Text} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 
 const Rotate = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const rotate = useAppStoreContext((s) => s.rotate)
   const setRotate0 = useAppStoreContext((s) => s.setRotate0)
   const setRotate90 = useAppStoreContext((s) => s.setRotate90)

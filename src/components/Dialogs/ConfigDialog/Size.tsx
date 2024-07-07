@@ -1,6 +1,5 @@
 import {Button, Card, Flex, Text, TextInput, useTheme} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'
 import BorderIcon from '../../icons/BorderIcon'
@@ -10,7 +9,7 @@ import UnlinkIcon from '../../icons/UnlinkIcon'
 import WidthIcon from '../../icons/WidthIcon'
 
 const Size = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const {sanity: theme} = useTheme()
   const size = useAppStoreContext((s) => s.size)
   const uniqueSize = useAppStoreContext((s) => s.uniqueSize)

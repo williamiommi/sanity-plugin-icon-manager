@@ -1,12 +1,12 @@
 import {DocumentIcon} from '@sanity/icons'
 import {Badge, Box, Flex, Text} from '@sanity/ui'
-import {DiffCard, DiffProps, DiffTooltip, ObjectDiff, useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import {DiffCard, DiffProps, DiffTooltip, ObjectDiff} from 'sanity'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
 const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const {fromValue, toValue, action} = props.diff
 
   // CASE 1: icon unchanged

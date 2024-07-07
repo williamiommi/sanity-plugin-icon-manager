@@ -1,6 +1,5 @@
 import {Box, Dialog, Text} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import Footer from './Footer'
 import Header from './Header'
@@ -8,7 +7,7 @@ import Header from './Header'
 interface RemoveDialogProps {}
 
 const RemoveDialog = (props: RemoveDialogProps) => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const isRemoveDialogOpen = useAppStoreContext((s) => s.isRemoveDialogOpen)
 

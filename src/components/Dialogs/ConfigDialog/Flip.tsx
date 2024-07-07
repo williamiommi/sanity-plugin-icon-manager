@@ -1,12 +1,11 @@
 import {Button, Flex, Text} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../../lib/constants'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import HeightIcon from '../../icons/HeightIcon'
 import WidthIcon from '../../icons/WidthIcon'
 
 const Flip = () => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   const hFlip = useAppStoreContext((s) => s.hFlip)
   const vFlip = useAppStoreContext((s) => s.vFlip)
   const toggleHFlip = useAppStoreContext((s) => s.toggleHFlip)

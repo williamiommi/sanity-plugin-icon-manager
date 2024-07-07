@@ -1,6 +1,5 @@
 import {Flex, Text} from '@sanity/ui'
-import {useTranslation} from 'sanity'
-import {I18N_NAMESPACE} from '../../lib/constants'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {PaginationButton} from '../../style'
 
 interface PaginationProps {
@@ -18,7 +17,7 @@ const Pagination = ({
   setNextPage,
   setPrevPage,
 }: PaginationProps) => {
-  const {t} = useTranslation(I18N_NAMESPACE)
+  const {t} = usePluginTranslation()
   if (!totalPages) return null
 
   return (
