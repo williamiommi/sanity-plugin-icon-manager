@@ -33,7 +33,7 @@ Powered by [Iconify](https://iconify.design/)
 ## 🚨 Requirements
 
 > [!WARNING]  
-> Starting from version 2, the plugin requires a specific version of the Sanity Studio, it needs to be v3.23.0 or later. For more information see the following [link](https://www.sanity.io/docs/internationalizing-plugins-ui).
+> Starting from version 2, with the introduction of studio localization, the plugin requires Sanity Studio version 3.23.0 or later. For more information, see the following [link](https://www.sanity.io/docs/internationalizing-plugins-ui).
 
 <br /><br />
 
@@ -53,9 +53,10 @@ Powered by [Iconify](https://iconify.design/)
 - v1.3.0+: Global 'inline-svg' option
 - v1.4.0+: Limit Collections option
 - v1.5.0+: Global 'default size' option
-- v2+: Localization capabilities
-- v2+: UI refresh for some components
-- v2+: New JSON Dialog
+- v2+:
+  - Localization capabilities
+  - UI refresh for some components
+  - New JSON Dialog
 
 <br /><br />
 
@@ -145,7 +146,7 @@ This is the main configuration of the plugin. The available options are:
 
 ## ··· Context menu
 
-Starting from v2, you have access to a context menu (clicking on the ···) where you can see some info about the selected icon. You have a few options to download o copy to clipboard the icon.
+Starting from version 2, you have access to a context menu (clicking on the ···) where you can see some information about the selected icon. You have a few options to download or copy the icon to the clipboard.
 
 <p align="center">
   <img width="70%" src="docs/images/context-menu.jpg" alt="JSON dialog"/>
@@ -343,7 +344,7 @@ The search dialog now offers a 'Tabs view' where you can choose to search for yo
 
 ## {} JSON Dialog
 
-Starting from v2, you can view the data stored in Sanity through a dedicated dialog. It is possible to copy to clipboard the json.
+Starting from version 2, you can view the data stored in Sanity through a dedicated dialog. It is possible to copy the JSON to the clipboard.
 
 <p align="center">
   <img width="70%" src="docs/images/json-dialog.jpg" alt="JSON dialog"/>
