@@ -14,11 +14,13 @@ Powered by [Iconify](https://iconify.design/)
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
+- [··· Icon menu](#%EF%B8%8F-icon-menu)
 - [👀 Document List Preview](#-document-list-preview)
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗂️ Collections Tab](#%EF%B8%8F-collections-tab)
+- [{} JSON Dialog](#%EF%B8%8F-json-dialog)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
@@ -26,6 +28,9 @@ Powered by [Iconify](https://iconify.design/)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
   <br /><br />
+
+> [!WARNING]  
+> Starting from version 2, the plugin requires a specific version of the Sanity Studio, it needs to be v3.23.0 or later. For more information see the following [link](https://www.sanity.io/docs/internationalizing-plugins-ui).
 
 ## ⚡️ Features
 
@@ -43,6 +48,9 @@ Powered by [Iconify](https://iconify.design/)
 - v1.3.0+: Global 'inline-svg' option
 - v1.4.0+: Limit Collections option
 - v1.5.0+: Global 'default size' option
+- v2+: Localization capabilities
+- v2+: UI refresh for some components
+- v2+: New JSON Dialog
 
 <br /><br />
 
@@ -127,6 +135,16 @@ This is the main configuration of the plugin. The available options are:
   ]
 }
 ```
+
+<br /><br />
+
+## ··· Icon menu
+
+Starting from v2, you have access to a context menu (clicking on the ···) where you can see some info about the selected icon. You have a few options to download o copy to clipboard the icon.
+
+<p align="center">
+  <img width="70%" src="docs/images/context-menu.jpg" alt="JSON dialog"/>
+</p>
 
 <br /><br />
 
@@ -314,6 +332,16 @@ The search dialog now offers a 'Tabs view' where you can choose to search for yo
 
 <p align="center">
   <img width="70%" src="docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
+</p>
+
+<br /><br />
+
+## {} JSON Dialog
+
+Starting from v2, you can view the data stored in Sanity through a dedicated dialog. It is possible to copy to clipboard the json.
+
+<p align="center">
+  <img width="70%" src="docs/images/json-dialog.jpg" alt="JSON dialog"/>
 </p>
 
 <br /><br />
