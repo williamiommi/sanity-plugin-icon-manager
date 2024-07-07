@@ -1,7 +1,7 @@
 # Sanity Icon Manager
 
 <p align="center">
-  <img width="200" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/SanityIconManager.png" alt="Hero"/>
+  <img width="200" src="docs/images/SanityIconManager.png" alt="Hero"/>
 </p>
 <p align="center">
   <img width="50%" src="docs/images/hero.jpg" alt="Hero"/>
