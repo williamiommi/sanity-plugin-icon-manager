@@ -76,7 +76,7 @@ export default function IconMenu({actions}: Props) {
                   {item.href && (
                     <>
                       <a href={item.href} target='_blank' title={item.value} rel='noreferrer'>
-                        {item.value} wedewdedewd wedwdedwedwed wedwedwedwe pokpopok o po okp okp ok
+                        {item.value}
                       </a>
                       <LaunchIcon width={14} style={{marginLeft: '5px'}} />
                     </>
