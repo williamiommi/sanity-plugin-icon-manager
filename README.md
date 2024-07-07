@@ -10,6 +10,7 @@
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
 Powered by [Iconify](https://iconify.design/)
 
+- [🚨 Requirements](#-requirements)
 - [⚡️ Features](#%EF%B8%8F-features)
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
@@ -20,7 +21,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗂️ Collections Tab](#%EF%B8%8F-collections-tab)
-- [{} JSON Dialog](#%EF%B8%8F-json-dialog)
+- [{} JSON Dialog](#-json-dialog)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
@@ -29,8 +30,12 @@ Powered by [Iconify](https://iconify.design/)
 - [🧪 Develop & test](#-develop--test)
   <br /><br />
 
+## 🚨 Requirements
+
 > [!WARNING]  
 > Starting from version 2, the plugin requires a specific version of the Sanity Studio, it needs to be v3.23.0 or later. For more information see the following [link](https://www.sanity.io/docs/internationalizing-plugins-ui).
+
+<br /><br />
 
 ## ⚡️ Features
 
