@@ -18,7 +18,7 @@ const initialState = {
   flip: '',
   rotate: 0,
   size: {width: FALLBACK_SIZE, height: FALLBACK_SIZE},
-  uniqueSize: false,
+  keepAspectRatio: false,
   color: undefined,
   previewBorder: false,
 }
@@ -30,7 +30,7 @@ export interface ConfigureSlice {
   rotate: number
   size: IconManagerSize
   inlineSvg?: string
-  uniqueSize: boolean
+  keepAspectRatio: boolean
   previewBorder: boolean
   color?: IconManagerColor
   hasBeenCustomized: () => boolean
@@ -47,7 +47,7 @@ export interface ConfigureSlice {
   setInlineSvg: (inlineSvg?: string) => void
   setWidth: (event: FormEvent<HTMLInputElement> | number) => void
   setHeight: (event: FormEvent<HTMLInputElement> | number) => void
-  toggleUniqueSize: () => void
+  toggleKeepAspectRatio: () => void
   togglePreviewBorder: () => void
   setColor: (color: RgbaColor | string) => void
   clearColor: () => void
@@ -85,7 +85,7 @@ export const createConfigureSlice: StateCreator<
       color: sanityValue?.metadata.color,
       inlineSvg: sanityValue?.metadata.inlineSvg,
       previewBorder: false,
-      uniqueSize: false,
+      keepAspectRatio: false,
     }))
   },
   setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip, flip: getFlipValue(hFlip, vFlip)})),
@@ -100,16 +100,16 @@ export const createConfigureSlice: StateCreator<
   setWidth: (event: FormEvent<HTMLInputElement> | number) =>
     set((s) => {
       const width = typeof event === 'number' ? event : Number(event.currentTarget.value)
-      const height = get().uniqueSize ? width : s.size.height
+      const height = get().keepAspectRatio ? width : s.size.height
       return {size: {width, height}}
     }),
   setHeight: (event: FormEvent<HTMLInputElement> | number) =>
     set((s) => {
       const height = typeof event === 'number' ? event : Number(event.currentTarget.value)
-      const width = get().uniqueSize ? height : s.size.width
+      const width = get().keepAspectRatio ? height : s.size.width
       return {size: {width, height}}
     }),
-  toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
+  toggleKeepAspectRatio: () => set((s) => ({keepAspectRatio: !s.keepAspectRatio})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
   setColor: (color: RgbaColor | string) =>
     set(() => {

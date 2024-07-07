@@ -12,11 +12,11 @@ const Size = () => {
   const {t} = usePluginTranslation()
   const {sanity: theme} = useTheme()
   const size = useAppStoreContext((s) => s.size)
-  const uniqueSize = useAppStoreContext((s) => s.uniqueSize)
+  const keepAspectRatio = useAppStoreContext((s) => s.keepAspectRatio)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
   const setWidth = useAppStoreContext((s) => s.setWidth)
   const setHeight = useAppStoreContext((s) => s.setHeight)
-  const toggleUniqueSize = useAppStoreContext((s) => s.toggleUniqueSize)
+  const toggleKeepAspectRatio = useAppStoreContext((s) => s.toggleKeepAspectRatio)
   const togglePreviewBorder = useAppStoreContext((s) => s.togglePreviewBorder)
 
   return (
@@ -58,9 +58,9 @@ const Size = () => {
         <BaseTooltip content={t('dialog.configure.filter.lock.aspect.ratio.tooltip')}>
           <Button
             tone='primary'
-            mode={uniqueSize ? 'default' : 'ghost'}
+            mode={keepAspectRatio ? 'default' : 'ghost'}
             icon={
-              uniqueSize ? (
+              keepAspectRatio ? (
                 <LinkIcon width={14} height={14} />
               ) : (
                 <UnlinkIcon width={14} height={14} />
@@ -69,7 +69,7 @@ const Size = () => {
             fontSize={1}
             padding={2}
             style={{width: '25px', cursor: 'pointer'}}
-            onClick={toggleUniqueSize}
+            onClick={toggleKeepAspectRatio}
           />
         </BaseTooltip>
         <BaseTooltip content={t('dialog.configure.filter.real.size.tooltip')}>
