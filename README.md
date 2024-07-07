@@ -14,7 +14,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
-- [··· Icon menu](?tab=readme-ov-file#-icon-menu)
+- [··· Context menu](#-context-menu)
 - [👀 Document List Preview](#-document-list-preview)
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
@@ -138,7 +138,7 @@ This is the main configuration of the plugin. The available options are:
 
 <br /><br />
 
-## ··· Icon menu
+## ··· Context menu
 
 Starting from v2, you have access to a context menu (clicking on the ···) where you can see some info about the selected icon. You have a few options to download o copy to clipboard the icon.
 
