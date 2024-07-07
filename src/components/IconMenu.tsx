@@ -1,19 +1,18 @@
 import {LaunchIcon} from '@sanity/icons'
-import {Button, Flex, Text, useMediaIndex} from '@sanity/ui'
+import {Button, Flex, Text} from '@sanity/ui'
 import {ReactNode} from 'react'
 import usePluginTranslation from '../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../store/context'
-import CustomizedBadge from './CustomizedBadge'
 import {
-  StyledActionsTitleWrapper,
-  StyledActionsWrapper,
-  StyledInfoCard,
-  StyledInfoLabel,
-  StyledInfoTitleWrapper,
-  StyledInfoValue,
-  StyledInfoWrapper,
-  StyledWrapper,
-} from './IconMenu.style'
+  StyledIconMenu,
+  StyledIconMenuActionsTitleWrapper,
+  StyledIconMenuActionsWrapper,
+  StyledIconMenuInfoCard,
+  StyledIconMenuInfoTitleWrapper,
+  StyledIconMenuInfoValue,
+  StyledIconMenuInfoWrapper,
+} from '../style'
+import CustomizedBadge from './CustomizedBadge'
 import IconPreview from './IconPreview'
 
 interface Props {
@@ -29,8 +28,6 @@ export default function IconMenu({actions}: Props) {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
-  const mediaindex = useMediaIndex()
-  const isMobile = mediaindex < 2
 
   const info = [
     {
@@ -54,60 +51,49 @@ export default function IconMenu({actions}: Props) {
   ]
 
   return (
-    <StyledWrapper
-      padding={2}
-      $isMobile={isMobile}
-      wrap='wrap'
-      direction={['column', 'column', 'row']}
-    >
-      <StyledInfoTitleWrapper $isMobile={isMobile}>
+    <StyledIconMenu padding={2} wrap='wrap' direction={['column', 'column', 'row']}>
+      <StyledIconMenuInfoTitleWrapper align='center' gap={1}>
         <IconPreview value={sanityValue} width={20} height={20} hideText />
         <Text muted weight='semibold'>
           {t('menu.info.title')}
         </Text>
         {hasBeenCustomized && <CustomizedBadge />}
-      </StyledInfoTitleWrapper>
-      <StyledActionsTitleWrapper $isMobile={isMobile}>
+      </StyledIconMenuInfoTitleWrapper>
+      <StyledIconMenuActionsTitleWrapper align='center'>
         <Text muted weight='semibold'>
           {t('menu.actions.title')}
         </Text>
-      </StyledActionsTitleWrapper>
-      <StyledInfoWrapper $isMobile={isMobile}>
-        <StyledInfoCard
-          $isMobile={isMobile}
-          tone='primary'
-          paddingY={4}
-          paddingX={2}
-          sizing='border'
-        >
+      </StyledIconMenuActionsTitleWrapper>
+      <StyledIconMenuInfoWrapper align='center' marginTop={2} marginBottom={[2, 2, 0]}>
+        <StyledIconMenuInfoCard tone='primary' paddingY={4} paddingX={2} sizing='border'>
           <Flex direction='column' gap={3}>
             {info.map((item) => (
               <Flex key={item.label} direction={['column', 'column', 'row']} gap={[2, 2, 1]}>
-                <StyledInfoLabel muted size={1}>
+                <Text muted size={1}>
                   {item.label}
-                </StyledInfoLabel>
-                <StyledInfoValue
-                  $isMobile={isMobile}
-                  size={1}
-                  weight='semibold'
-                  textOverflow='ellipsis'
-                >
+                </Text>
+                <StyledIconMenuInfoValue size={1} weight='semibold' textOverflow='ellipsis'>
                   {item.href && (
                     <>
                       <a href={item.href} target='_blank' title={item.value} rel='noreferrer'>
-                        {item.value}
+                        {item.value} wedewdedewd wedwdedwedwed wedwedwedwe pokpopok o po okp okp ok
                       </a>
                       <LaunchIcon width={14} style={{marginLeft: '5px'}} />
                     </>
                   )}
                   {!item.href && <>{item.value}</>}
-                </StyledInfoValue>
+                </StyledIconMenuInfoValue>
               </Flex>
             ))}
           </Flex>
-        </StyledInfoCard>
-      </StyledInfoWrapper>
-      <StyledActionsWrapper $isMobile={isMobile}>
+        </StyledIconMenuInfoCard>
+      </StyledIconMenuInfoWrapper>
+      <StyledIconMenuActionsWrapper
+        direction='column'
+        justify='center'
+        marginTop={2}
+        marginBottom={[2, 2, 0]}
+      >
         {actions.map((action) => (
           <Button
             key={action.label}
@@ -122,7 +108,7 @@ export default function IconMenu({actions}: Props) {
             justify='flex-start'
           />
         ))}
-      </StyledActionsWrapper>
-    </StyledWrapper>
+      </StyledIconMenuActionsWrapper>
+    </StyledIconMenu>
   )
 }

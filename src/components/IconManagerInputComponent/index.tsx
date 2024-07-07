@@ -1,4 +1,4 @@
-import {useTheme} from '@sanity/ui'
+import {useMediaIndex, useTheme} from '@sanity/ui'
 import {ObjectInputProps} from 'sanity'
 import {ThemeProvider} from 'styled-components'
 import {AppStoreContextProvider} from '../../store/context'
@@ -11,9 +11,10 @@ const IconManagerInputComponentWrapper = (
   pluginOptions: void | IconManagerPluginOptions,
 ) => {
   const {sanity: theme} = useTheme()
+  const mediaIndex = useMediaIndex()
   return (
     <AppStoreContextProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={{...theme, mediaIndex}}>
         <IconManagerInputComponent
           objectInputProps={objectInputProps}
           pluginOptions={pluginOptions}
