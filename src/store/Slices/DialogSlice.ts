@@ -10,9 +10,9 @@ export interface DialogSlice {
   openSearchDialog: () => void
   closeSearchDialog: () => void
 
-  isInfoDialogOpen?: boolean
-  openInfoDialog: () => void
-  closeInfoDialog: () => void
+  isJsonDialogOpen?: boolean
+  openJsonDialog: () => void
+  closeJsonDialog: () => void
 
   isConfigDialogOpen?: boolean
   openConfigDialog: () => void
@@ -47,8 +47,8 @@ export const createDialogSlice: StateCreator<
       limit: DEFAULT_FILTER_LIMIT,
     })),
 
-  openInfoDialog: () => set(() => ({isInfoDialogOpen: true})),
-  closeInfoDialog: () => set(() => ({isInfoDialogOpen: false})),
+  openJsonDialog: () => set(() => ({isJsonDialogOpen: true})),
+  closeJsonDialog: () => set(() => ({isJsonDialogOpen: false})),
 
   openConfigDialog: () => {
     get().setSanityPresence()

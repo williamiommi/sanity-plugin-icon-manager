@@ -9,6 +9,7 @@ import FilledState from '../AppStates/FilledState'
 import ChangeIndicatorWrapper from '../ChangeIndicatorWrapper'
 import CustomFieldPresence from '../CustomFieldPresence'
 import ConfigDialog from '../Dialogs/ConfigDialog'
+import JsonDialog from '../Dialogs/JsonDialog'
 import RemoveDialog from '../Dialogs/RemoveDialog'
 import SearchDialog from '../Dialogs/SearchDialog'
 
@@ -37,6 +38,7 @@ const IconManagerInputComponent = ({
         <>
           <ConfigDialog />
           <RemoveDialog />
+          <JsonDialog />
         </>
       )}
       <SearchDialog />

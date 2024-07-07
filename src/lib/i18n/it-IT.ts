@@ -28,6 +28,11 @@ export default {
   'dialog.remove.cancel.cta': 'Cancella',
   'dialog.remove.confirm.cta': 'Conferma',
 
+  // Json dialog
+  'dialog.json.title': 'JSON Data',
+  'dialog.json.copy.label': 'Copia negli appunti',
+  'dialog.json.copied.label': 'JSON copiato negli appunti',
+
   // configure dialog
   'dialog.configure.title': 'Configurazione',
   'dialog.configure.filter.flip.label': 'Gira:',

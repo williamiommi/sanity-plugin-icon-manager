@@ -30,6 +30,11 @@ export default {
   'dialog.remove.cancel.cta': 'Cancel',
   'dialog.remove.confirm.cta': 'Confirm',
 
+  // Json dialog
+  'dialog.json.title': 'JSON Data',
+  'dialog.json.copy.label': 'Copy to clipboard',
+  'dialog.json.copied.label': 'JSON copied to clipboard',
+
   // configure dialog
   'dialog.configure.title': 'Configuration',
   'dialog.configure.filter.flip.label': 'Flip:',

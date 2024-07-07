@@ -10,6 +10,7 @@ import IconMenu from '../IconMenu'
 import IconPreview from '../IconPreview'
 import CogIcon from '../icons/CogIcon'
 import DividerIcon from '../icons/DividerIcon'
+import JsonIcon from '../icons/JsonIcon'
 import TrashIcon from '../icons/TrashIcon'
 import SvgButtons from '../SvgButtons'
 
@@ -20,6 +21,7 @@ export default function FilledState() {
   const openConfigDialog = useAppStoreContext((s) => s.openConfigDialog)
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
+  const openJsonDialog = useAppStoreContext((s) => s.openJsonDialog)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
 
@@ -102,6 +104,13 @@ export default function FilledState() {
       <Flex justify='center' align='center' padding={4}>
         <IconPreview value={sanityValue} width={120} height={120} />
       </Flex>
+      <Button
+        mode='bleed'
+        tone='default'
+        icon={<JsonIcon width={22} height={22} />}
+        onClick={openJsonDialog}
+        style={{position: 'absolute', cursor: 'pointer', right: '3px', bottom: '3px'}}
+      />
     </Card>
   )
 }
