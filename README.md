@@ -170,7 +170,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/document-list-preview.jpg" alt="Document list preview"/>
+  <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
 </p>
 
 <br /><br />
@@ -211,7 +211,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
+  <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
 
 <br /><br />
@@ -267,7 +267,7 @@ export default defineConfig({
 ```
 
 <p align="left">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -280,25 +280,25 @@ You can have three different custom diff views:
 ### Icon Added
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
+  <img width="30%" src="docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
 </p>
 
 ### Icon Changed
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
+  <img width="30%" src="docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
 </p>
 
 ### Icon Removed
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
+  <img width="30%" src="docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
 </p>
 
 In any of the above cases you can always see the list of all the changes clicking on the `Show details` CTA.
 
 <p align="left">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -309,11 +309,11 @@ Starting from v.1.2.0, you can browse icons through all available collections.\
 The search dialog now offers a 'Tabs view' where you can choose to search for your icons as before or via the new 'Collections' tab. Here, you can scroll through all the available collections, select one, and choose an icon from the available options within the selected collection.
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
+  <img width="70%" src="docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
 </p>
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
+  <img width="70%" src="docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
 </p>
 
 <br /><br />
