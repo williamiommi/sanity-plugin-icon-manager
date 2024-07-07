@@ -1,10 +1,15 @@
 import {Flex} from '@sanity/ui'
+import {useTranslation} from 'sanity'
+import {I18N_NAMESPACE} from '../../../lib/constants'
 import IconifySmile from '../../icons/IconifySmile'
 
-const Header = () => (
-  <Flex align='center' gap={2}>
-    <IconifySmile /> Find your icon
-  </Flex>
-)
+const Header = () => {
+  const {t} = useTranslation(I18N_NAMESPACE)
+  return (
+    <Flex align='center' gap={2}>
+      <IconifySmile /> {t('dialog.add.title')}
+    </Flex>
+  )
+}
 
 export default Header

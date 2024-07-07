@@ -1,4 +1,6 @@
 export default {
+  'plugin.title': 'Icon Manager Plugin',
+
   'add.icon.label': 'Add icon',
 
   // add icon dialog
@@ -6,7 +8,6 @@ export default {
   'dialog.add.search.tab.label': 'Search',
   'dialog.add.collections.tab.label': 'Collections',
   'dialog.add.input.search.placeholder': 'Search icons...',
-  'dialog.add.input.search.kicker': 'Collection:',
   'dialog.add.search.cta': 'Search',
   'dialog.add.filter.select.label': 'Select...',
   'dialog.add.filter.style.label': 'Style:',
@@ -19,9 +20,9 @@ export default {
   'dialog.add.filter.limit.label': 'Limit:',
   'dialog.add.filter.limit.info.label': '(min 32 / max 999)',
   'dialog.add.input.search.collections.placeholder': 'Search collections...',
-  'dialog.add.icon.found.label_one': 'icon found',
-  'dialog.add.icons.found.label_other': 'icons found',
-  'dialog.add.by.label': 'by',
+  'dialog.add.icon.found.label_one': '{{count}} icon found',
+  'dialog.add.icon.found.label_other': '{{count}} icons found',
+  'dialog.add.by.label': 'by {{author}}',
 
   // remove dialog
   'dialog.remove.icon.title': 'Remove icon',
@@ -75,9 +76,17 @@ export default {
   'download.png.tooltip': 'Download PNG',
 
   'diff.changes.show.details.cta': 'Show details',
+  'diff.changes.hide.details.cta': 'Hide details',
   'diff.changes.empty.badge': 'EMPTY',
   'diff.changes.removed.badge': 'REMOVED',
+  'diff.changes.untitled.label': 'Untitled',
 
-  'error.no.icons.found': 'NO ICONS FOUND',
-  'error.no.collections.found': 'NO COLLECTIONS FOUND',
+  'no.collections.message': 'No available collections.<br />Check your plugin configuration.',
+
+  'html.copied.label': 'SVG copied to clipboard',
+  'base64.copied.label': 'Data Base64 copied to clipboard',
+
+  'error.no.icons.found': 'No icons found!',
+  'error.no.collections.found': 'No collections found',
+  'error.create.png': 'Unable to create the PNG, check your icon',
 }

@@ -1,10 +1,13 @@
 import {Flex, Select, Text} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
+import {useTranslation} from 'sanity'
+import {I18N_NAMESPACE} from '../../lib/constants'
 import {useAppStoreContext} from '../../store/context'
 
 interface FilterPaletteProps {}
 
 const FilterPalette = (props: FilterPaletteProps) => {
+  const {t} = useTranslation(I18N_NAMESPACE)
   const filterPalette = useAppStoreContext((s) => s.filterPalette)
   const setFilterPalette = useAppStoreContext((s) => s.setFilterPalette)
 
@@ -18,13 +21,13 @@ const FilterPalette = (props: FilterPaletteProps) => {
   return (
     <Flex align='center'>
       <Text weight='bold' size={1} style={{width: '100px'}}>
-        Palette:
+        {t('dialog.add.filter.palette.label')}
       </Text>
       <Flex style={{width: '100%'}}>
         <Select onChange={onSetFilterPalette} value={filterPalette} fontSize={1}>
-          <option value=''>Select...</option>
-          <option value='1'>Polychrome</option>
-          <option value='0'>Monochrome</option>
+          <option value=''>{t('dialog.add.filter.select.label')}</option>
+          <option value='1'>{t('dialog.add.filter.palette.poly.label')}</option>
+          <option value='0'>{t('dialog.add.filter.palette.mono.label')}</option>
         </Select>
       </Flex>
     </Flex>

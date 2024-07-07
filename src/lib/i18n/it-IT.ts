@@ -2,11 +2,10 @@ export default {
   'add.icon.label': 'Aggiungi icona',
 
   // add icon dialog
-  'dialog.add.title': 'Cerca icona',
+  'dialog.add.title': 'Cerca la tua icona',
   'dialog.add.search.tab.label': 'Cerca',
   'dialog.add.collections.tab.label': 'Collezioni',
   'dialog.add.input.search.placeholder': 'Cerca icone...',
-  'dialog.add.input.search.kicker': 'Collezione:',
   'dialog.add.search.cta': 'Cerca',
   'dialog.add.filter.select.label': 'Seleziona...',
   'dialog.add.filter.style.label': 'Stile:',
@@ -19,9 +18,9 @@ export default {
   'dialog.add.filter.limit.label': 'Limite:',
   'dialog.add.filter.limit.info.label': '(min 32 / max 999)',
   'dialog.add.input.search.collections.placeholder': 'Cerca collezioni...',
-  'dialog.add.icon.found.label_one': 'icona trovata',
-  'dialog.add.icons.found.label_other': 'icone trovate',
-  'dialog.add.by.label': 'di',
+  'dialog.add.icon.found.label_one': '{{count}} icona trovata',
+  'dialog.add.icon.found.label_other': '{{count}} icone trovate',
+  'dialog.add.by.label': 'di {{author}}',
 
   // remove dialog
   'dialog.remove.icon.title': 'Rimuovi icona',
@@ -75,9 +74,18 @@ export default {
   'download.png.tooltip': 'Scarica PNG',
 
   'diff.changes.show.details.cta': 'Mostra dettagli',
+  'diff.changes.hide.details.cta': 'Nascondi dettagli',
   'diff.changes.empty.badge': 'VUOTO',
   'diff.changes.removed.badge': 'RIMOSSO',
+  'diff.changes.untitled.label': 'Senza titolo',
 
-  'error.no.icons.found': 'NESSUNA ICONA TROVATA',
-  'error.no.collections.found': 'NESSUNA COLLEZIONE TROVATA',
+  'no.collections.message':
+    'Nessuna collezione disponibile.<br />Controlla la configurazione del plugin.',
+
+  'html.copied.label': 'SVG copiato negli appunti',
+  'base64.copied.label': 'Data Base64 copiato negli appunti',
+
+  'error.no.icons.found': 'Nessuna icona trovata',
+  'error.no.collections.found': 'Nessuna collezione trovata',
+  'error.create.png': 'Impossibile creare il file PNG, controlla la tua icona',
 }
