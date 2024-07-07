@@ -1,21 +1,18 @@
-import {Button, Card, Flex, Text, TextInput, useTheme} from '@sanity/ui'
+import {Button, Flex, Text} from '@sanity/ui'
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'
 import BorderIcon from '../../icons/BorderIcon'
-import HeightIcon from '../../icons/HeightIcon'
 import LinkIcon from '../../icons/LinkIcon'
 import UnlinkIcon from '../../icons/UnlinkIcon'
-import WidthIcon from '../../icons/WidthIcon'
+import InputSize from '../../InputSize'
 
 const Size = () => {
   const {t} = usePluginTranslation()
-  const {sanity: theme} = useTheme()
   const size = useAppStoreContext((s) => s.size)
   const keepAspectRatio = useAppStoreContext((s) => s.keepAspectRatio)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
-  const setWidth = useAppStoreContext((s) => s.setWidth)
-  const setHeight = useAppStoreContext((s) => s.setHeight)
+  const updateSize = useAppStoreContext((s) => s.updateSize)
   const toggleKeepAspectRatio = useAppStoreContext((s) => s.toggleKeepAspectRatio)
   const togglePreviewBorder = useAppStoreContext((s) => s.togglePreviewBorder)
 
@@ -30,31 +27,7 @@ const Size = () => {
         {t('dialog.configure.filter.size.label')}
       </Text>
       <Flex gap={1} align='center' style={{width: '100%'}}>
-        <Card flex={1}>
-          <TextInput
-            type='number'
-            min={0}
-            value={size.width}
-            fontSize={1}
-            padding={2}
-            space={3}
-            style={{paddingLeft: '22px', paddingRight: '2px'}}
-            icon={<WidthIcon width={15} color={theme.color.button.ghost.primary.enabled.fg} />}
-            onChange={setWidth}
-          />
-        </Card>
-        <Card flex={1}>
-          <TextInput
-            type='number'
-            min={0}
-            value={size.height}
-            fontSize={1}
-            padding={2}
-            style={{paddingLeft: '22px', paddingRight: '2px'}}
-            icon={<HeightIcon width={15} color={theme.color.button.ghost.primary.enabled.fg} />}
-            onChange={setHeight}
-          />
-        </Card>
+        <InputSize initialSize={size} keepAspectRatio={keepAspectRatio} updateSize={updateSize} />
         <BaseTooltip content={t('dialog.configure.filter.lock.aspect.ratio.tooltip')}>
           <Button
             tone='primary'

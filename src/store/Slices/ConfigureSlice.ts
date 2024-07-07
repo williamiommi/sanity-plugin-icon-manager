@@ -1,4 +1,3 @@
-import {FormEvent} from 'react'
 import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
@@ -45,8 +44,7 @@ export interface ConfigureSlice {
   setRotate180: () => void
   setRotate270: () => void
   setInlineSvg: (inlineSvg?: string) => void
-  setWidth: (event: FormEvent<HTMLInputElement> | number) => void
-  setHeight: (event: FormEvent<HTMLInputElement> | number) => void
+  updateSize: (size: IconManagerSize) => void
   toggleKeepAspectRatio: () => void
   togglePreviewBorder: () => void
   setColor: (color: RgbaColor | string) => void
@@ -97,18 +95,7 @@ export const createConfigureSlice: StateCreator<
   setRotate180: () => set((s) => ({rotate: s.rotate === 2 ? 0 : 2})),
   setRotate270: () => set((s) => ({rotate: s.rotate === 3 ? 0 : 3})),
   setInlineSvg: (inlineSvg?: string) => set(() => ({inlineSvg})),
-  setWidth: (event: FormEvent<HTMLInputElement> | number) =>
-    set((s) => {
-      const width = typeof event === 'number' ? event : Number(event.currentTarget.value)
-      const height = get().keepAspectRatio ? width : s.size.height
-      return {size: {width, height}}
-    }),
-  setHeight: (event: FormEvent<HTMLInputElement> | number) =>
-    set((s) => {
-      const height = typeof event === 'number' ? event : Number(event.currentTarget.value)
-      const width = get().keepAspectRatio ? height : s.size.width
-      return {size: {width, height}}
-    }),
+  updateSize: (size: IconManagerSize) => set(() => ({size})),
   toggleKeepAspectRatio: () => set((s) => ({keepAspectRatio: !s.keepAspectRatio})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
   setColor: (color: RgbaColor | string) =>

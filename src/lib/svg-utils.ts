@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {buildIcon, loadIcon} from '@iconify/react'
 import {iconToHTML, replaceIDs} from '@iconify/utils'
 import DOMPurify from 'dompurify'
@@ -19,21 +20,19 @@ export const keepAspectRatioCalculator = (
   newWidth?: number,
   newHeight?: number,
 ): IconManagerSize => {
-  let outputWidth = 0
-  let outputHeight = 0
-  if (!newWidth && !newHeight) return {width: outputWidth, height: outputHeight}
+  if (!newWidth && !newHeight) return {width: 0, height: 0}
 
   const aspectRatio = originalWidth / originalHeight
 
   if (newWidth) {
-    outputHeight = newWidth / aspectRatio
+    newHeight = newWidth / aspectRatio
   } else if (newHeight) {
-    outputWidth = newHeight * aspectRatio
+    newWidth = newHeight * aspectRatio
   }
 
   return {
-    width: Math.round(outputWidth!),
-    height: Math.round(outputHeight!),
+    width: Math.round(newWidth!),
+    height: Math.round(newHeight!),
   }
 }
 
