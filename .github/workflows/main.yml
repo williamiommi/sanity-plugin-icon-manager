@@ -40,15 +40,10 @@ concurrency:
 permissions:
   contents: read # for checkout
 
-env:
-  Greeting: no-dry-run
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Lint & Build
-    if: contains(github.ref, 'dry-run')
-    env:
-      Greeting: dry-run
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -61,7 +56,6 @@ jobs:
         if: github.event.inputs.test != 'false'
         # But not the build script, as semantic-release will crash if this command fails so it makes sense to test it early
       - run: npm run prepublishOnly --if-present
-      - run: echo "$Greeting"
 
   test:
     needs: build
