@@ -56,6 +56,8 @@ jobs:
         if: github.event.inputs.test != 'false'
         # But not the build script, as semantic-release will crash if this command fails so it makes sense to test it early
       - run: npm run prepublishOnly --if-present
+      - if: contains(github.ref, 'dry-run')
+        run: echo 'run run run run dry'
 
   test:
     needs: build
