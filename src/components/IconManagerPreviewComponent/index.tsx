@@ -1,4 +1,5 @@
 import {PreviewProps} from 'sanity'
+
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 

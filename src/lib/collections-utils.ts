@@ -1,7 +1,8 @@
+import {IconifyInfoEnhanced} from '../types/IconifyInfoEnhanced'
 import IconManagerCollectionResponse from '../types/IconManagerCollectionResponse'
 import {IconManagerIconInfo} from '../types/IconManagerQueryResponse'
-import {IconifyInfoEnhanced} from '../types/IconifyInfoEnhanced'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sort = (arr: any[], comparator: string) => {
   return arr.sort((a, b) => {
     const nameA = a[comparator].toLowerCase()

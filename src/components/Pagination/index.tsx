@@ -1,4 +1,5 @@
 import {Flex, Text} from '@sanity/ui'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {PaginationButton} from '../../style'
 

@@ -1,4 +1,5 @@
 import {StateCreator} from 'zustand'
+
 import {CollectionsSlice} from './CollectionsSlice'
 import {ConfigureSlice} from './ConfigureSlice'
 import {DEFAULT_FILTER_LIMIT, FiltersSlice} from './FiltersSlice'

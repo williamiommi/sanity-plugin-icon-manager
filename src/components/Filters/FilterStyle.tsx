@@ -1,11 +1,10 @@
 import {Flex, Select, Text} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-interface FilterStyleProps {}
-
-const FilterStyle = (props: FilterStyleProps) => {
+const FilterStyle = () => {
   const {t} = usePluginTranslation()
   const filterStyle = useAppStoreContext((s) => s.filterStyle)
   const setFilterStyle = useAppStoreContext((s) => s.setFilterStyle)

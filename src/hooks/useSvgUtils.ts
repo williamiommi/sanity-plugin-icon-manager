@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react'
-import {toastError, toastSuccess} from '../lib/toast-utils'
 
 import {
   buildSvgDataUrl,
@@ -8,6 +7,7 @@ import {
   copy2ClipboardSvgHtml,
   SvgData,
 } from '../lib/svg-utils'
+import {toastError, toastSuccess} from '../lib/toast-utils'
 import {useAppStoreContext} from '../store/context'
 import usePluginTranslation from './usePluginTranslation'
 
@@ -45,7 +45,7 @@ export default function useSvgUtils(data: SvgData & {inlineSvg?: string}): Respo
       if (isHtml) await copy2ClipboardSvgHtml(data)
       else await copy2ClipboardSvgDataUrl(data)
       toastSuccess({sanityToast, title: t(`${isHtml ? 'html' : 'base64'}.copied.label`)})
-    } catch (e: any) {
+    } catch (e: unknown) {
       toastError(sanityToast, e)
     }
   }

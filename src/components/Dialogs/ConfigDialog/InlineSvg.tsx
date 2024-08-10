@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Switch, Text} from '@sanity/ui'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {buildSvgHtml} from '../../../lib/svg-utils'
 import {toastError} from '../../../lib/toast-utils'
@@ -27,7 +28,7 @@ const InlineSvg = () => {
           ? undefined
           : await buildSvgHtml({icon: sanityValue?.icon!, size, hFlip, vFlip, flip, rotate, color}),
       )
-    } catch (e: any) {
+    } catch (e: unknown) {
       toastError(sanityToast, e)
     }
   }

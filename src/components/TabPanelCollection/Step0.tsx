@@ -1,4 +1,5 @@
 import {useDeferredValue, useState} from 'react'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import CollectionsGrid from './CollectionsGrid'
 import Input from './Input'

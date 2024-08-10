@@ -1,5 +1,6 @@
 import {Icon} from '@iconify/react'
 import {Button, Card, Flex, Spinner, Text} from '@sanity/ui'
+
 import useIsInViewport from '../hooks/useIsInViewport'
 import {stringifyHeight} from '../lib/iconify-utils'
 import {IconifyInfoEnhanced} from '../types/IconifyInfoEnhanced'

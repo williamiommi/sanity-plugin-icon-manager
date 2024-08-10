@@ -2,6 +2,7 @@
 import {EllipsisHorizontalIcon} from '@sanity/icons'
 import {Box, Button, Card, Flex, Menu, MenuButton} from '@sanity/ui'
 import {useState} from 'react'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import BaseTooltip from '../BaseTooltip'

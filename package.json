@@ -40,6 +40,7 @@
     "format": "prettier --write --cache --ignore-unknown .",
     "link-watch": "plugin-kit link-watch",
     "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
     "prepublishOnly": "npm run build",
     "watch": "pkg-utils watch --strict",
     "prepare": "husky"

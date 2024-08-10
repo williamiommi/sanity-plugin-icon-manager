@@ -1,4 +1,5 @@
 import {Flex} from '@sanity/ui'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import IconifySmile from '../../icons/IconifySmile'
 

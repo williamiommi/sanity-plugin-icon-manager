@@ -2,6 +2,7 @@
 import {BookIcon, SearchIcon} from '@sanity/icons'
 import {Tab, TabList} from '@sanity/ui'
 import {useState} from 'react'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'

@@ -1,4 +1,5 @@
 import {addAPIProvider, disableCache, enableCache} from '@iconify/react'
+
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 
 const iconManagerSetup = (config: void | IconManagerPluginOptions): void => {

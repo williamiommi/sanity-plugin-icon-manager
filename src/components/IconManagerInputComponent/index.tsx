@@ -1,6 +1,7 @@
 import {useMediaIndex, useTheme} from '@sanity/ui'
 import {ObjectInputProps} from 'sanity'
 import {ThemeProvider} from 'styled-components'
+
 import {AppStoreContextProvider} from '../../store/context'
 import IconManagerPluginOptions from '../../types/IconManagerPluginOptions'
 import {IconManagerType} from '../../types/IconManagerType'

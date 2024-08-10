@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Box, Button, Dialog} from '@sanity/ui'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {copy2Clipboard} from '../../../lib/svg-utils'
 import {toastError, toastSuccess} from '../../../lib/toast-utils'

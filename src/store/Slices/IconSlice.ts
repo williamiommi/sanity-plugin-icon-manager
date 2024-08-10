@@ -1,5 +1,6 @@
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
+
 import {buildSvgHtml, buildSvgUrls} from '../../lib/svg-utils'
 import {toastError} from '../../lib/toast-utils'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
@@ -68,7 +69,7 @@ export const createIconSlice: StateCreator<
         get().closeSearchDialog()
         get().clearConfiguration()
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       toastError(get().sanityToast, e)
     }
   },
@@ -79,7 +80,7 @@ export const createIconSlice: StateCreator<
         await sanityPatch(patchUnset())
         get().closeRemoveDialog()
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       toastError(get().sanityToast, e)
     }
   },

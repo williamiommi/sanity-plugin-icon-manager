@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {memo, useMemo} from 'react'
+
 import {filterIcons} from '../../lib/collections-utils'
 import {useAppStoreContext} from '../../store/context'
 import ResultsGrid from '../ResultsGrid'

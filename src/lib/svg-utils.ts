@@ -2,6 +2,7 @@
 import {buildIcon, loadIcon} from '@iconify/react'
 import {iconToHTML, replaceIDs} from '@iconify/utils'
 import DOMPurify from 'dompurify'
+
 import {IconManagerColor, IconManagerSize} from '../types/IconManagerType'
 
 export type SvgData = {

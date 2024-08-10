@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
 import {Badge, Card, Grid, Label} from '@sanity/ui'
+
 import usePagination from '../../hooks/usePagination'
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
-import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
+import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import Pagination from '../Pagination'
 import ResultsGridItem from './ResultsGridItem'
 

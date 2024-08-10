@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
 import {useRef, useState} from 'react'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'

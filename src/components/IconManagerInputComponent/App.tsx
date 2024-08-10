@@ -1,5 +1,6 @@
 import {Box} from '@sanity/ui'
 import {ObjectInputProps} from 'sanity'
+
 import useInputSetup from '../../hooks/useInputSetup'
 import {useAppStoreContext} from '../../store/context'
 import IconManagerPluginOptions from '../../types/IconManagerPluginOptions'

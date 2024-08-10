@@ -1,4 +1,5 @@
 import {Button, Flex, Text, Tooltip} from '@sanity/ui'
+
 import IconPreview from '../IconPreview'
 
 interface ResultsGridItemProps {

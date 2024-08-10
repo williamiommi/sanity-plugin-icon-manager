@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {Card, TextInput, useTheme} from '@sanity/ui'
 import {FormEvent, useEffect, useState} from 'react'
+
 import {FALLBACK_SIZE} from '../lib/constants'
 import {keepAspectRatioCalculator} from '../lib/svg-utils'
 import {IconManagerSize} from '../types/IconManagerType'

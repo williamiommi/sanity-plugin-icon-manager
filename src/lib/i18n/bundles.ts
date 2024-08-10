@@ -1,4 +1,5 @@
 import {defineLocaleResourceBundle} from 'sanity'
+
 import {I18N_NAMESPACE} from '../constants'
 
 const enUsResourceBundle = defineLocaleResourceBundle({

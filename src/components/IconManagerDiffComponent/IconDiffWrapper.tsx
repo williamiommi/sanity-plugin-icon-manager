@@ -1,6 +1,7 @@
 import {DocumentIcon} from '@sanity/icons'
 import {Badge, Box, Flex, Text} from '@sanity/ui'
 import {DiffCard, DiffProps, DiffTooltip, ObjectDiff} from 'sanity'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'

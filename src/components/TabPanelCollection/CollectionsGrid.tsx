@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {Box, Flex, Grid, Text} from '@sanity/ui'
 import {memo, useMemo} from 'react'
+
 import {filterCollections} from '../../lib/collections-utils'
 import {useAppStoreContext} from '../../store/context'
 import CollectionCard from '../CollectionCard'

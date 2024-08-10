@@ -1,4 +1,5 @@
 import {definePlugin} from 'sanity'
+
 import i18nBundles from '../lib/i18n/bundles'
 import iconManagerSetup from '../lib/iconManagerSetup'
 import IconManagerObject from '../schemas/objects/IconManager'

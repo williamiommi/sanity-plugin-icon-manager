@@ -2,6 +2,7 @@ import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
 import {Card, Flex, Text, useTheme} from '@sanity/ui'
 import {useMemo} from 'react'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'

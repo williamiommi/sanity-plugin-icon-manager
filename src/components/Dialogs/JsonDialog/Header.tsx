@@ -1,4 +1,5 @@
 import {Flex, Heading} from '@sanity/ui'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import IconPreview from '../../IconPreview'

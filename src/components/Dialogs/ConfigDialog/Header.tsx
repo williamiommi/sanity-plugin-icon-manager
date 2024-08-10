@@ -1,4 +1,5 @@
 import {Flex, Heading} from '@sanity/ui'
+
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import CogIcon from '../../icons/CogIcon'
 

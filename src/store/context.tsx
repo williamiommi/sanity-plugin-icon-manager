@@ -1,13 +1,14 @@
-import {ReactNode, createContext, useContext, useRef} from 'react'
-import {StoreApi, createStore, useStore} from 'zustand'
+import {createContext, ReactNode, useContext, useRef} from 'react'
+import {createStore, StoreApi, useStore} from 'zustand'
+
 import {CollectionsSlice, createCollectionsSlice} from './Slices/CollectionsSlice'
 import {ConfigureSlice, createConfigureSlice} from './Slices/ConfigureSlice'
-import {DialogSlice, createDialogSlice} from './Slices/DialogSlice'
-import {FiltersSlice, createFiltersSlice} from './Slices/FiltersSlice'
-import {IconSlice, createIconSlice} from './Slices/IconSlice'
-import {PluginOptionsSlice, createPluginOptionsSlice} from './Slices/PluginOptionsSlice'
-import {ResultsSlice, createResultsSlice} from './Slices/ResultsSlice'
-import {SanitySlice, createSanitySlice} from './Slices/SanitySlice'
+import {createDialogSlice, DialogSlice} from './Slices/DialogSlice'
+import {createFiltersSlice, FiltersSlice} from './Slices/FiltersSlice'
+import {createIconSlice, IconSlice} from './Slices/IconSlice'
+import {createPluginOptionsSlice, PluginOptionsSlice} from './Slices/PluginOptionsSlice'
+import {createResultsSlice, ResultsSlice} from './Slices/ResultsSlice'
+import {createSanitySlice, SanitySlice} from './Slices/SanitySlice'
 
 export type AppStoreType = SanitySlice &
   FiltersSlice &

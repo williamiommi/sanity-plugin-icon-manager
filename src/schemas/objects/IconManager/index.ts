@@ -1,4 +1,5 @@
-import {ObjectInputProps, defineField, defineType} from 'sanity'
+import {defineField, defineType, ObjectInputProps} from 'sanity'
+
 import IconManagerDiffComponent from '../../../components/IconManagerDiffComponent'
 import IconManagerInlineBlockComponent, {
   IconManagerInlineBlockComponentProps,
@@ -10,7 +11,7 @@ import {IconManagerType} from '../../../types/IconManagerType'
 import IconManagerMetadataInfo from '../IconManagerMetadata/info'
 import IconManagerInfo from './info'
 
-const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): any =>
+const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): unknown =>
   defineType({
     type: 'object',
     name: IconManagerInfo.name,

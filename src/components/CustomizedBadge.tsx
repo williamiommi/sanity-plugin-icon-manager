@@ -1,4 +1,5 @@
 import {Card, Text} from '@sanity/ui'
+
 import usePluginTranslation from '../hooks/usePluginTranslation'
 import BaseTooltip from './BaseTooltip'
 

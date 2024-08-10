@@ -1,6 +1,7 @@
 import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
+
 import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/color-utils'
 import {FALLBACK_SIZE} from '../../lib/constants'
 import {getFlipValue} from '../../lib/iconify-utils'
@@ -111,7 +112,7 @@ export const createConfigureSlice: StateCreator<
       }
       return {color: {hex, rgba}}
     }),
-  clearColor: () => set((s) => ({color: undefined})),
+  clearColor: () => set(() => ({color: undefined})),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch

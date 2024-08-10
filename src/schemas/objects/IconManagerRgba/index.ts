@@ -1,7 +1,8 @@
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, SchemaTypeDefinition} from 'sanity'
+
 import IconManagerRGBAInfo from './info'
 
-const IconManagerRGBAObject = (): any =>
+const IconManagerRGBAObject = (): SchemaTypeDefinition =>
   defineType({
     type: 'object',
     name: IconManagerRGBAInfo.name,

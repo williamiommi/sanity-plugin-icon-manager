@@ -3,9 +3,7 @@ import {useAppStoreContext} from '../../../store/context'
 import {StyledColorPaletteBox, StyledColorPaletteWrapper} from '../../../style'
 import BaseTooltip from '../../BaseTooltip'
 
-interface ColorPaletteProps {}
-
-const ColorPalette = (props: ColorPaletteProps) => {
+const ColorPalette = () => {
   const customPalette = useAppStoreContext((s) => s.customPalette)
   const setColor = useAppStoreContext((s) => s.setColor)
 

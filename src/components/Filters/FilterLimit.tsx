@@ -1,11 +1,10 @@
 import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-interface FilterLimitProps {}
-
-const FilterLimit = (props: FilterLimitProps) => {
+const FilterLimit = () => {
   const {t} = usePluginTranslation()
   const limit = useAppStoreContext((s) => s.limit)
   const setLimit = useAppStoreContext((s) => s.setLimit)

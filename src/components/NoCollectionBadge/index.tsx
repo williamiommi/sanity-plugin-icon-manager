@@ -1,4 +1,5 @@
 import {Badge, Flex} from '@sanity/ui'
+
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import SimpleHtmlRenderer from '../SimpleHtmlRenderer'
 
