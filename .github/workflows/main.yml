@@ -30,6 +30,11 @@ on:
         required: true
         default: false
         type: boolean
+      dry-release:
+        description: Test Release version w/ dry-run
+        required: true
+        default: false
+        type: boolean
 
 concurrency:
   # On PRs builds will cancel if new pushes happen before the CI completes, as it defines `github.head_ref` and gives it the name of the branch the PR wants to merge into
@@ -136,7 +141,7 @@ jobs:
     # only run if opt-in during workflow_dispatch
     if: always() && github.event.inputs.release == 'true' && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled'
     runs-on: ubuntu-latest
-    name: Semantic release
+    name: (TEST) Semantic release
     steps:
       - uses: actions/checkout@v4
         with:
