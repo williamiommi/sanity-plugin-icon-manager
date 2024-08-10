@@ -2,10 +2,13 @@
 import {BookIcon, SearchIcon} from '@sanity/icons'
 import {Tab, TabList} from '@sanity/ui'
 import {useState} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'
 
 const Tabs = () => {
+  const {t} = usePluginTranslation()
   const [tab, setTab] = useState<'search' | 'collection'>('search')
 
   return (
@@ -16,7 +19,8 @@ const Tabs = () => {
           aria-controls='search-panel'
           selected={tab === 'search'}
           icon={SearchIcon}
-          label='Search'
+          label={t('dialog.add.search.tab.label')}
+          style={{cursor: 'pointer'}}
           onClick={() => setTab('search')}
         />
         <Tab
@@ -24,7 +28,8 @@ const Tabs = () => {
           aria-controls='collections-panel'
           selected={tab === 'collection'}
           icon={BookIcon}
-          label='Collections'
+          label={t('dialog.add.collections.tab.label')}
+          style={{cursor: 'pointer'}}
           onClick={() => setTab('collection')}
         />
       </TabList>

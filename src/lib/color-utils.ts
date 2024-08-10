@@ -28,3 +28,7 @@ export const hexToRgba = (hex: string): RgbaColor => {
 export const isValidHex = (hex: string): boolean => {
   return !!stringToColor(hex)
 }
+
+export const forceHex = (value: string, hasAlpha = false): string => {
+  return value.replace(/([^0-9A-F]+)/gi, '').substring(0, hasAlpha ? 8 : 6)
+}

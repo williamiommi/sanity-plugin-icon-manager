@@ -1,10 +1,11 @@
 import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent, useCallback} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-interface FilterLimitProps {}
-
-const FilterLimit = (props: FilterLimitProps) => {
+const FilterLimit = () => {
+  const {t} = usePluginTranslation()
   const limit = useAppStoreContext((s) => s.limit)
   const setLimit = useAppStoreContext((s) => s.setLimit)
 
@@ -18,7 +19,7 @@ const FilterLimit = (props: FilterLimitProps) => {
   return (
     <Flex align='center'>
       <Text weight='bold' size={1} style={{width: '100px'}}>
-        Limit:
+        {t('dialog.add.filter.limit.label')}
       </Text>
       <Flex align='center' gap={2} style={{width: '100%'}}>
         <TextInput
@@ -31,7 +32,7 @@ const FilterLimit = (props: FilterLimitProps) => {
           style={{padding: '5px 1px 5px 5px'}}
         />
         <Text as='i' size={0}>
-          (min 32 / max 999)
+          {t('dialog.add.filter.limit.info.label')}
         </Text>
       </Flex>
     </Flex>

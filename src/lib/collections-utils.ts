@@ -1,7 +1,8 @@
+import {IconifyInfoEnhanced} from '../types/IconifyInfoEnhanced'
 import IconManagerCollectionResponse from '../types/IconManagerCollectionResponse'
 import {IconManagerIconInfo} from '../types/IconManagerQueryResponse'
-import {IconifyInfoEnhanced} from '../types/IconifyInfoEnhanced'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const sort = (arr: any[], comparator: string) => {
   return arr.sort((a, b) => {
     const nameA = a[comparator].toLowerCase()
@@ -56,20 +57,64 @@ export const filterCollections = (
 ): Record<string, IconifyInfoEnhanced[]> | undefined => {
   if (!searchTerm || !groupedCollections) return groupedCollections
 
-  const clonedItems = {...groupedCollections}
-
   const lowerCaseSearchTerm = searchTerm.toLowerCase()
-  Object.keys(clonedItems).forEach((group) => {
-    clonedItems[group] = clonedItems[group].filter((collection) => {
-      return (
-        group.toLowerCase().includes(lowerCaseSearchTerm) ||
-        collection.author.name.toLowerCase().includes(lowerCaseSearchTerm) ||
-        collection.name.toLowerCase().includes(lowerCaseSearchTerm)
-      )
-    })
-  })
 
-  return clonedItems
+  return Object.keys(groupedCollections).reduce(
+    (acc, group) => {
+      const filtered = groupedCollections[group].filter(
+        (collection) =>
+          group.toLowerCase().includes(lowerCaseSearchTerm) ||
+          collection.author.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+          collection.name.toLowerCase().includes(lowerCaseSearchTerm),
+      )
+      if (filtered.length > 0) {
+        if (!acc) acc = {}
+        acc[group] = filtered
+      }
+      return acc
+    },
+    undefined as Record<string, IconifyInfoEnhanced[]> | undefined,
+  )
+}
+
+export const filterCollectionsFromList = (
+  collections?: string[],
+  groupedCollections?: Record<string, IconifyInfoEnhanced[]>,
+): Record<string, IconifyInfoEnhanced[]> | undefined => {
+  if (!collections || collections.length === 0 || !groupedCollections) return groupedCollections
+
+  return Object.keys(groupedCollections).reduce(
+    (acc, group) => {
+      const filtered = groupedCollections[group].filter((collection) =>
+        collections.includes(collection.code),
+      )
+      if (filtered.length > 0) acc[group] = filtered
+      return acc
+    },
+    {} as Record<string, IconifyInfoEnhanced[]>,
+  )
+}
+
+export const getAllCollectionsCode = (
+  groupedCollections: Record<string, IconifyInfoEnhanced[]>,
+): string[] =>
+  Object.values(groupedCollections)
+    .flat()
+    .map((collection) => collection.code)
+
+export const filterMissingCollectionsFromList = (
+  collections?: string[],
+  groupedCollections?: Record<string, IconifyInfoEnhanced[]>,
+): string[] | undefined => {
+  if (!collections || collections.length === 0 || !groupedCollections) return undefined
+
+  const allCollectionCodes = getAllCollectionsCode(groupedCollections)
+
+  const missingCollections = collections.filter(
+    (collection) => !allCollectionCodes.includes(collection),
+  )
+
+  return missingCollections.length > 0 ? missingCollections : undefined
 }
 
 export const getIconsFromCollection = (

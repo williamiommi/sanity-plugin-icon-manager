@@ -2,7 +2,9 @@
 import {Flex, Text, TextInput} from '@sanity/ui'
 import {FormEvent} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
+
 import useClickOutside from '../../../hooks/useClickOutside'
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import {StyledColorPicker} from '../../../style'
 import ColorPalette from './ColorPalette'
@@ -12,6 +14,7 @@ interface ColorPickerProps {
 }
 
 const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
+  const {t} = usePluginTranslation()
   const pickerRef = useClickOutside<HTMLDivElement>(onClickOutsideHandler)
   const color = useAppStoreContext((s) => s.color)
   const setColor = useAppStoreContext((s) => s.setColor)
@@ -31,7 +34,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
       <ColorPalette />
       <Flex gap={1} align='center'>
         <Text weight='bold' size={0} style={{width: '50px'}}>
-          HEX
+          {t('dialog.configure.filter.color.hex.label')}
         </Text>
         <TextInput
           value={color?.hex || ''}
@@ -42,7 +45,7 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
       </Flex>
       <Flex gap={1} align='center' marginTop={2}>
         <Text weight='bold' size={0} style={{width: '50px'}}>
-          RGBA
+          {t('dialog.configure.filter.color.rgba.label')}
         </Text>
         <TextInput
           type='number'

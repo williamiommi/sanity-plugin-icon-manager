@@ -1,12 +1,12 @@
-import {FormEvent} from 'react'
 import {RgbaColor} from 'react-colorful'
 import {set as patchSet, unset as patchUnset} from 'sanity'
 import {StateCreator} from 'zustand'
-import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/colorUtils'
+
+import {hexToRgba, isValidHex, rgbaToHex} from '../../lib/color-utils'
 import {FALLBACK_SIZE} from '../../lib/constants'
-import {getFlipValue} from '../../lib/iconifyUtils'
+import {getFlipValue} from '../../lib/iconify-utils'
 import {buildSvgHtml, buildSvgUrls} from '../../lib/svg-utils'
-import {toastError, toastSuccess, toastWarning} from '../../lib/toastUtils'
+import {toastError, toastSuccess, toastWarning} from '../../lib/toast-utils'
 import {IconManagerColor, IconManagerSize} from '../../types/IconManagerType'
 import {DialogSlice} from './DialogSlice'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
@@ -18,7 +18,7 @@ const initialState = {
   flip: '',
   rotate: 0,
   size: {width: FALLBACK_SIZE, height: FALLBACK_SIZE},
-  uniqueSize: false,
+  keepAspectRatio: false,
   color: undefined,
   previewBorder: false,
 }
@@ -30,7 +30,7 @@ export interface ConfigureSlice {
   rotate: number
   size: IconManagerSize
   inlineSvg?: string
-  uniqueSize: boolean
+  keepAspectRatio: boolean
   previewBorder: boolean
   color?: IconManagerColor
   hasBeenCustomized: () => boolean
@@ -45,9 +45,8 @@ export interface ConfigureSlice {
   setRotate180: () => void
   setRotate270: () => void
   setInlineSvg: (inlineSvg?: string) => void
-  setWidth: (event: FormEvent<HTMLInputElement> | number) => void
-  setHeight: (event: FormEvent<HTMLInputElement> | number) => void
-  toggleUniqueSize: () => void
+  updateSize: (size: IconManagerSize) => void
+  toggleKeepAspectRatio: () => void
   togglePreviewBorder: () => void
   setColor: (color: RgbaColor | string) => void
   clearColor: () => void
@@ -85,7 +84,7 @@ export const createConfigureSlice: StateCreator<
       color: sanityValue?.metadata.color,
       inlineSvg: sanityValue?.metadata.inlineSvg,
       previewBorder: false,
-      uniqueSize: false,
+      keepAspectRatio: false,
     }))
   },
   setFlip: (hFlip, vFlip) => set(() => ({hFlip, vFlip, flip: getFlipValue(hFlip, vFlip)})),
@@ -97,19 +96,8 @@ export const createConfigureSlice: StateCreator<
   setRotate180: () => set((s) => ({rotate: s.rotate === 2 ? 0 : 2})),
   setRotate270: () => set((s) => ({rotate: s.rotate === 3 ? 0 : 3})),
   setInlineSvg: (inlineSvg?: string) => set(() => ({inlineSvg})),
-  setWidth: (event: FormEvent<HTMLInputElement> | number) =>
-    set((s) => {
-      const width = typeof event === 'number' ? event : Number(event.currentTarget.value)
-      const height = get().uniqueSize ? width : s.size.height
-      return {size: {width, height}}
-    }),
-  setHeight: (event: FormEvent<HTMLInputElement> | number) =>
-    set((s) => {
-      const height = typeof event === 'number' ? event : Number(event.currentTarget.value)
-      const width = get().uniqueSize ? height : s.size.width
-      return {size: {width, height}}
-    }),
-  toggleUniqueSize: () => set((s) => ({uniqueSize: !s.uniqueSize})),
+  updateSize: (size: IconManagerSize) => set(() => ({size})),
+  toggleKeepAspectRatio: () => set((s) => ({keepAspectRatio: !s.keepAspectRatio})),
   togglePreviewBorder: () => set((s) => ({previewBorder: !s.previewBorder})),
   setColor: (color: RgbaColor | string) =>
     set(() => {
@@ -124,7 +112,7 @@ export const createConfigureSlice: StateCreator<
       }
       return {color: {hex, rgba}}
     }),
-  clearColor: () => set((s) => ({color: undefined})),
+  clearColor: () => set(() => ({color: undefined})),
   saveConfiguration: async () => {
     try {
       const sanityPatch = get().sanityPatch

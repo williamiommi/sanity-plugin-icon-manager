@@ -1,6 +1,10 @@
 import {Badge, Flex} from '@sanity/ui'
 
+import usePluginTranslation from '../../hooks/usePluginTranslation'
+import SimpleHtmlRenderer from '../SimpleHtmlRenderer'
+
 export default function NoCollectionBadge() {
+  const {t} = usePluginTranslation()
   return (
     <Flex marginY={4} justify='center'>
       <Badge
@@ -12,9 +16,7 @@ export default function NoCollectionBadge() {
         style={{textAlign: 'center'}}
         radius={0}
       >
-        No available collections.
-        <br />
-        Check your plugin configuration.
+        <SimpleHtmlRenderer html={t('no.collections.message')} />
       </Badge>
     </Flex>
   )

@@ -1,5 +1,6 @@
 import {Box} from '@sanity/ui'
 import {ObjectInputProps} from 'sanity'
+
 import useInputSetup from '../../hooks/useInputSetup'
 import {useAppStoreContext} from '../../store/context'
 import IconManagerPluginOptions from '../../types/IconManagerPluginOptions'
@@ -9,7 +10,7 @@ import FilledState from '../AppStates/FilledState'
 import ChangeIndicatorWrapper from '../ChangeIndicatorWrapper'
 import CustomFieldPresence from '../CustomFieldPresence'
 import ConfigDialog from '../Dialogs/ConfigDialog'
-import InfoDialog from '../Dialogs/InfoDialog'
+import JsonDialog from '../Dialogs/JsonDialog'
 import RemoveDialog from '../Dialogs/RemoveDialog'
 import SearchDialog from '../Dialogs/SearchDialog'
 
@@ -36,9 +37,9 @@ const IconManagerInputComponent = ({
       {/* Dialogs */}
       {sanityValue?.icon && (
         <>
-          <InfoDialog />
           <ConfigDialog />
           <RemoveDialog />
+          <JsonDialog />
         </>
       )}
       <SearchDialog />

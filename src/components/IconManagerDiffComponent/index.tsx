@@ -1,5 +1,6 @@
 import {Flex} from '@sanity/ui'
 import {DiffComponent, DiffProps, ObjectDiff} from 'sanity'
+
 import {IconManagerType} from '../../types/IconManagerType'
 import IconDiffChangeList from './IconDiffChangeList'
 import IconDiffWrapper from './IconDiffWrapper'

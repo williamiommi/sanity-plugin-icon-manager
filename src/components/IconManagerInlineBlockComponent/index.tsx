@@ -1,5 +1,6 @@
 import {Flex, Text, Tooltip} from '@sanity/ui'
 import {BlockProps} from 'sanity'
+
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 

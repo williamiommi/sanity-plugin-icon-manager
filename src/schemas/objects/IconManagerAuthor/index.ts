@@ -1,7 +1,8 @@
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, SchemaTypeDefinition} from 'sanity'
+
 import IconManagerAuthorInfo from './info'
 
-const IconManagerAuthorObject = (): any =>
+const IconManagerAuthorObject = (): SchemaTypeDefinition =>
   defineType({
     type: 'object',
     name: IconManagerAuthorInfo.name,

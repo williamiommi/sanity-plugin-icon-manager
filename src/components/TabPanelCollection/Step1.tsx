@@ -2,11 +2,14 @@ import {Icon} from '@iconify/react'
 import {LaunchIcon} from '@sanity/icons'
 import {Box, Flex, Text} from '@sanity/ui'
 import {useDeferredValue, useState} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
 const Step1 = () => {
+  const {t} = usePluginTranslation()
   const selectedCollection = useAppStoreContext((s) => s.selectedCollection)
   const clearSelectedCollection = useAppStoreContext((s) => s.clearSelectedCollection)
   const [searchTerm, setSearchTerm] = useState('')
@@ -44,13 +47,30 @@ const Step1 = () => {
             style={{textDecoration: 'none', fontStyle: 'italic'}}
           >
             <Text muted size={2}>
-              by {selectedCollection?.collection.author.name}
+              {t('dialog.add.by.label', {author: selectedCollection?.collection.author.name})}
             </Text>
-            <LaunchIcon width={12} style={{color: 'initial'}} />
+            <LaunchIcon width={14} style={{color: 'initial'}} />
+          </Flex>
+          <Flex
+            gap={1}
+            align='center'
+            as='a'
+            href={selectedCollection?.collection.license.url}
+            target='_blank'
+            style={{textDecoration: 'none', fontStyle: 'italic'}}
+          >
+            <Text muted size={2}>
+              {selectedCollection?.collection.license.title}
+            </Text>
+            <LaunchIcon width={14} style={{color: 'initial'}} />
           </Flex>
         </Flex>
       </Flex>
-      <Input placeholder='Filter icons...' term={searchTerm} onChange={setSearchTerm} />
+      <Input
+        placeholder={t('dialog.add.input.search.placeholder')}
+        term={searchTerm}
+        onChange={setSearchTerm}
+      />
       <IconsGrid searchTerm={deferredSearchTerm} />
     </>
   )

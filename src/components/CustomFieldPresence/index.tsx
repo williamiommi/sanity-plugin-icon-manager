@@ -1,5 +1,6 @@
 import {Flex} from '@sanity/ui'
 import {FieldMember, FieldPresenceWithOverlay, ObjectInputProps} from 'sanity'
+
 import {useAppStoreContext} from '../../store/context'
 
 interface CustomFieldPresenceProps {

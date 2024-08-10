@@ -1,4 +1,5 @@
 import {Dialog} from '@sanity/ui'
+
 import {useAppStoreContext} from '../../../store/context'
 import NoCollectionBadge from '../../NoCollectionBadge'
 import Tabs from '../../Tabs'

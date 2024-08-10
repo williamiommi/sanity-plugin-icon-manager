@@ -1,24 +1,27 @@
 # Sanity Icon Manager
 
 <p align="center">
-  <img width="200" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/SanityIconManager.png" alt="Hero"/>
+  <img width="200" src="docs/images/SanityIconManager.png" alt="Hero"/>
 </p>
 <p align="center">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/hero.jpg" alt="Hero"/>
+  <img width="50%" src="docs/images/hero.jpg" alt="Hero"/>
 </p>
 
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
 Powered by [Iconify](https://iconify.design/)
 
+- [🚨 Requirements](#-requirements)
 - [⚡️ Features](#%EF%B8%8F-features)
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
+- [··· Context menu](#-context-menu)
 - [👀 Document List Preview](#-document-list-preview)
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗂️ Collections Tab](#%EF%B8%8F-collections-tab)
+- [{} JSON Dialog](#-json-dialog)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
@@ -26,6 +29,13 @@ Powered by [Iconify](https://iconify.design/)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
   <br /><br />
+
+## 🚨 Requirements
+
+> [!WARNING]  
+> Starting from version 2, with the introduction of studio localization, the plugin requires Sanity Studio version 3.23.0 or later. For more information, see the following [link](https://www.sanity.io/docs/internationalizing-plugins-ui).
+
+<br /><br />
 
 ## ⚡️ Features
 
@@ -43,6 +53,10 @@ Powered by [Iconify](https://iconify.design/)
 - v1.3.0+: Global 'inline-svg' option
 - v1.4.0+: Limit Collections option
 - v1.5.0+: Global 'default size' option
+- v2+:
+  - Localization capabilities
+  - UI refresh for some components
+  - New JSON Dialog
 
 <br /><br />
 
@@ -130,6 +144,16 @@ This is the main configuration of the plugin. The available options are:
 
 <br /><br />
 
+## ··· Context menu
+
+Starting from version 2, you have access to a context menu (clicking on the ···) where you can see some information about the selected icon. You have a few options to download or copy the icon to the clipboard.
+
+<p align="center">
+  <img width="70%" src="docs/images/context-menu.jpg" alt="JSON dialog"/>
+</p>
+
+<br /><br />
+
 ## 👀 Document List Preview
 
 The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.\
@@ -170,7 +194,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/document-list-preview.jpg" alt="Document list preview"/>
+  <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
 </p>
 
 <br /><br />
@@ -211,7 +235,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
+  <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
 
 <br /><br />
@@ -267,7 +291,7 @@ export default defineConfig({
 ```
 
 <p align="left">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -280,25 +304,25 @@ You can have three different custom diff views:
 ### Icon Added
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
+  <img width="30%" src="docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
 </p>
 
 ### Icon Changed
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
+  <img width="30%" src="docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
 </p>
 
 ### Icon Removed
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
+  <img width="30%" src="docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
 </p>
 
 In any of the above cases you can always see the list of all the changes clicking on the `Show details` CTA.
 
 <p align="left">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -309,11 +333,21 @@ Starting from v.1.2.0, you can browse icons through all available collections.\
 The search dialog now offers a 'Tabs view' where you can choose to search for your icons as before or via the new 'Collections' tab. Here, you can scroll through all the available collections, select one, and choose an icon from the available options within the selected collection.
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
+  <img width="70%" src="docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
 </p>
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
+  <img width="70%" src="docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
+</p>
+
+<br /><br />
+
+## {} JSON Dialog
+
+Starting from version 2, you can view the data stored in Sanity through a dedicated dialog. It is possible to copy the JSON to the clipboard.
+
+<p align="center">
+  <img width="70%" src="docs/images/json-dialog.jpg" alt="JSON dialog"/>
 </p>
 
 <br /><br />

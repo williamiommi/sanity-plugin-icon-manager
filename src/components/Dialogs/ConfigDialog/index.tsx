@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Card, Dialog, Flex} from '@sanity/ui'
+
 import {useAppStoreContext} from '../../../store/context'
 import Color from './Color'
 import Flip from './Flip'
@@ -29,8 +30,8 @@ const ConfigDialog = () => {
           <Flip />
           <Rotate />
           <Size />
-          <InlineSvg />
           <Color />
+          <InlineSvg />
         </Flex>
         <Preview />
       </Card>

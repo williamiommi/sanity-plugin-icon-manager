@@ -1,5 +1,6 @@
 import {Icon} from '@iconify/react'
 import {Flex, Text} from '@sanity/ui'
+
 import {IconManagerType} from '../../types/IconManagerType'
 
 interface IconPreviewProps {

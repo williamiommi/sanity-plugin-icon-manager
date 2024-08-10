@@ -1,4 +1,5 @@
 import {TabPanel} from '@sanity/ui'
+
 import {useAppStoreContext} from '../../store/context'
 import ResultsGrid from '../ResultsGrid'
 import SearchFilters from './SearchFilters'
