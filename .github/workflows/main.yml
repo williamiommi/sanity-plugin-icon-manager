@@ -16,7 +16,7 @@ on:
   pull_request:
   # Build on commits pushed to branches without a PR if it's in the allowlist
   push:
-    branches: [main, v1]
+    branches: [main, dry-run, v1]
   # https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
   workflow_dispatch:
     inputs:
@@ -92,6 +92,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm install
       - run: npm test --if-present
+      - if: contains(github.ref, 'dry-run')
+        run: echo 'run run run run dry'
 
   release:
     permissions:
