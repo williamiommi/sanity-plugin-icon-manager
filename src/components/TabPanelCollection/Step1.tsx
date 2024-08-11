@@ -1,14 +1,14 @@
 import {Icon} from '@iconify/react'
 import {LaunchIcon} from '@sanity/icons'
 import {Box, Flex, Text} from '@sanity/ui'
-import {useDeferredValue, useState} from 'react'
+import {ReactElement, useDeferredValue, useState} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
-const Step1 = () => {
+export default function Step1(): ReactElement {
   const {t} = usePluginTranslation()
   const selectedCollection = useAppStoreContext((s) => s.selectedCollection)
   const clearSelectedCollection = useAppStoreContext((s) => s.clearSelectedCollection)
@@ -77,5 +77,3 @@ const Step1 = () => {
     </>
   )
 }
-
-export default Step1

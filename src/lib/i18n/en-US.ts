@@ -74,7 +74,7 @@ export default {
 
   'download.svg.tooltip': 'Download SVG',
   'copy.svg.to.clipboard.tooltip': 'Copy SVG to clipboard',
-  'copy.data.url.to.clipboard.tooltip': 'Copy Data Url to clipboard',
+  'copy.b64.to.clipboard.tooltip': 'Copy Base64 to clipboard',
   'download.png.tooltip': 'Download PNG',
 
   'diff.changes.show.details.cta': 'Show details',

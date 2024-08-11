@@ -1,5 +1,6 @@
 import {Icon} from '@iconify/react'
 import {Button, Card, Flex, Spinner, Text} from '@sanity/ui'
+import {ReactElement} from 'react'
 
 import useIsInViewport from '../hooks/useIsInViewport'
 import {stringifyHeight} from '../lib/iconify-utils'
@@ -11,7 +12,7 @@ interface Props {
   onClick: () => void
 }
 
-export default function CollectionCard({collection, onClick}: Props) {
+export default function CollectionCard({collection, onClick}: Props): ReactElement {
   const {ref, elementHitViewport} = useIsInViewport<HTMLButtonElement>({
     threshold: 0.3,
   })

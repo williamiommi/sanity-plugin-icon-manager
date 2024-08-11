@@ -74,7 +74,7 @@ export default {
 
   'download.svg.tooltip': 'Scarica SVG',
   'copy.svg.to.clipboard.tooltip': 'Copia SVG negli appunti',
-  'copy.data.url.to.clipboard.tooltip': 'Copia Data Url negli appunti',
+  'copy.b64.to.clipboard.tooltip': 'Copia Base64 negli appunti',
   'download.png.tooltip': 'Scarica PNG',
 
   'diff.changes.show.details.cta': 'Mostra dettagli',
