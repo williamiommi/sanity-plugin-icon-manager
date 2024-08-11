@@ -2,12 +2,10 @@
 name: CI & Release
 
 # Workflow name based on selected inputs. Fallback to default Github naming when expression evaluates to empty string
-run-name: >-
-  ${{
-    inputs.release && inputs.test && format('Build {0} ➤ Test ➤ Publish to NPM', github.ref_name)  ||
-    inputs.release && !inputs.test && format('Build {0} ➤ Skip Tests ➤ Publish to NPM', github.ref_name) ||
-    inputs.dry-release && inputs.test && format('Build {0} ➤ Test ➤ Test Publish to NPM', github.ref_name)  ||
-    inputs.dry-release && !inputs.test && format('Build {0} ➤ Skip Tests ➤ Test Publish to NPM', github.ref_name) ||
+run-name: >
+  ${{ 
+    inputs.release && inputs.test && format('Build {0} ➤ Test ➤ Publish to NPM {1}', github.ref_name, github.ref_name == 'dry-run' && '(dry-run)' || '') ||
+    inputs.release && !inputs.test && format('Build {0} ➤ Skip Tests ➤ Publish to NPM {1}', github.ref_name, github.ref_name == 'dry-run' && '(dry-run)' || '') ||
     github.event_name == 'workflow_dispatch' && inputs.test && format('Build {0} ➤ Test', github.ref_name) ||
     github.event_name == 'workflow_dispatch' && !inputs.test && format('Build {0} ➤ Skip Tests', github.ref_name) ||
     ''
@@ -29,11 +27,6 @@ on:
         type: boolean
       release:
         description: Release new version
-        required: true
-        default: false
-        type: boolean
-      dry-release:
-        description: Test Release version w/ dry-run
         required: true
         default: false
         type: boolean
@@ -110,7 +103,7 @@ jobs:
     # only run if opt-in during workflow_dispatch
     if: always() && github.event.inputs.release == 'true' && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled'
     runs-on: ubuntu-latest
-    name: Semantic release
+    name: Semantic release ${{ github.ref_name == 'dry-run' && '(dry-run)' || '' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -125,39 +118,8 @@ jobs:
       - run: npm audit signatures
         # Branches that will release new versions are defined in .releaserc.json
         # @TODO remove --dry-run after verifying everything is good to go
-      - run: npx semantic-release
-        # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
-        # e.g. git tags were pushed but it exited before `npm publish`
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-  dry-release:
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
-    needs: [build, test]
-    # only run if opt-in during workflow_dispatch
-    if: always() && github.event.inputs.dry-release == 'true' && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled'
-    runs-on: ubuntu-latest
-    name: (TEST) Semantic release
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          # Need to fetch entire commit history to
-          # analyze every commit since last release
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          cache: npm
-          node-version: lts/*
-      - run: npm ci
-      - run: npm audit signatures
-        # Branches that will release new versions are defined in .releaserc.json
-        # @TODO remove --dry-run after verifying everything is good to go
+      - run: echo ciao sono $([[ "${{ github.ref_name }}" == "dry-run" ]] && echo "--dry-run")
+      # - run: npx semantic-release $([[ "${{ github.ref_name }}" == "dry-run" ]] && echo "--dry-run")
       - run: npx semantic-release --dry-run
         # Don't allow interrupting the release step if the job is cancelled, as it can lead to an inconsistent state
         # e.g. git tags were pushed but it exited before `npm publish`
