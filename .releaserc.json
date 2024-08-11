@@ -1,4 +1,4 @@
 {
   "extends": "@sanity/semantic-release-preset",
-  "branches": ["main", "v1"]
+  "branches": ["main", "v1", "dry-run"]
 }
