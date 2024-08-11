@@ -65,18 +65,18 @@ export default function FilledState() {
               }}
             >
               {hasBeenCustomized && <CustomizedBadge />}
-              {actions.map((action) => (
-                <BaseTooltip key={action.label} portal placement='top' content={action.tooltip}>
-                  <Button
-                    mode='bleed'
-                    tone='default'
-                    icon={action.icon}
-                    style={{cursor: 'pointer'}}
-                    onClick={action.handleFn}
-                    disabled={!sanityUserCanEdit}
-                  />
-                </BaseTooltip>
-              ))}
+              {sanityUserCanEdit &&
+                actions.map((action) => (
+                  <BaseTooltip key={action.label} portal placement='top' content={action.tooltip}>
+                    <Button
+                      mode='bleed'
+                      tone='default'
+                      icon={action.icon}
+                      style={{cursor: 'pointer'}}
+                      onClick={action.handleFn}
+                    />
+                  </BaseTooltip>
+                ))}
             </Flex>
           </Box>
           <MenuButton
