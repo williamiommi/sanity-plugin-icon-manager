@@ -1,6 +1,7 @@
 import {createContext, ReactNode, useContext, useRef} from 'react'
 import {createStore, StoreApi, useStore} from 'zustand'
 
+import usePluginTranslation from '../hooks/usePluginTranslation'
 import {CollectionsSlice, createCollectionsSlice} from './Slices/CollectionsSlice'
 import {ConfigureSlice, createConfigureSlice} from './Slices/ConfigureSlice'
 import {createDialogSlice, DialogSlice} from './Slices/DialogSlice'
@@ -43,8 +44,9 @@ export function AppStoreContextProvider({children}: {children: ReactNode}) {
 
 export function useAppStoreContext<T>(selector: (state: AppStoreType) => T) {
   const store = useContext(AppStoreContext)
+  const {t} = usePluginTranslation()
   if (store === null) {
-    throw new Error('Missing Wrapper in the tree')
+    throw new Error(t('error.no.react.context'))
   }
   const value = useStore(store, selector)
   return value

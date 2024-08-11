@@ -65,7 +65,6 @@ export default {
   'menu.info.author.label': 'Autore:',
   'menu.info.license.label': 'Licenza:',
 
-  'show.info.tooltip': 'Mostra informazioni',
   'configure.icon.label': 'Configura',
   'configure.icon.tooltip': 'Configura icona',
   'change.icon.label': 'Cambia',
@@ -90,6 +89,7 @@ export default {
   'html.copied.label': 'SVG copiato negli appunti',
   'base64.copied.label': 'Data Base64 copiato negli appunti',
 
+  'error.no.react.context': 'Non è stato trovato un context valido',
   'error.no.icons.found': 'Nessuna icona trovata',
   'error.no.collections.found': 'Nessuna collezione trovata',
   'error.create.png': 'Impossibile creare il file PNG, controlla la tua icona',
