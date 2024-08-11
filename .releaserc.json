@@ -1,4 +1,10 @@
 {
   "extends": "@sanity/semantic-release-preset",
-  "branches": ["main", "v1"]
+  "branches": [
+    "main",
+    {
+      "name": "release/v1",
+      "range": "1.x.x"
+    }
+  ]
 }
