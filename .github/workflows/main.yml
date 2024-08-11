@@ -6,6 +6,8 @@ run-name: >-
   ${{
     inputs.release && inputs.test && format('Build {0} ➤ Test ➤ Publish to NPM', github.ref_name)  ||
     inputs.release && !inputs.test && format('Build {0} ➤ Skip Tests ➤ Publish to NPM', github.ref_name) ||
+    inputs.dry-release && inputs.test && format('Build {0} ➤ Test ➤ Test Publish to NPM', github.ref_name)  ||
+    inputs.dry-release && !inputs.test && format('Build {0} ➤ Skip Tests ➤ Test Publish to NPM', github.ref_name) ||
     github.event_name == 'workflow_dispatch' && inputs.test && format('Build {0} ➤ Test', github.ref_name) ||
     github.event_name == 'workflow_dispatch' && !inputs.test && format('Build {0} ➤ Skip Tests', github.ref_name) ||
     ''
@@ -139,7 +141,7 @@ jobs:
       id-token: write # to enable use of OIDC for npm provenance
     needs: [build, test]
     # only run if opt-in during workflow_dispatch
-    if: always() && github.event.inputs.release == 'true' && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled'
+    if: always() && github.event.inputs.dry-release == 'true' && needs.build.result != 'failure' && needs.test.result != 'failure' && needs.test.result != 'cancelled'
     runs-on: ubuntu-latest
     name: (TEST) Semantic release
     steps:
