@@ -22,7 +22,6 @@ export default function CollectionsGrid({searchTerm}: CollectionsGridProps): Rea
   if (!filteredCollections)
     return (
       <Badge
-        mode='outline'
         tone='critical'
         margin={4}
         marginTop={0}

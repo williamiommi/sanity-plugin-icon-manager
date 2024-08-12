@@ -25,7 +25,6 @@ export default function ResultsGrid({items, collection}: ResultsGridProps): Reac
   if (items.length === 0)
     return (
       <Badge
-        mode='outline'
         tone='critical'
         margin={4}
         marginTop={0}

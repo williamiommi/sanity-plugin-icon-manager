@@ -9,7 +9,6 @@ export default function NoCollectionBadge(): ReactNode {
   return (
     <Flex marginY={4} justify='center'>
       <Badge
-        mode='outline'
         tone='critical'
         margin={4}
         padding={4}
