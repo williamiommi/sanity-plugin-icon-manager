@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-no-bind */
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import {TextFilterCollection} from '../../style'
 import FilterBadge from '../Filters/FilterBadge'
 
-const SearchInput = () => {
+export default function SearchInput(): ReactNode {
   const {t} = usePluginTranslation()
   const searchTerm = useAppStoreContext((s) => s.searchTerm)
   const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
@@ -58,5 +59,3 @@ const SearchInput = () => {
     </Flex>
   )
 }
-
-export default SearchInput

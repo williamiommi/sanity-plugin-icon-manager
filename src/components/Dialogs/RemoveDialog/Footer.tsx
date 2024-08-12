@@ -1,9 +1,10 @@
 import {Button, Card, Flex} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 
-const Footer = () => {
+export default function Footer(): ReactNode {
   const {t} = usePluginTranslation()
   const closeRemoveDialog = useAppStoreContext((s) => s.closeRemoveDialog)
   const removeIcon = useAppStoreContext((s) => s.removeIcon)
@@ -31,5 +32,3 @@ const Footer = () => {
     </Card>
   )
 }
-
-export default Footer

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Badge, Box, Flex, Grid, Label, Text} from '@sanity/ui'
-import {memo, useMemo} from 'react'
+import {ReactNode, useMemo} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {filterCollections} from '../../lib/collections-utils'
@@ -11,7 +11,7 @@ interface CollectionsGridProps {
   searchTerm?: string
 }
 
-const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
+export default function CollectionsGrid({searchTerm}: CollectionsGridProps): ReactNode {
   const {t} = usePluginTranslation()
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
   const searchCollection = useAppStoreContext((s) => s.searchCollection)
@@ -70,5 +70,3 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
     </Box>
   )
 }
-
-export default memo(CollectionsGrid)

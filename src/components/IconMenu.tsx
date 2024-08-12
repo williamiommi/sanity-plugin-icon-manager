@@ -25,7 +25,7 @@ interface Props {
   }[]
 }
 
-export default function IconMenu({actions}: Props) {
+export default function IconMenu({actions}: Props): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)

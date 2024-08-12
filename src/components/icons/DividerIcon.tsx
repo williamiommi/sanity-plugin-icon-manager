@@ -1,8 +1,8 @@
-import {SVGProps} from 'react'
+import {ReactNode, SVGProps} from 'react'
 
 interface Props extends SVGProps<SVGSVGElement> {}
 
-export default function DividerIcon(props: Props) {
+export default function DividerIcon(props: Props): ReactNode {
   return (
     <svg viewBox='0 0 32 32' height='101' width='101' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g fill='none'>

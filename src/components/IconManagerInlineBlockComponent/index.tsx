@@ -1,4 +1,5 @@
 import {Flex, Text, Tooltip} from '@sanity/ui'
+import {ReactNode} from 'react'
 import {BlockProps} from 'sanity'
 
 import {IconManagerType} from '../../types/IconManagerType'
@@ -6,7 +7,7 @@ import IconPreview from '../IconPreview'
 
 export type IconManagerInlineBlockComponentProps = BlockProps & IconManagerType
 
-const IconManagerInlineBlockComponent = (props: BlockProps) => {
+export default function IconManagerInlineBlockComponent(props: BlockProps): ReactNode {
   const value = props.value as unknown as IconManagerType
   const hasValidIcon = value.icon && value.metadata
   const IconInlinePreview = () => (
@@ -42,5 +43,3 @@ const IconManagerInlineBlockComponent = (props: BlockProps) => {
     renderPreview: hasValidIcon ? IconInlinePreview : props.renderPreview,
   })
 }
-
-export default IconManagerInlineBlockComponent

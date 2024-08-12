@@ -1,10 +1,11 @@
 import {Flex, Heading} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import IconPreview from '../../IconPreview'
 
-export default function Header() {
+export default function Header(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   return (

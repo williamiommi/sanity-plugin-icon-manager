@@ -5,7 +5,7 @@ import {useAppStoreContext} from '../../../store/context'
 import {StyledColorPaletteBox, StyledColorPaletteWrapper} from '../../../style'
 import BaseTooltip from '../../BaseTooltip'
 
-const ColorPalette = (): ReactNode => {
+export default function ColorPalette(): ReactNode {
   const customPalette = useAppStoreContext((s) => s.customPalette)
   const setColor = useAppStoreContext((s) => s.setColor)
 
@@ -31,5 +31,3 @@ const ColorPalette = (): ReactNode => {
     </StyledColorPaletteWrapper>
   )
 }
-
-export default ColorPalette

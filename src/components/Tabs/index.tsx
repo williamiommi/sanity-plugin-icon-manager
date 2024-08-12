@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import {BookIcon, SearchIcon} from '@sanity/icons'
 import {Tab, TabList} from '@sanity/ui'
-import {useState} from 'react'
+import {ReactNode, useState} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import TabPanelCollection from '../TabPanelCollection'
 import TabContentSearch from '../TabPanelSearch'
 
-const Tabs = () => {
+export default function Tabs(): ReactNode {
   const {t} = usePluginTranslation()
   const [tab, setTab] = useState<'search' | 'collection'>('search')
 
@@ -38,5 +38,3 @@ const Tabs = () => {
     </>
   )
 }
-
-export default Tabs

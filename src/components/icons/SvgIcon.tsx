@@ -1,8 +1,8 @@
-import {SVGProps} from 'react'
+import {ReactNode, SVGProps} from 'react'
 
 interface Props extends SVGProps<SVGSVGElement> {}
 
-export default function SvgIcon(props: Props) {
+export default function SvgIcon(props: Props): ReactNode {
   return (
     <svg viewBox='0 0 32 32' width='32' height='32' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path

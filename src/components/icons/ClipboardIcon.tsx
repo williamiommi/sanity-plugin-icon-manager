@@ -1,8 +1,8 @@
-import {SVGProps} from 'react'
+import {ReactNode, SVGProps} from 'react'
 
 interface Props extends SVGProps<SVGSVGElement> {}
 
-export default function ClipboardIcon(props: Props) {
+export default function ClipboardIcon(props: Props): ReactNode {
   return (
     <svg viewBox='0 0 24 24' width='24' height='24' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g

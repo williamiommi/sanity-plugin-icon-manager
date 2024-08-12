@@ -1,11 +1,12 @@
 import {Box, Dialog, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import Footer from './Footer'
 import Header from './Header'
 
-const RemoveDialog = () => {
+export default function RemoveDialog(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const isRemoveDialogOpen = useAppStoreContext((s) => s.isRemoveDialogOpen)
@@ -20,5 +21,3 @@ const RemoveDialog = () => {
     </Dialog>
   )
 }
-
-export default RemoveDialog

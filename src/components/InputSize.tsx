@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Card, TextInput, useTheme} from '@sanity/ui'
-import {FormEvent, useEffect, useState} from 'react'
+import {FormEvent, ReactNode, useEffect, useState} from 'react'
 
 import {FALLBACK_SIZE} from '../lib/constants'
 import {keepAspectRatioCalculator} from '../lib/svg-utils'
@@ -14,7 +14,7 @@ interface Props {
   updateSize: (size: IconManagerSize) => void
 }
 
-export default function InputSize({initialSize, keepAspectRatio, updateSize}: Props) {
+export default function InputSize({initialSize, keepAspectRatio, updateSize}: Props): ReactNode {
   const {sanity: theme} = useTheme()
   const [lockedSize, setLockedSize] = useState<IconManagerSize>()
   const getDefaultSize = (value: number, type: 'width' | 'height') => {

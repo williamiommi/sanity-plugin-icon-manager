@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {EllipsisHorizontalIcon} from '@sanity/icons'
 import {Box, Button, Card, Flex, Menu, MenuButton} from '@sanity/ui'
-import {useState} from 'react'
+import {ReactNode, useState} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
@@ -15,7 +15,7 @@ import JsonIcon from '../icons/JsonIcon'
 import TrashIcon from '../icons/TrashIcon'
 import SvgButtons from '../SvgButtons'
 
-export default function FilledState() {
+export default function FilledState(): ReactNode {
   const {t} = usePluginTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const sanityValue = useAppStoreContext((s) => s.sanityValue)

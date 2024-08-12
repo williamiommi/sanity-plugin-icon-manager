@@ -1,11 +1,13 @@
 import {Box, Button} from '@sanity/ui'
-import {useCallback, useState} from 'react'
+import {ReactNode, useCallback, useState} from 'react'
 import {ChangeList, DiffProps, ObjectDiff} from 'sanity'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {IconManagerType} from '../../types/IconManagerType'
 
-const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
+export default function IconDiffChangeList(
+  props: DiffProps<ObjectDiff<IconManagerType>>,
+): ReactNode {
   const {t} = usePluginTranslation()
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
@@ -33,5 +35,3 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
     </>
   )
 }
-
-export default IconDiffChangeList

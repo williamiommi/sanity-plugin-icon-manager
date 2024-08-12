@@ -34,7 +34,7 @@ const createMyStore = () =>
 
 const AppStoreContext = createContext<StoreApi<AppStoreType> | null>(null)
 
-export function AppStoreContextProvider({children}: {children: ReactNode}) {
+export function AppStoreContextProvider({children}: {children: ReactNode}): ReactNode {
   const storeRef = useRef<StoreApi<AppStoreType>>()
   if (!storeRef.current) {
     storeRef.current = createMyStore()
@@ -42,7 +42,7 @@ export function AppStoreContextProvider({children}: {children: ReactNode}) {
   return <AppStoreContext.Provider value={storeRef.current}>{children}</AppStoreContext.Provider>
 }
 
-export function useAppStoreContext<T>(selector: (state: AppStoreType) => T) {
+export function useAppStoreContext<T>(selector: (state: AppStoreType) => T): T {
   const store = useContext(AppStoreContext)
   const {t} = usePluginTranslation()
   if (store === null) {

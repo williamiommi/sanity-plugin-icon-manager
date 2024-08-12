@@ -1,11 +1,12 @@
 import {Dialog} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import {useAppStoreContext} from '../../../store/context'
 import NoCollectionBadge from '../../NoCollectionBadge'
 import Tabs from '../../Tabs'
 import Header from './Header'
 
-const SearchDialog = () => {
+export default function SearchDialog(): ReactNode {
   const isSearchDialogOpen = useAppStoreContext((s) => s.isSearchDialogOpen)
   const closeSearchDialog = useAppStoreContext((s) => s.closeSearchDialog)
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
@@ -18,5 +19,3 @@ const SearchDialog = () => {
     </Dialog>
   )
 }
-
-export default SearchDialog

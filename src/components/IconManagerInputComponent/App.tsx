@@ -1,4 +1,5 @@
 import {Box} from '@sanity/ui'
+import {ReactNode} from 'react'
 import {ObjectInputProps} from 'sanity'
 
 import useInputSetup from '../../hooks/useInputSetup'
@@ -19,10 +20,10 @@ interface IconManagerInputComponentProps {
   pluginOptions: void | IconManagerPluginOptions
 }
 
-const IconManagerInputComponent = ({
+export default function IconManagerInputComponent({
   objectInputProps,
   pluginOptions,
-}: IconManagerInputComponentProps) => {
+}: IconManagerInputComponentProps): ReactNode {
   useInputSetup(objectInputProps, pluginOptions)
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
 
@@ -53,5 +54,3 @@ const IconManagerInputComponent = ({
     </Box>
   )
 }
-
-export default IconManagerInputComponent

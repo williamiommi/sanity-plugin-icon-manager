@@ -1,12 +1,12 @@
+import {ReactNode} from 'react'
+
 import {StyledFilterBadge} from '../../style'
 
 interface FilterBadgeProps {
   count: number
 }
 
-const FilterBadge = ({count}: FilterBadgeProps) => {
+export default function FilterBadge({count}: FilterBadgeProps): ReactNode {
   if (count === 0) return null
   return <StyledFilterBadge tone='positive'>{count}</StyledFilterBadge>
 }
-
-export default FilterBadge
