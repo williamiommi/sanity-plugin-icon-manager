@@ -1,5 +1,5 @@
 import {Button, Flex} from '@sanity/ui'
-import {ReactElement} from 'react'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../hooks/usePluginTranslation'
 import useSvgUtils from '../hooks/useSvgUtils'
@@ -10,7 +10,7 @@ import DownloadIcon from './icons/DownloadIcon'
 import PngIcon from './icons/PngIcon'
 import SvgIcon from './icons/SvgIcon'
 
-export default function SvgButtons(): ReactElement {
+export default function SvgButtons(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const {urls, copyHtmlToClipboard, copyDataUrlToClipboard, downloadPng} = useSvgUtils({

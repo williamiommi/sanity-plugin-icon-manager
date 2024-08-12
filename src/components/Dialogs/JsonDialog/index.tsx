@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Box, Button, Dialog} from '@sanity/ui'
-import {ReactElement} from 'react'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {copy2Clipboard} from '../../../lib/svg-utils'
@@ -10,7 +10,7 @@ import BaseTooltip from '../../BaseTooltip'
 import ClipboardIcon from '../../icons/ClipboardIcon'
 import Header from './Header'
 
-export default function JsonDialog(): ReactElement | null {
+export default function JsonDialog(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const sanityToast = useAppStoreContext((s) => s.sanityToast)
