@@ -453,6 +453,7 @@ Here the default english bundle:
 </details>
 <br/>
 If you want to add a new language or override one you need to create a custom bundle with your desired locale and as namespace you need to use `sanity-plugin-icon-manager` and add it in your `sanity.config` file under the `i18n.bundles` attribute. Here an example:
+
 <br/>
 
 ```ts
