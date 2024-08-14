@@ -349,6 +349,7 @@ Here the default english bundle:
 
 <details>
   <summary>default bundle</summary>
+<br/>
 
 ```js
 {
@@ -403,7 +404,7 @@ Here the default english bundle:
 'dialog.configure.filter.clear.color.tooltip': 'Set the color to "currentColor"',
 'dialog.configure.filter.preview.label': 'Preview:',
 'dialog.configure.filter.preview.tooltip':
-  'Preview limited to 300x300, but your custom size is preserved.',
+'Preview limited to 300x300, but your custom size is preserved.',
 'dialog.configure.reset.cta': 'Reset',
 'dialog.configure.save.cta': 'Save',
 
@@ -446,11 +447,13 @@ Here the default english bundle:
 'error.no.collections.found': 'No collections found',
 'error.create.png': 'Unable to create the PNG, check your icon',
 }
+
 ```
 
 </details>
 <br/>
 If you want to add a new language or override one you need to create a custom bundle with your desired locale and as namespace you need to use `sanity-plugin-icon-manager` and add it in your `sanity.config` file under the `i18n.bundles` attribute. Here an example:
+<br/>
 
 ```ts
 import {defineLocaleResourceBundle} from 'sanity'
