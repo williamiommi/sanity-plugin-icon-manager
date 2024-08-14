@@ -345,7 +345,7 @@ The search dialog now offers a 'Tabs view' where you can choose to search for yo
 ## 🗺️ Localization
 
 Levereging the [Studio UI Localization](https://www.sanity.io/docs/localizing-studio-ui) feature, starting from version 2, it is possible to localize the microcopy used by the plugin.
-Here the default english bundle:
+Here is the default English bundle:
 
 <br />
 <details>
@@ -453,7 +453,7 @@ Here the default english bundle:
 
 </details>
 <br/>
-If you want to add a new language or override one you need to create a custom bundle with your desired locale and as namespace you need to use `sanity-plugin-icon-manager` and add it in your `sanity.config` file under the `i18n.bundles` attribute. Here an example:
+If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `sanity-plugin-icon-manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
 <br/><br />
 
 ```ts
