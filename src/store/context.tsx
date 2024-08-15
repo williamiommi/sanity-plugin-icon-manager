@@ -1,13 +1,15 @@
-import {ReactNode, createContext, useContext, useRef} from 'react'
-import {StoreApi, createStore, useStore} from 'zustand'
+import {createContext, ReactNode, useContext, useRef} from 'react'
+import {createStore, StoreApi, useStore} from 'zustand'
+
+import usePluginTranslation from '../hooks/usePluginTranslation'
 import {CollectionsSlice, createCollectionsSlice} from './Slices/CollectionsSlice'
 import {ConfigureSlice, createConfigureSlice} from './Slices/ConfigureSlice'
-import {DialogSlice, createDialogSlice} from './Slices/DialogSlice'
-import {FiltersSlice, createFiltersSlice} from './Slices/FiltersSlice'
-import {IconSlice, createIconSlice} from './Slices/IconSlice'
-import {PluginOptionsSlice, createPluginOptionsSlice} from './Slices/PluginOptionsSlice'
-import {ResultsSlice, createResultsSlice} from './Slices/ResultsSlice'
-import {SanitySlice, createSanitySlice} from './Slices/SanitySlice'
+import {createDialogSlice, DialogSlice} from './Slices/DialogSlice'
+import {createFiltersSlice, FiltersSlice} from './Slices/FiltersSlice'
+import {createIconSlice, IconSlice} from './Slices/IconSlice'
+import {createPluginOptionsSlice, PluginOptionsSlice} from './Slices/PluginOptionsSlice'
+import {createResultsSlice, ResultsSlice} from './Slices/ResultsSlice'
+import {createSanitySlice, SanitySlice} from './Slices/SanitySlice'
 
 export type AppStoreType = SanitySlice &
   FiltersSlice &
@@ -32,7 +34,7 @@ const createMyStore = () =>
 
 const AppStoreContext = createContext<StoreApi<AppStoreType> | null>(null)
 
-export function AppStoreContextProvider({children}: {children: ReactNode}) {
+export function AppStoreContextProvider({children}: {children: ReactNode}): ReactNode {
   const storeRef = useRef<StoreApi<AppStoreType>>()
   if (!storeRef.current) {
     storeRef.current = createMyStore()
@@ -40,10 +42,11 @@ export function AppStoreContextProvider({children}: {children: ReactNode}) {
   return <AppStoreContext.Provider value={storeRef.current}>{children}</AppStoreContext.Provider>
 }
 
-export function useAppStoreContext<T>(selector: (state: AppStoreType) => T) {
+export function useAppStoreContext<T>(selector: (state: AppStoreType) => T): T {
   const store = useContext(AppStoreContext)
+  const {t} = usePluginTranslation()
   if (store === null) {
-    throw new Error('Missing Wrapper in the tree')
+    throw new Error(t('error.no.react.context'))
   }
   const value = useStore(store, selector)
   return value

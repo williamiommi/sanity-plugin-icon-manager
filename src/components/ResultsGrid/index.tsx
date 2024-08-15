@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import {Badge, Card, Grid, Label} from '@sanity/ui'
+import {ReactNode} from 'react'
+
 import usePagination from '../../hooks/usePagination'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
-import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
+import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import Pagination from '../Pagination'
 import ResultsGridItem from './ResultsGridItem'
 
@@ -12,7 +15,8 @@ interface ResultsGridProps {
   collection?: IconifyInfoEnhanced
 }
 
-const ResultsGrid = ({items, collection}: ResultsGridProps) => {
+export default function ResultsGrid({items, collection}: ResultsGridProps): ReactNode {
+  const {t} = usePluginTranslation()
   const {currentItems, ...paginationBag} = usePagination<IconManagerIconInfo>(items)
   const saveIcon = useAppStoreContext((s) => s.saveIcon)
 
@@ -21,7 +25,6 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
   if (items.length === 0)
     return (
       <Badge
-        mode='outline'
         tone='critical'
         margin={4}
         marginTop={0}
@@ -34,7 +37,7 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
           textAlign: 'center',
         }}
       >
-        <Label style={{padding: '10px'}}>No icons found!</Label>
+        <Label style={{padding: '10px'}}>{t('error.no.icons.found')}</Label>
       </Badge>
     )
 
@@ -57,5 +60,3 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
     </>
   )
 }
-
-export default ResultsGrid

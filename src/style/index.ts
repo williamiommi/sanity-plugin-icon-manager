@@ -1,4 +1,4 @@
-import {Badge, Card, Text} from '@sanity/ui'
+import {Badge, Card, Flex, Text} from '@sanity/ui'
 import styled from 'styled-components'
 
 export const PaginationButton = styled.button`
@@ -100,13 +100,59 @@ export const StyledColorPaletteWrapper = styled.div`
 `
 
 interface StyledColorPaletteBoxProps {
-  bgColor: string
+  $bgColor: string
 }
 export const StyledColorPaletteBox = styled.button<StyledColorPaletteBoxProps>`
   width: 20px;
   height: 20px;
   border-radius: 2px;
-  background: ${(p) => p.bgColor};
+  background: ${(p) => p.$bgColor};
   cursor: pointer;
   border: 1px solid ${(p) => p.theme.color.base.fg};
 `
+// ###
+// COLOR PICKER UI
+// ###
+
+// ###
+// ICON MENU
+// ###
+const isMobile = (mediaIndex: number) => mediaIndex < 2
+
+const StyledBaseLeftIconMenu = styled(Flex)`
+  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '100%' : '350px')};
+`
+const StyledBaseRightIconMenu = styled(Flex)`
+  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '100%' : '150px')};
+`
+
+export const StyledIconMenu = styled(Flex)`
+  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '250px' : '500px')};
+`
+
+export const StyledIconMenuInfoTitleWrapper = styled(StyledBaseLeftIconMenu)`
+  order: ${(props) => (isMobile(props.theme.mediaIndex) ? 1 : 'unset')};
+`
+
+export const StyledIconMenuActionsTitleWrapper = styled(StyledBaseRightIconMenu)`
+  order: ${(props) => (isMobile(props.theme.mediaIndex) ? 3 : 'unset')};
+`
+
+export const StyledIconMenuInfoWrapper = styled(StyledBaseLeftIconMenu)`
+  order: ${(props) => (isMobile(props.theme.mediaIndex) ? 2 : 'unset')};
+`
+
+export const StyledIconMenuInfoCard = styled(Card)`
+  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '100%' : '98%')};
+`
+
+export const StyledIconMenuActionsWrapper = styled(StyledBaseRightIconMenu)`
+  order: ${(props) => (isMobile(props.theme.mediaIndex) ? 4 : 'unset')};
+`
+
+export const StyledIconMenuInfoValue = styled(Text)`
+  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '100%' : '250px')};
+`
+// ###
+// ICON MENU
+// ###

@@ -1,14 +1,17 @@
-import {useDeferredValue, useState} from 'react'
+import {ReactNode, useDeferredValue, useState} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import CollectionsGrid from './CollectionsGrid'
 import Input from './Input'
 
-const Step0 = () => {
+export default function Step0(): ReactNode {
+  const {t} = usePluginTranslation()
   const [searchCollectionTerm, setSearchCollectionTerm] = useState('')
   const deferredSearchCollectionTerm = useDeferredValue(searchCollectionTerm)
   return (
     <>
       <Input
-        placeholder='Filter collections...'
+        placeholder={t('dialog.add.input.search.collections.placeholder')}
         term={searchCollectionTerm}
         onChange={setSearchCollectionTerm}
       />
@@ -16,5 +19,3 @@ const Step0 = () => {
     </>
   )
 }
-
-export default Step0

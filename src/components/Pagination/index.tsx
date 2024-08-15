@@ -1,4 +1,7 @@
 import {Flex, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {PaginationButton} from '../../style'
 
 interface PaginationProps {
@@ -9,13 +12,14 @@ interface PaginationProps {
   setPrevPage: () => void
 }
 
-const Pagination = ({
+export default function Pagination({
   totalItems,
   currentPage,
   totalPages,
   setNextPage,
   setPrevPage,
-}: PaginationProps) => {
+}: PaginationProps): ReactNode {
+  const {t} = usePluginTranslation()
   if (!totalPages) return null
 
   return (
@@ -28,7 +32,7 @@ const Pagination = ({
       style={{minHeight: '22px'}}
     >
       <Text as='i' size={1}>
-        {totalItems} {totalItems === 1 ? 'icon' : 'icons'} found
+        {t('dialog.add.icon.found.label', {count: totalItems})}
       </Text>
       {totalPages > 1 && (
         <Flex gap={2} align='center'>
@@ -50,5 +54,3 @@ const Pagination = ({
     </Flex>
   )
 }
-
-export default Pagination

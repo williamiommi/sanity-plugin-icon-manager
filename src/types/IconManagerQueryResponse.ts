@@ -1,6 +1,7 @@
 import {IconifyInfo} from '@iconify/types'
-import IconManagerQueryRequest from './IconManagerQueryRequest'
+
 import {IconifyInfoEnhanced} from './IconifyInfoEnhanced'
+import IconManagerQueryRequest from './IconManagerQueryRequest'
 
 export type IconManagerIconInfo = {
   icon: string

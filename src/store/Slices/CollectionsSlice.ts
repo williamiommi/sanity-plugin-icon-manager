@@ -1,9 +1,10 @@
 import {StateCreator} from 'zustand'
-import {getIconsFromCollection, groupAndSortCollections} from '../../lib/collectionsUtils'
-import {toastError} from '../../lib/toastUtils'
+
+import {getIconsFromCollection, groupAndSortCollections} from '../../lib/collections-utils'
+import {toastError} from '../../lib/toast-utils'
+import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
 import IconManagerCollectionResponse from '../../types/IconManagerCollectionResponse'
 import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
-import {IconifyInfoEnhanced} from '../../types/IconifyInfoEnhanced'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
@@ -46,7 +47,7 @@ export const createCollectionsSlice: StateCreator<
         cacheGroupedCollections = groupAndSortCollections(collections)
         set(() => ({collections, groupedCollections: cacheGroupedCollections}))
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       toastError(get().sanityToast, e)
     }
   },
@@ -68,7 +69,7 @@ export const createCollectionsSlice: StateCreator<
         },
         hasSelectedCollection: true,
       }))
-    } catch (e: any) {
+    } catch (e: unknown) {
       toastError(get().sanityToast, e)
     }
   },

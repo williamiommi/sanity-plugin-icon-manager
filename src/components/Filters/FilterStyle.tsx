@@ -1,10 +1,11 @@
 import {Flex, Select, Text} from '@sanity/ui'
-import {FormEvent, useCallback} from 'react'
+import {FormEvent, ReactNode, useCallback} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-interface FilterStyleProps {}
-
-const FilterStyle = (props: FilterStyleProps) => {
+export default function FilterStyle(): ReactNode {
+  const {t} = usePluginTranslation()
   const filterStyle = useAppStoreContext((s) => s.filterStyle)
   const setFilterStyle = useAppStoreContext((s) => s.setFilterStyle)
 
@@ -18,17 +19,15 @@ const FilterStyle = (props: FilterStyleProps) => {
   return (
     <Flex align='center'>
       <Text weight='bold' size={1} style={{width: '100px'}}>
-        Style:
+        {t('dialog.add.filter.style.label')}
       </Text>
       <Flex style={{width: '100%'}}>
         <Select onChange={onSetFilterStyle} value={filterStyle} fontSize={1}>
-          <option value=''>Select...</option>
-          <option value='stroke'>Stroke</option>
-          <option value='fill'>Fill</option>
+          <option value=''>{t('dialog.add.filter.select.label')}</option>
+          <option value='stroke'>{t('dialog.add.filter.style.stroke.label')}</option>
+          <option value='fill'>{t('dialog.add.filter.style.fill.label')}</option>
         </Select>
       </Flex>
     </Flex>
   )
 }
-
-export default FilterStyle

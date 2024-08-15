@@ -1,12 +1,16 @@
 import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
-import {Card, Flex, Text, Tooltip, useTheme} from '@sanity/ui'
-import {useMemo} from 'react'
+import {Card, Flex, Text, useTheme} from '@sanity/ui'
+import {ReactNode, useMemo} from 'react'
+
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
+import BaseTooltip from '../../BaseTooltip'
 
 const PREVIEW_SIZE_LIMIT = 300
 
-const Preview = () => {
+export default function Preview(): ReactNode {
+  const {t} = usePluginTranslation()
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const previewBorder = useAppStoreContext((s) => s.previewBorder)
@@ -23,12 +27,8 @@ const Preview = () => {
 
   return (
     <Card marginTop={5}>
-      <Tooltip
-        content={
-          <Text size={0} style={{padding: '5px'}}>
-            Preview limited to 300x300, but your custom size is preserved.
-          </Text>
-        }
+      <BaseTooltip
+        content={t('dialog.configure.filter.preview.tooltip')}
         fallbackPlacements={['right', 'left']}
         placement='top'
         portal
@@ -43,9 +43,9 @@ const Preview = () => {
           }}
         >
           <InfoOutlineIcon />
-          &nbsp;&nbsp;Preview:
+          &nbsp;&nbsp;{t('dialog.configure.filter.preview.label')}
         </Text>
-      </Tooltip>
+      </BaseTooltip>
 
       <Flex align='center' justify='center' paddingY={5} paddingX={2}>
         <Card
@@ -66,5 +66,3 @@ const Preview = () => {
     </Card>
   )
 }
-
-export default Preview

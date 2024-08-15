@@ -1,5 +1,7 @@
 import {Box} from '@sanity/ui'
+import {ReactNode} from 'react'
 import {ObjectInputProps} from 'sanity'
+
 import useInputSetup from '../../hooks/useInputSetup'
 import {useAppStoreContext} from '../../store/context'
 import IconManagerPluginOptions from '../../types/IconManagerPluginOptions'
@@ -9,7 +11,7 @@ import FilledState from '../AppStates/FilledState'
 import ChangeIndicatorWrapper from '../ChangeIndicatorWrapper'
 import CustomFieldPresence from '../CustomFieldPresence'
 import ConfigDialog from '../Dialogs/ConfigDialog'
-import InfoDialog from '../Dialogs/InfoDialog'
+import JsonDialog from '../Dialogs/JsonDialog'
 import RemoveDialog from '../Dialogs/RemoveDialog'
 import SearchDialog from '../Dialogs/SearchDialog'
 
@@ -18,10 +20,10 @@ interface IconManagerInputComponentProps {
   pluginOptions: void | IconManagerPluginOptions
 }
 
-const IconManagerInputComponent = ({
+export default function IconManagerInputComponent({
   objectInputProps,
   pluginOptions,
-}: IconManagerInputComponentProps) => {
+}: IconManagerInputComponentProps): ReactNode {
   useInputSetup(objectInputProps, pluginOptions)
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
 
@@ -36,9 +38,9 @@ const IconManagerInputComponent = ({
       {/* Dialogs */}
       {sanityValue?.icon && (
         <>
-          <InfoDialog />
           <ConfigDialog />
           <RemoveDialog />
+          <JsonDialog />
         </>
       )}
       <SearchDialog />
@@ -52,5 +54,3 @@ const IconManagerInputComponent = ({
     </Box>
   )
 }
-
-export default IconManagerInputComponent

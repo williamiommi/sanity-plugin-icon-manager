@@ -1,7 +1,9 @@
+import {ReactNode} from 'react'
 import {ChangeIndicator, ChangeIndicatorProps} from 'sanity'
+
 import {StyledChangeIndicatorWrapper} from '../../style'
 
-const ChangeIndicatorWrapper = (props: ChangeIndicatorProps) => {
+export default function ChangeIndicatorWrapper(props: ChangeIndicatorProps): ReactNode {
   return (
     <StyledChangeIndicatorWrapper>
       <ChangeIndicator
@@ -13,5 +15,3 @@ const ChangeIndicatorWrapper = (props: ChangeIndicatorProps) => {
     </StyledChangeIndicatorWrapper>
   )
 }
-
-export default ChangeIndicatorWrapper

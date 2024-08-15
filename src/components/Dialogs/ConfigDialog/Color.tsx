@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-no-bind */
 import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
-import {useRef, useState} from 'react'
+import {ReactNode, useRef, useState} from 'react'
+
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
+import BaseTooltip from '../../BaseTooltip'
 import ColorPicker from './ColorPicker'
 
-const Color = () => {
+export default function Color(): ReactNode {
+  const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const color = useAppStoreContext((s) => s.color)
   const clearColor = useAppStoreContext((s) => s.clearColor)
@@ -22,7 +26,7 @@ const Color = () => {
       ref={ref}
     >
       <Text weight='bold' size={1} style={{width: '100px'}}>
-        Color:
+        {t('dialog.configure.filter.color.label')}
       </Text>
       <Grid columns={1} style={{width: '100%'}}>
         <Flex gap={1} align='center'>
@@ -48,21 +52,24 @@ const Color = () => {
             />
           </Popover>
           {color && (
-            <Button
-              text='Clear color'
-              mode='bleed'
-              tone='primary'
-              title='Set the color to "currentColor"'
-              fontSize={0}
-              padding={1}
-              style={{cursor: 'pointer'}}
-              onClick={clearColor}
-            />
+            <BaseTooltip
+              content={t('dialog.configure.filter.clear.color.tooltip')}
+              placement='right'
+            >
+              <Button
+                text={t('dialog.configure.filter.clear.color.label')}
+                mode='bleed'
+                tone='primary'
+                aria-label={t('dialog.configure.filter.clear.color.tooltip')}
+                fontSize={0}
+                padding={1}
+                style={{cursor: 'pointer'}}
+                onClick={clearColor}
+              />
+            </BaseTooltip>
           )}
         </Flex>
       </Grid>
     </Flex>
   )
 }
-
-export default Color

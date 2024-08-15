@@ -1,6 +1,7 @@
 import {useToast} from '@sanity/ui'
 import {useEffect} from 'react'
 import {ObjectInputProps} from 'sanity'
+
 import {parseDefaultSize} from '../lib/common-utils'
 import {DEFAULT_API_URL, FALLBACK_SIZE} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
@@ -26,8 +27,7 @@ const useInputSetup = (
   const setRotate = useAppStoreContext((s) => s.setRotate)
   const setFlip = useAppStoreContext((s) => s.setFlip)
   const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
-  const setWidth = useAppStoreContext((s) => s.setWidth)
-  const setHeight = useAppStoreContext((s) => s.setHeight)
+  const updateSize = useAppStoreContext((s) => s.updateSize)
   const setColor = useAppStoreContext((s) => s.setColor)
 
   useEffect(() => {
@@ -40,8 +40,7 @@ const useInputSetup = (
       // setup configure slice
       setFlip(value.metadata.hFlip, value.metadata.vFlip)
       setRotate(value.metadata.rotate)
-      setWidth(value.metadata.size.width)
-      setHeight(value.metadata.size.height)
+      updateSize(value.metadata.size)
       setInlineSvg(value.metadata.inlineSvg)
       if (value.metadata.color) setColor(value.metadata.color?.hex)
     }

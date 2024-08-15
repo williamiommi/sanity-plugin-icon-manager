@@ -1,7 +1,11 @@
 import {Button, Flex, Grid, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
+
+import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 
-const Rotate = () => {
+export default function Rotate(): ReactNode {
+  const {t} = usePluginTranslation()
   const rotate = useAppStoreContext((s) => s.rotate)
   const setRotate0 = useAppStoreContext((s) => s.setRotate0)
   const setRotate90 = useAppStoreContext((s) => s.setRotate90)
@@ -16,7 +20,7 @@ const Rotate = () => {
       style={{width: '100%'}}
     >
       <Text weight='bold' size={1} style={{width: '100px'}}>
-        Rotate:
+        {t('dialog.configure.filter.rotate.label')}
       </Text>
       <Grid columns={[2, 2, 4]} gap={1} style={{width: '100%'}}>
         <Button
@@ -67,5 +71,3 @@ const Rotate = () => {
     </Flex>
   )
 }
-
-export default Rotate

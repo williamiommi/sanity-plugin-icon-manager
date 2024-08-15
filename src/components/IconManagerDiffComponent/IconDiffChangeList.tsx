@@ -1,9 +1,14 @@
 import {Box, Button} from '@sanity/ui'
-import {useCallback, useState} from 'react'
+import {ReactNode, useCallback, useState} from 'react'
 import {ChangeList, DiffProps, ObjectDiff} from 'sanity'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {IconManagerType} from '../../types/IconManagerType'
 
-const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
+export default function IconDiffChangeList(
+  props: DiffProps<ObjectDiff<IconManagerType>>,
+): ReactNode {
+  const {t} = usePluginTranslation()
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
 
   const onClickDetailsHandler = useCallback(() => {
@@ -18,7 +23,7 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
       <Button
         mode='ghost'
         tone='primary'
-        text={`${isDetailsOpen ? 'Hide' : 'Show'} details`}
+        text={t(`diff.changes.${isDetailsOpen ? 'hide' : 'show'}.details.cta`)}
         onClick={onClickDetailsHandler}
         style={{cursor: 'pointer'}}
       />
@@ -30,5 +35,3 @@ const IconDiffChangeList = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
     </>
   )
 }
-
-export default IconDiffChangeList

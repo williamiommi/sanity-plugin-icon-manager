@@ -1,24 +1,42 @@
 /* eslint-disable react/jsx-no-bind */
-import {Icon} from '@iconify/react'
-import {Box, Card, Flex, Grid, Text} from '@sanity/ui'
-import {memo, useMemo} from 'react'
-import {filterCollections} from '../../lib/collectionsUtils'
-import {stringifyHeight} from '../../lib/iconifyUtils'
+import {Badge, Box, Flex, Grid, Label, Text} from '@sanity/ui'
+import {ReactNode, useMemo} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
+import {filterCollections} from '../../lib/collections-utils'
 import {useAppStoreContext} from '../../store/context'
-import HeightLightIcon from '../icons/HeightLightIcon'
+import CollectionCard from '../CollectionCard'
 
 interface CollectionsGridProps {
   searchTerm?: string
 }
 
-const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
+export default function CollectionsGrid({searchTerm}: CollectionsGridProps): ReactNode {
+  const {t} = usePluginTranslation()
   const groupedCollections = useAppStoreContext((s) => s.groupedCollections)
   const searchCollection = useAppStoreContext((s) => s.searchCollection)
   const filteredCollections = useMemo(() => {
     return filterCollections(searchTerm, groupedCollections)
   }, [searchTerm, groupedCollections])
 
-  if (!filteredCollections) return null
+  if (!filteredCollections)
+    return (
+      <Badge
+        tone='critical'
+        margin={4}
+        marginTop={0}
+        radius={0}
+        style={{
+          display: 'block',
+          fontWeight: 'bold',
+          fontSize: '20px',
+          boxShadow: 'none',
+          textAlign: 'center',
+        }}
+      >
+        <Label style={{padding: '10px'}}>{t('error.no.collections.found')}</Label>
+      </Badge>
+    )
 
   return (
     <Box style={{height: '400px', overflowY: 'scroll'}} paddingTop={1}>
@@ -36,49 +54,11 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
               <Grid columns={[1, 1, 2, 2, 3]} gap={3}>
                 {filteredCollections[collectionCode].map((collection) => {
                   return (
-                    <Card
-                      role='button'
+                    <CollectionCard
                       key={collection.code}
-                      border
-                      style={{cursor: 'pointer'}}
+                      collection={collection}
                       onClick={() => searchCollection(collection.code)}
-                    >
-                      <Flex direction='column' style={{height: '100%'}} justify='space-between'>
-                        <Flex direction='column' paddingX={3} paddingY={4} gap={2}>
-                          <Text weight='bold' size={2}>
-                            {collection.name}
-                          </Text>
-                          <Text as='i' muted size={1}>
-                            by {collection.author.name}
-                          </Text>
-                        </Flex>
-                        <Card tone='transparent' paddingX={3} paddingY={2}>
-                          <Flex justify='space-between' align='center'>
-                            <Flex gap={2} align='center'>
-                              {collection.samples?.map((sample) => (
-                                <Icon
-                                  key={sample}
-                                  icon={`${collection.code}:${sample}`}
-                                  width={18}
-                                  height={18}
-                                />
-                              ))}
-                            </Flex>
-                            <Flex align='center' gap={2}>
-                              <Text as='i' size={1} weight='semibold'>
-                                #{collection.total}
-                              </Text>
-                              {collection.height && (
-                                <Flex align='center' gap={0}>
-                                  <HeightLightIcon />
-                                  <Text size={0}>{stringifyHeight(collection.height)}</Text>
-                                </Flex>
-                              )}
-                            </Flex>
-                          </Flex>
-                        </Card>
-                      </Flex>
-                    </Card>
+                    />
                   )
                 })}
               </Grid>
@@ -89,5 +69,3 @@ const CollectionsGrid = ({searchTerm}: CollectionsGridProps) => {
     </Box>
   )
 }
-
-export default memo(CollectionsGrid)

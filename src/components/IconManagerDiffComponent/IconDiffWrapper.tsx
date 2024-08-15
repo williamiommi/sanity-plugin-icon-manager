@@ -1,10 +1,14 @@
 import {DocumentIcon} from '@sanity/icons'
 import {Badge, Box, Flex, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 import {DiffCard, DiffProps, DiffTooltip, ObjectDiff} from 'sanity'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
-const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
+export default function IconDiffWrapper(props: DiffProps<ObjectDiff<IconManagerType>>): ReactNode {
+  const {t} = usePluginTranslation()
   const {fromValue, toValue, action} = props.diff
 
   // CASE 1: icon unchanged
@@ -32,7 +36,7 @@ const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
         <Flex align='center' gap={5}>
           <IconPreview value={fromValue} /> →{' '}
           <Badge tone='critical' size={1}>
-            REMOVED
+            {t('diff.changes.removed.badge')}
           </Badge>
         </Flex>
       </Box>
@@ -44,7 +48,7 @@ const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
       <Box style={{margin: '10px auto'}}>
         <Flex align='center' gap={5}>
           <Badge tone='primary' size={1}>
-            EMPTY
+            {t('diff.changes.empty.badge')}
           </Badge>{' '}
           → <IconPreview value={toValue} />
         </Flex>
@@ -59,7 +63,7 @@ const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
           <Flex align='center' gap={3}>
             <DocumentIcon fontSize={32} />
             <Text muted size={2}>
-              Untitled
+              {t('diff.changes.untitled.label')}
             </Text>
           </Flex>
         </Box>
@@ -67,5 +71,3 @@ const IconDiffWrapper = (props: DiffProps<ObjectDiff<IconManagerType>>) => {
     </DiffTooltip>
   )
 }
-
-export default IconDiffWrapper

@@ -1,8 +1,12 @@
-import {BookIcon} from '@sanity/icons'
+import {AddIcon} from '@sanity/icons'
 import {Button} from '@sanity/ui'
+import {ReactNode} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-const EmptyState = () => {
+export default function EmptyState(): ReactNode {
+  const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)
@@ -13,13 +17,11 @@ const EmptyState = () => {
     <Button
       mode='default'
       tone='primary'
-      text='Select icon'
-      icon={<BookIcon width={18} />}
+      text={t('add.icon.label')}
+      icon={<AddIcon width={18} />}
       fontSize={1}
       onClick={openSearchDialog}
       disabled={!sanityUserCanEdit}
     />
   )
 }
-
-export default EmptyState

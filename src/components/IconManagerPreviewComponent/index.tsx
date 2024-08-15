@@ -1,10 +1,14 @@
+import {ReactNode} from 'react'
 import {PreviewProps} from 'sanity'
+
 import {IconManagerType} from '../../types/IconManagerType'
 import IconPreview from '../IconPreview'
 
 export type IconManagerPreviewComponentProps = PreviewProps & IconManagerType
 
-const IconManagerPreviewComponent = (props: IconManagerPreviewComponentProps) => {
+export default function IconManagerPreviewComponent(
+  props: IconManagerPreviewComponentProps,
+): ReactNode {
   if (props.isPlaceholder || !props.icon) return props.renderDefault(props)
 
   return props.renderDefault({
@@ -20,5 +24,3 @@ const IconManagerPreviewComponent = (props: IconManagerPreviewComponentProps) =>
     ),
   })
 }
-
-export default IconManagerPreviewComponent

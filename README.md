@@ -1,30 +1,39 @@
 # Sanity Icon Manager
 
 <p align="center">
-  <img width="200" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/SanityIconManager.png" alt="Hero"/>
+  <img width="200" src="docs/images/SanityIconManager.png" alt="Hero"/>
 </p>
 <p align="center">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/hero.jpg" alt="Hero"/>
+  <img width="50%" src="docs/images/hero.jpg" alt="Hero"/>
 </p>
 
 A Sanity plugin for selecting, managing, and customizing icons. Inspired by [sanity-plugin-icon-picker](https://github.com/christopherafbjur/sanity-plugin-icon-picker).\
 Powered by [Iconify](https://iconify.design/)
 
+- [🚨 Requirements](#-requirements)
 - [⚡️ Features](#%EF%B8%8F-features)
 - [🔌 Installation](#-installation)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
+- [··· Context menu](#-context-menu)
 - [👀 Document List Preview](#-document-list-preview)
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗂️ Collections Tab](#%EF%B8%8F-collections-tab)
+- [🗺️ Localization](#%EF%B8%8F-localization)
+- [{} JSON Dialog](#-json-dialog)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
-- [🛣️ Roadmap](#%EF%B8%8F-roadmap)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
+  <br /><br />
+
+## 🚨 Requirements
+
+- Node 18+
+- Sanity Studio 3.23.0+ (to support [i18n features](https://www.sanity.io/docs/internationalizing-plugins-ui))
   <br /><br />
 
 ## ⚡️ Features
@@ -43,6 +52,10 @@ Powered by [Iconify](https://iconify.design/)
 - v1.3.0+: Global 'inline-svg' option
 - v1.4.0+: Limit Collections option
 - v1.5.0+: Global 'default size' option
+- v2+:
+  - Localization
+  - UI refresh for some components
+  - New JSON Dialog
 
 <br /><br />
 
@@ -130,6 +143,16 @@ This is the main configuration of the plugin. The available options are:
 
 <br /><br />
 
+## ··· Context menu
+
+Starting from version 2, you have access to a context menu (clicking on the ···) where you can see some information about the selected icon. You have a few options to download or copy the icon to the clipboard.
+
+<p align="center">
+  <img width="70%" src="docs/images/context-menu.jpg" alt="JSON dialog"/>
+</p>
+
+<br /><br />
+
 ## 👀 Document List Preview
 
 The plugin provides a component that you can use as a [media preview](https://www.sanity.io/docs/previews-list-views) of your icon within your document list.\
@@ -170,7 +193,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/document-list-preview.jpg" alt="Document list preview"/>
+  <img width="70%" src="docs/images/document-list-preview.jpg" alt="Document list preview"/>
 </p>
 
 <br /><br />
@@ -211,7 +234,7 @@ export default SampleDocument
 ```
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
+  <img width="70%" src="docs/images/portable-text-icons.jpg" alt="Portable Text Icons"/>
 </p>
 
 <br /><br />
@@ -267,7 +290,7 @@ export default defineConfig({
 ```
 
 <p align="left">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/custom-color-palette.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -280,25 +303,25 @@ You can have three different custom diff views:
 ### Icon Added
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
+  <img width="30%" src="docs/images/diff-icon-added.jpg" alt="Diff: Icon Added"/>
 </p>
 
 ### Icon Changed
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
+  <img width="30%" src="docs/images/diff-icon-changed.jpg" alt="Diff: Icon Changed"/>
 </p>
 
 ### Icon Removed
 
 <p align="left">
-  <img width="30%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
+  <img width="30%" src="docs/images/diff-icon-removed.jpg" alt="Diff: Icon Removed"/>
 </p>
 
 In any of the above cases you can always see the list of all the changes clicking on the `Show details` CTA.
 
 <p align="left">
-  <img width="50%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
+  <img width="50%" src="docs/images/diff-icon-change-list.jpg" alt="Diff: Icon Change List"/>
 </p>
 
 <br /><br />
@@ -309,11 +332,159 @@ Starting from v.1.2.0, you can browse icons through all available collections.\
 The search dialog now offers a 'Tabs view' where you can choose to search for your icons as before or via the new 'Collections' tab. Here, you can scroll through all the available collections, select one, and choose an icon from the available options within the selected collection.
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
+  <img width="70%" src="docs/images/collections-tab-01.jpg" alt="Collection Tabs - Step1"/>
 </p>
 
 <p align="center">
-  <img width="70%" src="https://raw.githubusercontent.com/williamiommi/sanity-plugin-icon-manager/main/docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
+  <img width="70%" src="docs/images/collections-tab-02.jpg" alt="Collection Tabs - Step2"/>
+</p>
+
+<br /><br />
+
+## 🗺️ Localization
+
+Levereging the [Studio UI Localization](https://www.sanity.io/docs/localizing-studio-ui) feature, starting from version 2, it is possible to localize the microcopy used by the plugin.
+Here is the default English bundle:
+
+<br />
+<details>
+  <summary>default bundle</summary>
+<br />
+
+```js
+{
+'add.icon.label': 'Add icon',
+
+// add icon dialog
+'dialog.add.title': 'Find your icon',
+'dialog.add.search.tab.label': 'Search',
+'dialog.add.collections.tab.label': 'Collections',
+'dialog.add.input.search.placeholder': 'Search icons...',
+'dialog.add.search.cta': 'Search',
+'dialog.add.filter.select.label': 'Select...',
+'dialog.add.filter.style.label': 'Style:',
+'dialog.add.filter.style.stroke.label': 'Stroke',
+'dialog.add.filter.style.fill.label': 'Fill',
+'dialog.add.filter.palette.label': 'Palette:',
+'dialog.add.filter.palette.mono.label': 'Monochrome',
+'dialog.add.filter.palette.poly.label': 'Polychrome',
+'dialog.add.filter.collection.label': 'Collection:',
+'dialog.add.filter.limit.label': 'Limit:',
+'dialog.add.filter.limit.info.label': '(min 32 / max 999)',
+'dialog.add.input.search.collections.placeholder': 'Search collections...',
+'dialog.add.icon.found.label_one': '{{count}} icon found',
+'dialog.add.icon.found.label_other': '{{count}} icons found',
+'dialog.add.by.label': 'by {{author}}',
+
+// remove dialog
+'dialog.remove.icon.title': 'Remove icon',
+'dialog.remove.icon.message': 'Do you really want to remove the icon?',
+'dialog.remove.cancel.cta': 'Cancel',
+'dialog.remove.confirm.cta': 'Confirm',
+
+// Json dialog
+'dialog.json.title': 'JSON Data',
+'dialog.json.copy.label': 'Copy to clipboard',
+'dialog.json.copied.label': 'JSON copied to clipboard',
+
+// configure dialog
+'dialog.configure.title': 'Configuration',
+'dialog.configure.filter.flip.label': 'Flip:',
+'dialog.configure.filter.flip.vertical.label': 'Vertical',
+'dialog.configure.filter.flip.horizontal.label': 'Horizontal',
+'dialog.configure.filter.rotate.label': 'Rotate:',
+'dialog.configure.filter.size.label': 'Size:',
+'dialog.configure.filter.lock.aspect.ratio.tooltip': 'Lock Aspect Ratio',
+'dialog.configure.filter.real.size.tooltip': 'Show real size',
+'dialog.configure.filter.inline.svg.label': 'Inline SVG:',
+'dialog.configure.filter.color.label': 'Color:',
+'dialog.configure.filter.color.hex.label': 'HEX',
+'dialog.configure.filter.color.rgba.label': 'RGBA',
+'dialog.configure.filter.clear.color.label': 'Clear color',
+'dialog.configure.filter.clear.color.tooltip': 'Set the color to "currentColor"',
+'dialog.configure.filter.preview.label': 'Preview:',
+'dialog.configure.filter.preview.tooltip':
+'Preview limited to 300x300, but your custom size is preserved.',
+'dialog.configure.reset.cta': 'Reset',
+'dialog.configure.save.cta': 'Save',
+
+'icon.customized.label': 'Icon has been customized',
+'icon.customized.badge': 'CUSTOMIZED',
+
+// menu
+'menu.info.title': 'Info',
+'menu.actions.title': 'Actions',
+'menu.info.name.label': 'Name:',
+'menu.info.collection.label': 'Collection:',
+'menu.info.author.label': 'Author:',
+'menu.info.license.label': 'License:',
+
+'configure.icon.label': 'Configure',
+'configure.icon.tooltip': 'Configure icon',
+'change.icon.label': 'Change',
+'change.icon.tooltip': 'Change icon',
+'remove.icon.label': 'Remove',
+'remove.icon.tooltip': 'Remove icon',
+
+'download.svg.tooltip': 'Download SVG',
+'copy.svg.to.clipboard.tooltip': 'Copy SVG to clipboard',
+'copy.b64.to.clipboard.tooltip': 'Copy Base64 to clipboard',
+'download.png.tooltip': 'Download PNG',
+
+'diff.changes.show.details.cta': 'Show details',
+'diff.changes.hide.details.cta': 'Hide details',
+'diff.changes.empty.badge': 'EMPTY',
+'diff.changes.removed.badge': 'REMOVED',
+'diff.changes.untitled.label': 'Untitled',
+
+'no.collections.message': 'No available collections.<br />Check your plugin configuration.',
+
+'html.copied.label': 'SVG copied to clipboard',
+'base64.copied.label': 'Data Base64 copied to clipboard',
+
+'error.no.react.context': 'Missing Wrapper in the tree',
+'error.no.icons.found': 'No icons found!',
+'error.no.collections.found': 'No collections found',
+'error.create.png': 'Unable to create the PNG, check your icon',
+}
+
+```
+
+</details>
+<br/>
+
+If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `icon.manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
+
+<br/>
+
+```ts
+import {defineLocaleResourceBundle} from 'sanity'
+
+const myEnglishOverride = defineLocaleResourceBundle({
+  // make sure the `locale` language code corresponds to the one you want to override
+  locale: 'en-US',
+  namespace: 'icon.manager',
+  resources: {
+    'add.icon.label': 'Select your icon',,
+  },
+})
+
+export default defineConfig({
+  // ...
+  i18n: {
+    bundles: [myEnglishOverride]
+  }
+})
+```
+
+<br /><br />
+
+## {} JSON Dialog
+
+Starting from version 2, you can view the data stored in Sanity through a dedicated dialog. It is possible to copy the JSON to the clipboard.
+
+<p align="center">
+  <img width="70%" src="docs/images/json-dialog.jpg" alt="JSON dialog"/>
 </p>
 
 <br /><br />
@@ -436,18 +607,11 @@ const MyComponent = (props) => {
 
 <br /><br />
 
-## 🛣️ Roadmap
-
-- ~~Filter by Collection~~ (v1.1.0+)
-- ~~Search within an entire collection~~ (v1.2.0+)
-- Analyze the possibility of adding [custom icon sets](https://iconify.design/docs/icons/custom.html) via configuration
-- 🤔
-
-<br /><br />
-
 ## 📝 License
 
 [MIT](LICENSE) © William Iommi
+
+<br /><br />
 
 ## 🧪 Develop & test
 

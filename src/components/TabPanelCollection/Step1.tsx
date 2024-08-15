@@ -1,12 +1,15 @@
 import {Icon} from '@iconify/react'
 import {LaunchIcon} from '@sanity/icons'
 import {Box, Flex, Text} from '@sanity/ui'
-import {useDeferredValue, useState} from 'react'
+import {ReactNode, useDeferredValue, useState} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
-const Step1 = () => {
+export default function Step1(): ReactNode {
+  const {t} = usePluginTranslation()
   const selectedCollection = useAppStoreContext((s) => s.selectedCollection)
   const clearSelectedCollection = useAppStoreContext((s) => s.clearSelectedCollection)
   const [searchTerm, setSearchTerm] = useState('')
@@ -22,14 +25,16 @@ const Step1 = () => {
           ←
         </Box>
         <Flex gap={2} marginTop={2} justify='center'>
-          {selectedCollection?.collection.samples?.map((sample) => (
-            <Icon
-              key={`${selectedCollection?.collection.code}:${sample}`}
-              icon={`${selectedCollection?.collection.code}:${sample}`}
-              width={22}
-              height={22}
-            />
-          ))}
+          {selectedCollection?.collection.samples
+            ?.slice(0, 3)
+            .map((sample) => (
+              <Icon
+                key={`${selectedCollection?.collection.code}:${sample}`}
+                icon={`${selectedCollection?.collection.code}:${sample}`}
+                width={22}
+                height={22}
+              />
+            ))}
         </Flex>
         <Flex align='center' direction='column' gap={3}>
           <Text weight='bold' size={4}>
@@ -44,16 +49,31 @@ const Step1 = () => {
             style={{textDecoration: 'none', fontStyle: 'italic'}}
           >
             <Text muted size={2}>
-              by {selectedCollection?.collection.author.name}
+              {t('dialog.add.by.label', {author: selectedCollection?.collection.author.name})}
             </Text>
-            <LaunchIcon width={12} style={{color: 'initial'}} />
+            <LaunchIcon width={14} style={{color: 'initial'}} />
+          </Flex>
+          <Flex
+            gap={1}
+            align='center'
+            as='a'
+            href={selectedCollection?.collection.license.url}
+            target='_blank'
+            style={{textDecoration: 'none', fontStyle: 'italic'}}
+          >
+            <Text muted size={2}>
+              {selectedCollection?.collection.license.title}
+            </Text>
+            <LaunchIcon width={14} style={{color: 'initial'}} />
           </Flex>
         </Flex>
       </Flex>
-      <Input placeholder='Filter icons...' term={searchTerm} onChange={setSearchTerm} />
+      <Input
+        placeholder={t('dialog.add.input.search.placeholder')}
+        term={searchTerm}
+        onChange={setSearchTerm}
+      />
       <IconsGrid searchTerm={deferredSearchTerm} />
     </>
   )
 }
-
-export default Step1

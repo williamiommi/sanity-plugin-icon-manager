@@ -1,6 +1,7 @@
 import {ToastContextValue} from '@sanity/ui'
 import {FormPatch, PatchEvent, Path} from 'sanity'
 import {StateCreator} from 'zustand'
+
 import {IconManagerType} from '../../types/IconManagerType'
 
 type SanityPatchType = (patch: FormPatch | FormPatch[] | PatchEvent) => void

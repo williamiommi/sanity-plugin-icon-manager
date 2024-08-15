@@ -1,13 +1,15 @@
 /* eslint-disable react/jsx-no-bind */
 import {ControlsIcon, SearchIcon} from '@sanity/icons'
 import {Box, Button, Flex, TextInput} from '@sanity/ui'
+import {ReactNode} from 'react'
+
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import {TextFilterCollection} from '../../style'
 import FilterBadge from '../Filters/FilterBadge'
 
-interface SearchInputProps {}
-
-const SearchInput = (props: SearchInputProps) => {
+export default function SearchInput(): ReactNode {
+  const {t} = usePluginTranslation()
   const searchTerm = useAppStoreContext((s) => s.searchTerm)
   const isFiltersOpen = useAppStoreContext((s) => s.isFiltersOpen)
   const countFiltersApplied = useAppStoreContext((s) => s.countFiltersApplied())
@@ -37,18 +39,19 @@ const SearchInput = (props: SearchInputProps) => {
       </Box>
       <Box style={{flex: 1, position: 'relative'}}>
         <TextFilterCollection size={1} muted>
-          Collection: <strong>{filterCollection ? filterCollection.name : 'All'}</strong>
+          {t('dialog.add.filter.collection.label')}{' '}
+          <strong>{filterCollection ? filterCollection.name : 'All'}</strong>
         </TextFilterCollection>
         <TextInput
           style={{paddingTop: '18px'}}
-          placeholder='Search icons...'
+          placeholder={t('dialog.add.input.search.placeholder')}
           onChange={setSearchTerm}
         />
       </Box>
       <Button
         type='submit'
         iconRight={SearchIcon}
-        text='Search'
+        text={t('dialog.add.search.cta')}
         tone='primary'
         style={{cursor: 'pointer'}}
         disabled={!searchTerm}
@@ -56,5 +59,3 @@ const SearchInput = (props: SearchInputProps) => {
     </Flex>
   )
 }
-
-export default SearchInput
