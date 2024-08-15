@@ -454,7 +454,7 @@ Here is the default English bundle:
 </details>
 <br/>
 
-If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `sanity-plugin-icon-manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
+If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `icon.manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
 
 <br/>
 
@@ -464,7 +464,7 @@ import {defineLocaleResourceBundle} from 'sanity'
 const myEnglishOverride = defineLocaleResourceBundle({
   // make sure the `locale` language code corresponds to the one you want to override
   locale: 'en-US',
-  namespace: 'sanity-plugin-icon-manager',
+  namespace: 'icon.manager',
   resources: {
     'add.icon.label': 'Select your icon',,
   },
