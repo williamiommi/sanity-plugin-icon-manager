@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import {Button, Flex, Grid, Popover, Text} from '@sanity/ui'
-import {useRef, useState} from 'react'
+import {ReactNode, useRef, useState} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import BaseTooltip from '../../BaseTooltip'
 import ColorPicker from './ColorPicker'
 
-const Color = () => {
+export default function Color(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const color = useAppStoreContext((s) => s.color)
@@ -73,5 +73,3 @@ const Color = () => {
     </Flex>
   )
 }
-
-export default Color

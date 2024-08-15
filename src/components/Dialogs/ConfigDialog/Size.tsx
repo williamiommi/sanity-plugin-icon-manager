@@ -1,4 +1,5 @@
 import {Button, Flex, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
@@ -8,7 +9,7 @@ import LinkIcon from '../../icons/LinkIcon'
 import UnlinkIcon from '../../icons/UnlinkIcon'
 import InputSize from '../../InputSize'
 
-const Size = () => {
+export default function Size(): ReactNode {
   const {t} = usePluginTranslation()
   const size = useAppStoreContext((s) => s.size)
   const keepAspectRatio = useAppStoreContext((s) => s.keepAspectRatio)
@@ -61,5 +62,3 @@ const Size = () => {
     </Flex>
   )
 }
-
-export default Size

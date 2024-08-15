@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Badge, Card, Grid, Label} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePagination from '../../hooks/usePagination'
 import usePluginTranslation from '../../hooks/usePluginTranslation'
@@ -14,7 +15,7 @@ interface ResultsGridProps {
   collection?: IconifyInfoEnhanced
 }
 
-const ResultsGrid = ({items, collection}: ResultsGridProps) => {
+export default function ResultsGrid({items, collection}: ResultsGridProps): ReactNode {
   const {t} = usePluginTranslation()
   const {currentItems, ...paginationBag} = usePagination<IconManagerIconInfo>(items)
   const saveIcon = useAppStoreContext((s) => s.saveIcon)
@@ -24,7 +25,6 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
   if (items.length === 0)
     return (
       <Badge
-        mode='outline'
         tone='critical'
         margin={4}
         marginTop={0}
@@ -60,5 +60,3 @@ const ResultsGrid = ({items, collection}: ResultsGridProps) => {
     </>
   )
 }
-
-export default ResultsGrid

@@ -1,6 +1,7 @@
 import {Card, Text, Tooltip, TooltipProps} from '@sanity/ui'
+import {ReactNode} from 'react'
 
-export default function BaseTooltip(props: TooltipProps) {
+export default function BaseTooltip(props: TooltipProps): ReactNode {
   return (
     <Tooltip
       {...props}

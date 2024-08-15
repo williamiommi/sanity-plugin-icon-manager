@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Text, TextInput} from '@sanity/ui'
-import {FormEvent} from 'react'
+import {FormEvent, ReactNode} from 'react'
 import {RgbaColorPicker} from 'react-colorful'
 
 import useClickOutside from '../../../hooks/useClickOutside'
@@ -13,7 +13,7 @@ interface ColorPickerProps {
   onClickOutsideHandler: () => void
 }
 
-const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
+export default function ColorPicker({onClickOutsideHandler}: ColorPickerProps): ReactNode {
   const {t} = usePluginTranslation()
   const pickerRef = useClickOutside<HTMLDivElement>(onClickOutsideHandler)
   const color = useAppStoreContext((s) => s.color)
@@ -92,5 +92,3 @@ const ColorPicker = ({onClickOutsideHandler}: ColorPickerProps) => {
     </StyledColorPicker>
   )
 }
-
-export default ColorPicker

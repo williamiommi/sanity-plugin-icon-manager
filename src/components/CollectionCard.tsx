@@ -1,5 +1,6 @@
 import {Icon} from '@iconify/react'
 import {Button, Card, Flex, Spinner, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import useIsInViewport from '../hooks/useIsInViewport'
 import {stringifyHeight} from '../lib/iconify-utils'
@@ -11,7 +12,7 @@ interface Props {
   onClick: () => void
 }
 
-export default function CollectionCard({collection, onClick}: Props) {
+export default function CollectionCard({collection, onClick}: Props): ReactNode {
   const {ref, elementHitViewport} = useIsInViewport<HTMLButtonElement>({
     threshold: 0.3,
   })
@@ -29,27 +30,34 @@ export default function CollectionCard({collection, onClick}: Props) {
             <Text weight='semibold' textOverflow='ellipsis' title={collection.name}>
               {collection.name}
             </Text>
-            <Text size={0} muted textOverflow='ellipsis' title={collection.license.title}>
+            <Text size={1} muted textOverflow='ellipsis' title={collection.license.title}>
               {collection.license.title}
             </Text>
           </Flex>
           <Flex direction='column' gap={2} style={{width: '80px'}}>
             <Flex justify='flex-end' gap={1}>
               {elementHitViewport &&
-                collection.samples?.map((sample) => (
-                  <Icon key={sample} icon={`${collection.code}:${sample}`} width={15} />
-                ))}
+                collection.samples
+                  ?.slice(0, 3)
+                  .map((sample) => (
+                    <Icon
+                      key={sample}
+                      icon={`${collection.code}:${sample}`}
+                      width={18}
+                      height={18}
+                    />
+                  ))}
               {!elementHitViewport &&
-                [0, 1, 2].map((sample) => <Spinner key={sample} width={15} />)}
+                [0, 1, 2].map((sample) => <Spinner key={sample} width={15} height={15} />)}
             </Flex>
             <Flex align='center' justify='flex-end' gap={1}>
-              <Text weight='bold' size={0}>
+              <Text weight='bold' size={1}>
                 #{collection.total}
               </Text>
               {collection.height && (
                 <Flex align='center'>
-                  <HeightLightIcon width={12} height={12} />
-                  <Text size={0}>{stringifyHeight(collection.height)}</Text>
+                  <HeightLightIcon width={14} height={14} />
+                  <Text size={1}>{stringifyHeight(collection.height)}</Text>
                 </Flex>
               )}
             </Flex>

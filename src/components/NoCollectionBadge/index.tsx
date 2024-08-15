@@ -1,14 +1,14 @@
 import {Badge, Flex} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import SimpleHtmlRenderer from '../SimpleHtmlRenderer'
 
-export default function NoCollectionBadge() {
+export default function NoCollectionBadge(): ReactNode {
   const {t} = usePluginTranslation()
   return (
     <Flex marginY={4} justify='center'>
       <Badge
-        mode='outline'
         tone='critical'
         margin={4}
         padding={4}

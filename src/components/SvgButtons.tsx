@@ -1,4 +1,5 @@
 import {Button, Flex} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../hooks/usePluginTranslation'
 import useSvgUtils from '../hooks/useSvgUtils'
@@ -9,7 +10,7 @@ import DownloadIcon from './icons/DownloadIcon'
 import PngIcon from './icons/PngIcon'
 import SvgIcon from './icons/SvgIcon'
 
-export default function SvgButtons() {
+export default function SvgButtons(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const {urls, copyHtmlToClipboard, copyDataUrlToClipboard, downloadPng} = useSvgUtils({
@@ -34,7 +35,7 @@ export default function SvgButtons() {
       onClick: copyHtmlToClipboard,
     },
     {
-      tooltip: t('copy.data.url.to.clipboard.tooltip'),
+      tooltip: t('copy.b64.to.clipboard.tooltip'),
       icon: <Base64Icon width={25} height={18} />,
       onClick: copyDataUrlToClipboard,
     },

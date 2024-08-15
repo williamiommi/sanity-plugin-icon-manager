@@ -1,5 +1,6 @@
 import {Icon} from '@iconify/react'
 import {Flex, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import {IconManagerType} from '../../types/IconManagerType'
 
@@ -11,13 +12,13 @@ interface IconPreviewProps {
   hideText?: boolean
 }
 
-const IconPreview = ({
+export default function IconPreview({
   icon,
   value,
   width = 50,
   height = 50,
   hideText = false,
-}: IconPreviewProps) => {
+}: IconPreviewProps): ReactNode {
   if (icon)
     return (
       <Icon
@@ -61,5 +62,3 @@ const IconPreview = ({
     </Flex>
   )
 }
-
-export default IconPreview

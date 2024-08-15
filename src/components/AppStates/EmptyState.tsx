@@ -1,10 +1,11 @@
 import {AddIcon} from '@sanity/icons'
 import {Button} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-const EmptyState = () => {
+export default function EmptyState(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
@@ -24,5 +25,3 @@ const EmptyState = () => {
     />
   )
 }
-
-export default EmptyState

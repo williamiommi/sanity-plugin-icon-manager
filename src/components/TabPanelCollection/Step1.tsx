@@ -1,14 +1,14 @@
 import {Icon} from '@iconify/react'
 import {LaunchIcon} from '@sanity/icons'
 import {Box, Flex, Text} from '@sanity/ui'
-import {useDeferredValue, useState} from 'react'
+import {ReactNode, useDeferredValue, useState} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import IconsGrid from './IconsGrid'
 import Input from './Input'
 
-const Step1 = () => {
+export default function Step1(): ReactNode {
   const {t} = usePluginTranslation()
   const selectedCollection = useAppStoreContext((s) => s.selectedCollection)
   const clearSelectedCollection = useAppStoreContext((s) => s.clearSelectedCollection)
@@ -25,14 +25,16 @@ const Step1 = () => {
           ←
         </Box>
         <Flex gap={2} marginTop={2} justify='center'>
-          {selectedCollection?.collection.samples?.map((sample) => (
-            <Icon
-              key={`${selectedCollection?.collection.code}:${sample}`}
-              icon={`${selectedCollection?.collection.code}:${sample}`}
-              width={22}
-              height={22}
-            />
-          ))}
+          {selectedCollection?.collection.samples
+            ?.slice(0, 3)
+            .map((sample) => (
+              <Icon
+                key={`${selectedCollection?.collection.code}:${sample}`}
+                icon={`${selectedCollection?.collection.code}:${sample}`}
+                width={22}
+                height={22}
+              />
+            ))}
         </Flex>
         <Flex align='center' direction='column' gap={3}>
           <Text weight='bold' size={4}>
@@ -75,5 +77,3 @@ const Step1 = () => {
     </>
   )
 }
-
-export default Step1

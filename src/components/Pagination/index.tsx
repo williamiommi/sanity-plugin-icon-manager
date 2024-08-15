@@ -1,4 +1,5 @@
 import {Flex, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {PaginationButton} from '../../style'
@@ -11,13 +12,13 @@ interface PaginationProps {
   setPrevPage: () => void
 }
 
-const Pagination = ({
+export default function Pagination({
   totalItems,
   currentPage,
   totalPages,
   setNextPage,
   setPrevPage,
-}: PaginationProps) => {
+}: PaginationProps): ReactNode {
   const {t} = usePluginTranslation()
   if (!totalPages) return null
 
@@ -53,5 +54,3 @@ const Pagination = ({
     </Flex>
   )
 }
-
-export default Pagination

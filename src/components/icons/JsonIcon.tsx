@@ -1,8 +1,8 @@
-import {SVGProps} from 'react'
+import {ReactNode, SVGProps} from 'react'
 
 interface Props extends SVGProps<SVGSVGElement> {}
 
-export default function JsonIcon(props: Props) {
+export default function JsonIcon(props: Props): ReactNode {
   return (
     <svg viewBox='0 0 16 16' width='16' height='16' xmlns='http://www.w3.org/2000/svg' {...props}>
       <path

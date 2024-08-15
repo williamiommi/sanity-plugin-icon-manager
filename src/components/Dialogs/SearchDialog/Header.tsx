@@ -1,9 +1,10 @@
 import {Flex} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import IconifySmile from '../../icons/IconifySmile'
 
-const Header = () => {
+export default function Header(): ReactNode {
   const {t} = usePluginTranslation()
   return (
     <Flex align='center' gap={2}>
@@ -11,5 +12,3 @@ const Header = () => {
     </Flex>
   )
 }
-
-export default Header

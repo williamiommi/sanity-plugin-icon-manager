@@ -21,21 +21,20 @@ Powered by [Iconify](https://iconify.design/)
 - [🎨 Custom Color Palette](#-custom-color-palette)
 - [🎭 Custom Diff View](#-custom-diff-view)
 - [🗂️ Collections Tab](#%EF%B8%8F-collections-tab)
+- [🗺️ Localization](#%EF%B8%8F-localization)
 - [{} JSON Dialog](#-json-dialog)
 - [🌎 Basic Hosting](#-basic-hosting)
 - [🗃️ Data Model](#%EF%B8%8F-data-model)
 - [🎬 How to render the icon on your website](#-how-to-render-the-icon-on-your-website)
-- [🛣️ Roadmap](#%EF%B8%8F-roadmap)
 - [📝 License](#-license)
 - [🧪 Develop & test](#-develop--test)
   <br /><br />
 
 ## 🚨 Requirements
 
-> [!WARNING]  
-> Starting from version 2, with the introduction of studio localization, the plugin requires Sanity Studio version 3.23.0 or later. For more information, see the following [link](https://www.sanity.io/docs/internationalizing-plugins-ui).
-
-<br /><br />
+- Node 18+
+- Sanity Studio 3.23.0+ (to support [i18n features](https://www.sanity.io/docs/internationalizing-plugins-ui))
+  <br /><br />
 
 ## ⚡️ Features
 
@@ -54,7 +53,7 @@ Powered by [Iconify](https://iconify.design/)
 - v1.4.0+: Limit Collections option
 - v1.5.0+: Global 'default size' option
 - v2+:
-  - Localization capabilities
+  - Localization
   - UI refresh for some components
   - New JSON Dialog
 
@@ -342,6 +341,144 @@ The search dialog now offers a 'Tabs view' where you can choose to search for yo
 
 <br /><br />
 
+## 🗺️ Localization
+
+Levereging the [Studio UI Localization](https://www.sanity.io/docs/localizing-studio-ui) feature, starting from version 2, it is possible to localize the microcopy used by the plugin.
+Here is the default English bundle:
+
+<br />
+<details>
+  <summary>default bundle</summary>
+<br />
+
+```js
+{
+'add.icon.label': 'Add icon',
+
+// add icon dialog
+'dialog.add.title': 'Find your icon',
+'dialog.add.search.tab.label': 'Search',
+'dialog.add.collections.tab.label': 'Collections',
+'dialog.add.input.search.placeholder': 'Search icons...',
+'dialog.add.search.cta': 'Search',
+'dialog.add.filter.select.label': 'Select...',
+'dialog.add.filter.style.label': 'Style:',
+'dialog.add.filter.style.stroke.label': 'Stroke',
+'dialog.add.filter.style.fill.label': 'Fill',
+'dialog.add.filter.palette.label': 'Palette:',
+'dialog.add.filter.palette.mono.label': 'Monochrome',
+'dialog.add.filter.palette.poly.label': 'Polychrome',
+'dialog.add.filter.collection.label': 'Collection:',
+'dialog.add.filter.limit.label': 'Limit:',
+'dialog.add.filter.limit.info.label': '(min 32 / max 999)',
+'dialog.add.input.search.collections.placeholder': 'Search collections...',
+'dialog.add.icon.found.label_one': '{{count}} icon found',
+'dialog.add.icon.found.label_other': '{{count}} icons found',
+'dialog.add.by.label': 'by {{author}}',
+
+// remove dialog
+'dialog.remove.icon.title': 'Remove icon',
+'dialog.remove.icon.message': 'Do you really want to remove the icon?',
+'dialog.remove.cancel.cta': 'Cancel',
+'dialog.remove.confirm.cta': 'Confirm',
+
+// Json dialog
+'dialog.json.title': 'JSON Data',
+'dialog.json.copy.label': 'Copy to clipboard',
+'dialog.json.copied.label': 'JSON copied to clipboard',
+
+// configure dialog
+'dialog.configure.title': 'Configuration',
+'dialog.configure.filter.flip.label': 'Flip:',
+'dialog.configure.filter.flip.vertical.label': 'Vertical',
+'dialog.configure.filter.flip.horizontal.label': 'Horizontal',
+'dialog.configure.filter.rotate.label': 'Rotate:',
+'dialog.configure.filter.size.label': 'Size:',
+'dialog.configure.filter.lock.aspect.ratio.tooltip': 'Lock Aspect Ratio',
+'dialog.configure.filter.real.size.tooltip': 'Show real size',
+'dialog.configure.filter.inline.svg.label': 'Inline SVG:',
+'dialog.configure.filter.color.label': 'Color:',
+'dialog.configure.filter.color.hex.label': 'HEX',
+'dialog.configure.filter.color.rgba.label': 'RGBA',
+'dialog.configure.filter.clear.color.label': 'Clear color',
+'dialog.configure.filter.clear.color.tooltip': 'Set the color to "currentColor"',
+'dialog.configure.filter.preview.label': 'Preview:',
+'dialog.configure.filter.preview.tooltip':
+'Preview limited to 300x300, but your custom size is preserved.',
+'dialog.configure.reset.cta': 'Reset',
+'dialog.configure.save.cta': 'Save',
+
+'icon.customized.label': 'Icon has been customized',
+'icon.customized.badge': 'CUSTOMIZED',
+
+// menu
+'menu.info.title': 'Info',
+'menu.actions.title': 'Actions',
+'menu.info.name.label': 'Name:',
+'menu.info.collection.label': 'Collection:',
+'menu.info.author.label': 'Author:',
+'menu.info.license.label': 'License:',
+
+'configure.icon.label': 'Configure',
+'configure.icon.tooltip': 'Configure icon',
+'change.icon.label': 'Change',
+'change.icon.tooltip': 'Change icon',
+'remove.icon.label': 'Remove',
+'remove.icon.tooltip': 'Remove icon',
+
+'download.svg.tooltip': 'Download SVG',
+'copy.svg.to.clipboard.tooltip': 'Copy SVG to clipboard',
+'copy.b64.to.clipboard.tooltip': 'Copy Base64 to clipboard',
+'download.png.tooltip': 'Download PNG',
+
+'diff.changes.show.details.cta': 'Show details',
+'diff.changes.hide.details.cta': 'Hide details',
+'diff.changes.empty.badge': 'EMPTY',
+'diff.changes.removed.badge': 'REMOVED',
+'diff.changes.untitled.label': 'Untitled',
+
+'no.collections.message': 'No available collections.<br />Check your plugin configuration.',
+
+'html.copied.label': 'SVG copied to clipboard',
+'base64.copied.label': 'Data Base64 copied to clipboard',
+
+'error.no.react.context': 'Missing Wrapper in the tree',
+'error.no.icons.found': 'No icons found!',
+'error.no.collections.found': 'No collections found',
+'error.create.png': 'Unable to create the PNG, check your icon',
+}
+
+```
+
+</details>
+<br/>
+
+If you want to add a new language or override one, you need to create a custom bundle with your desired locale. Use `icon.manager` as the namespace and add it to your `sanity.config` file under the `i18n.bundles` attribute. Here is an example:
+
+<br/>
+
+```ts
+import {defineLocaleResourceBundle} from 'sanity'
+
+const myEnglishOverride = defineLocaleResourceBundle({
+  // make sure the `locale` language code corresponds to the one you want to override
+  locale: 'en-US',
+  namespace: 'icon.manager',
+  resources: {
+    'add.icon.label': 'Select your icon',,
+  },
+})
+
+export default defineConfig({
+  // ...
+  i18n: {
+    bundles: [myEnglishOverride]
+  }
+})
+```
+
+<br /><br />
+
 ## {} JSON Dialog
 
 Starting from version 2, you can view the data stored in Sanity through a dedicated dialog. It is possible to copy the JSON to the clipboard.
@@ -470,18 +607,11 @@ const MyComponent = (props) => {
 
 <br /><br />
 
-## 🛣️ Roadmap
-
-- ~~Filter by Collection~~ (v1.1.0+)
-- ~~Search within an entire collection~~ (v1.2.0+)
-- Analyze the possibility of adding [custom icon sets](https://iconify.design/docs/icons/custom.html) via configuration
-- 🤔
-
-<br /><br />
-
 ## 📝 License
 
 [MIT](LICENSE) © William Iommi
+
+<br /><br />
 
 ## 🧪 Develop & test
 

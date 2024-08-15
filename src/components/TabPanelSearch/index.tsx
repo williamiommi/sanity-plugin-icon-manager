@@ -1,4 +1,5 @@
 import {TabPanel} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import {useAppStoreContext} from '../../store/context'
 import ResultsGrid from '../ResultsGrid'
@@ -9,7 +10,7 @@ interface TabPanelSearchProps {
   hidden: boolean
 }
 
-const TabPanelSearch = ({hidden}: TabPanelSearchProps) => {
+export default function TabPanelSearch({hidden}: TabPanelSearchProps): ReactNode {
   const searchResults = useAppStoreContext((s) => s.searchResults)
   return (
     <TabPanel id='search-panel' aria-labelledby='search-tab' hidden={hidden}>
@@ -19,5 +20,3 @@ const TabPanelSearch = ({hidden}: TabPanelSearchProps) => {
     </TabPanel>
   )
 }
-
-export default TabPanelSearch

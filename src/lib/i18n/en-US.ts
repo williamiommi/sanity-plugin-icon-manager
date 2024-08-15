@@ -1,6 +1,4 @@
 export default {
-  'plugin.title': 'Icon Manager Plugin',
-
   'add.icon.label': 'Add icon',
 
   // add icon dialog
@@ -67,7 +65,6 @@ export default {
   'menu.info.author.label': 'Author:',
   'menu.info.license.label': 'License:',
 
-  'show.info.tooltip': 'Show info',
   'configure.icon.label': 'Configure',
   'configure.icon.tooltip': 'Configure icon',
   'change.icon.label': 'Change',
@@ -77,7 +74,7 @@ export default {
 
   'download.svg.tooltip': 'Download SVG',
   'copy.svg.to.clipboard.tooltip': 'Copy SVG to clipboard',
-  'copy.data.url.to.clipboard.tooltip': 'Copy Data Url to clipboard',
+  'copy.b64.to.clipboard.tooltip': 'Copy Base64 to clipboard',
   'download.png.tooltip': 'Download PNG',
 
   'diff.changes.show.details.cta': 'Show details',
@@ -91,6 +88,7 @@ export default {
   'html.copied.label': 'SVG copied to clipboard',
   'base64.copied.label': 'Data Base64 copied to clipboard',
 
+  'error.no.react.context': 'Missing Wrapper in the tree',
   'error.no.icons.found': 'No icons found!',
   'error.no.collections.found': 'No collections found',
   'error.create.png': 'Unable to create the PNG, check your icon',

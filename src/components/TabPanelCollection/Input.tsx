@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import {SearchIcon} from '@sanity/icons'
 import {Box, TextInput} from '@sanity/ui'
-import {FormEvent, useCallback} from 'react'
+import {FormEvent, ReactNode, useCallback} from 'react'
 
 interface InputProps {
   placeholder: string
@@ -9,7 +9,7 @@ interface InputProps {
   onChange: (searchTerm: string) => void
 }
 
-const Input = ({placeholder, term, onChange}: InputProps) => {
+export default function Input({placeholder, term, onChange}: InputProps): ReactNode {
   const handleOnChange = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
       onChange(e.currentTarget.value)
@@ -28,5 +28,3 @@ const Input = ({placeholder, term, onChange}: InputProps) => {
     </Box>
   )
 }
-
-export default Input

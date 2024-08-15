@@ -1,9 +1,10 @@
 import {Flex, Heading} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import CogIcon from '../../icons/CogIcon'
 
-const Header = () => {
+export default function Header(): ReactNode {
   const {t} = usePluginTranslation()
 
   return (
@@ -13,5 +14,3 @@ const Header = () => {
     </Flex>
   )
 }
-
-export default Header

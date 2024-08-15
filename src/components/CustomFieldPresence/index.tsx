@@ -1,4 +1,5 @@
 import {Flex} from '@sanity/ui'
+import {ReactNode} from 'react'
 import {FieldMember, FieldPresenceWithOverlay, ObjectInputProps} from 'sanity'
 
 import {useAppStoreContext} from '../../store/context'
@@ -7,7 +8,9 @@ interface CustomFieldPresenceProps {
   objectInputProps: ObjectInputProps
 }
 
-const CustomFieldPresence = ({objectInputProps}: CustomFieldPresenceProps) => {
+export default function CustomFieldPresence({
+  objectInputProps,
+}: CustomFieldPresenceProps): ReactNode {
   const sanityFieldPath = useAppStoreContext((s) => s.sanityFieldPath)
   const members = objectInputProps.members as FieldMember[]
 
@@ -23,5 +26,3 @@ const CustomFieldPresence = ({objectInputProps}: CustomFieldPresenceProps) => {
     </Flex>
   )
 }
-
-export default CustomFieldPresence

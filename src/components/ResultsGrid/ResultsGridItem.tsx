@@ -1,4 +1,5 @@
 import {Button, Flex, Text, Tooltip} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import IconPreview from '../IconPreview'
 
@@ -9,7 +10,12 @@ interface ResultsGridItemProps {
   onClick: () => void
 }
 
-const ResultsGridItem = ({icon, iconName, collectionName, onClick}: ResultsGridItemProps) => {
+export default function ResultsGridItem({
+  icon,
+  iconName,
+  collectionName,
+  onClick,
+}: ResultsGridItemProps): ReactNode {
   return (
     <Flex
       justify='center'
@@ -45,5 +51,3 @@ const ResultsGridItem = ({icon, iconName, collectionName, onClick}: ResultsGridI
     </Flex>
   )
 }
-
-export default ResultsGridItem

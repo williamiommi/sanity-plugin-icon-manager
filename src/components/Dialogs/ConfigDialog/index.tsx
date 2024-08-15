@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import {Card, Dialog, Flex} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import {useAppStoreContext} from '../../../store/context'
 import Color from './Color'
@@ -11,7 +12,7 @@ import Preview from './Preview'
 import Rotate from './Rotate'
 import Size from './Size'
 
-const ConfigDialog = () => {
+export default function ConfigDialog(): ReactNode {
   const isConfigDialogOpen = useAppStoreContext((s) => s.isConfigDialogOpen)
   const closeConfigDialog = useAppStoreContext((s) => s.closeConfigDialog)
 
@@ -38,5 +39,3 @@ const ConfigDialog = () => {
     </Dialog>
   )
 }
-
-export default ConfigDialog

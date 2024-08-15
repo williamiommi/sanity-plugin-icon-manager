@@ -1,11 +1,12 @@
 import {Button, Flex, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
 import HeightIcon from '../../icons/HeightIcon'
 import WidthIcon from '../../icons/WidthIcon'
 
-const Flip = () => {
+export default function Flip(): ReactNode {
   const {t} = usePluginTranslation()
   const hFlip = useAppStoreContext((s) => s.hFlip)
   const vFlip = useAppStoreContext((s) => s.vFlip)
@@ -47,5 +48,3 @@ const Flip = () => {
     </Flex>
   )
 }
-
-export default Flip

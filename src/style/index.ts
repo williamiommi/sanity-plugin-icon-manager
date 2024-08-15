@@ -100,13 +100,13 @@ export const StyledColorPaletteWrapper = styled.div`
 `
 
 interface StyledColorPaletteBoxProps {
-  bgColor: string
+  $bgColor: string
 }
 export const StyledColorPaletteBox = styled.button<StyledColorPaletteBoxProps>`
   width: 20px;
   height: 20px;
   border-radius: 2px;
-  background: ${(p) => p.bgColor};
+  background: ${(p) => p.$bgColor};
   cursor: pointer;
   border: 1px solid ${(p) => p.theme.color.base.fg};
 `

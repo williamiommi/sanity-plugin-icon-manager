@@ -1,10 +1,10 @@
 import {Flex, Select, Text} from '@sanity/ui'
-import {FormEvent, useCallback} from 'react'
+import {FormEvent, ReactNode, useCallback} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 
-const FilterStyle = () => {
+export default function FilterStyle(): ReactNode {
   const {t} = usePluginTranslation()
   const filterStyle = useAppStoreContext((s) => s.filterStyle)
   const setFilterStyle = useAppStoreContext((s) => s.setFilterStyle)
@@ -31,5 +31,3 @@ const FilterStyle = () => {
     </Flex>
   )
 }
-
-export default FilterStyle

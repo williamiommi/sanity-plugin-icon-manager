@@ -1,7 +1,7 @@
 import {Icon} from '@iconify/react'
 import {InfoOutlineIcon} from '@sanity/icons'
 import {Card, Flex, Text, useTheme} from '@sanity/ui'
-import {useMemo} from 'react'
+import {ReactNode, useMemo} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../../store/context'
@@ -9,7 +9,7 @@ import BaseTooltip from '../../BaseTooltip'
 
 const PREVIEW_SIZE_LIMIT = 300
 
-const Preview = () => {
+export default function Preview(): ReactNode {
   const {t} = usePluginTranslation()
   const theme = useTheme()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
@@ -66,5 +66,3 @@ const Preview = () => {
     </Card>
   )
 }
-
-export default Preview

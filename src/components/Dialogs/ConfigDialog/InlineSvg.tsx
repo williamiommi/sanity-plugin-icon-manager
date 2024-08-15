@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import {Flex, Switch, Text} from '@sanity/ui'
+import {ReactNode} from 'react'
 
 import usePluginTranslation from '../../../hooks/usePluginTranslation'
 import {buildSvgHtml} from '../../../lib/svg-utils'
 import {toastError} from '../../../lib/toast-utils'
 import {useAppStoreContext} from '../../../store/context'
 
-const InlineSvg = () => {
+export default function InlineSvg(): ReactNode {
   const {t} = usePluginTranslation()
   const {
     sanityValue,
@@ -49,5 +50,3 @@ const InlineSvg = () => {
     </Flex>
   )
 }
-
-export default InlineSvg
