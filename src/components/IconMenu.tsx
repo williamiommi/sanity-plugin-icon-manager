@@ -53,20 +53,20 @@ export default function IconMenu({actions}: Props): ReactNode {
   ]
 
   return (
-    <StyledIconMenu padding={2} wrap='wrap' direction={['column', 'column', 'row']}>
-      <StyledIconMenuInfoTitleWrapper align='center' gap={1}>
+    <StyledIconMenu>
+      <StyledIconMenuInfoTitleWrapper>
         <IconPreview value={sanityValue} width={20} height={20} hideText />
         <Text muted weight='semibold'>
           {t('menu.info.title')}
         </Text>
         {hasBeenCustomized && <CustomizedBadge />}
       </StyledIconMenuInfoTitleWrapper>
-      <StyledIconMenuActionsTitleWrapper align='center'>
+      <StyledIconMenuActionsTitleWrapper>
         <Text muted weight='semibold'>
           {t('menu.actions.title')}
         </Text>
       </StyledIconMenuActionsTitleWrapper>
-      <StyledIconMenuInfoWrapper align='center' marginTop={2} marginBottom={[2, 2, 0]}>
+      <StyledIconMenuInfoWrapper>
         <StyledIconMenuInfoCard tone='primary' paddingY={4} paddingX={2} sizing='border'>
           <Flex direction='column' gap={3}>
             {info.map((item) => (
@@ -90,12 +90,7 @@ export default function IconMenu({actions}: Props): ReactNode {
           </Flex>
         </StyledIconMenuInfoCard>
       </StyledIconMenuInfoWrapper>
-      <StyledIconMenuActionsWrapper
-        direction='column'
-        justify='center'
-        marginTop={2}
-        marginBottom={[2, 2, 0]}
-      >
+      <StyledIconMenuActionsWrapper>
         {actions.map((action) => (
           <Button
             key={action.label}

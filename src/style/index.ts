@@ -1,4 +1,4 @@
-import {Badge, Card, Flex, Text} from '@sanity/ui'
+import {Badge, Card, Text} from '@sanity/ui'
 import styled from 'styled-components'
 
 export const PaginationButton = styled.button`
@@ -119,26 +119,38 @@ export const StyledColorPaletteBox = styled.button<StyledColorPaletteBoxProps>`
 // ###
 const isMobile = (mediaIndex: number) => mediaIndex < 2
 
-const StyledBaseLeftIconMenu = styled(Flex)`
+const StyledBaseLeftIconMenu = styled.div`
+  display: flex;
   width: ${(props) => (isMobile(props.theme.mediaIndex) ? '100%' : '350px')};
 `
-const StyledBaseRightIconMenu = styled(Flex)`
+const StyledBaseRightIconMenu = styled.div`
+  display: flex;
   width: ${(props) => (isMobile(props.theme.mediaIndex) ? '100%' : '150px')};
 `
 
-export const StyledIconMenu = styled(Flex)`
+export const StyledIconMenu = styled.div`
+  display: flex;
+  flex-direction: ${(props) => (isMobile(props.theme.mediaIndex) ? 'column' : 'row')};
+  flex-wrap: wrap;
+  padding: 8px;
   width: ${(props) => (isMobile(props.theme.mediaIndex) ? '250px' : '500px')};
 `
 
 export const StyledIconMenuInfoTitleWrapper = styled(StyledBaseLeftIconMenu)`
+  gap: 4px;
+  align-items: center;
   order: ${(props) => (isMobile(props.theme.mediaIndex) ? 1 : 'unset')};
 `
 
 export const StyledIconMenuActionsTitleWrapper = styled(StyledBaseRightIconMenu)`
+  align-items: center;
   order: ${(props) => (isMobile(props.theme.mediaIndex) ? 3 : 'unset')};
 `
 
 export const StyledIconMenuInfoWrapper = styled(StyledBaseLeftIconMenu)`
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: ${(props) => (isMobile(props.theme.mediaIndex) ? '8px' : '0')};
   order: ${(props) => (isMobile(props.theme.mediaIndex) ? 2 : 'unset')};
 `
 
@@ -147,6 +159,10 @@ export const StyledIconMenuInfoCard = styled(Card)`
 `
 
 export const StyledIconMenuActionsWrapper = styled(StyledBaseRightIconMenu)`
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: ${(props) => (isMobile(props.theme.mediaIndex) ? '8px' : '0')};
   order: ${(props) => (isMobile(props.theme.mediaIndex) ? 4 : 'unset')};
 `
 
