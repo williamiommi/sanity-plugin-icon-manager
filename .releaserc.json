@@ -5,6 +5,7 @@
     {
       "name": "release/v1",
       "range": "1.x.x"
-    }
+    },
+    "dry-run"
   ]
 }
