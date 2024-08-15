@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.0.0...v2.0.1) (2024-08-15)
+
+### Bug Fixes
+
+- **ui:** fix issue with context menu ([866b54f](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/866b54f539741bf5a20de99547052878ce0a93c6))
+
 ## [2.0.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.5.2...v2.0.0) (2024-08-15)
 
 ### ⚠ BREAKING CHANGES
