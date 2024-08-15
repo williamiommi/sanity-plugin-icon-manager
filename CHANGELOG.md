@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.0.1...v2.0.2) (2024-08-15)
+
+### Bug Fixes
+
+- **ui:** revert to previous version and fix ui issue with box-sizing: content-box ([67ae0a2](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/67ae0a2fc08a6e69119efc538d43f66bde58a15e))
+
 ## [2.0.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.0.0...v2.0.1) (2024-08-15)
 
 ### Bug Fixes
