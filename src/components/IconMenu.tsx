@@ -22,13 +22,13 @@ interface Props {
     label: string
     tooltip: string
     handleFn: () => void
+    enable?: boolean
   }[]
 }
 
 export default function IconMenu({actions}: Props): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
-  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
 
   const info = [
@@ -105,14 +105,14 @@ export default function IconMenu({actions}: Props): ReactNode {
             fontSize={1}
             style={{
               width: '100%',
-              cursor: sanityUserCanEdit ? 'pointer' : 'not-allowed',
-              opacity: sanityUserCanEdit ? 1 : 0.7,
+              cursor: action.enable ? 'pointer' : 'not-allowed',
+              opacity: action.enable ? 1 : 0.7,
             }}
             onClick={action.handleFn}
             icon={action.icon}
             text={action.label}
             justify='flex-start'
-            disabled={!sanityUserCanEdit}
+            disabled={!action.enable}
           />
         ))}
       </StyledIconMenuActionsWrapper>

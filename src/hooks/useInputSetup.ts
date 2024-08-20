@@ -7,6 +7,7 @@ import {DEFAULT_API_URL, FALLBACK_SIZE} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 import {IconManagerType} from '../types/IconManagerType'
+import useUserCanConfigure from './useUserCanConfigure'
 
 const useInputSetup = (
   objectInputProps: ObjectInputProps,
@@ -29,6 +30,8 @@ const useInputSetup = (
   const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
   const updateSize = useAppStoreContext((s) => s.updateSize)
   const setColor = useAppStoreContext((s) => s.setColor)
+
+  useUserCanConfigure(objectInputProps, pluginOptions)
 
   useEffect(() => {
     const value = objectInputProps.value as IconManagerType

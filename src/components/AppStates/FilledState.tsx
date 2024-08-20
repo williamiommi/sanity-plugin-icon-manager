@@ -25,6 +25,7 @@ export default function FilledState(): ReactNode {
   const openJsonDialog = useAppStoreContext((s) => s.openJsonDialog)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
   const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
+  const userCanConfigure = useAppStoreContext((s) => s.userCanConfigure)
 
   if (!sanityValue?.icon) return null
 
@@ -34,18 +35,21 @@ export default function FilledState(): ReactNode {
       label: t('configure.icon.label'),
       tooltip: t('configure.icon.tooltip'),
       handleFn: openConfigDialog,
+      enable: sanityUserCanEdit && userCanConfigure,
     },
     {
       icon: <DividerIcon width={18} height={18} />,
       label: t('change.icon.label'),
       tooltip: t('change.icon.tooltip'),
       handleFn: openSearchDialog,
+      enable: sanityUserCanEdit,
     },
     {
       icon: <TrashIcon width={18} height={18} />,
       label: t('remove.icon.label'),
       tooltip: t('remove.icon.tooltip'),
       handleFn: openRemoveDialog,
+      enable: sanityUserCanEdit,
     },
   ]
 
@@ -65,8 +69,9 @@ export default function FilledState(): ReactNode {
               }}
             >
               {hasBeenCustomized && <CustomizedBadge />}
-              {sanityUserCanEdit &&
-                actions.map((action) => (
+              {actions.map((action) => {
+                if (!action.enable) return null
+                return (
                   <BaseTooltip key={action.label} portal placement='top' content={action.tooltip}>
                     <Button
                       mode='bleed'
@@ -76,7 +81,8 @@ export default function FilledState(): ReactNode {
                       onClick={action.handleFn}
                     />
                   </BaseTooltip>
-                ))}
+                )
+              })}
             </Flex>
           </Box>
           <MenuButton

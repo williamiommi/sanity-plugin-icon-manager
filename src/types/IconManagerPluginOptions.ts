@@ -8,6 +8,9 @@ export type PluginCustomColor = {
 export type PluginCustomPalette = (string | PluginCustomColor)[]
 
 export default interface IconManagerPluginOptions {
+  configurationDialog?: {
+    hideFor?: 'all' | string[]
+  }
   defaultSize?: IconManagerSize
   customEndpoint?: string
   customPalette?: PluginCustomPalette
