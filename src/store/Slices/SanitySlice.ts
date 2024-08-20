@@ -7,12 +7,16 @@ import {IconManagerType} from '../../types/IconManagerType'
 type SanityPatchType = (patch: FormPatch | FormPatch[] | PatchEvent) => void
 type SanityPathFocusType = (path: Path) => void
 
+type UserCanType = {
+  edit?: boolean
+  configure?: boolean
+}
+
 export interface SanitySlice {
   sanityFieldPath?: Path
   sanityValue?: IconManagerType
   sanityToast?: ToastContextValue
-  sanityUserCanEdit?: boolean
-  userCanConfigure?: boolean
+  userCan: UserCanType
   sanityPatch?: SanityPatchType
   sanityPathFocus?: SanityPathFocusType
   setSanityFieldPath: (sanityFieldPath: Path) => void
@@ -21,11 +25,11 @@ export interface SanitySlice {
   setSanityPatch: (sanityPatch: SanityPatchType) => void
   setSanityPathFocus: (sanityPathFocus: SanityPathFocusType) => void
   setSanityPresence: () => void
-  setSanityUserCanEdit: (sanityUserCanEdit?: boolean) => void
-  setUserCanConfigure: (userCanConfigure?: boolean) => void
+  setUserCan: (userCan: UserCanType) => void
 }
 
 export const createSanitySlice: StateCreator<SanitySlice, [], [], SanitySlice> = (set, get) => ({
+  userCan: {edit: true, configure: true},
   setSanityFieldPath: (sanityFieldPath: Path) => set(() => ({sanityFieldPath})),
   setSanityValue: (sanityValue?: IconManagerType) => set(() => ({sanityValue})),
   setSanityToast: (sanityToast: ToastContextValue) => set(() => ({sanityToast})),
@@ -36,6 +40,5 @@ export const createSanitySlice: StateCreator<SanitySlice, [], [], SanitySlice> =
     const sanityFieldPath = get().sanityFieldPath
     if (sanityPathFocus && sanityFieldPath) sanityPathFocus(sanityFieldPath)
   },
-  setSanityUserCanEdit: (sanityUserCanEdit?: boolean) => set(() => ({sanityUserCanEdit})),
-  setUserCanConfigure: (userCanConfigure?: boolean) => set(() => ({userCanConfigure})),
+  setUserCan: (userCan: UserCanType) => set(() => ({userCan})),
 })

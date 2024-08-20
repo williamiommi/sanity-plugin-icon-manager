@@ -7,7 +7,7 @@ import {DEFAULT_API_URL, FALLBACK_SIZE} from '../lib/constants'
 import {useAppStoreContext} from '../store/context'
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 import {IconManagerType} from '../types/IconManagerType'
-import useUserCanConfigure from './useUserCanConfigure'
+import useUserCan from './useUserCan'
 
 const useInputSetup = (
   objectInputProps: ObjectInputProps,
@@ -24,14 +24,14 @@ const useInputSetup = (
   const setSanityPatch = useAppStoreContext((s) => s.setSanityPatch)
   const setSanityPathFocus = useAppStoreContext((s) => s.setSanityPathFocus)
   const setSanityToast = useAppStoreContext((s) => s.setSanityToast)
-  const setSanityUserCanEdit = useAppStoreContext((s) => s.setSanityUserCanEdit)
   const setRotate = useAppStoreContext((s) => s.setRotate)
   const setFlip = useAppStoreContext((s) => s.setFlip)
   const setInlineSvg = useAppStoreContext((s) => s.setInlineSvg)
   const updateSize = useAppStoreContext((s) => s.updateSize)
   const setColor = useAppStoreContext((s) => s.setColor)
 
-  useUserCanConfigure(objectInputProps, pluginOptions)
+  // this hook set all the booleans related to what the user can do, based on permissions
+  useUserCan(objectInputProps, pluginOptions)
 
   useEffect(() => {
     const value = objectInputProps.value as IconManagerType
@@ -54,7 +54,6 @@ const useInputSetup = (
     setSanityPatch(objectInputProps.onChange)
     setSanityPathFocus(objectInputProps.onPathFocus)
     setSanityToast(sanityToast)
-    setSanityUserCanEdit(!objectInputProps.readOnly)
     setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
 
     setDefaultSize(

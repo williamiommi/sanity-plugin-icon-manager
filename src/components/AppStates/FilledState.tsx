@@ -24,8 +24,7 @@ export default function FilledState(): ReactNode {
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
   const openJsonDialog = useAppStoreContext((s) => s.openJsonDialog)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
-  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
-  const userCanConfigure = useAppStoreContext((s) => s.userCanConfigure)
+  const userCan = useAppStoreContext((s) => s.userCan)
 
   if (!sanityValue?.icon) return null
 
@@ -35,21 +34,21 @@ export default function FilledState(): ReactNode {
       label: t('configure.icon.label'),
       tooltip: t('configure.icon.tooltip'),
       handleFn: openConfigDialog,
-      enable: sanityUserCanEdit && userCanConfigure,
+      enable: userCan.edit && userCan.configure,
     },
     {
       icon: <DividerIcon width={18} height={18} />,
       label: t('change.icon.label'),
       tooltip: t('change.icon.tooltip'),
       handleFn: openSearchDialog,
-      enable: sanityUserCanEdit,
+      enable: userCan.edit,
     },
     {
       icon: <TrashIcon width={18} height={18} />,
       label: t('remove.icon.label'),
       tooltip: t('remove.icon.tooltip'),
       handleFn: openRemoveDialog,
-      enable: sanityUserCanEdit,
+      enable: userCan.edit,
     },
   ]
 
