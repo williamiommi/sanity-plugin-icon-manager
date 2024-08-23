@@ -127,16 +127,16 @@ This is the main configuration of the plugin. The available options are:
     inlineSvg?: boolean
   }
 
+  // this option allows you to hide the configuration modal, when you select and icon, you can't configure it anymore.
+  // the `all` value hide the configuration for everyone
+  // the array of string lets you hide the modal only for specific user roles. You can use the ! operator to do the opposite (with the array, admin role has always access to the modal).
+  // example 1:
+  // hideFor: ['role-a'] -> modal hidden for users with only the role 'role-a'
+  // example 2:
+  // hideFor: ['role-a', 'role-b'] -> modal hidden for users with only 'role-a' or 'role-b' or both.
+  // example 3:
+  // hideFor: ['!administrator'] -> modal hidden for everyone except the administrator.
   configurationDialog?: {
-    // this option allows you to hide the configuration modal, when you select and icon, you can't configure it anymore.
-    // the `all` value hide the configuration for everyone
-    // the array of string lets you hide the modal only for specific user roles. You can use the ! operator to do the opposite (with the array, admin role has always access to the modal).
-    // example 1:
-    // hideFor: ['role-a'] -> modal hidden for users with only the role 'role-a'
-    // example 2:
-    // hideFor: ['role-a', 'role-b'] -> modal hidden for users with only 'role-a' or 'role-b' or both.
-    // example 3:
-    // hideFor: ['!administrator'] -> modal hidden for everyone except the administrator.
     hideFor?: 'all' | string[]
   }
 
