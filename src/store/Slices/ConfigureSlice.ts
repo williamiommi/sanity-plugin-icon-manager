@@ -67,12 +67,12 @@ export const createConfigureSlice: StateCreator<
     if (SV.metadata.hFlip) count++
     if (SV.metadata.vFlip) count++
     if (SV.metadata.rotate > 0) count++
-    if (SV.metadata.size.width !== get().defaultSize?.width) count++
-    if (SV.metadata.size.height !== get().defaultSize?.height) count++
+    if (SV.metadata.size.width !== get().defaults?.size?.width) count++
+    if (SV.metadata.size.height !== get().defaults?.size?.height) count++
     if (SV.metadata.color && SV.metadata.color.hex) count++
     return count > 0
   },
-  clearConfiguration: () => set({...initialState, size: {...get().defaultSize!}}),
+  clearConfiguration: () => set({...initialState, size: {...get().defaults?.size!}}),
   resetConfiguration: () => {
     const sanityValue = get().sanityValue
     set(() => ({

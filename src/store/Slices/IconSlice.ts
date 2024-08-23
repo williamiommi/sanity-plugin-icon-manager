@@ -23,8 +23,8 @@ export const createIconSlice: StateCreator<
   saveIcon: async ({icon, iconName, collection}: IconManagerIconInfo) => {
     try {
       const size = {
-        width: get().defaultSize!.width,
-        height: get().defaultSize!.height,
+        width: get().defaults?.size?.width!,
+        height: get().defaults?.size?.height!,
       }
 
       const urls = buildSvgUrls(get().iconifyEndpoint!, {icon, size})
@@ -59,8 +59,8 @@ export const createIconSlice: StateCreator<
       if (sanityPatch) {
         await sanityPatch(patches)
 
-        // if saveInlineOption is true, we need to store also the inline svg
-        if (get().inlineSvgOption) {
+        // if defaults.inlineSvg is true, we need to store also the inline svg
+        if (get().defaults?.inlineSvg) {
           await sanityPatch(
             patchSet(await buildSvgHtml({icon, ...metadata}), ['metadata.inlineSvg']),
           )
