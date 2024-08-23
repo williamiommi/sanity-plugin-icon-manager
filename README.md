@@ -56,6 +56,9 @@ Powered by [Iconify](https://iconify.design/)
   - Localization
   - UI refresh for some components
   - New JSON Dialog
+- v2.1.0+:
+  - option to hide the configuration modal
+  - new defaults option for size and inlineSvg.
 
 <br /><br />
 
@@ -117,15 +120,28 @@ This is the main configuration of the plugin. The available options are:
 
 ```ts
 {
+  defaults?: {
+    // This option allows you to set a default width and height for newly saved icons. If not set, the size defaults to 20x20, as it was before v1.5.0.
+    size?: { width: number, height: number }
+    // When set to true, this option allows you to automatically store the inline version of the selected icon. This means that the 'Inline Svg' checkbox will be preselected by default when you choose a new icon.
+    inlineSvg?: boolean
+  }
 
-  // This global option allows you to set a default width and height for newly saved icons. If not set, the size defaults to 20x20, as it was before v1.5.0.
-  defaultSize?: { width: number, height: number }
+  configurationDialog?: {
+    // this option allows you to hide the configuration modal, when you select and icon, you can't configure it anymore.
+    // the `all` value hide the configuration for everyone
+    // the array of string lets you hide the modal only for specific user roles. You can use the ! operator to do the opposite (with the array, admin role has always access to the modal).
+    // example 1:
+    // hideFor: ['role-a'] -> modal hidden for users with only the role 'role-a'
+    // example 2:
+    // hideFor: ['role-a', 'role-b'] -> modal hidden for users with only 'role-a' or 'role-b' or both.
+    // example 3:
+    // hideFor: ['!administrator'] -> modal hidden for everyone except the administrator.
+    hideFor?: 'all' | string[]
+  }
 
   // An array of strings containing a subset of collection IDs (e.g., ['ant-design', 'material-']). This can be used when you want to limit access to only specific collections. It utilizes the 'prefixes' query parameter available on the Iconify API. More information can be found here (https://iconify.design/docs/api/collections.html).
   availableCollections?: string[]
-
-  // When set to true, this global option allows you to automatically store the inline version of the selected icon. This means that the 'Inline Svg' checkbox will be preselected by default when you choose a new icon.
-  inlineSvg?: boolean
 
   // This is the endpoint if you decide to host your icon sets on your own server. For more details, see the dedicated session below
   customEndpoint?: string
@@ -138,6 +154,14 @@ This is the main configuration of the plugin. The available options are:
     },
     // other colors
   ]
+
+  // DEPRECATED since 2.1.0
+  // Use defaults.size instead
+  defaultSize?: { width: number, height: number }
+
+  // DEPRECATED since 2.1.0
+  // Use defaults.inlineSvg instead
+  inlineSvg?: boolean
 }
 ```
 
