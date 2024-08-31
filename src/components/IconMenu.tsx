@@ -96,25 +96,23 @@ export default function IconMenu({actions}: Props): ReactNode {
         marginTop={2}
         marginBottom={[2, 2, 0]}
       >
-        {actions.map((action) => (
-          <Button
-            key={action.label}
-            mode='bleed'
-            padding={2}
-            paddingY={3}
-            fontSize={1}
-            style={{
-              width: '100%',
-              cursor: action.enable ? 'pointer' : 'not-allowed',
-              opacity: action.enable ? 1 : 0.7,
-            }}
-            onClick={action.handleFn}
-            icon={action.icon}
-            text={action.label}
-            justify='flex-start'
-            disabled={!action.enable}
-          />
-        ))}
+        {actions.map((action) => {
+          if (!action.enable) return null
+          return (
+            <Button
+              key={action.label}
+              mode='bleed'
+              padding={2}
+              paddingY={3}
+              fontSize={1}
+              style={{width: '100%'}}
+              onClick={action.handleFn}
+              icon={action.icon}
+              text={action.label}
+              justify='flex-start'
+            />
+          )
+        })}
       </StyledIconMenuActionsWrapper>
     </StyledIconMenu>
   )
