@@ -105,7 +105,7 @@ export default function IconMenu({actions}: Props): ReactNode {
               padding={2}
               paddingY={3}
               fontSize={1}
-              style={{width: '100%'}}
+              style={{width: '100%', cursor: 'pointer'}}
               onClick={action.handleFn}
               icon={action.icon}
               text={action.label}
