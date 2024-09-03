@@ -7,10 +7,21 @@ export type PluginCustomColor = {
 
 export type PluginCustomPalette = (string | PluginCustomColor)[]
 
+export type PluginOptionsDefaults = {
+  size?: IconManagerSize
+  inlineSvg?: boolean
+}
+
 export default interface IconManagerPluginOptions {
-  defaultSize?: IconManagerSize
+  configurationDialog?: {
+    hideFor?: 'all' | string[]
+  }
+  defaults?: PluginOptionsDefaults
   customEndpoint?: string
   customPalette?: PluginCustomPalette
-  inlineSvg?: boolean
   availableCollections?: string[]
+  /**@deprecated use `defaults.size` instead. This will be removed in the next major release */
+  defaultSize?: IconManagerSize
+  /**@deprecated use `defaults.inlineSvg` instead. This will be removed in the next major release */
+  inlineSvg?: boolean
 }

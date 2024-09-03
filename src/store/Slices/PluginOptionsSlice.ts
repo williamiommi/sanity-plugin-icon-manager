@@ -1,19 +1,20 @@
 import {StateCreator} from 'zustand'
 
 import {isValidHex} from '../../lib/color-utils'
-import {PluginCustomColor, PluginCustomPalette} from '../../types/IconManagerPluginOptions'
-import {IconManagerSize} from '../../types/IconManagerType'
+import {
+  PluginCustomColor,
+  PluginCustomPalette,
+  PluginOptionsDefaults,
+} from '../../types/IconManagerPluginOptions'
 
 export interface PluginOptionsSlice {
-  defaultSize?: IconManagerSize
+  defaults?: PluginOptionsDefaults
   availableCollectionsOption?: string
-  inlineSvgOption?: boolean
   iconifyEndpoint?: string
   customPalette?: PluginCustomColor[]
-  setDefaultSize: (defaultSize: IconManagerSize) => void
+  setDefaults: (defaults: PluginOptionsDefaults) => void
   setIconifyEndpoint: (iconifyEndpoint: string) => void
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => void
-  setInlineSvgOption: (inlineSvg: boolean) => void
   setAvailableCollectionsOption: (availableCollectionsOption: string[]) => void
 }
 
@@ -23,7 +24,7 @@ export const createPluginOptionsSlice: StateCreator<
   [],
   PluginOptionsSlice
 > = (set) => ({
-  setDefaultSize: (defaultSize: IconManagerSize) => set(() => ({defaultSize})),
+  setDefaults: (defaults: PluginOptionsDefaults) => set(() => ({defaults})),
   setIconifyEndpoint: (iconifyEndpoint: string) => set(() => ({iconifyEndpoint})),
   setPluginOptionCustomPalette: (customPalette: PluginCustomPalette) => {
     if (!customPalette) return // do nothing
@@ -43,7 +44,6 @@ export const createPluginOptionsSlice: StateCreator<
 
     set(() => ({customPalette: finalPalette}))
   },
-  setInlineSvgOption: (inlineSvgOption: boolean) => set(() => ({inlineSvgOption})),
   setAvailableCollectionsOption: (availableCollectionsOption: string[]) =>
     set(() => ({availableCollectionsOption: availableCollectionsOption.join(',')})),
 })

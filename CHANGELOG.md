@@ -5,6 +5,44 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.0.1...v2.0.2) (2024-08-15)
+
+### Bug Fixes
+
+- **ui:** revert to previous version and fix ui issue with box-sizing: content-box ([67ae0a2](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/67ae0a2fc08a6e69119efc538d43f66bde58a15e))
+
+## [2.0.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.0.0...v2.0.1) (2024-08-15)
+
+### Bug Fixes
+
+- **ui:** fix issue with context menu ([866b54f](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/866b54f539741bf5a20de99547052878ce0a93c6))
+
+## [2.0.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.5.2...v2.0.0) (2024-08-15)
+
+### ⚠ BREAKING CHANGES
+
+- **i18n-ui:** This upgrade requires node >=18
+- **i18n-ui:** This feature requires Sanity v3.23.0 or later.
+- **i18n-ui:** This feature requires Sanity v3.23.0 or later.
+- **i18n-ui:** This feature requires Sanity v3.23.0 or later.
+- **i18n-ui:** This feature requires Sanity v3.23.0 or later.
+
+### Features
+
+- **i18n-ui:** introduced new real aspect-ratio calculator ([bcfbb99](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/bcfbb9900cf52543b98f5afe83f670eeca968c3c))
+- **i18n-ui:** introducing localized labels ([efa541e](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/efa541e6c72a4dd9fe328b56c351a42ab1d7550f))
+- **i18n-ui:** new italian labels ([b7923a8](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/b7923a83604f8e8adaa10481bba385bab99ea76f))
+- **i18n-ui:** new UI ([4cca124](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/4cca1241807242be43e72415a14f6750196513b4))
+- **i18n-ui:** update lock ([7daf824](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/7daf824640ae574f0ad1e30aa6dd0135869b1b2a))
+- **i18n-ui:** update sanity version ([ae81f61](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/ae81f61487f093ae935ef15a691c6dfcaa1abff7))
+- **i18n-ui:** upgrade sanity/plugin-kit to 4.0.18 ([25aac70](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/25aac70d945a8e6f0e4d57eee5dc98a955903a66))
+
+### Bug Fixes
+
+- **general:** readonly prop was not managed properly, now if readonly is true, user can't edit ([d69c2c0](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/d69c2c04d44fb6109114331572ff6d8420c024bf))
+- temp fix for an issue with semantic release ([7912511](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/7912511d7b5267b34af46673f5ef9bed8efe618e))
+- temp fix for an issue with semantic release ([e5782c7](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/e5782c7307040fd4572ef7584256f173c688753a))
+
 ## [1.5.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v1.5.1...v1.5.2) (2024-06-22)
 
 ### Bug Fixes

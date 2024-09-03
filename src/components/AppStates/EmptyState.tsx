@@ -8,7 +8,7 @@ import {useAppStoreContext} from '../../store/context'
 export default function EmptyState(): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
-  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
+  const userCan = useAppStoreContext((s) => s.userCan)
   const openSearchDialog = useAppStoreContext((s) => s.openSearchDialog)
 
   if (sanityValue?.icon) return null
@@ -21,7 +21,7 @@ export default function EmptyState(): ReactNode {
       icon={<AddIcon width={18} />}
       fontSize={1}
       onClick={openSearchDialog}
-      disabled={!sanityUserCanEdit}
+      disabled={!userCan.edit}
     />
   )
 }
