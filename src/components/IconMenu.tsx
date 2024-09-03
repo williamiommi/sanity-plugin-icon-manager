@@ -22,13 +22,13 @@ interface Props {
     label: string
     tooltip: string
     handleFn: () => void
+    enable?: boolean
   }[]
 }
 
 export default function IconMenu({actions}: Props): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
-  const sanityUserCanEdit = useAppStoreContext((s) => s.sanityUserCanEdit)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
 
   const info = [
@@ -96,25 +96,23 @@ export default function IconMenu({actions}: Props): ReactNode {
         marginTop={2}
         marginBottom={[2, 2, 0]}
       >
-        {actions.map((action) => (
-          <Button
-            key={action.label}
-            mode='bleed'
-            padding={2}
-            paddingY={3}
-            fontSize={1}
-            style={{
-              width: '100%',
-              cursor: sanityUserCanEdit ? 'pointer' : 'not-allowed',
-              opacity: sanityUserCanEdit ? 1 : 0.7,
-            }}
-            onClick={action.handleFn}
-            icon={action.icon}
-            text={action.label}
-            justify='flex-start'
-            disabled={!sanityUserCanEdit}
-          />
-        ))}
+        {actions.map((action) => {
+          if (!action.enable) return null
+          return (
+            <Button
+              key={action.label}
+              mode='bleed'
+              padding={2}
+              paddingY={3}
+              fontSize={1}
+              style={{width: '100%', cursor: 'pointer'}}
+              onClick={action.handleFn}
+              icon={action.icon}
+              text={action.label}
+              justify='flex-start'
+            />
+          )
+        })}
       </StyledIconMenuActionsWrapper>
     </StyledIconMenu>
   )
