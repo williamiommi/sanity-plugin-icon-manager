@@ -70,7 +70,7 @@ export const createConfigureSlice: StateCreator<
     if (SV.metadata.size.width !== get().defaults?.size?.width) count++
     if (SV.metadata.size.height !== get().defaults?.size?.height) count++
     if (SV.metadata.color && SV.metadata.color.hex) count++
-    return count > 0
+    return count > 0 && !!get().userCan.configure
   },
   clearConfiguration: () => set({...initialState, size: {...get().defaults?.size!}}),
   resetConfiguration: () => {
