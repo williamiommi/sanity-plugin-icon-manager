@@ -127,7 +127,7 @@ const StyledBaseRightIconMenu = styled(Flex)`
 `
 
 export const StyledIconMenu = styled(Flex)`
-  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '250px' : '500px')};
+  width: ${(props) => (isMobile(props.theme.mediaIndex) ? '250px' : '490px')};
   box-sizing: content-box;
 `
 

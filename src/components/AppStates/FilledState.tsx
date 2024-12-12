@@ -1,19 +1,18 @@
 /* eslint-disable react/jsx-no-bind */
 import {EllipsisHorizontalIcon} from '@sanity/icons'
-import {Box, Button, Card, Flex, Menu, MenuButton} from '@sanity/ui'
+import {Box, Button, Card, Flex} from '@sanity/ui'
 import {ReactNode, useState} from 'react'
 
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import BaseTooltip from '../BaseTooltip'
 import CustomizedBadge from '../CustomizedBadge'
-import IconMenu from '../IconMenu'
 import IconPreview from '../IconPreview'
 import CogIcon from '../icons/CogIcon'
 import DividerIcon from '../icons/DividerIcon'
 import JsonIcon from '../icons/JsonIcon'
 import TrashIcon from '../icons/TrashIcon'
-import SvgButtons from '../SvgButtons'
+import InfoMenu from '../InfoMenu'
 
 export default function FilledState(): ReactNode {
   const {t} = usePluginTranslation()
@@ -84,26 +83,11 @@ export default function FilledState(): ReactNode {
               })}
             </Flex>
           </Box>
-          <MenuButton
-            id='menu'
-            button={
-              <Button
-                mode='bleed'
-                tone='default'
-                icon={EllipsisHorizontalIcon}
-                style={{cursor: 'pointer'}}
-              />
-            }
+          <InfoMenu
+            menuIcon={EllipsisHorizontalIcon}
+            actions={actions}
             onOpen={() => setIsMenuOpen(true)}
             onClose={() => setIsMenuOpen(false)}
-            popover={{placement: 'bottom-end'}}
-            menu={
-              <Menu padding={0}>
-                <IconMenu actions={actions} />
-                <Card borderBottom />
-                <SvgButtons />
-              </Menu>
-            }
           />
         </Flex>
       </Card>
