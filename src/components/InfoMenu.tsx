@@ -6,10 +6,12 @@ import usePluginTranslation from '../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../store/context'
 import {StyledIconMenu} from '../style'
 import IconPreview from './IconPreview'
+import TrashIcon from './icons/TrashIcon'
 import SvgButtons from './SvgButtons'
 
 interface Props {
   menuIcon: ElementType | ReactNode
+  showTrash?: boolean
   onClose?: () => void
   onOpen?: () => void
   actions?: {
@@ -21,9 +23,16 @@ interface Props {
   }[]
 }
 
-export default function InfoMenu({menuIcon, onOpen, onClose, actions}: Props): ReactNode {
+export default function InfoMenu({
+  menuIcon,
+  showTrash,
+  onOpen,
+  onClose,
+  actions,
+}: Props): ReactNode {
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
+  const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
 
   const info = [
     {
@@ -65,11 +74,25 @@ export default function InfoMenu({menuIcon, onOpen, onClose, actions}: Props): R
               style={{width: '100%'}}
             >
               <Box flex={[2]} style={{width: '100%'}}>
-                <Flex align='center' gap={1}>
-                  <IconPreview value={sanityValue} width={20} height={20} hideText />
-                  <Text muted weight='semibold'>
-                    {t('menu.info.title')}
-                  </Text>
+                <Flex align='center' justify='space-between' gap={1}>
+                  <Flex align='center' gap={1}>
+                    <IconPreview value={sanityValue} width={20} height={20} hideText />
+                    <Text muted weight='semibold'>
+                      {t('menu.info.title')}
+                    </Text>
+                  </Flex>
+                  {showTrash && (
+                    <Button
+                      mode='bleed'
+                      padding={2}
+                      paddingY={3}
+                      fontSize={1}
+                      style={{cursor: 'pointer'}}
+                      justify='flex-start'
+                      icon={<TrashIcon width={20} height={20} />}
+                      onClick={openRemoveDialog}
+                    />
+                  )}
                 </Flex>
                 <Card tone='primary' paddingY={4} paddingX={2} marginTop={1} sizing='border'>
                   <Flex direction='column' gap={3}>
