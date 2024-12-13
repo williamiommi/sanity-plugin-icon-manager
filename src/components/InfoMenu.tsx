@@ -5,6 +5,7 @@ import {ElementType, ReactNode} from 'react'
 import usePluginTranslation from '../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../store/context'
 import {StyledIconMenu} from '../style'
+import BaseTooltip from './BaseTooltip'
 import IconPreview from './IconPreview'
 import TrashIcon from './icons/TrashIcon'
 import SvgButtons from './SvgButtons'
@@ -82,16 +83,18 @@ export default function InfoMenu({
                     </Text>
                   </Flex>
                   {showTrash && (
-                    <Button
-                      mode='bleed'
-                      padding={2}
-                      paddingY={3}
-                      fontSize={1}
-                      style={{cursor: 'pointer'}}
-                      justify='flex-start'
-                      icon={<TrashIcon width={20} height={20} />}
-                      onClick={openRemoveDialog}
-                    />
+                    <BaseTooltip portal placement='top' content={t('remove.icon.tooltip')}>
+                      <Button
+                        mode='bleed'
+                        padding={2}
+                        paddingTop={3}
+                        fontSize={1}
+                        style={{cursor: 'pointer'}}
+                        justify='flex-start'
+                        icon={<TrashIcon width={20} height={20} />}
+                        onClick={openRemoveDialog}
+                      />
+                    </BaseTooltip>
                   )}
                 </Flex>
                 <Card tone='primary' paddingY={4} paddingX={2} marginTop={1} sizing='border'>
