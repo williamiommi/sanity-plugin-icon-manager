@@ -16,7 +16,7 @@ export default function TabPanelSearch({hidden}: TabPanelSearchProps): ReactNode
     <TabPanel id='search-panel' aria-labelledby='search-tab' hidden={hidden}>
       <SearchInput />
       <SearchFilters />
-      <ResultsGrid items={searchResults} border marginX={4} marginBottom={5} />
+      <ResultsGrid items={searchResults} margin={4} marginTop={0} />
     </TabPanel>
   )
 }

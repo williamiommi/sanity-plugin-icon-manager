@@ -1,5 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
-import {Badge, Card, Grid, Label, ResponsiveMarginProps} from '@sanity/ui'
+import {
+  Badge,
+  Box,
+  Card,
+  Grid,
+  Label,
+  ResponsiveMarginProps,
+  ResponsivePaddingProps,
+} from '@sanity/ui'
 import {ReactNode} from 'react'
 
 import usePagination from '../../hooks/usePagination'
@@ -10,17 +18,17 @@ import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import Pagination from '../Pagination'
 import ResultsGridItem from './ResultsGridItem'
 
-interface ResultsGridProps extends ResponsiveMarginProps {
+type ResponsiveSpacingProps = ResponsivePaddingProps & ResponsiveMarginProps
+
+interface ResultsGridProps extends ResponsiveSpacingProps {
   items?: IconManagerIconInfo[]
   collection?: IconifyInfoEnhanced
-  border?: boolean
 }
 
 export default function ResultsGrid({
   items,
   collection,
-  border,
-  ...responsiveMargin
+  ...responsiveSpacing
 }: ResultsGridProps): ReactNode {
   const {t} = usePluginTranslation()
   const {currentItems, ...paginationBag} = usePagination<IconManagerIconInfo>(items)
@@ -33,8 +41,7 @@ export default function ResultsGrid({
       <Badge
         tone='critical'
         radius={0}
-        marginX={4}
-        marginBottom={4}
+        margin={4}
         style={{
           display: 'block',
           fontWeight: 'bold',
@@ -48,9 +55,9 @@ export default function ResultsGrid({
     )
 
   return (
-    <>
+    <Box {...responsiveSpacing}>
       <Pagination {...paginationBag} />
-      <Card border={border} radius={3} padding={4} {...responsiveMargin}>
+      <Card>
         <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3}>
           {currentItems.map((item) => (
             <ResultsGridItem
@@ -63,6 +70,6 @@ export default function ResultsGrid({
           ))}
         </Grid>
       </Card>
-    </>
+    </Box>
   )
 }

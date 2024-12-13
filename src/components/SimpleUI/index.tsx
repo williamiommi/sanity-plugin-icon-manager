@@ -3,6 +3,7 @@ import {EllipsisHorizontalIcon} from '@sanity/icons'
 import {Box, Card, Flex, Popover, TextInput} from '@sanity/ui'
 import {ReactNode, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 
+import useClickOutside from '../../hooks/useClickOutside'
 import useDebounce from '../../hooks/useDebounce'
 import {useAppStoreContext} from '../../store/context'
 import InfoMenu from '../InfoMenu'
@@ -19,10 +20,12 @@ export default function SimpleUI(): ReactNode {
   const closeSearchDialog = useAppStoreContext((s) => s.closeSearchDialog)
   const [hasFocus, setFocus] = useState(false)
 
-  // const onBlurHandler = useCallback(() => {
-  //   setFocus(false)
-  //   closeSearchDialog()
-  // }, [setFocus, closeSearchDialog])
+  const onBlurHandler = useCallback(() => {
+    setFocus(false)
+    closeSearchDialog()
+  }, [setFocus, closeSearchDialog])
+
+  const wrapperRef = useClickOutside<HTMLDivElement>(onBlurHandler)
 
   const onFocusHandler = useCallback(() => {
     setFocus(true)
@@ -42,7 +45,7 @@ export default function SimpleUI(): ReactNode {
   }, [debouncedSearchTerm, searchIcons, closeSearchDialog])
 
   return (
-    <>
+    <div ref={wrapperRef}>
       <Card border radius={2}>
         <Flex align='center' justify='center'>
           <Box flex={1}>
@@ -54,7 +57,6 @@ export default function SimpleUI(): ReactNode {
               icon={sanityValue?.icon && <Icon icon={sanityValue.icon} />}
               onChange={setSearchTerm}
               onFocus={onFocusHandler}
-              // onBlur={onBlurHandler}
             />
           </Box>
           {sanityValue?.icon && (
@@ -65,13 +67,9 @@ export default function SimpleUI(): ReactNode {
         </Flex>
       </Card>
       <Popover
-        content={
-          <div style={{maxHeight: '440px'}}>
-            <ResultsGrid items={searchResults} />
-          </div>
-        }
+        content={<ResultsGrid items={searchResults} padding={3} />}
         open
-        style={{display: showPopover ? 'block' : 'none', paddingTop: '20px'}}
+        style={{display: showPopover ? 'block' : 'none'}}
         placement='bottom'
         fallbackPlacements={['bottom']}
         arrow={false}
@@ -79,6 +77,6 @@ export default function SimpleUI(): ReactNode {
         overflow='auto'
         referenceElement={inputRef.current}
       />
-    </>
+    </div>
   )
 }

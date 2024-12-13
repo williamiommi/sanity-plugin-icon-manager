@@ -21,9 +21,8 @@ const IconsGrid = ({searchTerm}: IconsGridProps): ReactNode => {
     <ResultsGrid
       items={filteredIcons}
       collection={selectedCollection?.collection}
-      border
-      marginX={4}
-      marginBottom={5}
+      margin={4}
+      marginTop={0}
     />
   )
 }

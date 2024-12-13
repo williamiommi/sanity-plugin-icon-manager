@@ -20,16 +20,17 @@ export default function Pagination({
   setPrevPage,
 }: PaginationProps): ReactNode {
   const {t} = usePluginTranslation()
+
   if (!totalPages) return null
 
   return (
     <Flex
       justify='space-between'
-      marginX={4}
-      marginY={1}
       gap={2}
       align='center'
       style={{minHeight: '22px'}}
+      paddingX={2}
+      marginBottom={2}
     >
       <Text as='i' size={1}>
         {t('dialog.add.icon.found.label', {count: totalItems})}
