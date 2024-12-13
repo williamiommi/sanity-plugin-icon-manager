@@ -14,6 +14,7 @@ import ConfigDialog from '../Dialogs/ConfigDialog'
 import JsonDialog from '../Dialogs/JsonDialog'
 import RemoveDialog from '../Dialogs/RemoveDialog'
 import SearchDialog from '../Dialogs/SearchDialog'
+import SimpleUI from '../SimpleUI'
 
 interface IconManagerInputComponentProps {
   objectInputProps: ObjectInputProps<IconManagerType>
@@ -31,9 +32,15 @@ export default function IconManagerInputComponent({
     <Box style={{position: 'relative'}}>
       <CustomFieldPresence objectInputProps={objectInputProps} />
 
-      {/* App States */}
-      <EmptyState />
-      <FilledState />
+      {pluginOptions?.defaults?.basicUI ? (
+        <SimpleUI />
+      ) : (
+        <>
+          {/* App States */}
+          <EmptyState />
+          <FilledState />
+        </>
+      )}
 
       {/* Dialogs */}
       {sanityValue?.icon && (
