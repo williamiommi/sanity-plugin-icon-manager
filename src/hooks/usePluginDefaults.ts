@@ -16,7 +16,6 @@ export default function usePluginDefaults(pluginOptions: IconManagerPluginOption
           height: FALLBACK_SIZE,
         },
       inlineSvg: pluginOptions?.defaults?.inlineSvg || pluginOptions?.inlineSvg,
-      basicUI: pluginOptions?.defaults?.basicUI || false,
     })
   }, [pluginOptions, setDefaults])
 }

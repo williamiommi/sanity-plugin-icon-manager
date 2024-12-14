@@ -10,10 +10,10 @@ export type PluginCustomPalette = (string | PluginCustomColor)[]
 export type PluginOptionsDefaults = {
   size?: IconManagerSize
   inlineSvg?: boolean
-  basicUI?: boolean
 }
 
 export default interface IconManagerPluginOptions {
+  keepItSimpleFor?: 'all' | string[]
   configurationDialog?: {
     hideFor?: 'all' | string[]
   }
