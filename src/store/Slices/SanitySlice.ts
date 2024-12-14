@@ -10,6 +10,7 @@ type SanityPathFocusType = (path: Path) => void
 type UserCanType = {
   edit?: boolean
   configure?: boolean
+  viewSimpleUI?: boolean
 }
 
 export interface SanitySlice {

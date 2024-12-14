@@ -17,7 +17,14 @@ const IconsGrid = ({searchTerm}: IconsGridProps): ReactNode => {
 
   if (!filteredIcons) return null
 
-  return <ResultsGrid items={filteredIcons} collection={selectedCollection?.collection} />
+  return (
+    <ResultsGrid
+      items={filteredIcons}
+      collection={selectedCollection?.collection}
+      margin={4}
+      marginTop={0}
+    />
+  )
 }
 
 export default memo(IconsGrid)

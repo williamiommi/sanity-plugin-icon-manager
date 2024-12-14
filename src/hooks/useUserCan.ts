@@ -2,6 +2,7 @@ import {useEffect, useMemo} from 'react'
 import {ObjectInputProps, useCurrentUser} from 'sanity'
 
 import userCanConfigureByRole from '../lib/userCanConfigureByRole'
+import userCanViewSimpleUiByRole from '../lib/userCanViewSimpleUiByRole'
 import {useAppStoreContext} from '../store/context'
 import IconManagerPluginOptions from '../types/IconManagerPluginOptions'
 
@@ -16,10 +17,12 @@ export default function useUserCan(
     setUserCan({
       edit: !objectInputProps.readOnly,
       configure: userCanConfigureByRole(userRoles, pluginOptions?.configurationDialog?.hideFor),
+      viewSimpleUI: userCanViewSimpleUiByRole(userRoles, pluginOptions?.keepItSimpleFor),
     })
   }, [
     objectInputProps.readOnly,
     pluginOptions?.configurationDialog?.hideFor,
+    pluginOptions?.keepItSimpleFor,
     setUserCan,
     userRoles,
   ])

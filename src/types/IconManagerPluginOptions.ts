@@ -13,6 +13,7 @@ export type PluginOptionsDefaults = {
 }
 
 export default interface IconManagerPluginOptions {
+  keepItSimpleFor?: 'all' | string[]
   configurationDialog?: {
     hideFor?: 'all' | string[]
   }
