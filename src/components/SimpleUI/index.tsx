@@ -19,6 +19,7 @@ export default function SimpleUI(): ReactNode {
   const setSearchTerm = useAppStoreContext((s) => s.setSearchTerm)
   const searchIcons = useAppStoreContext((s) => s.searchIcons)
   const searchResults = useAppStoreContext((s) => s.searchResults)
+  const setSearchResults = useAppStoreContext((s) => s.setSearchResults)
   const closeSearchDialog = useAppStoreContext((s) => s.closeSearchDialog)
   const [hasFocus, setFocus] = useState(false)
 
@@ -41,8 +42,10 @@ export default function SimpleUI(): ReactNode {
   useEffect(() => {
     if (debouncedSearchTerm && debouncedSearchTerm.length >= 3) {
       searchIcons()
+    } else {
+      setSearchResults(undefined)
     }
-  }, [debouncedSearchTerm, searchIcons, closeSearchDialog])
+  }, [debouncedSearchTerm, searchIcons, closeSearchDialog, setSearchResults])
 
   return (
     <div ref={wrapperRef}>
