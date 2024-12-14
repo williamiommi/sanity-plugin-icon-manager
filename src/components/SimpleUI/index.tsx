@@ -5,11 +5,13 @@ import {ReactNode, useCallback, useEffect, useMemo, useRef, useState} from 'reac
 
 import useClickOutside from '../../hooks/useClickOutside'
 import useDebounce from '../../hooks/useDebounce'
+import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
 import InfoMenu from '../InfoMenu'
 import ResultsGrid from '../ResultsGrid'
 
 export default function SimpleUI(): ReactNode {
+  const {t} = usePluginTranslation()
   const inputRef = useRef<HTMLInputElement>(null)
   const searchTerm = useAppStoreContext((s) => s.searchTerm)
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
@@ -49,7 +51,7 @@ export default function SimpleUI(): ReactNode {
           <Box flex={1}>
             <TextInput
               border={false}
-              placeholder='Search icons...'
+              placeholder={t('simple.ui.placeholder')}
               ref={inputRef}
               style={{width: '100%'}}
               icon={sanityValue?.icon && <Icon icon={sanityValue.icon} />}

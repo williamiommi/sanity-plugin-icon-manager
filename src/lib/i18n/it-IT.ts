@@ -1,6 +1,9 @@
 export default {
   'add.icon.label': 'Aggiungi icona',
 
+  // simple UI
+  'simple.ui.placeholder': 'Search icons...',
+
   // add icon dialog
   'dialog.add.title': 'Cerca la tua icona',
   'dialog.add.search.tab.label': 'Cerca',
