@@ -1,4 +1,4 @@
-import {defineField, defineType, ObjectInputProps} from 'sanity'
+import {defineField, defineType, FieldProps, ObjectInputProps} from 'sanity'
 
 import IconManagerDiffComponent from '../../../components/IconManagerDiffComponent'
 import IconManagerInlineBlockComponent, {
@@ -47,6 +47,8 @@ const IconManagerObject = (pluginOptions: void | IconManagerPluginOptions): unkn
       inlineBlock: (props) =>
         IconManagerInlineBlockComponent(props as IconManagerInlineBlockComponentProps),
       diff: IconManagerDiffComponent,
+      // remove indent border from input
+      field: (props: FieldProps) => props.renderDefault({...props, level: 0}),
     },
   })
 

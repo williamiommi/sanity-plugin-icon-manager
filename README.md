@@ -16,6 +16,7 @@ Powered by [Iconify](https://iconify.design/)
 - [🧑‍💻 Usage](#-usage)
 - [⚙️ Plugin Configuration](#%EF%B8%8F-plugin-configuration)
 - [··· Context menu](#-context-menu)
+- [😌 KeepItSimple UI](#-keep-it-simple-ui)
 - [👀 Document List Preview](#-document-list-preview)
 - [🧩 Add Icons to Portable Text](#-add-icons-to-portable-text)
 - [🎨 Custom Color Palette](#-custom-color-palette)
@@ -57,8 +58,10 @@ Powered by [Iconify](https://iconify.design/)
   - UI refresh for some components
   - New JSON Dialog
 - v2.1.0+:
-  - option to hide the configuration modal
-  - new defaults option for size and inlineSvg.
+  - New option to hide the configuration modal
+  - New defaults option for size and inlineSvg.
+- v2.2.0+:
+  - New 'keepItSimpleFor' option
 
 <br /><br />
 
@@ -120,6 +123,17 @@ This is the main configuration of the plugin. The available options are:
 
 ```ts
 {
+  // This option allows you to have a simplified experience to search icons
+  // the `all` value enable the UI for everyone
+  // the array of string lets you enable the UI only for specific user roles. You can use the ! operator to do the opposite.
+  // example 1:
+  // keepItSimpleFor: ['role-a'] -> simple UI visible for users with only the role 'role-a'
+  // example 2:
+  // keepItSimpleFor: ['role-a', 'role-b'] -> simple UI visible for users with only 'role-a' or 'role-b' or both.
+  // example 3:
+  // keepItSimpleFor: ['!administrator'] -> simple UI visible for everyone except the administrator.
+  keepItSimpleFor: 'all' | string[],
+
   defaults?: {
     // This option allows you to set a default width and height for newly saved icons. If not set, the size defaults to 20x20, as it was before v1.5.0.
     size?: { width: number, height: number }
@@ -127,7 +141,7 @@ This is the main configuration of the plugin. The available options are:
     inlineSvg?: boolean
   }
 
-  // this option allows you to hide the configuration modal, when you select and icon, you can't configure it anymore.
+  // This option allows you to hide the configuration modal, when you select and icon, you can't configure it anymore.
   // the `all` value hide the configuration for everyone
   // the array of string lets you hide the modal only for specific user roles. You can use the ! operator to do the opposite (with the array, admin role has always access to the modal).
   // example 1:
@@ -173,6 +187,20 @@ Starting from version 2, you have access to a context menu (clicking on the ··
 
 <p align="center">
   <img width="70%" src="docs/images/context-menu.jpg" alt="JSON dialog"/>
+</p>
+
+<br /><br />
+
+## 😌 Keep It Simple UI
+
+Starting from version 2.2.0, you can simplify the experience using the `keepItSimpleFor` option. This setting changes the default UI, allowing you to select icons easily with no extra options—just a search input. After selecting an icon, use the context menu to access its information or clear the field. To change the icon, simply search for a new one. All other configuration options will continue to work, except for `configurationDialog` and `customPalette`.
+
+<p align="center">
+  <img width="70%" src="docs/images/keepitsimple-01.jpg" alt="Keep It Simple - Search"/>
+</p>
+
+<p align="center">
+  <img width="70%" src="docs/images/keepitsimple-02.jpg" alt="Keep It Simple - Context Menu"/>
 </p>
 
 <br /><br />
@@ -378,6 +406,9 @@ Here is the default English bundle:
 ```js
 {
 'add.icon.label': 'Add icon',
+
+// simple UI
+'simple.ui.placeholder': 'Search icons...',
 
 // add icon dialog
 'dialog.add.title': 'Find your icon',
