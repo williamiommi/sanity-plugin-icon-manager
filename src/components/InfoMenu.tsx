@@ -6,6 +6,7 @@ import usePluginTranslation from '../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../store/context'
 import {StyledIconMenu} from '../style'
 import BaseTooltip from './BaseTooltip'
+import CustomizedBadge from './CustomizedBadge'
 import IconPreview from './IconPreview'
 import TrashIcon from './icons/TrashIcon'
 import SvgButtons from './SvgButtons'
@@ -34,6 +35,7 @@ export default function InfoMenu({
   const {t} = usePluginTranslation()
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
+  const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
 
   const info = [
     {
@@ -81,6 +83,7 @@ export default function InfoMenu({
                     <Text muted weight='semibold'>
                       {t('menu.info.title')}
                     </Text>
+                    {hasBeenCustomized && <CustomizedBadge />}
                   </Flex>
                   {showTrash && (
                     <BaseTooltip portal placement='top' content={t('remove.icon.tooltip')}>
