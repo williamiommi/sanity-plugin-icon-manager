@@ -39,8 +39,6 @@ export default function SimpleUI(): ReactNode {
   useEffect(() => {
     if (debouncedSearchTerm && debouncedSearchTerm.length >= 3) {
       searchIcons()
-    } else {
-      closeSearchDialog()
     }
   }, [debouncedSearchTerm, searchIcons, closeSearchDialog])
 
@@ -57,6 +55,7 @@ export default function SimpleUI(): ReactNode {
               icon={sanityValue?.icon && <Icon icon={sanityValue.icon} />}
               onChange={setSearchTerm}
               onFocus={onFocusHandler}
+              value={searchTerm ?? ''}
             />
           </Box>
           {sanityValue?.icon && (
