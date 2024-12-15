@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.2.1...v2.2.2) (2024-12-15)
+
+### Bug Fixes
+
+- better popover management with portal and on blur ([9bce10f](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/9bce10f872ccd424fb27acfa7e941a692f2ff7b5))
+
 ## [2.2.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.2.0...v2.2.1) (2024-12-15)
 
 ### Bug Fixes
