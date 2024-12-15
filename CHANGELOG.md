@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.2.0...v2.2.1) (2024-12-15)
+
+### Bug Fixes
+
+- added a 20px max width to input icon ([20c2c6e](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/20c2c6e75bcbb673b7572fdc6baca76d87ecb703))
+
 ## [2.2.0](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.1.0...v2.2.0) (2024-12-14)
 
 ### Features

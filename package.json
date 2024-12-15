@@ -1,6 +1,6 @@
 {
   "name": "sanity-plugin-icon-manager",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A Sanity plugin for selecting, managing, and customizing icons.",
   "keywords": [
     "sanity",
