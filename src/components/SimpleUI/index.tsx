@@ -57,7 +57,7 @@ export default function SimpleUI(): ReactNode {
               placeholder={t('simple.ui.placeholder')}
               ref={inputRef}
               style={{width: '100%'}}
-              icon={sanityValue?.icon && <Icon icon={sanityValue.icon} />}
+              icon={sanityValue?.icon && <Icon icon={sanityValue.icon} style={{maxWidth: 20}} />}
               onChange={setSearchTerm}
               onFocus={onFocusHandler}
               value={searchTerm ?? ''}
