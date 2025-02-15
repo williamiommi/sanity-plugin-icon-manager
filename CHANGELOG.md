@@ -5,6 +5,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.2.2...v2.2.3) (2025-02-15)
+
+### Bug Fixes
+
+- fix issue on simple ui when field is readonly ([9670379](https://github.com/williamiommi/sanity-plugin-icon-manager/commit/9670379853f843a7c3baf26d5fb6fba66314b988))
+
 ## [2.2.2](https://github.com/williamiommi/sanity-plugin-icon-manager/compare/v2.2.1...v2.2.2) (2024-12-15)
 
 ### Bug Fixes
