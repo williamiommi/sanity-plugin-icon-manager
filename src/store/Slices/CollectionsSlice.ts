@@ -8,8 +8,8 @@ import {IconManagerIconInfo} from '../../types/IconManagerQueryResponse'
 import {PluginOptionsSlice} from './PluginOptionsSlice'
 import {SanitySlice} from './SanitySlice'
 
-let cacheCollections: Record<string, IconifyInfoEnhanced>
-let cacheGroupedCollections: Record<string, IconifyInfoEnhanced[]>
+const cacheCollections: Map<string, Record<string, IconifyInfoEnhanced>> = new Map()
+const cacheGroupedCollections: Map<string, Record<string, IconifyInfoEnhanced[]>> = new Map()
 
 export interface CollectionsSlice {
   collections?: Record<string, IconifyInfoEnhanced>
@@ -29,8 +29,12 @@ export const createCollectionsSlice: StateCreator<
 > = (set, get) => ({
   fetchCollections: async () => {
     try {
-      if (cacheCollections && cacheGroupedCollections) {
-        set(() => ({collections: cacheCollections, groupedCollections: cacheGroupedCollections}))
+      const cachedKey = get().availableCollectionsOption ?? 'all'
+      if (cacheCollections && cacheCollections.has(cachedKey)) {
+        set(() => ({
+          collections: cacheCollections.get(cachedKey),
+          groupedCollections: cacheGroupedCollections.get(cachedKey),
+        }))
       } else {
         const url = new URL(`${get().iconifyEndpoint}/collections`)
         if (get().availableCollectionsOption) {
@@ -43,9 +47,10 @@ export const createCollectionsSlice: StateCreator<
             ${res.statusText ? `${res.statusText}` : `Unable to fetch collections at '${url}'`}`,
           )
         const collections = (await res.json()) as Record<string, IconifyInfoEnhanced>
-        cacheCollections = collections
-        cacheGroupedCollections = groupAndSortCollections(collections)
-        set(() => ({collections, groupedCollections: cacheGroupedCollections}))
+        const groupedCollections = groupAndSortCollections(collections)
+        cacheCollections.set(cachedKey, collections)
+        cacheGroupedCollections.set(cachedKey, groupedCollections)
+        set(() => ({collections, groupedCollections}))
       }
     } catch (e: unknown) {
       toastError(get().sanityToast, e)

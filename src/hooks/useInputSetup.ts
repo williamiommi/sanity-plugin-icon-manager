@@ -13,6 +13,11 @@ const useInputSetup = (
   objectInputProps: ObjectInputProps,
   pluginOptions: void | IconManagerPluginOptions,
 ): void => {
+  // we merge global plugin options with field options, field options override global options
+  const mergedOptions: IconManagerPluginOptions = {
+    ...pluginOptions,
+    ...objectInputProps.schemaType.options,
+  }
   const sanityToast = useToast()
   const setIconifyEndpoint = useAppStoreContext((s) => s.setIconifyEndpoint)
   const setPluginOptionCustomPalette = useAppStoreContext((s) => s.setPluginOptionCustomPalette)
@@ -29,10 +34,10 @@ const useInputSetup = (
   const setColor = useAppStoreContext((s) => s.setColor)
 
   // this hook set all the booleans related to what the user can do, based on permissions
-  useUserCan(objectInputProps, pluginOptions)
+  useUserCan(objectInputProps, mergedOptions)
 
   // this hook set all defaults options of the plugin
-  usePluginDefaults(pluginOptions)
+  usePluginDefaults(mergedOptions)
 
   useEffect(() => {
     const value = objectInputProps.value as IconManagerType
@@ -55,11 +60,11 @@ const useInputSetup = (
     setSanityPatch(objectInputProps.onChange)
     setSanityPathFocus(objectInputProps.onPathFocus)
     setSanityToast(sanityToast)
-    setIconifyEndpoint(pluginOptions?.customEndpoint || DEFAULT_API_URL)
+    setIconifyEndpoint(mergedOptions?.customEndpoint || DEFAULT_API_URL)
 
-    if (pluginOptions?.customPalette) setPluginOptionCustomPalette(pluginOptions.customPalette)
-    if (pluginOptions?.availableCollections)
-      setAvailableCollectionsOption(pluginOptions.availableCollections)
+    if (mergedOptions?.customPalette) setPluginOptionCustomPalette(mergedOptions.customPalette)
+    if (mergedOptions?.availableCollections)
+      setAvailableCollectionsOption(mergedOptions.availableCollections)
   }, [])
 }
 

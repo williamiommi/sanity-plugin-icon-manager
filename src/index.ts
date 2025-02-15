@@ -4,3 +4,4 @@ export {mediaPreview} from './ext/mediaPreview'
 export {IconManager} from './ext/plugin'
 // export types
 export * from './types/IconManagerType'
+export * from './types/Sanity'
