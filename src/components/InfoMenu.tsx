@@ -36,6 +36,7 @@ export default function InfoMenu({
   const sanityValue = useAppStoreContext((s) => s.sanityValue)
   const openRemoveDialog = useAppStoreContext((s) => s.openRemoveDialog)
   const hasBeenCustomized = useAppStoreContext((s) => s.hasBeenCustomized())
+  const userCan = useAppStoreContext((s) => s.userCan)
 
   const info = [
     {
@@ -129,7 +130,7 @@ export default function InfoMenu({
                   </Flex>
                 </Card>
               </Box>
-              {actions && (
+              {actions && userCan.edit && (
                 <Box flex={1}>
                   <Flex align='center' gap={1}>
                     <BoltIcon width={20} height={20} />

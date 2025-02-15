@@ -21,11 +21,13 @@ import ResultsGridItem from './ResultsGridItem'
 type ResponsiveSpacingProps = ResponsivePaddingProps & ResponsiveMarginProps
 
 interface ResultsGridProps extends ResponsiveSpacingProps {
+  showBorder?: boolean
   items?: IconManagerIconInfo[]
   collection?: IconifyInfoEnhanced
 }
 
 export default function ResultsGrid({
+  showBorder,
   items,
   collection,
   ...responsiveSpacing
@@ -57,7 +59,7 @@ export default function ResultsGrid({
   return (
     <Box {...responsiveSpacing}>
       <Pagination {...paginationBag} />
-      <Card>
+      <Card border={showBorder}>
         <Grid as='ul' columns={[3, 5, 5, 7, 10]} gap={3}>
           {currentItems.map((item) => (
             <ResultsGridItem

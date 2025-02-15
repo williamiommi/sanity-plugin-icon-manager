@@ -3,7 +3,7 @@ import {EllipsisHorizontalIcon} from '@sanity/icons'
 import {Box, Card, Flex, Popover, TextInput} from '@sanity/ui'
 import {ReactNode, useCallback, useEffect, useMemo, useRef, useState} from 'react'
 
-import useClickOutside from '../../hooks/useClickOutside'
+import useClickOutsideMultiple from '../../hooks/useClickOutsideMultiple'
 import useDebounce from '../../hooks/useDebounce'
 import usePluginTranslation from '../../hooks/usePluginTranslation'
 import {useAppStoreContext} from '../../store/context'
@@ -20,19 +20,20 @@ export default function SimpleUI(): ReactNode {
   const searchIcons = useAppStoreContext((s) => s.searchIcons)
   const searchResults = useAppStoreContext((s) => s.searchResults)
   const setSearchResults = useAppStoreContext((s) => s.setSearchResults)
-  const closeSearchDialog = useAppStoreContext((s) => s.closeSearchDialog)
+  const userCan = useAppStoreContext((s) => s.userCan)
   const [hasFocus, setFocus] = useState(false)
 
   const onBlurHandler = useCallback(() => {
     setFocus(false)
-    closeSearchDialog()
-  }, [setFocus, closeSearchDialog])
+    setSearchResults(undefined)
+  }, [setFocus, setSearchResults])
 
-  const wrapperRef = useClickOutside<HTMLDivElement>(onBlurHandler)
+  const [wrapperRef, popoverRef] = useClickOutsideMultiple<HTMLDivElement>(onBlurHandler, 2)
 
   const onFocusHandler = useCallback(() => {
     setFocus(true)
-  }, [setFocus])
+    if (searchTerm && searchTerm.length >= 3) searchIcons()
+  }, [setFocus, searchTerm, searchIcons])
 
   const showPopover = useMemo(
     () => hasFocus && debouncedSearchTerm && debouncedSearchTerm.length >= 3,
@@ -45,32 +46,34 @@ export default function SimpleUI(): ReactNode {
     } else {
       setSearchResults(undefined)
     }
-  }, [debouncedSearchTerm, searchIcons, closeSearchDialog, setSearchResults])
+  }, [debouncedSearchTerm, searchIcons, setSearchResults])
 
   return (
-    <div ref={wrapperRef}>
+    <>
       <Card border radius={2}>
         <Flex align='center' justify='center'>
-          <Box flex={1}>
+          <Box flex={1} ref={wrapperRef}>
             <TextInput
               border={false}
               placeholder={t('simple.ui.placeholder')}
               ref={inputRef}
               style={{width: '100%'}}
-              icon={sanityValue?.icon && <Icon icon={sanityValue.icon} />}
+              icon={sanityValue?.icon && <Icon icon={sanityValue.icon} style={{maxWidth: 20}} />}
               onChange={setSearchTerm}
               onFocus={onFocusHandler}
               value={searchTerm ?? ''}
+              disabled={!userCan.edit}
             />
           </Box>
           {sanityValue?.icon && (
             <Card borderLeft>
-              <InfoMenu menuIcon={EllipsisHorizontalIcon} showTrash />
+              <InfoMenu menuIcon={EllipsisHorizontalIcon} showTrash={userCan.edit} />
             </Card>
           )}
         </Flex>
       </Card>
       <Popover
+        ref={popoverRef}
         content={<ResultsGrid items={searchResults} padding={3} />}
         open
         style={{display: showPopover ? 'block' : 'none'}}
@@ -80,7 +83,9 @@ export default function SimpleUI(): ReactNode {
         matchReferenceWidth
         overflow='auto'
         referenceElement={inputRef.current}
+        portal
+        shadow={searchResults ? 2 : 0}
       />
-    </div>
+    </>
   )
 }
