@@ -19,6 +19,7 @@ const IconsGrid = ({searchTerm}: IconsGridProps): ReactNode => {
 
   return (
     <ResultsGrid
+      showBorder
       items={filteredIcons}
       collection={selectedCollection?.collection}
       margin={4}

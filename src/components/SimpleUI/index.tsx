@@ -20,6 +20,7 @@ export default function SimpleUI(): ReactNode {
   const searchIcons = useAppStoreContext((s) => s.searchIcons)
   const searchResults = useAppStoreContext((s) => s.searchResults)
   const setSearchResults = useAppStoreContext((s) => s.setSearchResults)
+  const userCan = useAppStoreContext((s) => s.userCan)
   const [hasFocus, setFocus] = useState(false)
 
   const onBlurHandler = useCallback(() => {
@@ -61,11 +62,12 @@ export default function SimpleUI(): ReactNode {
               onChange={setSearchTerm}
               onFocus={onFocusHandler}
               value={searchTerm ?? ''}
+              disabled={!userCan.edit}
             />
           </Box>
           {sanityValue?.icon && (
             <Card borderLeft>
-              <InfoMenu menuIcon={EllipsisHorizontalIcon} showTrash />
+              <InfoMenu menuIcon={EllipsisHorizontalIcon} showTrash={userCan.edit} />
             </Card>
           )}
         </Flex>
